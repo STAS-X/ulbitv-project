@@ -2,7 +2,10 @@
 	"compilerOptions": {
 		"outDir": "./build/",
 		"module": "ESNext",
-		"baseUrl": "./src",
+		"baseUrl": ".",
+		"paths": {
+			"*":["./src/*"]
+		},
 		"noImplicitAny": true,
 		"removeComments": true,
 		"preserveConstEnums": true,

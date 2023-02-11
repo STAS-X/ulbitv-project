@@ -1,13 +1,12 @@
-import React, { ReactElement, Suspense, useContext, useState } from 'react';
+import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import AboutPageLazy from './pages/AboutPage/AboutPage.lazy';
-import MainPageLazy from './pages/MainPage/MainPage.lazy';
 import './styles/index.scss';
 import { Link } from 'react-router-dom';
-import { Theme, ThemeContext } from './theme/ThemeContext';
-import { useTheme } from './theme/useTheme';
-import { classNames } from './helpers/classNames/classNames';
-
+import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { useTheme } from 'app/providers/ThemeProvider';
+import { AboutPage } from 'pages/AboutPage';
+import { MainPage } from 'pages/MainPage';
 
 
 const App = () => {
@@ -23,8 +22,8 @@ const App = () => {
 			<Link to={'/about'}>О сайте</Link>
 			<Suspense fallback={<div>Loading routes...</div>}>
 				<Routes>
-					<Route path={'/about'} element={<AboutPageLazy />} />
-					<Route index path={'*'} element={<MainPageLazy />} />
+					<Route path={'/about'} element={<AboutPage />} />
+					<Route index path={'*'} element={<MainPage />} />
 				</Routes>
 			</Suspense>
 		</div>
