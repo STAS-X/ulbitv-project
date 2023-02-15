@@ -21,3 +21,7 @@ declare module '*.css' {
 }
 
 
+declare const _DEV_MODE_: boolean;
+
+
+

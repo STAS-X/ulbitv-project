@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"outDir": "./build/",
 		"module": "ESNext",
+		"resolveJsonModule": true,
 		"baseUrl": ".",
 		"paths": {
 			"*": ["./src/*"]

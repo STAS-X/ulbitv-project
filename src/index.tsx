@@ -3,7 +3,8 @@ import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from 'app/App';
 
-//const {NODE_MODE, NODE_PORT} = process.env;
+// import i18n (needs to be bundled ;)) 
+import 'shared/config/i18n/i18n';
 
 render(
 	<BrowserRouter>

@@ -10,5 +10,15 @@
     color: var(--primary-color);
 
     min-height: 100vh;
+    transition: background-color 0.3s;
 }
 
+.content-page {
+    display: flex;
+    flex-grow: 1;
+}
+
+.page-wrapper {
+    flex-grow: 1;
+    padding: 20px;
+}

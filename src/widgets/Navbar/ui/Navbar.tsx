@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { ThemeSwitchButton } from 'widgets/ThemeSwitch';
 import classes from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -9,19 +8,20 @@ interface NavbarProps {
 }
 
 export const Navbar = ({ className }: NavbarProps) => {
+	const { t } = useTranslation(['pages']);
+
 	return (
 		<div className={classNames(classes.navbar, {}, [className])}>
-			<ThemeSwitchButton />
 			<div className={classes.links}>
 				<AppLink
 					theme={AppLinkTheme.SECONDARY}
 					className={classes.mainLink}
 					to={'/'}
 				>
-					Главная
+					{t('main')}
 				</AppLink>
 				<AppLink theme={AppLinkTheme.SECONDARY} to={'/about'}>
-					О сайте
+					{t('about')}
 				</AppLink>
 			</div>
 		</div>
