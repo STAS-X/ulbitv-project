@@ -7,12 +7,12 @@ import classes from './AppLink.module.scss';
 export enum AppLinkTheme {
     PRIMARY='primary',
     SECONDARY='secondary'
-};
+}
 
 interface AppLinkProps extends LinkProps {
     className? : string,
     theme?: AppLinkTheme,
-};
+}
 
 export const AppLink: FC<AppLinkProps> = (props ) => {
     const {
@@ -24,12 +24,12 @@ export const AppLink: FC<AppLinkProps> = (props ) => {
 		} = props;
 
     return (
-			<Link
-				to={to}
-				className={classNames(classes.applink, {}, [className, classes[theme]])}
-				{...otherProps}
+	<Link
+		to={to}
+		className={classNames(classes.applink, {}, [className, classes[theme]])}
+		{...otherProps}
 			>
-				{children}
-			</Link>
+		{children}
+	</Link>
 		);
 };

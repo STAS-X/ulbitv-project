@@ -1,5 +1,4 @@
-import { ResultType } from '@remix-run/router/dist/utils';
-import React, { lazy, ReactElement } from 'react';
+import  { lazy } from 'react';
 
 export const AboutPageLazy = lazy(
 	() =>
