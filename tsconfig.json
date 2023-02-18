@@ -2,7 +2,7 @@
 	"compileOnSave": true,
 	"compilerOptions": {
 		"outDir": "./build/",
-		"module": "ESNext",
+		"module": "esnext",
 		"resolveJsonModule": true,
 		"baseUrl": ".",
 		"paths": {

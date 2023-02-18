@@ -7,7 +7,7 @@ import { buildResolvers } from './buildResolvers';
 import { BuildOptions } from './types/config';
 
 export function buildWebpackConfig(
-	options: BuildOptions,
+	options: BuildOptions
 ): webpack.Configuration {
 	const { paths, mode, isDev } = options;
 
@@ -15,6 +15,9 @@ export function buildWebpackConfig(
 		mode,
 		entry: {
 			main: paths.entry,
+		},
+		stats: {
+			children: true,
 		},
 		output: {
 			filename: '[name].[contenthash].js',

@@ -1,4 +1,5 @@
 {
     "about": "About Page",
-    "main": "Main Page"
+    "main": "Main Page",
+    "Page not found": "Page '{{pageName}}' not found"
 }

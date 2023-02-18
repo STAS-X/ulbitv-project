@@ -2,6 +2,7 @@
 	"name": "ulbi_project",
 	"version": "1.0.0",
 	"main": "index.tsx",
+	"type": "module",
 	"scripts": {
 		"start": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" webpack serve --env port=3000",
 		"build:prod": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" npx webpack --mode production --env mode=production",
