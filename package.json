@@ -3,7 +3,6 @@
 	"version": "1.0.0",
 	"main": "index.tsx",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" webpack serve --env port=3000",
 		"build:prod": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" npx webpack --mode production --env mode=production",
 		"build:dev": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" npx webpack --mode development",
@@ -12,12 +11,12 @@
 		"eslint": "npx eslint \"**/*.{ts,tsx}\"",
 		"eslint:fix": "npx eslint \"**/*.{ts,tsx}\" --fix",
 		"slint": "npx stylelint \"**/*.scss\"",
-		"slint:fix": "npx stylelint \"**/*.scss\" --fix"
+		"slint:fix": "npx stylelint \"**/*.scss\" --fix",
+		"unit": "jest --config ./config/jest/jest.config.ts"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
-	"type": "module",
 	"description": "",
 	"devDependencies": {
 		"@babel/core": "^7.17.5",

@@ -2,6 +2,7 @@ module.exports = {
 	env: {
 		browser: true,
 		es2022: true,
+		jest: true,
 	},
 	plugins: ['react', '@typescript-eslint', 'i18next'],
 	extends: [
@@ -16,6 +17,7 @@ module.exports = {
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		project: ['./tsconfig.json'],
+		requireConfigFile: false,
 		tsconfigRootDir: __dirname,
 		sourceType: 'module',
 		ecmaVersion: 'latest',
@@ -36,6 +38,7 @@ module.exports = {
 		],
 		quotes: ['error', 'single'],
 		'no-tabs': 0,
+		'linebreak-style': ['error', 'windows'],
 		'import/no-unresolved': 'off',
 		'import/extensions': 'off',
 		'no-underscore-dangle': 'off',
@@ -48,7 +51,7 @@ module.exports = {
 		'react/function-component-definition': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',
 		'@typescript-eslint/no-floating-promises': 'warn',
-    'comma-dangle':['error', 'only-multiline'],
+		'comma-dangle': ['error', 'only-multiline'],
 		'no-shadow': 'off',
 		'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
 		'i18next/no-literal-string': ['warn', { markupOnly: true }],

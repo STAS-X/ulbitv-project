@@ -19,14 +19,7 @@
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true
 	},
-	"include": [
-		"**/*.ts",
-		"**/*.tsx",
-		"**/**/*.ts",
-		"**/**/*.tsx",
-		".eslintrc.cjs",
-		".stylelintrc.cjs"
-	],
+
 	"exclude": ["node_modules"],
 	"ts-node": {
 		"esm": true,
