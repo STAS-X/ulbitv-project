@@ -24,7 +24,7 @@
 		"**/*.tsx",
 		"**/**/*.ts",
 		"**/**/*.tsx",
-		".eslintrc.cjs"
+		".eslintrc.cjs",
 	],
 	"exclude": ["node_modules"],
 	"ts-node": {
