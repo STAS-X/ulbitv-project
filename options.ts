@@ -1,13 +1,13 @@
-import { BuildEnv, BuildOptions } from './config/build/types/config';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { BuildEnv, BuildOptions } from './config/build/types/config';
 
 const __filename = fileURLToPath(import.meta.url);
 export const __dirname = path.dirname(__filename);
 
 export default (env: BuildEnv) => {
 	const mode = env.mode || 'development';
-	const isDev = mode == 'development';
+	const isDev = mode === 'development';
 	const PORT = env.port || 3000;
 
 	const options: BuildOptions = {

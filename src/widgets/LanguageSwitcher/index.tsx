@@ -1,1 +1,1 @@
-export {LanguageSwitchButton} from './ui/LanguageSwitchButton';
+export { LanguageSwitchButton } from './ui/LanguageSwitchButton';

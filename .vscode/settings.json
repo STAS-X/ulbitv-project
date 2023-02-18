@@ -1,0 +1,10 @@
+{
+	"i18n-ally.localesPaths": "",
+	"scss.validate": true,
+	"css.validate": true,
+	"less.validate": true,
+
+	"editor.codeActionsOnSave": {
+		"source.fixAll.stylelint": true
+	}
+}

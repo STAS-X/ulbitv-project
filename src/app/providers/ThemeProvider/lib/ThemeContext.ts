@@ -10,5 +10,4 @@ export interface ThemeContextProps {
     setTheme?: (theme: Theme) => void;
 }
 
-export const ThemeContext: React.Context<ThemeContextProps> =
-	createContext<ThemeContextProps>({});
+export const ThemeContext: React.Context<ThemeContextProps> =	createContext<ThemeContextProps>({});

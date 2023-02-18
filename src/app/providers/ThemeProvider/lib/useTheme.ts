@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { Theme, ThemeContext } from 'app/providers/ThemeProvider/lib/ThemeContext';
 
-
 interface UseThemeResult {
     toggleTheme: ()=>void;
     theme: Theme;
@@ -16,7 +15,7 @@ export function useTheme(): UseThemeResult {
 		setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
 		localStorage.setItem(
 			LOCAL_STORAGE_THEME_KEY,
-			theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
+			theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT,
 		);
 	};
 

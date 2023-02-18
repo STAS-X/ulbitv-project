@@ -1,18 +1,17 @@
 .navbar {
-  width: 100%;
-  height: var(--navbar-heigth);
-  background: var(--inverted-bg-color);
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  transition: background-color 0.1s 0.2s;
+    width: 100%;
+    height: var(--navbar-heigth);
+    background: var(--inverted-bg-color);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    transition: background-color 0.1s 0.2s;
 }
 
-.mainLink {
-  margin-right: 15px;
+.mainlink {
+    margin-right: 15px;
 }
 
 .links {
-  margin-left: auto;
-  
+    margin-left: auto;
 }

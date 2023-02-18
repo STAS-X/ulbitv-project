@@ -1,2 +1,3 @@
 /build/**
-!.eslintrc.js
+.eslintrc.cjs
+.stylelintrc.cjs

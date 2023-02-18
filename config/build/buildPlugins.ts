@@ -6,9 +6,8 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins(
-	options: BuildOptions
+	options: BuildOptions,
 ): webpack.WebpackPluginInstance[] {
-
 	const { paths, isDev } = options;
 
 	return [
