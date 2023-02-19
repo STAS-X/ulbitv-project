@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './NotFoundPage.module.scss';

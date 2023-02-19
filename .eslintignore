@@ -1,4 +1,3 @@
 /build/**
 .eslintrc.cjs
 .stylelintrc.cjs
-jest.config.ts

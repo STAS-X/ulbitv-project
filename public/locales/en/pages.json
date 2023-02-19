@@ -1,5 +1,6 @@
 {
     "about": "About Page",
     "main": "Main Page",
+    "reloadPage": "Reload Page",
     "Page not found": "Page '{{pageName}}' not found"
 }

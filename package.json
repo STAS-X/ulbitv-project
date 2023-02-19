@@ -13,7 +13,7 @@
 		"eslint:fix": "npx eslint \"**/*.{ts,tsx}\" --fix",
 		"slint": "npx stylelint \"**/*.scss\"",
 		"slint:fix": "npx stylelint \"**/*.scss\" --fix",
-		"unit": "jest --config ./config/jest/jest.config.ts"
+		"unit": "jest --config ./config/jest/jest.config.json"
 	},
 	"keywords": [],
 	"author": "",

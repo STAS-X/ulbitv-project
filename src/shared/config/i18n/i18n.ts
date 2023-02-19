@@ -5,14 +5,18 @@ import translationRU from '../../../../public/locales/ru/translation.json';
 import translationEN from '../../../../public/locales/en/translation.json';
 import pagesRU from '../../../../public/locales/ru/pages.json';
 import pagesEN from '../../../../public/locales/en/pages.json';
+import errorsRU from '../../../../public/locales/ru/errors.json';
+import errorsEN from '../../../../public/locales/en/errors.json';
 
 const resources = {
 	ru: {
 		translation: translationRU,
+		errors: errorsRU,
 		pages: pagesRU,
 	},
 	en: {
 		translation: translationEN,
+		errors: errorsEN,
 		pages: pagesEN,
 	},
 };
