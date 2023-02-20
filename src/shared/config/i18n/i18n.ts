@@ -29,7 +29,9 @@ i18n
 		fallbackLng: 'ru',
 		resources,
 		debug: _DEV_MODE_,
-
+		// have a common namespace used around the full app
+		ns: ['translations'],
+		defaultNS: 'translations',
 		interpolation: {
 			escapeValue: false, // not needed for react as it escapes by default
 		},

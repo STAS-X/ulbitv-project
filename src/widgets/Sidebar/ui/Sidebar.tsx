@@ -17,6 +17,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
 
 	return (
 		<div
+			data-testid="sidebar"
 			className={classNames(
 				classes.sidebar,
 				{ [classes.collapsed]: collapsed },
@@ -24,7 +25,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
 			)}
 		>
 			<div className={classes.switchers}>
-				<button type="button" onClick={onToggle}>
+				<button data-testid="sidebar-toggle" type="button" onClick={onToggle}>
 					Toggle
 				</button>
 				<ThemeSwitchButton />
