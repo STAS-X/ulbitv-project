@@ -1,5 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { withTranslation } from 'react-i18next';
+import { fireEvent, screen } from '@testing-library/react';
 import { Sidebar } from 'widgets/Sidebar';
 import componentWithProvider from 'shared/lib/renderTest/componentWithProvider';
 

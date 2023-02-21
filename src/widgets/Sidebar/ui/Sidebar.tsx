@@ -21,7 +21,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
 			className={classNames(
 				classes.sidebar,
 				{ [classes.collapsed]: collapsed },
-				[className],
+				[className]
 			)}
 		>
 			<div className={classes.switchers}>

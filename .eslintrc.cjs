@@ -16,7 +16,7 @@ module.exports = {
 	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
-		project: ['./tsconfig.json'],
+		project: ['tsconfig.json'],
 		requireConfigFile: false,
 		tsconfigRootDir: __dirname,
 		sourceType: 'module',
@@ -51,6 +51,7 @@ module.exports = {
 		'react/function-component-definition': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',
 		'@typescript-eslint/no-floating-promises': 'warn',
+		'@typescript-eslint/no-unsafe-assignment': 'off',
 		'comma-dangle': ['error', 'only-multiline'],
 		'no-shadow': 'off',
 		'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
