@@ -3,7 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import classes from './Navbar.module.scss';
 
-interface NavbarProps {
+export interface NavbarProps {
 	className?: string;
 }
 

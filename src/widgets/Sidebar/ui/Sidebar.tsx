@@ -4,7 +4,7 @@ import { ThemeSwitchButton } from 'widgets/ThemeSwitcher';
 import { LanguageSwitchButton } from 'widgets/LanguageSwitcher/';
 import classes from './Sidebar.module.scss';
 
-interface SidebarProps {
+export interface SidebarProps {
 	className?: string;
 }
 
@@ -14,6 +14,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
 	const onToggle = () => {
 		setCollapsed((prev) => !prev);
 	};
+	
 
 	return (
 		<div
