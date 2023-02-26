@@ -28,7 +28,12 @@ jobs:
         run: npm run lint:scss
 
       - name: jest unit test
-        run: npm run test:unit 
+        run: npm run test:unit
+
+      - name: storbook build
+        run: npm run storybook:build
+      - name: storycap screen shots
+        run: npm run test:storycap:ui
 
 
 
