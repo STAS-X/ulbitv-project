@@ -11,7 +11,7 @@ export function buildPlugins(
 ): webpack.WebpackPluginInstance[] {
 	const { paths, isDev } = options;
 
-	return [
+	const plugins = [
 		new HTMLWebpackPlugin({
 			template: paths.html,
 		}),
@@ -26,9 +26,13 @@ export function buildPlugins(
 			filename: 'css/[name].[contenthash:8].css',
 			chunkFilename: 'css/[name].[chunkhash:8].css',
 		}),
-		new BundleAnalyzerPlugin({ openAnalyzer: false }),
-		isDev
-			? new ReactRefreshWebpackPlugin({ overlay: false })
-			: new webpack.HotModuleReplacementPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
 	];
+	if (isDev)
+		plugins.push(
+			new BundleAnalyzerPlugin({ openAnalyzer: false }),
+			new ReactRefreshWebpackPlugin({ overlay: false })
+		);
+
+	return plugins;
 }
