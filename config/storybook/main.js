@@ -4,6 +4,9 @@ module.exports = {
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',
 		'@storybook/addon-interactions',
+		'@storybook/addon-contexts/register',
+		'storycap',
+		//'zisui/register',
 	],
 	framework: '@storybook/react',
 	core: {

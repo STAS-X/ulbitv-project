@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './Loader.module.scss';
 
-interface LoaderProps {
+export interface LoaderProps {
 	className?: string;
 }
 

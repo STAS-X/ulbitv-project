@@ -16,5 +16,5 @@ render(
 			</ErrorBoundary>
 		</ThemeProvider>
 	</BrowserRouter>,
-	document.getElementById('root')
+	document.getElementById('story-root')
 );
