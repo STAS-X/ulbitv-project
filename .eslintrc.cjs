@@ -75,6 +75,7 @@ module.exports = {
     'react/function-component-definition': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
+	'@typescript-eslint/require-await':'warn',
     '@typescript-eslint/no-unsafe-member-access': 'warn',
     '@typescript-eslint/no-unsafe-argument': 'warn',
     '@typescript-eslint/no-floating-promises': 'warn',
