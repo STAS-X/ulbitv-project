@@ -43,6 +43,8 @@
 		"./config/storybook/webpack.config.ts",
 		"./config/storybook/*.js",
 		"./config/jest/*.js",
+		"./config/jest/**/*.ts",
+		"./config/jest/**/*.tsx",
 		"./src/**/*.ts",
 		"./src/**/*.tsx",
 		".eslintrc.cjs"
