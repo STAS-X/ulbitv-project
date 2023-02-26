@@ -9,13 +9,13 @@ export default {
 	title: 'shared/ThemeSwitchButton',
 	component: ThemeSwitchButton,
 	argTypes: {
-		backgroundColor: { control: 'color' },
-	},
+		backgroundColor: { control: 'color' }
+	}
 } as ComponentMeta<typeof ThemeSwitchButton>;
 
-const Template: ComponentStory<typeof ThemeSwitchButton> = (
-	args: ThemeSwitchButtonProps
-) => <ThemeSwitchButton {...args} />;
+const Template: ComponentStory<typeof ThemeSwitchButton> = (args: ThemeSwitchButtonProps) => (
+	<ThemeSwitchButton {...args} />
+);
 
 export const ThemeSwitchButtonNormal = Template.bind({});
 ThemeSwitchButtonNormal.args = {};

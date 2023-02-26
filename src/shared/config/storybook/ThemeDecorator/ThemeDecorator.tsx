@@ -1,16 +1,6 @@
 import { Story } from '@storybook/react';
-import {
-	Children,
-	cloneElement,
-	FC,
-	isValidElement,
-	ReactNode,
-	useState,
-} from 'react';
-import {
-	Theme,
-	ThemeContext,
-} from 'app/providers/ThemeProvider/lib/ThemeContext';
+import { Children, cloneElement, FC, isValidElement, ReactNode, useState } from 'react';
+import { Theme, ThemeContext } from 'app/providers/ThemeProvider/lib/ThemeContext';
 import 'app/styles/index.scss';
 
 export interface StoryContextProps {
@@ -33,10 +23,7 @@ interface ThemeStoryProps {
 	initialValue?: Theme;
 }
 
-const ThemeStoryProvider: FC<ThemeStoryProps> = ({
-	children,
-	initialValue = Theme.LIGHT,
-}) => {
+const ThemeStoryProvider: FC<ThemeStoryProps> = ({ children, initialValue = Theme.LIGHT }) => {
 	const [theme, setTheme] = useState<Theme>(initialValue);
 
 	const toggletheme = () => {
@@ -45,14 +32,14 @@ const ThemeStoryProvider: FC<ThemeStoryProps> = ({
 
 	return (
 		<ThemeContext.Provider value={{ theme, setTheme: toggletheme }}>
-			{Children.map(children, (child, i) => {
+			{Children.map(children, (child) => {
 				if (isValidElement(child)) {
 					const el = child as JSX.Element;
 					//console.log(el, 'type element');
 					if (el.type === 'div' && el.props?.className)
 						return cloneElement(el, {
 							...el.props,
-							className: `app ${theme}`,
+							className: `app ${theme}`
 						});
 				}
 				return child;

@@ -8,7 +8,7 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
 		port,
 		open: true,
 		historyApiFallback: true,
-		hot: true,
+		hot: true
 		/* devMiddleware: {
                 writeToDisk:true
             } */

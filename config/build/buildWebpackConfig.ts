@@ -6,37 +6,35 @@ import { buildResolvers } from './buildResolvers';
 
 import { BuildOptions } from './types/config';
 
-export function buildWebpackConfig(
-	options: BuildOptions
-): webpack.Configuration {
+export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
 	const { paths, mode, isDev } = options;
 
 	return {
 		mode,
 		entry: {
-			main: paths.entry,
+			main: paths.entry
 		},
 		stats: {
-			children: true,
+			children: true
 		},
 		output: {
 			filename: '[name].[contenthash].js',
 			path: paths.build,
-			clean: true,
+			clean: true
 		},
 		watchOptions: {
 			aggregateTimeout: 600,
-			ignored: /node_modules/,
+			ignored: /node_modules/
 		},
 		plugins: buildPlugins(options),
 		module: {
-			rules: buildLoaders(options),
+			rules: buildLoaders(options)
 		},
 		resolve: buildResolvers(options),
 		devtool: isDev ? 'inline-source-map' : undefined,
 		performance: {
-			hints: false,
+			hints: false
 		},
-		devServer: buildDevServer(options),
+		devServer: buildDevServer(options)
 	};
 }

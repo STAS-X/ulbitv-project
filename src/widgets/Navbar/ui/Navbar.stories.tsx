@@ -9,13 +9,11 @@ export default {
 	title: 'widget/Navbar',
 	component: Navbar,
 	argTypes: {
-		backgroundColor: { control: 'color' },
-	},
+		backgroundColor: { control: 'color' }
+	}
 } as ComponentMeta<typeof Navbar>;
 
-const Template: ComponentStory<typeof Navbar> = (args: NavbarProps) => (
-	<Navbar {...args} />
-);
+const Template: ComponentStory<typeof Navbar> = (args: NavbarProps) => <Navbar {...args} />;
 
 export const LightBar = Template.bind({});
 

@@ -7,9 +7,7 @@ interface LanguageSwitchButtonProps {
 	className?: string;
 }
 
-export const LanguageSwitchButton: FC<LanguageSwitchButtonProps> = ({
-	className,
-}) => {
+export const LanguageSwitchButton: FC<LanguageSwitchButtonProps> = ({ className }) => {
 	const { t, i18n } = useTranslation(['translation']);
 
 	const toggleLanguage = () => {

@@ -9,32 +9,30 @@ export default {
 	title: 'shared/Button',
 	component: Button,
 	argTypes: {
-		backgroundColor: { control: 'color' },
-	},
+		backgroundColor: { control: 'color' }
+	}
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args: ButtonProps) => (
-	<Button {...args} />
-);
+const Template: ComponentStory<typeof Button> = (args: ButtonProps) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 
 Primary.args = {
 	children: 'Text primary',
-	theme: 'Primary',
+	theme: 'Primary'
 };
 
 export const Outline = Template.bind({});
 
 Outline.args = {
 	children: 'Text outline',
-	theme: ThemeButton.OUTLINE,
+	theme: ThemeButton.OUTLINE
 };
 
 export const OutlineDark = Template.bind({});
 OutlineDark.args = {
 	children: 'Text outline',
-	theme: ThemeButton.OUTLINE,
+	theme: ThemeButton.OUTLINE
 };
 
 OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
@@ -43,6 +41,5 @@ export const Clear = Template.bind({});
 
 Clear.args = {
 	children: 'Text clear',
-	theme: ThemeButton.CLEAR,
+	theme: ThemeButton.CLEAR
 };
-

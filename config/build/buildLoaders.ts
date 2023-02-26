@@ -5,7 +5,7 @@ import { BuildOptions } from './types/config';
 export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 	const svgLoader = {
 		test: /\.svg$/,
-		use: ['@svgr/webpack'],
+		use: ['@svgr/webpack']
 	};
 
 	const cssLoaders = buildCssLoader(options.isDev);
@@ -23,23 +23,23 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 						{
 							locales: ['ru', 'en'],
 							nsSeparator: '~',
-							keyAsDefaultValue: 'true',
-						},
-					],
-				],
-			},
-		},
+							keyAsDefaultValue: 'true'
+						}
+					]
+				]
+			}
+		}
 	};
 
 	const typescriptLoaders = {
 		test: /\.tsx?$/,
 		use: 'ts-loader',
-		exclude: /node_modules/,
+		exclude: /node_modules/
 	};
 
 	const fileLoader = {
 		test: /\.(png|jpe?g|gif|woff|woff2)$/i,
-		use: [{ loader: 'file-loader' }],
+		use: [{ loader: 'file-loader' }]
 	};
 
 	return [svgLoader, fileLoader, babelLoaders, typescriptLoaders, cssLoaders];

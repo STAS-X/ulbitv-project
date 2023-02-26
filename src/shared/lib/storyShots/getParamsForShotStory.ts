@@ -8,8 +8,8 @@ export const getParamsForScreenShot = (cssStory: string) => {
 						height: 600,
 						isMobile: true,
 						isLandscape: true,
-						deviceScaleFactor: 1,
-					},
+						deviceScaleFactor: 1
+					}
 				},
 				tablete: {
 					viewport: {
@@ -17,18 +17,18 @@ export const getParamsForScreenShot = (cssStory: string) => {
 						height: 800,
 						isMobile: false,
 						isLandscape: true,
-						deviceScaleFactor: 1,
-					},
-				},
+						deviceScaleFactor: 1
+					}
+				}
 			},
 			hovered: {
 				extends: 'mobile',
-				hover: cssStory,
+				hover: cssStory
 			},
 			focused: {
 				extends: 'tablete',
-				hover: cssStory,
-			},
-		},
+				hover: cssStory
+			}
+		}
 	};
 };

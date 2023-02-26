@@ -9,21 +9,18 @@ export default {
 	title: 'shared/Loader',
 	component: Loader,
 	argTypes: {
-		backgroundColor: { control: 'color' },
-	},
+		backgroundColor: { control: 'color' }
+	}
 } as ComponentMeta<typeof Loader>;
 
-const Template: ComponentStory<typeof Loader> = (args: LoaderProps) => (
-	<Loader {...args} />
-);
+const Template: ComponentStory<typeof Loader> = (args: LoaderProps) => <Loader {...args} />;
 
 export const LoaderPrimary = Template.bind({});
-LoaderPrimary.args = {
-};
+LoaderPrimary.args = {};
 
 export const LoaderPrimaryDark = Template.bind({});
 LoaderPrimaryDark.args = {
 	children: 'Text secondary',
-	theme: 'Secondary',
+	theme: 'Secondary'
 };
 LoaderPrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];

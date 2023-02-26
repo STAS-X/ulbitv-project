@@ -1,6 +1,6 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-export function buildCssLoader(isDev :boolean) {
+export function buildCssLoader(isDev: boolean) {
 	return {
 		test: /\.(s[ac]|c)ss$/i,
 		use: [
@@ -12,14 +12,12 @@ export function buildCssLoader(isDev :boolean) {
 				options: {
 					modules: {
 						auto: (resPath: string) => Boolean(resPath.includes('.module.')),
-						localIdentName: isDev
-							? '[path].[name]__[local]'
-							: '[hash:base64:8]',
-					},
-				},
+						localIdentName: isDev ? '[path].[name]__[local]' : '[hash:base64:8]'
+					}
+				}
 			},
 			// Compiles Sass to CSS
-			'sass-loader',
-		],
+			'sass-loader'
+		]
 	};
 }

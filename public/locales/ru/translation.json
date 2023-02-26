@@ -1,4 +1,5 @@
 {
-    "language": "Русский",
-    "title": "Добро пожаловать в react с использованием react-i18next"
+  "language": "Русский",
+  "title": "Добро пожаловать в react с использованием react-i18next",
+  "toggle": "Переключить"
 }

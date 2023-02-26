@@ -29,14 +29,13 @@ i18n
 	.use(initReactI18next)
 	.use(
 		resourcesToBackend(
-			(language: string, namespace: string) =>
-				import(`../../../../public/locales/${language}/${namespace}.json`)
+			(language: string, namespace: string) => import(`../../../../public/locales/${language}/${namespace}.json`)
 		)
 	)
 	.init({
 		fallbackLng: 'ru',
 		react: {
-			useSuspense: false,
+			useSuspense: false
 		},
 		//resources,
 		debug: _DEV_MODE_,
@@ -45,11 +44,11 @@ i18n
 		ns: [],
 		resources: {},
 		interpolation: {
-			escapeValue: false, // not needed for react as it escapes by default
+			escapeValue: false // not needed for react as it escapes by default
 		},
 		backend: {
-			loadPath: '/locales/{{lng}}/{{ns}}.json',
-		},
+			loadPath: '/locales/{{lng}}/{{ns}}.json'
+		}
 	});
 
 export default i18n;

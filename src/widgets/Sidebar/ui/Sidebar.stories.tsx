@@ -9,25 +9,18 @@ export default {
 	title: 'widget/Sidebar',
 	component: Sidebar,
 	argTypes: {
-		backgroundColor: { control: 'color' },
-	},
+		backgroundColor: { control: 'color' }
+	}
 } as ComponentMeta<typeof Sidebar>;
 
-const Template: ComponentStory<typeof Sidebar> = (args: SidebarProps) => (
-	<Sidebar {...args} />
-);
+const Template: ComponentStory<typeof Sidebar> = (args: SidebarProps) => <Sidebar {...args} />;
 
 export const LightBar = Template.bind({});
 
-LightBar.args = {
-
-};
+LightBar.args = {};
 
 export const DarkBar = Template.bind({});
 
-DarkBar.args = {
-
-};
+DarkBar.args = {};
 
 DarkBar.decorators = [ThemeDecorator(Theme.DARK)];
-

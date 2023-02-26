@@ -10,21 +10,12 @@ export interface ThemeSwitchButtonProps {
 	className?: string;
 }
 
-export const ThemeSwitchButton: FC<ThemeSwitchButtonProps> = ({
-	className,
-}) => {
+export const ThemeSwitchButton: FC<ThemeSwitchButtonProps> = ({ className }) => {
 	const { theme, toggleTheme } = useTheme();
 
 	return (
-		<Button
-			className={classNames('', {}, [className])}
-			onClick={toggleTheme}
-		>
-			{theme === Theme.LIGHT ? (
-				<LightIcon transform="scale(0.75)" />
-			) : (
-				<DarkIcon transform="scale(0.75)" />
-			)}
+		<Button className={classNames('', {}, [className])} onClick={toggleTheme}>
+			{theme === Theme.LIGHT ? <LightIcon transform="scale(0.75)" /> : <DarkIcon transform="scale(0.75)" />}
 		</Button>
 	);
 };

@@ -10,15 +10,11 @@ export default {
 	title: 'pages/AboutPage',
 	component: AboutPage,
 	argTypes: {
-		backgroundColor: { control: 'color' },
-	},
+		backgroundColor: { control: 'color' }
+	}
 } as ComponentMeta<typeof AboutPage>;
 
-const Template: ComponentStory<typeof AboutPage> = (args: any) => (
-	<AboutPage {...args} />
-);
-
-
+const Template: ComponentStory<typeof AboutPage> = (args: any) => <AboutPage {...args} />;
 
 export const AboutPageNormal = Template.bind({});
 AboutPageNormal.args = {};
@@ -31,6 +27,6 @@ AboutPageNormal.decorators = [ThemeDecorator(Theme.LIGHT)];
 export const AboutPageDark = Template.bind({});
 AboutPageDark.args = {};
 AboutPageDark.story = {
-	parameters: getParamsForScreenShot('div.app.dark'),
+	parameters: getParamsForScreenShot('div.app.dark')
 };
 AboutPageDark.decorators = [ThemeDecorator(Theme.DARK)];

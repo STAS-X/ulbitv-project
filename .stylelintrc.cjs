@@ -4,7 +4,7 @@ module.exports = {
   ],
   plugins: ['stylelint-scss'],
   rules: {
-    indentation: [4],
+    indentation: [2],
     'selector-class-pattern': null,
   },
 };

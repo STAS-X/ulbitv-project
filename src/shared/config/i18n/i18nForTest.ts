@@ -8,8 +8,7 @@ i18n
 	.use(initReactI18next)
 	.use(
 		resourcesToBackend(
-			(language: string, namespace: string) =>
-				import(`../../../../public/locales/${language}/${namespace}.json`)
+			(language: string, namespace: string) => import(`../../../../public/locales/${language}/${namespace}.json`)
 		)
 	)
 	.init({
@@ -17,7 +16,7 @@ i18n
 		fallbackLng: 'ru',
 		debug: false,
 		react: {
-			useSuspense: false,
+			useSuspense: false
 		},
 		partialBundledLanguages: true,
 		ns: [],
@@ -28,11 +27,11 @@ i18n
 		// If you want to use plain english keys, separators such as `.` and `:` will conflict. You might want to set `keySeparator: false` and `namespaceSeparator: false`. That way, `t('Status: Loading...')` will not think that there are a namespace and three separator dots for instance.
 		detection: {
 			order: ['path'],
-			lookupFromPathIndex: 0,
+			lookupFromPathIndex: 0
 		},
 		interpolation: {
-			escapeValue: false, // not needed for react as it escapes by default
-		},
+			escapeValue: false // not needed for react as it escapes by default
+		}
 	});
 
 export default i18n;
