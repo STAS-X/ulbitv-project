@@ -15,7 +15,7 @@
     "prettier-css-format": "prettier --config .prettierrc \"**/*.{css,scss}\" --write",
     "lint:prets:fix": "npm run prettier-ts-format & npm run lint:ts:fix",
     "lint:precss:fix": "npm run prettier-css-format & npm run lint:scss:fix",
-    "test:unit": "jest --config ./config/jest/jest.config.ts",
+    "test:unit": "jest --config ./config/jest/jest.config.json",
     "screen:ui": "npx storycap http://localhost:6006 -o \"_storycap_srceenshots_\"",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "build-storybook": "build-storybook -c ./config/storybook"
@@ -43,7 +43,7 @@
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.11",
+    "@types/react-dom": "^17.0.19",
     "@types/react-router-dom": "^5.3.3",
     "@types/webpack": "^5.28.0",
     "@types/webpack-bundle-analyzer": "^4.4.1",
