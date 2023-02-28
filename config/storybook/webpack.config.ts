@@ -34,6 +34,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
 		use: ['@svgr/webpack']
 	});
 	config.module.rules.push(buildCssLoader(true));
+	config.performance = { ...config.performance, hints: false };
 
 	return config;
 };
