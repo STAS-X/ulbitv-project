@@ -3,6 +3,7 @@ node_modules
 idea
 /extractedTranslations
 /storybook-static
-/.loki
-!/.loki/reference
+.loki/difference
+.loki/current
+!.loki/reference
 .loki/report.*
