@@ -1,18 +1,18 @@
 .sidebar {
-	width: var(--sidebar-width);
-	height: calc(100vh - var(--navbar-heigth));
-	background: var(--inverted-bg-color);
-	position: relative;
-	transition: width 0.3s;
-	transition: background-color 0.1s 0.2s;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--navbar-heigth));
+  background: var(--inverted-bg-color);
+  position: relative;
+  transition: width 0.3s;
+  transition: background-color 0.1s 0.2s;
 }
 
 .switchers {
-	position: absolute;
-	bottom: 20px;
-	display: flex;
-	justify-content: center;
-	width: 100%;
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .lang {
@@ -20,9 +20,9 @@
 }
 
 .collapsebtn {
-	position: absolute;
-	right: -32px;
-	bottom: 32px;
+  position: absolute;
+  right: -32px;
+  bottom: 32px;
 }
 
 .items {
@@ -40,7 +40,7 @@
 
 .link {
   margin-left: 10px;
-  opacity:1;
+  opacity: 1;
   transition: 0.3s opacity;
 }
 
@@ -48,22 +48,21 @@
   fill: var(--inverted-primary-color);
 }
 
-
 .collapsed {
-	width: var(--sidebar-width-collapsed);
+  width: var(--sidebar-width-collapsed);
 
-	.switchers {
-		flex-direction: column;
-		align-items: center;
-	}
+  .switchers {
+    flex-direction: column;
+    align-items: center;
+  }
 
-	.lang {
-		margin-left: 0;
-	}
+  .lang {
+    margin-left: 0;
+  }
 
-	.link {
-		opacity:0;
+  .link {
+    opacity: 0;
     transition: 0.3s opacity;
-    width:0;
-	}
+    width: 0;
+  }
 }
