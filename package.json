@@ -16,7 +16,12 @@
 		"lint:prets:fix": "npm run prettier-ts-format & npm run lint:ts:fix",
 		"lint:precss:fix": "npm run prettier-css-format & npm run lint:scss:fix",
 		"test:unit": "jest --config ./config/jest/jest.config.json",
-		"test:loki:ui": "npx loki --requireReference --reactUri file:./storybook-static",
+		"test:ui": "npx loki test",
+		"test:ui:ok": "npx loki approve",
+		"test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
+		"test:ui:report": "npm run test:ui:json && npm run test:ui:html",
+		"test:ui:json": "node scripts/generate-visual-json-report.js",
+		"test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
 		"test:storycap:ui": "npx storycap --reactUri file:./storybook-static -o \"_storycap_srceenshots_\"",
 		"screen:ui": "npx storycap http://localhost:6006 -o \"_storycap_srceenshots_\"",
 		"storybook": "start-storybook -p 6006 -c ./config/storybook",
@@ -95,6 +100,7 @@
 		"react-dom": "^17.0.2",
 		"react-i18next": "^11.15.5",
 		"react-router-dom": "^6.2.1",
+		"reg-cli": "^0.17.7",
 		"storycap": "^4.0.0"
 	},
 	"loki": {
