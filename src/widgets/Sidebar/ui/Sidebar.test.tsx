@@ -1,22 +1,24 @@
-import { waitFor, fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import { Sidebar } from 'widgets/Sidebar';
-import componentWithProvider from 'shared/lib/renderTest/componentWithProvider';
+import componentRender from '../../../shared/lib/tests/componentRender/componentRender';
 //import { act } from 'react-dom/test-utils';
 
 describe('button test', () => {
 	test('Sidebar test with provider HOC', async () => {
 		// const SideBarHoc = withTranslation()(Sidebar);
-		await waitFor(async () => {
-			componentWithProvider(<Sidebar />);
-		});
+		//await waitFor(async () => {
+		await waitFor(() => componentRender(<Sidebar />));
+
+		//});
 		expect(screen.getByTestId('sidebar')).toBeInTheDocument();
 	});
 
 	test('Sidebar test collapse', async () => {
 		// const SideBarHoc = withTranslation()(Sidebar);
-		await waitFor(async () => {
-			componentWithProvider(<Sidebar />);
-		});
+		//await waitFor(async () => {
+		await waitFor(() => componentRender(<Sidebar />));
+		//});
 		const toggleBtn = screen.getByTestId('sidebar-toggle');
 		expect(screen.getByTestId('sidebar')).toBeInTheDocument();
 
