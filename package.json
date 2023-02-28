@@ -106,8 +106,6 @@
 	"loki": {
 		"diffingEngine": "pixelmatch",
 		"chromeLoadTimeout": 120000,
-		"chrome-selector": "div.app.light > *",
-		"chromeSelector": "div.app.light > *",
 		"chromeTolerance": 10,
 		"chromeFlags": "--headless --disable-gpu --hide-scrollbars --no-sandbox",
 		"configurations": {
