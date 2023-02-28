@@ -2,15 +2,15 @@ name: Linting testing Building
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   push:
-    branches: [ development ]
+    branches: [development]
   pull_request:
-    branches: [ development ]
+    branches: [development]
 jobs:
   pipeline:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 17.x ]
+        node-version: [17.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -20,20 +20,19 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: install modules
         run: npm install
+
       - name: build project
         run: npm run build:prod
-        if always()
+        if: always()
       - name: linting typescript
         run: npm run lint:ts
-        if always()
+        if: always()
       - name: linting scss
         run: npm run lint:scss
-        if always()
+        if: always()
       - name: jest unit test
         run: npm run test:unit
-        if always()
+        if: always()
       - name: storybook build
         run: npm run storybook:build
-        if always()
-
-
+        if: always()
