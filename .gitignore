@@ -3,4 +3,6 @@ node_modules
 idea
 /extractedTranslations
 /storybook-static
+/.loki
+!/.loki/reference
 .loki/report.*
