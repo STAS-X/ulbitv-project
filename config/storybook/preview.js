@@ -87,5 +87,5 @@ addDecorator(withContexts(contexts));
 addDecorator(ThemeDecorator(Theme.LIGHT));
 addDecorator(RouterDecorator);
 
-addDecorator(withScreenshot);
-addParameters({ screenshot: { ...parameters.screenshot } });
+//addDecorator(withScreenshot);
+//addParameters({ screenshot: { ...parameters.screenshot } });

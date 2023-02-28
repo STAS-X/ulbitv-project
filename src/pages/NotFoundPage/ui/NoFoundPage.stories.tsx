@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { NotFoundPage } from './NotFoundPage';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
-import { getParamsForScreenShot } from 'shared/lib/storyShots/getParamsForShotStory';
+//import { getParamsForScreenShot } from 'shared/lib/storyShots/getParamsForShotStory';
 
 export default {
 	title: 'pages/NoFoundPage',
@@ -18,13 +18,13 @@ const Template: ComponentStory<typeof NotFoundPage> = (args: any) => <NotFoundPa
 
 export const NoFoundPageNormal = Template.bind({});
 NoFoundPageNormal.args = {};
-NoFoundPageNormal.story = {
-	parameters: getParamsForScreenShot('div.app.light')
-};
+// NoFoundPageNormal.story = {
+// 	parameters: getParamsForScreenShot('div.app.light')
+// };
 
 export const NoFoundPageDark = Template.bind({});
 NoFoundPageDark.args = {};
-NoFoundPageDark.story = {
-	parameters: getParamsForScreenShot('div.app.dark')
-};
+// NoFoundPageDark.story = {
+// 	parameters: getParamsForScreenShot('div.app.dark')
+// };
 NoFoundPageDark.decorators = [ThemeDecorator(Theme.DARK)];
