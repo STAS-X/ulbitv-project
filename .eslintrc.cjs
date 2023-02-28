@@ -73,6 +73,7 @@ module.exports = {
 		'react/jsx-props-no-spreading': 'warn',
 		'react/no-array-index-key': 'off',
 		'react/function-component-definition': 'off',
+		'react-hooks/rules-of-hooks': 'warn',
 		'@typescript-eslint/no-unsafe-call': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',
 		'@typescript-eslint/require-await': 'warn',

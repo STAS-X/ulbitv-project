@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { addParameters, addDecorator } from '@storybook/react';
 import { withContexts } from '@storybook/addon-contexts/react';
 import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator/StyleDecorator';
@@ -13,8 +12,8 @@ export const parameters = {
 	controls: {
 		matchers: {
 			color: /(background|color)$/i,
-			date: /Date$/,
-		},
+			date: /Date$/
+		}
 	},
 	// Global parameter is optional.
 	screenshot: {
@@ -24,29 +23,29 @@ export const parameters = {
 				width: 1024,
 				height: 768,
 				isMobile: false,
-				isLandscape: true,
+				isLandscape: true
 			},
 			small: {
 				width: 375,
 				height: 668,
 				isMobile: true,
-				isLandscape: false,
+				isLandscape: false
 			},
 			xsmall: {
 				width: 320,
 				height: 568,
 				isMobile: true,
-				isLandscape: true,
-			},
+				isLandscape: true
+			}
 		},
 		delay: 500,
-		viewport: 'iPhone 7',
-	},
+		viewport: 'iPhone 7'
+	}
 };
 
 const ThemeContext = createContext({
 	theme: Theme.LIGHT,
-	setTheme: toggleTheme,
+	setTheme: toggleTheme
 });
 
 const toggleTheme = (defaultTheme) => {
@@ -54,10 +53,7 @@ const toggleTheme = (defaultTheme) => {
 
 	return () => {
 		setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
-		localStorage.setItem(
-			LOCAL_STORAGE_THEME_KEY,
-			theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
-		);
+		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
 	};
 };
 
@@ -71,19 +67,19 @@ const contexts = [
 			{
 				name: 'Light Theme',
 				props: { value: { theme: Theme.LIGHT, setTheme: toggleTheme } },
-				default: true,
+				default: true
 			},
 			{
 				name: 'Dark Theme',
-				props: { value: { theme: Theme.DARK, setTheme: toggleTheme } },
-			},
+				props: { value: { theme: Theme.DARK, setTheme: toggleTheme } }
+			}
 		],
 		options: {
 			deep: true, // pass the `props` deeply into all wrapping components
 			disable: false, // disable this contextual environment completely
-			cancelable: false, // allow this contextual environment to be opt-out optionally in toolbar
-		},
-	},
+			cancelable: false // allow this contextual environment to be opt-out optionally in toolbar
+		}
+	}
 ];
 
 addDecorator(StyleDecorator);
@@ -91,7 +87,5 @@ addDecorator(withContexts(contexts));
 addDecorator(ThemeDecorator(Theme.LIGHT));
 addDecorator(RouterDecorator);
 
-addDecorator(
-	withScreenshot
-);
-addParameters({screenshot:{...parameters.screenshot}});
+addDecorator(withScreenshot);
+addParameters({ screenshot: { ...parameters.screenshot } });
