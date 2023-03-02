@@ -104,7 +104,9 @@
 		"storycap": "^4.0.0"
 	},
 	"loki": {
-		"chromeTolerance": 0.8,
+		"diffingEngine": "looks-same",
+		"chromeTolerance": 20,
+		"chromeLoadTimeout": 120000,
 		"chromeFlags": "--headless --disable-gpu --hide-scrollbars --no-sandbox",
 		"configurations": {
 			"chrome.laptop": {
