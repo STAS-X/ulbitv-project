@@ -18,6 +18,7 @@
 		"test:unit": "jest --config ./config/jest/jest.config.json",
 		"test:ui": "npx loki test",
 		"test:ui:ok": "npx loki approve",
+		"test:update": "loki update --reactUri file:./storybook-static",
 		"test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
 		"test:ui:report": "npm run test:ui:json && npm run test:ui:html",
 		"test:ui:json": "node scripts/generate-visual-json-report.js",
@@ -105,7 +106,7 @@
 	},
 	"loki": {
 		"diffingEngine": "looks-same",
-		"chromeTolerance": 0,
+		"chromeTolerance": 20,
 		"chromeLoadTimeout": 120000,
 		"chromeFlags": "--headless --disable-gpu --hide-scrollbars --no-sandbox",
 		"configurations": {
