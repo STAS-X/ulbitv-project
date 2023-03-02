@@ -98,6 +98,13 @@ module.exports = {
 		_DEV_MODE_: true
 	},
 	overrides: [
-		{ files: ['**/src/**/*.{test, stories.{ts,tsx}'], rules: { 'i18next/no-literal-string': 'off', 'max-len': 'off' } }
+		{
+			files: ['**/src/**/*.{test, stories.{ts,tsx}'],
+			rules: { 'i18next/no-literal-string': 'off', indent: 'off', 'max-len': 'off' }
+		},
+		{
+			files: ['**/src/**/*.{ts,tsx}'],
+			rules: { indent: 'off' }
+		}
 	]
 };
