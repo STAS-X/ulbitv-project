@@ -4,6 +4,7 @@ import classes from './Button.module.scss';
 
 export enum ButtonTheme {
 	CLEAR = 'clear',
+	INVERTED = 'inverted',
 	OUTLINE = 'outline',
 	BACKGROUND = 'background',
 	BACKGROUND_INVERTED = 'backgroundInverted'

@@ -2,5 +2,6 @@
     "language": "English",
     "short lng": "EN",
     "title": "Welcome to react using react-i18next",
-    "toggle": "Toggle"
+    "toggle": "Toggle",
+    "login":"Login"
 }

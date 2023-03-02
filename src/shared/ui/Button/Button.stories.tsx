@@ -40,8 +40,15 @@ OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
 export const Clear = Template.bind({});
 
 Clear.args = {
-	children: 'Text clear',
+	children: 'Clear',
 	theme: ButtonTheme.CLEAR
+};
+
+export const Inverted = Template.bind({});
+
+Inverted.args = {
+	children: 'Inverted',
+	theme: ButtonTheme.INVERTED
 };
 
 export const Background = Template.bind({});

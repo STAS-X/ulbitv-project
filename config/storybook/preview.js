@@ -45,10 +45,10 @@ export const parameters = {
 
 const ThemeContext = createContext({
 	theme: Theme.LIGHT,
-	setTheme: toggleTheme
+	setTheme: useStoryTheme
 });
 
-const toggleTheme = (defaultTheme) => {
+const useStoryTheme = (defaultTheme) => {
 	const [theme, setTheme] = useState(defaultTheme);
 
 	return () => {
@@ -66,12 +66,12 @@ const contexts = [
 			// an array of params contains a set of predefined `props` for `components`
 			{
 				name: 'Light Theme',
-				props: { value: { theme: Theme.LIGHT, setTheme: toggleTheme } },
+				props: { value: { theme: Theme.LIGHT, setTheme: useStoryTheme } },
 				default: true
 			},
 			{
 				name: 'Dark Theme',
-				props: { value: { theme: Theme.DARK, setTheme: toggleTheme } }
+				props: { value: { theme: Theme.DARK, setTheme: useStoryTheme } }
 			}
 		],
 		options: {

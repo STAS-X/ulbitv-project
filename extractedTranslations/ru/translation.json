@@ -1,4 +1,5 @@
 {
+  "": "",
   "Page not found": "",
   "about": "",
   "about33322": "",
@@ -7,9 +8,12 @@
   "errorqqq:errorApp": "",
   "errors:errorApp": "",
   "language": "",
+  "login": "",
   "main": "",
   "pages:errorApp": "",
   "pages:reloadPage": "",
   "reloadPage": "",
+  "translation:login": "",
+  "translationlogin": "",
   "updatePage": ""
 }

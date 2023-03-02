@@ -54,10 +54,7 @@ module.exports = {
 		'prettier/prettier': [
 			'error',
 			{
-				semi: true,
-				singleQuote: true,
-				useTabs: true,
-				endOfLine: 'auto' /* this setting should be included */
+				usePrettierrc: true
 			}
 		],
 		'import/no-unresolved': 'off',
@@ -73,7 +70,8 @@ module.exports = {
 		'react/jsx-props-no-spreading': 'warn',
 		'react/no-array-index-key': 'off',
 		'react/function-component-definition': 'off',
-		'react-hooks/rules-of-hooks': 'warn',
+		'react-hooks/rules-of-hooks': 'error',
+		'react-hooks/exhaustive-deps': 'error',
 		'@typescript-eslint/no-unsafe-call': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',
 		'@typescript-eslint/require-await': 'warn',
@@ -98,5 +96,8 @@ module.exports = {
 	},
 	globals: {
 		_DEV_MODE_: true
-	}
+	},
+	overrides: [
+		{ files: ['**/src/**/*.{test, stories.{ts,tsx}'], rules: { 'i18next/no-literal-string': 'off', 'max-len': 'off' } }
+	]
 };
