@@ -1,4 +1,7 @@
 {
+	"globals": {
+		"_DEV_MODE_": true
+	},
 	"clearMocks": true,
 	"testEnvironment": "jsdom",
 	"coveragePathIgnorePatterns": ["\\\\node_modules\\\\"],

@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { StateSchema } from '../config/stateSchema';
 import { createReduxStore } from '../config/store';
 
-interface StoreProviderProps {
+export interface StoreProviderProps {
 	children?: ReactNode;
 	initialState?: StateSchema;
 }

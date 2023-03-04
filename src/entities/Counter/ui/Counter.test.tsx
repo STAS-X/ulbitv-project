@@ -1,26 +1,32 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { StateSchema } from 'app/providers/StoreProvider';
+import componentStore from 'shared/lib/tests/componentStore/componentStore';
 import { Counter } from './Counter';
+
+const initialState: StateSchema = {
+	counter: { value: 8 }
+};
 
 describe('Counter component test', () => {
 	test('Counter redux component render', () => {
-		render(<Counter />);
+		componentStore(<Counter />, initialState);
 		expect(screen.getByTestId('counter')).toBeInTheDocument();
 	});
 
-	test('Counter redux initial state', () => {
-		render(<Counter />);
+	test('Counter with initial state', () => {
+		componentStore(<Counter />, initialState);
 		const titleCounter = screen.getByTestId('counter-value');
-		expect(titleCounter).toHaveValue(0);
+		expect(titleCounter).toHaveTextContent('8');
 	});
 
-	test('Counter redux initial state', () => {
-		render(<Counter />);
+	test('Counter with change state', () => {
+		componentStore(<Counter />, initialState);
 		const incrementBtn = screen.getByTestId('increment-btn');
 		const decrementBtn = screen.getByTestId('decrement-btn');
 
 		fireEvent.click(incrementBtn);
-		expect(screen.getByTestId('counter-value')).toHaveValue(1);
+		expect(screen.getByTestId('counter-value')).toHaveTextContent('9');
 		fireEvent.click(decrementBtn);
-		expect(screen.getByTestId('counter-value')).toHaveValue(0);
+		expect(screen.getByTestId('counter-value')).toHaveTextContent('8');
 	});
 });

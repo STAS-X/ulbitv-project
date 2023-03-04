@@ -14,7 +14,7 @@ export const Counter: FC<CounterProps> = ({ counterValue = 1 }) => {
 	const dispatch = useDispatch();
 
 	const setIncrement = () => {
-		dispatch(counterActions.incrementByAmount(2));
+		dispatch(counterActions.increment());
 	};
 
 	const setDecrement = () => {
@@ -23,7 +23,7 @@ export const Counter: FC<CounterProps> = ({ counterValue = 1 }) => {
 
 	useEffect(() => {
 		counterActions.setByAmount(counterValue);
-	}, []);
+	}, [counterValue]);
 
 	return (
 		<div
