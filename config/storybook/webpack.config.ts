@@ -13,12 +13,12 @@ export default ({ config }: { config: webpack.Configuration }) => {
 	config.resolve.modules.push(paths.src);
 	config.resolve.extensions.push('.ts', '.tsx');
 
-	// config.plugins.push(
-	// 	new webpack.DefinePlugin({
-	// 		DEV_MODE: JSON.stringify(true),
-	// 		MODE: JSON.stringify(true),
-	// 	})
-	// );
+	config.plugins.push(
+		new webpack.DefinePlugin({
+			_DEV_MODE_: JSON.stringify(true)
+			// 		MODE: JSON.stringify(true),
+		})
+	);
 
 	// eslint-disable-next-line no-param-reassign
 	config.module.rules = config.module.rules.map((rule: RuleSetRule) => {
