@@ -108,8 +108,13 @@ module.exports = {
 			rules: { indent: 'off' }
 		},
 		{
-			files: ['/scripts/*', '/json-server/*'],
-			rules: { '@typescript-eslint/no-var-requires': 'off', '@typescript-eslint/unbound-method': 'off' }
+			files: ['./scripts/*', './json-server/*'],
+			rules: {
+				'@typescript-eslint/no-var-requires': 'off',
+				'@typescript-eslint/unbound-method': 'off',
+				'@typescript-eslint/no-unsafe-member-access': 'off',
+				'@typescript-eslint/no-floating-promises': 'off'
+			}
 		}
 	]
 };

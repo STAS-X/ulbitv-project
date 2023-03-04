@@ -1,27 +1,26 @@
-@import "themes/normal";
-@import "themes/dark";
-@import "reset";
-@import "variables/global";
+@import 'themes/normal';
+@import 'themes/dark';
+@import 'reset';
+@import 'variables/global';
 
 body {
-  font: var(--font-m);
-  color: var(--primary-color);
+	font: var(--font-m);
+	color: var(--primary-color);
 }
 
 .app {
-  min-height: 100vh;
-  background: var(--bg-color);
-  transition: background-color 0.3s;
+	min-height: 100vh;
+	background: var(--bg-color);
+	transition: background-color 0.3s;
 }
 
-
 .content-page {
-  display: flex;
-  flex-grow: 1;
+	display: flex;
+	flex-grow: 1;
 }
 
 .page-wrapper {
-  flex-grow: 1;
-  padding: 20px;
-  margin-top: 0;
+	flex-grow: 1;
+	padding: 20px;
+	margin-top: 0;
 }
