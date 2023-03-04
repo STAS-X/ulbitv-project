@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { StateSchema } from 'app/providers/StoreProvider';
 import componentStore from 'shared/lib/tests/componentStore/componentStore';
 import { Counter } from './Counter';

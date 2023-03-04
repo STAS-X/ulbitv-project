@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { counterActions } from '..';
-import { StateSchema } from 'app/providers/StoreProvider/config/stateSchema';
+import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import { getCounterValue } from 'entities/Counter/model/selectors/getCounter/getCounter';
 
 interface CounterProps {
