@@ -28,14 +28,6 @@
   max-width: 50%;
 }
 
-.dark {
-  color: var(--secondary-color);
-}
-
-.light {
-  color: var(--primary-color);
-}
-
 .opened {
   pointer-events: auto;
   z-index: var(--modal-z-index);

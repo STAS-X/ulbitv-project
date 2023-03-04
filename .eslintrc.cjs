@@ -106,6 +106,10 @@ module.exports = {
 		{
 			files: ['**/src/**/*.{ts,tsx}'],
 			rules: { indent: 'off' }
+		},
+		{
+			files: ['/scripts/*', '/json-server/*'],
+			rules: { '@typescript-eslint/no-var-requires': 'off', '@typescript-eslint/unbound-method': 'off' }
 		}
 	]
 };
