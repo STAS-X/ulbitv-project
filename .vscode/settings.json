@@ -5,7 +5,7 @@
 	"less.validate": true,
 
 	"editor.codeActionsOnSave": {
-		"source.fixAll.stylelint": true
+		"source.fixAll.stylelint": true,
 	},
 	"prettier.printWidth": 120,
 	"prettier.endOfLine": "auto"

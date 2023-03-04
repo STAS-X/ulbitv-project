@@ -1,5 +1,5 @@
-import { BagButton } from 'app/providers/error';
 import { useTranslation } from 'react-i18next';
+import { Counter } from 'entities/Counter';
 
 const MainPage = () => {
 	const { t } = useTranslation(['pages']);
@@ -7,7 +7,7 @@ const MainPage = () => {
 	return (
 		<div>
 			{t('main')}
-			<BagButton />
+			<Counter counterValue={5} />
 		</div>
 	);
 };
