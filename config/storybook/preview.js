@@ -5,6 +5,7 @@ import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator
 import { Theme } from '../../src/app/providers/ThemeProvider/lib/ThemeContext';
 import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator/RouterDecorator';
 import { createContext, useState } from 'react';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export const parameters = {
 	actions: { argTypesRegex: '^on[A-Z].*' },
@@ -84,6 +85,7 @@ const contexts = [
 addDecorator(StyleDecorator);
 addDecorator(withContexts(contexts));
 addDecorator(ThemeDecorator(Theme.LIGHT));
+addDecorator(StoreDecorator);
 addDecorator(RouterDecorator);
 
 //addDecorator(withScreenshot);
