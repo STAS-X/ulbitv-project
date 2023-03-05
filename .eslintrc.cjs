@@ -67,6 +67,7 @@ module.exports = {
 		'react/require-default-props': 'off',
 		'react/react-in-jsx-scope': 'off',
 		'react/display-name': 'off',
+		'react/prop-types': 'warn',
 		'react/jsx-props-no-spreading': 'warn',
 		'react/no-array-index-key': 'off',
 		'react/function-component-definition': 'off',

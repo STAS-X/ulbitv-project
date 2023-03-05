@@ -1,13 +1,20 @@
 import { useTranslation } from 'react-i18next';
-import { Counter } from 'entities/Counter';
+import { Input } from 'shared/ui/Input/Input';
+import { useState } from 'react';
 
 const MainPage = () => {
 	const { t } = useTranslation(['pages']);
 
+	const [value, setValue] = useState('test of input');
+	const onChange = (val: string) => {
+		setValue(val);
+		console.log(`new value is ${val}`);
+	};
+
 	return (
 		<div>
 			{t('main')}
-			<Counter counterValue={5} />
+			<Input ref={null} placeholder={'userName'} value={value} onChange={onChange} />
 		</div>
 	);
 };

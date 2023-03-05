@@ -3,5 +3,7 @@
     "short lng": "EN",
     "title": "Welcome to react using react-i18next",
     "toggle": "Toggle",
-    "login":"Login"
+    "login":"Login",
+    "userName":"Enter user name",
+    "userPass":"Enter password"
 }
