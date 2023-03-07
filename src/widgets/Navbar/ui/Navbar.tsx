@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import classes from './Navbar.module.scss';
-import { LoginModal } from 'features/AuthByUserName';
+import { LoginModalLazy } from 'features/AuthByUserName/ui/LoginModal/LoginModalLazy';
 
 export interface NavbarProps {
 	className?: string;
@@ -28,7 +28,7 @@ export const Navbar = ({ className }: NavbarProps) => {
 			<Button theme={ButtonTheme.INVERTED} className={classes.links} onClick={showAuthModal}>
 				{t('login')}
 			</Button>
-			<LoginModal isOpen={isAuthModal} onClose={closeAuthModal} />
+			<LoginModalLazy isOpen={isAuthModal} onClose={closeAuthModal} />
 		</div>
 	);
 };

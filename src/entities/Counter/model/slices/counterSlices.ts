@@ -2,7 +2,7 @@ import { CounterSchema } from 'entities/Counter';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = { value: 0 } as CounterSchema;
+const initialState = { value: 0, isLazyModal: false } as CounterSchema;
 
 const counterSlice = createSlice({
 	name: 'counter',
@@ -19,6 +19,9 @@ const counterSlice = createSlice({
 		},
 		setByAmount(state, action: PayloadAction<number>) {
 			state.value = action.payload;
+		},
+		setLazyModal(state, action: PayloadAction<boolean>) {
+			state.isLazyModal = action.payload;
 		}
 	}
 });

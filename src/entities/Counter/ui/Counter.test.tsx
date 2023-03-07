@@ -4,7 +4,7 @@ import componentStore from 'shared/lib/tests/componentStore/componentStore';
 import { Counter } from './Counter';
 
 const initialState: StateSchema = {
-	counter: { value: 8 },
+	counter: { value: 8, isLazyModal: true },
 	user: { authData: { id: '', userName: '' } }
 };
 
