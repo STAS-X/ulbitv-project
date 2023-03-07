@@ -5,7 +5,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import classes from './LoginForm.module.scss';
 
-interface LoginFormProps {
+export interface LoginFormProps {
 	className?: string;
 	isOpen: boolean;
 	onAuth: () => void;
@@ -16,7 +16,16 @@ export const LoginForm: FC<LoginFormProps> = ({ className, isOpen, onAuth }) => 
 	const userNameRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
-		if (isOpen && userNameRef.current instanceof HTMLInputElement) userNameRef.current.focus();
+		const inputRef = userNameRef.current;
+
+		if (isOpen && inputRef instanceof HTMLInputElement) {
+			if (inputRef.selectionEnd) inputRef.setSelectionRange(0, 0);
+			inputRef.focus();
+		}
+
+		return () => {
+			if (inputRef instanceof HTMLInputElement) inputRef.blur();
+		};
 	}, [isOpen, userNameRef]);
 
 	return (

@@ -1,11 +1,12 @@
-import { FC, ForwardedRef, forwardRef, InputHTMLAttributes, memo, ReactComponentElement } from 'react';
+import { FC, ForwardedRef, forwardRef, InputHTMLAttributes, memo } from 'react';
+import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './Input.module.scss';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
 
-interface InputProps extends HTMLInputProps {
+export interface InputProps extends HTMLInputProps {
 	className?: string;
 	value?: string;
 	type?: string;
@@ -14,8 +15,9 @@ interface InputProps extends HTMLInputProps {
 	onChange?: (value: string) => void;
 }
 
-export const Input = memo(
-	forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) => {
+export const Input: FC<InputProps> = memo(
+	forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+		console.log(props, 'get props data');
 		const { className, placeholder = 'userName', type = 'text', value, onChange, ...otherProps } = props;
 		const { t } = useTranslation();
 
@@ -45,6 +47,14 @@ export const Input = memo(
 		);
 	})
 );
+
+Input.propTypes = {
+	className: PropTypes.string,
+	value: PropTypes.string,
+	type: PropTypes.string,
+	placeholder: PropTypes.string,
+	onChange: PropTypes.func
+};
 
 type HTMLInputRefProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> & {
 	ref?: React.Ref<HTMLInputElement>;
