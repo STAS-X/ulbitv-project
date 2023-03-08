@@ -5,7 +5,6 @@ import { Modal } from 'shared/ui/Modal/Modal';
 import { counterActions } from '../../../../entities/Counter';
 import { getCounterLazy } from '../../../../entities/Counter/model/selectors/getCounter/getCounter';
 import { LoginForm } from '../LoginForm/LoginForm';
-import classes from './LoginModal.module.scss';
 
 export interface LoginModalProps {
 	className?: string;
@@ -20,13 +19,14 @@ export const LoginModal: FC<LoginModalProps> = ({ className, isOpen, onClose }) 
 	useEffect(() => {
 		if (isOpen && !isLazyModal) dispatch(counterActions.setLazyModal(true));
 		console.log(isOpen, isLazyModal, 'get lazy status');
-	}, [isOpen, isLazyModal]);
+	}, [isOpen, dispatch, isLazyModal]);
 
 	if (isLazyModal) {
 		return (
-			<Modal isOpen={isOpen} onClose={onClose} className={classNames(classes.loginmodal, {}, [className])}>
+			<Modal isOpen={isOpen} onClose={onClose} className={classNames('', {}, [className])}>
 				<LoginForm isOpen={isOpen} onAuth={onClose} />
 			</Modal>
 		);
-	} else return null;
+	}
+	return null;
 };

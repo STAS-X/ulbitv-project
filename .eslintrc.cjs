@@ -81,6 +81,7 @@ module.exports = {
 		'@typescript-eslint/no-unsafe-argument': 'warn',
 		'@typescript-eslint/no-floating-promises': 'warn',
 		'@typescript-eslint/no-unsafe-assignment': 'off',
+		'ngeslint(i18next/no-literal-string': 'off',
 		'comma-dangle': ['error', 'only-multiline'],
 		'no-shadow': 'off',
 		'import/no-extraneous-dependencies': [
