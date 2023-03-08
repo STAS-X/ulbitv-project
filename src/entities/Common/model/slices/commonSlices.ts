@@ -1,11 +1,11 @@
-import { CounterSchema } from 'entities/Counter';
+import { CommonSchema } from 'entities/Common';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = { value: 0, isLazyModal: false } as CounterSchema;
+const initialState = { value: 0, isLazyModal: false } as CommonSchema;
 
-const counterSlice = createSlice({
-	name: 'counter',
+const commonSlice = createSlice({
+	name: 'common',
 	initialState,
 	reducers: {
 		increment(state) {
@@ -26,4 +26,4 @@ const counterSlice = createSlice({
 	}
 });
 
-export const { actions: counterActions, reducer: counterReducer } = counterSlice;
+export const { actions: commonActions, reducer: commonReducer } = commonSlice;

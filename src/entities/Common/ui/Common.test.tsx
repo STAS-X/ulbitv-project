@@ -1,10 +1,10 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { StateSchema } from 'app/providers/StoreProvider';
 import componentStore from 'shared/lib/tests/componentStore/componentStore';
-import { Counter } from './Counter';
+import { Counter } from './Common';
 
 const initialState: StateSchema = {
-	counter: { value: 8, isLazyModal: true },
+	common: { value: 8, isLazyModal: true },
 	user: { authData: { id: '', userName: '' } }
 };
 

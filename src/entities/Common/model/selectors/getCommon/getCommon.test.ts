@@ -1,19 +1,19 @@
-import { getCounter, getCounterValue } from './getCounter';
+import { getCommon, getCommonValue } from './getCommon';
 import { DeepPartial } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 
 describe('getCounter', () => {
 	test('should return counter state', () => {
 		const state: DeepPartial<StateSchema> = {
-			counter: { value: 10 }
+			common: { value: 10 }
 		};
-		expect(getCounter(state as StateSchema)).toEqual({ value: 10 });
+		expect(getCommon(state as StateSchema)).toEqual({ value: 10, isLazyModal: false });
 	});
 
 	test('should return counter value', () => {
 		const state: DeepPartial<StateSchema> = {
-			counter: { value: 15 }
+			common: { value: 15 }
 		};
-		expect(getCounterValue(state as StateSchema)).toEqual(15);
+		expect(getCommonValue(state as StateSchema)).toEqual(15);
 	});
 });

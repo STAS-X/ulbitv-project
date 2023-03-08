@@ -1,36 +1,36 @@
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { counterActions } from '..';
+import { commonActions } from '..';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
-import { getCounterValue } from 'entities/Counter/model/selectors/getCounter/getCounter';
+import { getCommonValue } from '../model/selectors/getCommon/getCommon';
 
-interface CounterProps {
-	counterValue?: number;
+interface commonProps {
+	commonValue?: number;
 }
 
-export const Counter: FC<CounterProps> = ({ counterValue = 1 }) => {
-	const value = useSelector<StateSchema>(getCounterValue);
+export const Counter: FC<commonProps> = ({ commonValue = 1 }) => {
+	const value = useSelector<StateSchema>(getCommonValue);
 	const dispatch = useDispatch();
 
 	const setIncrement = () => {
-		dispatch(counterActions.increment());
+		dispatch(commonActions.increment());
 	};
 
 	const setDecrement = () => {
-		dispatch(counterActions.decrement());
+		dispatch(commonActions.decrement());
 	};
 
 	useEffect(() => {
-		counterActions.setByAmount(counterValue);
-	}, [counterValue]);
+		commonActions.setByAmount(commonValue);
+	}, [commonValue]);
 
 	return (
 		<div
-			data-testid="counter"
+			data-testid="common"
 			style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'start', marginTop: 25 }}
 		>
-			<h1 data-testid="counter-value">{value}</h1>
+			<h1 data-testid="common-value">{value}</h1>
 			<Button
 				theme={value < 10 ? ButtonTheme.OUTLINE : ButtonTheme.BACKGROUND_INVERTED}
 				data-testid="increment-btn"

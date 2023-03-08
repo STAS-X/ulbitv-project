@@ -1,4 +1,4 @@
-export interface CounterSchema {
+export interface CommonSchema {
 	value: number;
 	isLazyModal: boolean;
 }
