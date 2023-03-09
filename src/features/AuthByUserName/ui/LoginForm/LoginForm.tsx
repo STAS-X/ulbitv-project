@@ -40,7 +40,6 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }
 
 	const onLoginClick = useCallback(async () => {
 		const userData = await dispatch(loginByUsername({ username: login, password }));
-		console.log(userData.meta.requestStatus, '123');
 		if (userData.meta.requestStatus === 'fulfilled') onAuth();
 	}, [dispatch, onAuth, login, password]);
 
