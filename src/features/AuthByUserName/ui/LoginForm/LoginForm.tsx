@@ -38,7 +38,7 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }
 
 	const onLoginClick = useCallback(async () => {
 		const userData = await dispatch(loginByUsername({ username: login, password }));
-		if (!userData?.error) onAuth();
+		if (!userData?.error) onAuth(); 
 	}, [dispatch, onAuth, login, password]);
 
 	useEffect(() => {
