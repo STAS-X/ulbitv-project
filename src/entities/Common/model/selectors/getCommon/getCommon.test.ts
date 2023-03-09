@@ -7,7 +7,7 @@ describe('getCounter', () => {
 		const state: DeepPartial<StateSchema> = {
 			common: { value: 10 }
 		};
-		expect(getCommon(state as StateSchema)).toEqual({ value: 10, isLazyModal: false });
+		expect(getCommon(state as StateSchema)).toEqual({ value: 10 });
 	});
 
 	test('should return counter value', () => {

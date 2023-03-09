@@ -11,12 +11,12 @@ const initialState: StateSchema = {
 describe('Counter component test', () => {
 	test('Counter redux component render', () => {
 		componentStore(<Counter />, initialState);
-		expect(screen.getByTestId('counter')).toBeInTheDocument();
+		expect(screen.getByTestId('common')).toBeInTheDocument();
 	});
 
 	test('Counter with initial state', () => {
 		componentStore(<Counter />, initialState);
-		const titleCounter = screen.getByTestId('counter-value');
+		const titleCounter = screen.getByTestId('common-value');
 		expect(titleCounter).toHaveTextContent('8');
 	});
 
@@ -26,8 +26,8 @@ describe('Counter component test', () => {
 		const decrementBtn = screen.getByTestId('decrement-btn');
 
 		fireEvent.click(incrementBtn);
-		expect(screen.getByTestId('counter-value')).toHaveTextContent('9');
+		expect(screen.getByTestId('common-value')).toHaveTextContent('9');
 		fireEvent.click(decrementBtn);
-		expect(screen.getByTestId('counter-value')).toHaveTextContent('8');
+		expect(screen.getByTestId('common-value')).toHaveTextContent('8');
 	});
 });
