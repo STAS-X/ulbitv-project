@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { StateSchema } from './StateSchema';
 import { commonReducer } from 'entities/Common/model/slices/commonSlices';
@@ -17,3 +18,8 @@ export function createReduxStore(initialState?: StateSchema) {
 		preloadedState: initialState
 	});
 }
+
+const store = configureStore({ reducer: rootReducers });
+
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>(); // Export a hook that can be reused to resolve types

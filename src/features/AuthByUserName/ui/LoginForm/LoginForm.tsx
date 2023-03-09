@@ -1,11 +1,13 @@
 import { StateSchema } from 'app/providers/StoreProvider';
+import { useAppDispatch } from 'app/providers/StoreProvider/config/store';
+import { UserData } from 'entities/User';
 import { getLogin } from 'features/AuthByUserName/model/selectors/getUserData/getLoginData';
 import { loginByUsername } from 'features/AuthByUserName/model/services/loginByUsername/loginByUsername';
-import { loginActions, loginReducer } from 'features/AuthByUserName/model/slices/loginSlice';
+import { loginActions } from 'features/AuthByUserName/model/slices/loginSlice';
 import { LoginSchema } from 'features/AuthByUserName/model/types/loginSchema';
 import { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
@@ -20,7 +22,7 @@ export interface LoginFormProps {
 export const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }) => {
 	const { t } = useTranslation(['translation']);
 	const userNameRef = useRef<HTMLInputElement>(null);
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const { username: login, password, error, isLoading } = useSelector<StateSchema, LoginSchema>(getLogin);
 
 	const onChangeUsername = useCallback(
@@ -36,10 +38,10 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }
 		[dispatch]
 	);
 
-	const onLoginClick = useCallback(() => {
-		const userData = dispatch(loginByUsername({ username: login, password }));
-		console.log(userData, 'user data from dispatch');
-		if (!userData) onAuth();
+	const onLoginClick = useCallback(async () => {
+		const userData = await dispatch(loginByUsername({ username: login, password }));
+		console.log(userData.meta.requestStatus, '123');
+		if (userData.meta.requestStatus === 'fulfilled') onAuth();
 	}, [dispatch, onAuth, login, password]);
 
 	useEffect(() => {
