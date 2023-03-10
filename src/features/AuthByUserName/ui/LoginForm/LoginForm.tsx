@@ -1,6 +1,5 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 import { useAppDispatch } from 'app/providers/StoreProvider/config/store';
-import { UserData } from 'entities/User';
 import { getLogin } from 'features/AuthByUserName/model/selectors/getUserData/getLoginData';
 import { loginByUsername } from 'features/AuthByUserName/model/services/loginByUsername/loginByUsername';
 import { loginActions } from 'features/AuthByUserName/model/slices/loginSlice';
@@ -47,14 +46,14 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }
 		const inputRef = userNameRef.current;
 
 		if (isOpen && inputRef instanceof HTMLInputElement) {
-			if (inputRef.selectionEnd) inputRef.setSelectionRange(0, 0);
+			if (inputRef.selectionEnd) inputRef.setSelectionRange(login ? login.length : 0, login ? login.length : 0);
 			inputRef.focus();
 		}
 
 		return () => {
 			if (inputRef instanceof HTMLInputElement) inputRef.blur();
 		};
-	}, [isOpen, userNameRef]);
+	}, [isOpen, login, userNameRef]);
 
 	return (
 		<div className={classNames(classes.loginform, {}, [className])}>
