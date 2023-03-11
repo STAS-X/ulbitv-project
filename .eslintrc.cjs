@@ -68,7 +68,7 @@ module.exports = {
 		'react/react-in-jsx-scope': 'off',
 		'react/display-name': 'off',
 		'react/prop-types': 'warn',
-		'react/jsx-props-no-spreading': 'warn',
+		'react/jsx-props-no-spreading': 'off',
 		'react/no-array-index-key': 'off',
 		'react/function-component-definition': 'off',
 		'react-hooks/rules-of-hooks': 'error',

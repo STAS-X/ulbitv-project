@@ -68,7 +68,6 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }
 		const inputRef = userNameRef.current;
 
 		if (isOpen && inputRef instanceof HTMLInputElement) {
-			console.log(document.activeElement, inputRef.selectionStart, inputRef.selectionEnd);
 			if (inputRef.selectionStart && inputRef.selectionStart !== inputRef.selectionEnd)
 				inputRef.setSelectionRange(inputRef.selectionStart, inputRef.selectionStart);
 			if (!(document.activeElement instanceof HTMLInputElement)) inputRef.focus();
