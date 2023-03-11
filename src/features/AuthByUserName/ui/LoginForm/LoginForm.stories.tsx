@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { LoginFormProps, LoginForm } from './LoginForm';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
 	title: 'features/LoginForm',
@@ -22,6 +23,24 @@ LoginFormPrimary.args = {
 		console.log('i am opened');
 	}
 };
+
+export const LoginFormWithError = Template.bind({});
+LoginFormWithError.args = {
+	isOpen: true,
+	onAuth: () => {
+		console.log('i am opened');
+	}
+};
+LoginFormWithError.decorators = [StoreDecorator({ loginForm: { error: 'Ошибка получения данных' } })];
+
+export const LoginFormLoading = Template.bind({});
+LoginFormLoading.args = {
+	isOpen: true,
+	onAuth: () => {
+		console.log('i am opened');
+	}
+};
+LoginFormLoading.decorators = [StoreDecorator({ loginForm: { isLoading: true } })];
 
 export const LoginFormDark = Template.bind({});
 LoginFormDark.args = {

@@ -17,6 +17,12 @@ const loginSlice = createSlice({
 		},
 		setUserPassword: (state, action: PayloadAction<string>) => {
 			state.password = action.payload;
+		},
+		setError: (state, action: PayloadAction<string>) => {
+			state.error = action.payload;
+		},
+		setEmpty: (state) => {
+			state.username = state.password = state.error = '';
 		}
 	},
 	extraReducers: (builder) => {
@@ -28,9 +34,9 @@ const loginSlice = createSlice({
 		builder.addCase(loginByUsername.fulfilled, (state, { payload }) => {
 			state.isLoading = false;
 		});
-		builder.addCase(loginByUsername.rejected, (state, { payload }) => {
+		builder.addCase(loginByUsername.rejected, (state, action) => {
 			state.isLoading = false;
-			state.error = payload;
+			state.error = action.payload ? action.payload : action.error ? action.error.message : 'Unknown error';
 		});
 	}
 });

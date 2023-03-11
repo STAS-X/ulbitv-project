@@ -1,3 +1,4 @@
 {
-    "errorApp": "Error has occured: {{message}}"
+    "errorApp": "Error has occured: {{message}}",
+    "errorTitle": "Error data"
 }

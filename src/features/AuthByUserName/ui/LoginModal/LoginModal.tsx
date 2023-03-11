@@ -21,7 +21,7 @@ export const LoginModal: FC<LoginModalProps> = ({ className, isOpen, onClose }) 
 
 	useEffect(() => {
 		if (isOpen && !isLazyModal) dispatch(commonActions.setLazyModal(true));
-		console.log(isOpen, isLazyModal, 'get lazy status');
+		//console.log(isOpen, isLazyModal, 'get lazy status');
 	}, [isOpen, dispatch, isLazyModal]);
 
 	if (isLazyModal) {

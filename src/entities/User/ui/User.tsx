@@ -18,7 +18,7 @@ export const User: FC<UserProps> = () => {
 			data-testid="user"
 			style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'start', marginTop: 25 }}
 		>
-			<h1 data-testid="user-value">{userdata.userName}</h1>
+			<h1 data-testid="user-value">{userdata.username}</h1>
 		</div>
 	);
 };

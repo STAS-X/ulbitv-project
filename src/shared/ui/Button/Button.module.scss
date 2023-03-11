@@ -5,6 +5,10 @@
 	padding: 10px 15px;
 }
 
+.button[disabled] {
+	cursor: not-allowed;
+}
+
 .clear,
 .inverted {
 	padding: 0;

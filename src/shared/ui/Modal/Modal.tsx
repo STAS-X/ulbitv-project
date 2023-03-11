@@ -1,6 +1,6 @@
 import { FC, ReactNode, useCallback, useEffect } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useTheme } from '../../../app/providers/ThemeProvider';
+import { useTheme } from 'app/providers/ThemeProvider';
 import { Portal } from '../Portal/Portal';
 import classes from './Modal.module.scss';
 
@@ -46,7 +46,7 @@ export const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) 
 		<Portal>
 			<div className={classNames(classes.modal, mods, [className])}>
 				<div className={classes.overlay} onClick={closeHandler}>
-					<div className={classNames(classes.content, { [classes[theme]]: true })} onClick={contentClick}>
+					<div className={classNames(classes.content, {}, [`${theme}`])} onClick={contentClick}>
 						{children}
 					</div>
 				</div>

@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
+import { configureStore, DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
 import { StateSchema } from './StateSchema';
 import { commonReducer } from 'entities/Common/model/slices/commonSlices';
 import { userReducer } from 'entities/User';

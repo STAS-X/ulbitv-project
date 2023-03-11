@@ -5,7 +5,7 @@ import { Counter } from './Common';
 
 const initialState: StateSchema = {
 	common: { value: 8, isLazyModal: true },
-	user: { authData: { id: '', userName: '', password: '' } }
+	user: { authData: { id: '', username: '', password: '' } }
 };
 
 describe('Counter component test', () => {

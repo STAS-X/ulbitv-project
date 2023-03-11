@@ -86,7 +86,7 @@ addDecorator(StyleDecorator);
 addDecorator(withContexts(contexts));
 addDecorator(ThemeDecorator(Theme.LIGHT));
 addDecorator(RouterDecorator);
-addDecorator(StoreDecorator);
+addDecorator(StoreDecorator({ loginForm: { username: 'test', password: '123' } }));
 
 //addDecorator(withScreenshot);
 //addParameters({ screenshot: { ...parameters.screenshot } });

@@ -1,9 +1,11 @@
 {
-    "language": "English",
-    "short lng": "EN",
-    "title": "Welcome to react using react-i18next",
-    "toggle": "Toggle",
-    "login":"Login",
-    "userName":"Enter user name",
-    "userPass":"Enter password"
+	"language": "English",
+	"short lng": "EN",
+	"title": "Welcome to react using react-i18next",
+	"toggle": "Toggle",
+	"login": "Login",
+	"logout": "Logout",
+	"authTitle": "Auth form",
+	"userName": "Enter user name",
+	"userPass": "Enter password"
 }

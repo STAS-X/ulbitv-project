@@ -1,6 +1,7 @@
-import { UserSchema } from 'entities/User';
+import { userActions, UserData } from 'entities/User';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { USER_LS_KEY } from 'shared/const/localstorage';
 
 interface LoginByUsernameProps {
 	username: string;
@@ -16,14 +17,16 @@ interface SerializedError {
 type ThunkError = SerializedError | any;
 
 // First, create the thunk
-export const loginByUsername = createAsyncThunk<UserSchema, LoginByUsernameProps, { rejectValue: string }>(
+export const loginByUsername = createAsyncThunk<UserData, LoginByUsernameProps, { rejectValue: string }>(
 	'login/fetchByUsername',
 	async (authData, thunkAPI) => {
 		try {
-			const response = await axios.post<UserSchema>('http://localhost:8000/login', authData);
+			const response = await axios.post<UserData>('http://localhost:8000/login', authData);
 			if (!response.data) {
 				throw new Error('error');
 			}
+			localStorage.setItem(USER_LS_KEY, JSON.stringify(response.data));
+			thunkAPI.dispatch(userActions.setAuthData(response.data));
 			return response.data;
 		} catch (e) {
 			console.log(e.message, 'Внимание, во время запроса возникла ошибка');
