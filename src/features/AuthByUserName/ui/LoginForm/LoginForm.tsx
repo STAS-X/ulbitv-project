@@ -2,12 +2,13 @@ import { StateSchema } from 'app/providers/StoreProvider';
 import { useAppDispatch } from 'app/providers/StoreProvider/config/store';
 import { getLogin } from 'features/AuthByUserName/model/selectors/getUserData/getLoginData';
 import { loginByUsername } from 'features/AuthByUserName/model/services/loginByUsername/loginByUsername';
-import { loginActions } from 'features/AuthByUserName/model/slices/loginSlice';
+import { loginActions, loginReducer } from 'features/AuthByUserName/model/slices/loginSlice';
 import { LoginSchema } from 'features/AuthByUserName/model/types/loginSchema';
 import { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { DynamicModuleLoader } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
@@ -19,11 +20,17 @@ export interface LoginFormProps {
 	onAuth: () => void;
 }
 
-export const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }) => {
+const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }) => {
 	const { t } = useTranslation(['translation', 'errors']);
 	const userNameRef = useRef<HTMLInputElement>(null);
 	const dispatch = useAppDispatch();
-	const { username: login, password, error, isLoading } = useSelector<StateSchema, LoginSchema>(getLogin);
+
+	const {
+		username: login,
+		password,
+		error,
+		isLoading
+	} = useSelector<StateSchema, LoginSchema>(getLogin) ?? { username: '', password: '', error: '', isLoading: true };
 
 	const onChangeUsername = useCallback(
 		(value: string) => {
@@ -66,7 +73,6 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }
 
 	useEffect(() => {
 		const inputRef = userNameRef.current;
-
 		if (isOpen && inputRef instanceof HTMLInputElement) {
 			if (inputRef.selectionStart && inputRef.selectionStart !== inputRef.selectionEnd)
 				inputRef.setSelectionRange(inputRef.selectionStart, inputRef.selectionStart);
@@ -80,14 +86,18 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }
 	}, [isOpen, login, password, error, dispatch, userNameRef]);
 
 	return (
-		<div className={classNames(classes.loginform, {}, [className])}>
-			<Text title={t('authTitle')} />
-			{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}
-			<Input ref={userNameRef} type="text" className={classes.input} onChange={onChangeUsername} value={login} />
-			<Input ref={null} type="text" className={classes.input} onChange={onChangePassword} value={password} />
-			<Button theme={ButtonTheme.OUTLINE} className={classes.loginbtn} disabled={isLoading} onClick={onLoginClick}>
-				{t('login')}
-			</Button>
-		</div>
+		<DynamicModuleLoader removeAfterUnmount={true} name={'loginForm'} reducer={loginReducer}>
+			<div className={classNames(classes.loginform, {}, [className])}>
+				<Text title={t('authTitle')} />
+				{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}
+				<Input ref={userNameRef} type="text" className={classes.input} onChange={onChangeUsername} value={login} />
+				<Input ref={null} type="text" className={classes.input} onChange={onChangePassword} value={password} />
+				<Button theme={ButtonTheme.OUTLINE} className={classes.loginbtn} disabled={isLoading} onClick={onLoginClick}>
+					{t('login')}
+				</Button>
+			</div>
+		</DynamicModuleLoader>
 	);
 });
+
+export default LoginForm;

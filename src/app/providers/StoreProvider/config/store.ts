@@ -1,25 +1,32 @@
 import { useDispatch } from 'react-redux';
-import { configureStore, DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
-import { StateSchema } from './StateSchema';
+import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
+import { ReduxStoreWithManager, StateSchema } from './StateSchema';
 import { commonReducer } from 'entities/Common/model/slices/commonSlices';
 import { userReducer } from 'entities/User';
-import { loginReducer } from 'features/AuthByUserName/model/slices/loginSlice';
+import { createReducerManager } from './reducerManager';
 
 const rootReducers: ReducersMapObject<StateSchema> = {
 	common: commonReducer,
-	user: userReducer,
-	loginForm: loginReducer
+	user: userReducer
+	//loginForm: loginReducer
 };
 
-export function createReduxStore(initialState?: StateSchema) {
-	return configureStore({
-		reducer: rootReducers,
+export function createReduxStore(initialState?: StateSchema): ReduxStoreWithManager {
+	const reducerManager = createReducerManager(rootReducers);
+
+	const store = configureStore<StateSchema>({
+		reducer: reducerManager.reduce,
 		devTools: _DEV_MODE_,
 		preloadedState: initialState
 	});
+
+	// Optional: Put the reducer manager on the store so it is easily accessible
+	(store as ReduxStoreWithManager).reducerManager = reducerManager;
+
+	return store as ReduxStoreWithManager;
 }
 
-const store = configureStore({ reducer: rootReducers });
+const store = configureStore<StateSchema>({ reducer: rootReducers });
 
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>(); // Export a hook that can be reused to resolve types

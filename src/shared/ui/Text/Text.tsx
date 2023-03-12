@@ -18,7 +18,7 @@ export const Text: FC<TextProps> = (props) => {
 	const { className, title, content, theme = TextTheme.PRIMARY } = props;
 
 	return (
-		<div className={classNames(classes.text, { [classes[theme]]: true }, [className])}>
+		<div className={classNames(classes.text, { [classes[theme]]: true }, [])}>
 			{title && <p className={classes.title}>{title}</p>}
 			{content && <p className={classes.content}>{content}</p>}
 		</div>
