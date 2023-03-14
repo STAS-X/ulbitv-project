@@ -4,7 +4,7 @@ import axios from 'axios';
 import { USER_LS_KEY } from 'shared/const/localstorage';
 import { AppDispatch, RootState } from 'app/providers/StoreProvider/config/store';
 
-interface LoginByUsernameProps {
+export interface LoginByUsernameProps {
 	username: string;
 	password: string;
 }

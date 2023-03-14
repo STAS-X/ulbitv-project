@@ -22,7 +22,7 @@ export const Navbar = ({ className }: NavbarProps) => {
 	const [isAuthModal, setIsAuthModal] = useState(false);
 
 	const closeAuthModal = useCallback(() => {
-		console.log('closed modal');
+		//console.log('closed modal');
 		setIsAuthModal(false);
 	}, []);
 

@@ -14,7 +14,7 @@ const MainPage = () => {
 	return (
 		<div>
 			{t('main')}
-			<Input ref={null} placeholder={t('userName')} value={value} onChange={onChange} />
+			{/*<Input ref={null} placeholder={t('userName')} value={value} onChange={onChange} />*/}
 		</div>
 	);
 };

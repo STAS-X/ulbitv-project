@@ -11,8 +11,11 @@ const rootReducers: ReducersMapObject<StateSchema> = {
 	//loginForm: loginReducer
 };
 
-export function createReduxStore(initialState?: StateSchema): ReduxStoreWithManager {
-	const reducerManager = createReducerManager(rootReducers);
+export function createReduxStore(
+	initialState?: StateSchema,
+	asyncReducers?: ReducersMapObject<StateSchema>
+): ReduxStoreWithManager {
+	const reducerManager = createReducerManager({ ...asyncReducers, ...rootReducers });
 
 	const store = configureStore<StateSchema>({
 		reducer: reducerManager.reduce,

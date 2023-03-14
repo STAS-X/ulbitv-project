@@ -32,6 +32,7 @@ const loginSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(loginByUsername.fulfilled, (state, { payload }) => {
+			state.error = undefined;
 			state.isLoading = false;
 		});
 		builder.addCase(loginByUsername.rejected, (state, action) => {
