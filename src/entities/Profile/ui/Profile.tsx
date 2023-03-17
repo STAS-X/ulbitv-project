@@ -1,24 +1,23 @@
-import { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { UserData, userActions, UserSchema } from '..';
+import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
-import { getUserData } from 'entities/User/model/selectors/getUser/getUser';
+import { ProfileData } from '../model/types/profileSchema';
+import { getProfileData } from '../model/selectors/getProfile/getProfileData';
 
-interface UserProps {
-	counterValue?: number;
+interface ProfileProps {
+	data?: ProfileData;
 }
 
-export const User: FC<UserProps> = () => {
-	const userdata = useSelector<StateSchema, UserData>(getUserData);
+export const Profile: FC<ProfileProps> = () => {
+	const profiledata = useSelector<StateSchema, ProfileData>(getProfileData);
 	//const dispatch = useDispatch();
 
 	return (
 		<div
-			data-testid="user"
+			data-testid="profile"
 			style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'start', marginTop: 25 }}
 		>
-			<h1 data-testid="user-value">{userdata.username}</h1>
+			<h1 data-testid="profile-value">{`${profiledata.first} ${profiledata.lastname}`}</h1>
 		</div>
 	);
 };
