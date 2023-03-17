@@ -2,7 +2,7 @@ import { Reducer } from '@reduxjs/toolkit';
 import { StateSchemaKey } from 'app/providers/StoreProvider/config/StateSchema';
 import { FC, ReactNode, useEffect } from 'react';
 import { useStore } from 'react-redux';
-import { AppStoreWithReducerManager, useAppDispatch } from 'app/providers/StoreProvider/config/store';
+import { AppStoreWithReducerManager, useAppDispatch } from 'app/providers/StoreProvider';
 
 interface DynamicModuleLoaderProps {
 	reducers: ReducerList;

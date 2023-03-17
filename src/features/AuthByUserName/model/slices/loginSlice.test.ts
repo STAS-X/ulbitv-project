@@ -1,10 +1,7 @@
-import { useAppDispatch } from 'app/providers/StoreProvider/config/store';
-import { LoginByUsernameProps } from './../services/loginByUsername/loginByUsername';
 import { loginByUsername } from 'features/AuthByUserName/model/services/loginByUsername/loginByUsername';
 import { loginActions, loginReducer } from 'features/AuthByUserName/model/slices/loginSlice';
-import { createAction, DeepPartial } from '@reduxjs/toolkit';
+import { DeepPartial } from '@reduxjs/toolkit';
 import { LoginSchema } from '../types/loginSchema';
-import { UserData } from 'entities/User';
 describe('loginSlice.test', () => {
 	const initialState: DeepPartial<LoginSchema> = { username: 'user', password: '123', error: '', isLoading: true };
 	test('test set username', () => {

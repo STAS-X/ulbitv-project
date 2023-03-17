@@ -1,9 +1,19 @@
 import { useDispatch } from 'react-redux';
-import { configureStore, ReducersMapObject, AnyAction, EnhancedStore, ThunkDispatch } from '@reduxjs/toolkit';
-import { ReducerManager, StateSchema } from './StateSchema';
+import {
+	configureStore,
+	ReducersMapObject,
+	AnyAction,
+	EnhancedStore,
+	ThunkDispatch,
+	getDefaultMiddleware,
+	ThunkMiddleware,
+	MiddlewareArray
+} from '@reduxjs/toolkit';
+import { ExtraThunkArgs, ReducerManager, StateSchema } from './StateSchema';
 import { commonReducer } from 'entities/Common/model/slices/commonSlices';
 import { userReducer } from 'entities/User';
 import { createReducerManager } from './reducerManager';
+import { $apiAxios } from 'shared/api/api';
 
 export const rootReducer: ReducersMapObject<StateSchema> = {
 	common: commonReducer,
@@ -11,13 +21,30 @@ export const rootReducer: ReducersMapObject<StateSchema> = {
 	//loginForm: loginReducer
 };
 
-export function createReduxStore(initialState?: StateSchema, asyncReducers?: ReducersMapObject<StateSchema>) {
+export function createReduxStore(
+	initialState?: StateSchema,
+	asyncReducers?: ReducersMapObject<StateSchema>,
+	extra?: ExtraThunkArgs
+) {
 	const reducerManager = createReducerManager({ ...asyncReducers, ...rootReducer });
 
-	const store = configureStore<StateSchema>({
+	const store = configureStore<
+		StateSchema,
+		AnyAction,
+		MiddlewareArray<[ThunkMiddleware<StateSchema, AnyAction, ExtraThunkArgs>]>
+	>({
 		reducer: reducerManager.reduce,
 		devTools: _DEV_MODE_,
-		preloadedState: initialState
+		preloadedState: initialState,
+		middleware: (getDefaultMiddleware) =>
+			getDefaultMiddleware({
+				thunk: {
+					extraArgument: {
+						api: extra.api ?? $apiAxios,
+						navigate: extra.navigate
+					}
+				}
+			})
 	}) as AppStoreWithReducerManager;
 
 	// Optional: Put the reducer manager on the store so it is easily accessible

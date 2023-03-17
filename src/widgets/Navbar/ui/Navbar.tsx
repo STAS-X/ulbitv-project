@@ -5,10 +5,9 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import classes from './Navbar.module.scss';
 import { LoginModal } from 'features/AuthByUserName/ui/LoginModal/LoginModal';
 import { useSelector } from 'react-redux';
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
 import { userActions, UserData } from 'entities/User';
 import { getUserData } from 'entities/User/model/selectors/getUser/getUser';
-import { useAppDispatch } from 'app/providers/StoreProvider/config/store';
 
 export interface NavbarProps {
 	className?: string;

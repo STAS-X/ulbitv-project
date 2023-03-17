@@ -3,6 +3,8 @@ import { UserSchema } from 'entities/User';
 import { CommonSchema } from 'entities/Common';
 import { ProfileSchema } from 'entities/Profile';
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import { AxiosInstance } from 'axios';
+import { NavigateFunction } from 'react-router-dom';
 
 export interface StateSchema {
 	common: CommonSchema;
@@ -13,6 +15,12 @@ export interface StateSchema {
 }
 
 export type StateSchemaKey = keyof StateSchema;
+
+// Extra Thunk Action Arguments
+export interface ExtraThunkArgs {
+	api: AxiosInstance;
+	navigate: NavigateFunction;
+}
 
 export interface ReducerManager {
 	getReducerMap: () => ReducersMapObject<StateSchema>;
