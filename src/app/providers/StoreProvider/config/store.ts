@@ -1,12 +1,5 @@
 import { useDispatch } from 'react-redux';
-import {
-	configureStore,
-	ReducersMapObject,
-	combineReducers,
-	AnyAction,
-	EnhancedStore,
-	ThunkDispatch
-} from '@reduxjs/toolkit';
+import { configureStore, ReducersMapObject, AnyAction, EnhancedStore, ThunkDispatch } from '@reduxjs/toolkit';
 import { ReducerManager, StateSchema } from './StateSchema';
 import { commonReducer } from 'entities/Common/model/slices/commonSlices';
 import { userReducer } from 'entities/User';
