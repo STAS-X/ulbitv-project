@@ -2,7 +2,8 @@ import { userActions, UserData } from 'entities/User';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { USER_LS_KEY } from 'shared/const/localstorage';
-import { AppDispatch, RootState } from 'app/providers/StoreProvider/config/store';
+import { AppThunkDispatch } from 'app/providers/StoreProvider/config/store';
+import { StateSchema } from '../../../../../app/providers/StoreProvider';
 
 export interface LoginByUsernameProps {
 	username: string;
@@ -20,8 +21,8 @@ type ThunkError = SerializedError | any;
 //Defining a Pre - Typed createAsyncThunk
 const createAppAsyncThunk =
 	createAsyncThunk.withTypes<{
-		state: RootState;
-		dispatch: AppDispatch;
+		state: StateSchema;
+		dispatch: AppThunkDispatch;
 		rejectValue: string;
 	}>();
 

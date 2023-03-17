@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -8,7 +8,7 @@ interface NotFoundPageProps {
 	className?: string;
 }
 
-export const NotFoundPage: FC<NotFoundPageProps> = ({ className }) => {
+export const NotFoundPage: FC<NotFoundPageProps> = memo<NotFoundPageProps>(({ className }) => {
 	const { t } = useTranslation(['pages']);
 	const { pathname: pageName } = useLocation();
 
@@ -17,4 +17,4 @@ export const NotFoundPage: FC<NotFoundPageProps> = ({ className }) => {
 			{t('Page not found', { pageName: pageName.replace('/', '') })}
 		</div>
 	);
-};
+});

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
@@ -14,7 +14,7 @@ export interface NavbarProps {
 	className?: string;
 }
 
-export const Navbar = ({ className }: NavbarProps) => {
+export const Navbar = memo(({ className }: NavbarProps) => {
 	const { t } = useTranslation(['translation']);
 	const dispatch = useAppDispatch();
 	const userdata = useSelector<StateSchema, UserData>(getUserData);
@@ -41,4 +41,4 @@ export const Navbar = ({ className }: NavbarProps) => {
 			<LoginModal isOpen={isAuthModal} onClose={closeAuthModal} />
 		</div>
 	);
-};
+});

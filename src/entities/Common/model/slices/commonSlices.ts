@@ -2,7 +2,7 @@ import { CommonSchema } from 'entities/Common';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = { value: 0, isLazyModal: false } as CommonSchema;
+const initialState: CommonSchema = { value: 0, isLazyModal: false };
 
 const commonSlice = createSlice({
 	name: 'common',

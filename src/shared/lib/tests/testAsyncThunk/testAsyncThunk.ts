@@ -1,4 +1,3 @@
-import { loginByUsername } from 'features/AuthByUserName/model/services/loginByUsername/loginByUsername';
 import { AsyncThunkAction } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 

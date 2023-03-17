@@ -17,14 +17,15 @@ import classes from './LoginForm.module.scss';
 export interface LoginFormProps {
 	className?: string;
 	isOpen: boolean;
-	onAuth: () => void;
+	onSuccess: () => void;
 }
 
-const initialReducers: ReducerList = {
+const reducers: ReducerList = {
 	loginForm: loginReducer
 };
 
-const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }) => {
+const LoginForm: FC<LoginFormProps> = memo((props) => {
+	const { className, isOpen, onSuccess } = props;
 	const { t } = useTranslation(['translation', 'errors']);
 	const userNameRef = useRef<HTMLInputElement>(null);
 	const dispatch = useAppDispatch();
@@ -54,9 +55,9 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }) => {
 		if (userData.meta.requestStatus === 'fulfilled') {
 			//dispatch(loginActions.setEmpty());
 			console.log(`User '${login}' login`);
-			onAuth();
+			onSuccess();
 		}
-	}, [dispatch, onAuth, login, password]);
+	}, [dispatch, onSuccess, login, password]);
 
 	const onEnterDown = useCallback(
 		(e: KeyboardEvent) => {
@@ -85,13 +86,13 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }) => {
 		//if (!(document.activeElement instanceof HTMLInputElement)) inputRef.focus();
 
 		return () => {
-			if (inputRef instanceof HTMLInputElement) inputRef.blur();
+			//if (inputRef instanceof HTMLInputElement) inputRef.blur();
 			//if (error) dispatch(loginActions.setError(undefined));
 		};
 	}, [isOpen, login, password, error, dispatch, userNameRef]);
 
 	return (
-		<DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
+		<DynamicModuleLoader removeAfterUnmount reducers={reducers}>
 			<div className={classNames(classes.loginform, {}, [className])}>
 				<Text title={t('authTitle')} />
 				{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}

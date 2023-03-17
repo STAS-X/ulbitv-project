@@ -1,6 +1,6 @@
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import LightIcon from 'shared/assets/icons/theme-light.svg';
 import DarkIcon from 'shared/assets/icons/theme-dark.svg';
@@ -10,7 +10,7 @@ export interface ThemeSwitchButtonProps {
 	className?: string;
 }
 
-export const ThemeSwitchButton: FC<ThemeSwitchButtonProps> = ({ className }) => {
+export const ThemeSwitchButton: FC<ThemeSwitchButtonProps> = memo(({ className }) => {
 	const { theme, toggleTheme } = useTheme();
 
 	return (
@@ -18,4 +18,4 @@ export const ThemeSwitchButton: FC<ThemeSwitchButtonProps> = ({ className }) => 
 			{theme === Theme.LIGHT ? <LightIcon transform="scale(0.75)" /> : <DarkIcon transform="scale(0.75)" />}
 		</Button>
 	);
-};
+});
