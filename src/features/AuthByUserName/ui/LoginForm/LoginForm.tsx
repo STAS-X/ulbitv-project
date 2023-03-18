@@ -8,7 +8,7 @@ import { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { DynamicModuleLoader } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
@@ -17,10 +17,15 @@ import classes from './LoginForm.module.scss';
 export interface LoginFormProps {
 	className?: string;
 	isOpen: boolean;
-	onAuth: () => void;
+	onSuccess: () => void;
 }
 
-const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }) => {
+const reducers: ReducerList = {
+	loginForm: loginReducer
+};
+
+const LoginForm: FC<LoginFormProps> = memo((props) => {
+	const { className, isOpen, onSuccess } = props;
 	const { t } = useTranslation(['translation', 'errors']);
 	const userNameRef = useRef<HTMLInputElement>(null);
 	const dispatch = useAppDispatch();
@@ -30,7 +35,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }) => {
 		password,
 		error,
 		isLoading
-	} = useSelector<StateSchema, LoginSchema>(getLogin) ?? { username: '', password: '', error: '', isLoading: true };
+	} = useSelector<StateSchema, LoginSchema>(getLogin) ?? { username: '', password: '', error: '', isLoading: false };
 
 	const onChangeUsername = useCallback(
 		(value: string) => {
@@ -48,10 +53,11 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }) => {
 	const onLoginClick = useCallback(async () => {
 		const userData = await dispatch(loginByUsername({ username: login, password }));
 		if (userData.meta.requestStatus === 'fulfilled') {
-			dispatch(loginActions.setEmpty());
-			onAuth();
+			//dispatch(loginActions.setEmpty());
+			console.log(`User '${login}' login`);
+			onSuccess();
 		}
-	}, [dispatch, onAuth, login, password]);
+	}, [dispatch, onSuccess, login, password]);
 
 	const onEnterDown = useCallback(
 		(e: KeyboardEvent) => {
@@ -73,20 +79,20 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, isOpen, onAuth }) => {
 
 	useEffect(() => {
 		const inputRef = userNameRef.current;
-		if (isOpen && inputRef instanceof HTMLInputElement) {
-			if (inputRef.selectionStart && inputRef.selectionStart !== inputRef.selectionEnd)
-				inputRef.setSelectionRange(inputRef.selectionStart, inputRef.selectionStart);
-			if (!(document.activeElement instanceof HTMLInputElement)) inputRef.focus();
-		}
+		if (isOpen && inputRef instanceof HTMLInputElement && !(document.activeElement instanceof HTMLInputElement))
+			inputRef.focus();
+		//if (inputRef.selectionStart && inputRef.selectionStart !== inputRef.selectionEnd)
+		//	inputRef.setSelectionRange(inputRef.selectionStart, inputRef.selectionStart);
+		//if (!(document.activeElement instanceof HTMLInputElement)) inputRef.focus();
 
 		return () => {
-			if (inputRef instanceof HTMLInputElement) inputRef.blur();
-			if (error) dispatch(loginActions.setError(undefined));
+			//if (inputRef instanceof HTMLInputElement) inputRef.blur();
+			//if (error) dispatch(loginActions.setError(undefined));
 		};
 	}, [isOpen, login, password, error, dispatch, userNameRef]);
 
 	return (
-		<DynamicModuleLoader removeAfterUnmount={true} name={'loginForm'} reducer={loginReducer}>
+		<DynamicModuleLoader removeAfterUnmount reducers={reducers}>
 			<div className={classNames(classes.loginform, {}, [className])}>
 				<Text title={t('authTitle')} />
 				{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}

@@ -1,10 +1,6 @@
-import { FC, useCallback, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Modal } from 'shared/ui/Modal/Modal';
-import { getCommonLazy } from 'entities/Common/model/selectors/getCommon/getCommon';
-import { commonActions } from 'entities/Common';
-import { useAppDispatch } from 'app/providers/StoreProvider/config/store';
 import { LoginFormLazy } from '../LoginForm/LoginFormLazy';
 
 export interface LoginModalProps {
@@ -14,23 +10,21 @@ export interface LoginModalProps {
 }
 
 export const LoginModal: FC<LoginModalProps> = ({ className, isOpen, onClose }) => {
-	const isLazyModal = useSelector(getCommonLazy);
-	const dispatch = useAppDispatch();
+	const [slowClose, setSlowClose] = useState(isOpen);
+
 	const onAuth = useCallback(() => {
 		if (onClose) onClose();
 	}, [onClose]);
 
 	useEffect(() => {
-		console.log(isOpen, 'is open');
-		if (isOpen && !isLazyModal) dispatch(commonActions.setLazyModal(true));
-	}, [isOpen, dispatch, isLazyModal]);
+		const sleepForTime = async (ms: number) =>
+			await new Promise((resolve) => setTimeout(() => resolve(setSlowClose(isOpen)), ms));
+		isOpen ? void sleepForTime(0) : void sleepForTime(500);
+	}, [isOpen]);
 
-	if (isLazyModal) {
-		return (
-			<Modal isOpen={isOpen} onClose={onClose} className={classNames('', {}, [className])}>
-				{isOpen && <LoginFormLazy isOpen={isOpen} onAuth={onAuth} />}
-			</Modal>
-		);
-	}
-	return null;
+	return (
+		<Modal isOpen={isOpen} onClose={onClose} className={classNames('', {}, [className])}>
+			{slowClose && <LoginFormLazy isOpen={isOpen} onSuccess={onAuth} />}
+		</Modal>
+	);
 };

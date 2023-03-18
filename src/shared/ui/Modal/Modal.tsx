@@ -15,7 +15,8 @@ export const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) 
 	const { theme } = useTheme();
 
 	const mods: Record<string, boolean> = {
-		...(isOpen ? { [classes.opened]: true } : { [classes.nocontent]: true })
+		[classes.opened]: isOpen,
+		[classes.closed]: !isOpen
 	};
 
 	const closeHandler = useCallback(() => {
@@ -46,7 +47,7 @@ export const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) 
 		<Portal>
 			<div className={classNames(classes.modal, mods, [className, `${theme}`])}>
 				<div className={classes.overlay} onClick={closeHandler}>
-					<div className={classNames(classes.content)} onClick={contentClick}>
+					<div className={classNames(classes.content, {}, [])} onClick={contentClick}>
 						{children}
 					</div>
 				</div>

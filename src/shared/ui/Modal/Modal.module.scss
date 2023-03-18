@@ -6,6 +6,7 @@
 	left: 0;
 	z-index: -1;
 	pointer-events: none;
+	transition: 0.5s ease;
 }
 
 .overlay {
@@ -22,13 +23,12 @@
 	border-radius: 12px;
 	background: var(--bg-color);
 	font: var(--font-s);
-	transition: 0.4s ease;
+	transition: 0.5s ease;
 	transform: scale(0.5);
-	opacity: 0;
 	max-width: 50%;
 }
 
-.opened {
+.modal.opened {
 	pointer-events: auto;
 	z-index: var(--modal-z-index);
 
@@ -38,7 +38,12 @@
 	}
 }
 
-.nocontent {
+.modal.closed {
 	pointer-events: none;
 	transition: 0.5s ease;
+
+	.content {
+		transform: scale(0.5);
+		opacity: 0;
+	}
 }

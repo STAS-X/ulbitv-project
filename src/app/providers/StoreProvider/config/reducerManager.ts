@@ -52,7 +52,7 @@ export function createReducerManager(initialReducers: ReducersMapObject<StateSch
 
 			// Remove it from the reducer mapping
 			delete reducers[key];
-			console.log(`remove reducer ${key}`);
+			//console.log(`remove reducer ${key}`);
 			// Add the key to the list of keys to clean up
 			keysToRemove.push(key);
 

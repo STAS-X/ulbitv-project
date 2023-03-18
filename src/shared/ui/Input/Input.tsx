@@ -16,8 +16,7 @@ export interface InputProps extends HTMLInputProps {
 }
 
 export const Input: FC<InputProps> = memo(
-	forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-		console.log(props, 'get props data');
+	forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) => {
 		const { className, placeholder = 'userName', type = 'text', value, onChange, ...otherProps } = props;
 		const { t } = useTranslation();
 

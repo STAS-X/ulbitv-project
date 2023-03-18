@@ -1,6 +1,7 @@
 {
-    "about": "About",
-    "main": "Main",
-    "reloadPage": "Reload Page",
-    "Page not found": "Page '{{pageName}}' not found"
+	"about": "About",
+	"main": "Main",
+	"profile": "User profile",
+	"reloadPage": "Reload Page",
+	"Page not found": "Page '{{pageName}}' not found"
 }
