@@ -25,6 +25,6 @@ export interface ExtraThunkArgs {
 export interface ReducerManager {
 	getReducerMap: () => ReducersMapObject<StateSchema>;
 	reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
-	add: (key: StateSchemaKey, reducer: Reducer) => void;
+	add: (key: StateSchemaKey, reducer?: Reducer) => void;
 	remove: (key: StateSchemaKey) => void;
 }

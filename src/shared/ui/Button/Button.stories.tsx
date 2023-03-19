@@ -19,7 +19,7 @@ export const Primary = Template.bind({});
 
 Primary.args = {
 	children: 'Text primary',
-	theme: 'Primary'
+	theme: ButtonTheme.CLEAR
 };
 
 export const Outline = Template.bind({});

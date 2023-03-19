@@ -99,7 +99,8 @@ module.exports = {
 		]
 	},
 	globals: {
-		_DEV_MODE_: true
+		_DEV_MODE_: true,
+		_BASE_URL_:true
 	},
 	overrides: [
 		{

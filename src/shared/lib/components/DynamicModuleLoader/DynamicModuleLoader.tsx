@@ -10,7 +10,7 @@ interface DynamicModuleLoaderProps {
 	removeAfterUnmount?: boolean;
 }
 
-type ReduceListEntire = [StateSchemaKey, Reducer];
+export type ReduceListEntire = [StateSchemaKey, Reducer];
 
 export type ReducerList = {
 	[name in StateSchemaKey]?: Reducer;
@@ -23,14 +23,14 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
 	const store = useStore() as AppStoreWithReducerManager;
 
 	useEffect(() => {
-		Object.entries(reducers).forEach(([name, reducer]: ReduceListEntire) => {
-			store.reducerManager.add(name, reducer);
+		Object.entries(reducers).forEach(([name, reducer]) => {
+			store.reducerManager.add(name as StateSchemaKey, reducer);
 			dispatch({ type: `@@INIT ${name}` });
 		});
 		return () => {
 			if (removeAfterUnmount) {
-				Object.entries(reducers).forEach(([name, reducer]: ReduceListEntire) => {
-					store.reducerManager.remove(name);
+				Object.entries(reducers).forEach(([name]) => {
+					store.reducerManager.remove(name as StateSchemaKey);
 					dispatch({ type: `@@DESTROY ${name}` });
 				});
 			}

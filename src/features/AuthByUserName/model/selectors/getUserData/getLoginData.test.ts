@@ -17,11 +17,11 @@ describe('getLoginData selector test', () => {
 	});
 
 	test('should return error', () => {
-		expect(getLogin(state as StateSchema).error).toEqual('Error found');
+		expect(getLogin(state as StateSchema)?.error).toEqual('Error found');
 	});
 
 	test('should return loading status', () => {
-		expect(getLogin(state as StateSchema).isLoading).toEqual(true);
+		expect(getLogin(state as StateSchema)?.isLoading).toEqual(true);
 	});
 
 	test('should return username', () => {

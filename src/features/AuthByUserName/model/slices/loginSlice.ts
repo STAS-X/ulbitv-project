@@ -27,11 +27,11 @@ const loginSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		// The `builder` callback form is used here because it provides correctly typed reducers from the action creators
-		builder.addCase(loginByUsername.pending, (state, { payload }) => {
+		builder.addCase(loginByUsername.pending, (state) => {
 			state.error = undefined;
 			state.isLoading = true;
 		});
-		builder.addCase(loginByUsername.fulfilled, (state, { payload }) => {
+		builder.addCase(loginByUsername.fulfilled, (state) => {
 			state.error = undefined;
 			state.isLoading = false;
 		});

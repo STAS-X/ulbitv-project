@@ -10,9 +10,10 @@ interface SidebarItemProps {
 	collapsed: boolean;
 }
 
-export const SidebarItem: FC<SidebarItemProps> = memo((props) => {
+export const SidebarItem: FC<SidebarItemProps> = memo((props: SidebarItemProps) => {
 	const { item, collapsed } = props;
 	const { t } = useTranslation(['pages']);
+	if (!item) return null;
 
 	return (
 		<AppLink

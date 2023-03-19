@@ -8,6 +8,7 @@ import { BuildEnv, BuildOptions } from './config/build/types/config';
 export default (env: BuildEnv) => {
 	const mode = env.mode || 'development';
 	const isDev = mode === 'development';
+	const apiURL = env.apiURL || 'http://localhost:8000';
 	const PORT = env.port || 3000;
 
 	const options: BuildOptions = {
@@ -19,6 +20,7 @@ export default (env: BuildEnv) => {
 			src: path.resolve(__dirname, 'src')
 		},
 		isDev,
+		apiURL,
 		port: PORT
 	};
 

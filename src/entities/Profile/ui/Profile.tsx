@@ -9,7 +9,7 @@ interface ProfileProps {
 }
 
 export const Profile: FC<ProfileProps> = () => {
-	const profiledata = useSelector<StateSchema, ProfileData>(getProfileData);
+	const profiledata = useSelector<StateSchema, ProfileData | undefined>(getProfileData);
 	//const dispatch = useDispatch();
 
 	return (
@@ -17,7 +17,7 @@ export const Profile: FC<ProfileProps> = () => {
 			data-testid="profile"
 			style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'start', marginTop: 25 }}
 		>
-			<h1 data-testid="profile-value">{`${profiledata.first} ${profiledata.lastname}`}</h1>
+			<h1 data-testid="profile-value">{`${profiledata?.first ?? ''} ${profiledata?.lastname ?? ''}`}</h1>
 		</div>
 	);
 };

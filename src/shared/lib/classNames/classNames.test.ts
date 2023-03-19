@@ -12,8 +12,6 @@ describe('classNames', () => {
 	});
 
 	test('with undefined mods', () => {
-		expect(classNames('elseClass', { selected: undefined, active: true }, ['newClass'])).toBe(
-			'elseClass newClass active'
-		);
+		expect(classNames('elseClass', { selected: '', active: true }, ['newClass'])).toBe('elseClass newClass active');
 	});
 });

@@ -14,7 +14,7 @@ describe('button test', () => {
 
 	afterEach(() => {
 		document.body.removeChild(container);
-		container = null;
+		//container = null;
 	});
 
 	test('first component test', () => {

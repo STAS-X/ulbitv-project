@@ -21,7 +21,7 @@ export const PageError: FC<PageErrorProps> = ({ className, message }) => {
 	};
 
 	return (
-		<div className={classNames(classes.pageerror, {}, ['app', theme, className])}>
+		<div className={classNames(classes.pageerror, {}, ['app', theme, className ?? ''])}>
 			<p>{t('errors:errorApp', { message })}</p>
 			<Button onClick={handleReload}>{t('pages:reloadPage')}</Button>
 		</div>

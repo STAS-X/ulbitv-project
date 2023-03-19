@@ -20,7 +20,6 @@ LoaderPrimary.args = {};
 
 export const LoaderPrimaryDark = Template.bind({});
 LoaderPrimaryDark.args = {
-	children: 'Text secondary',
-	theme: 'Secondary'
+	children: 'Text secondary'
 };
 LoaderPrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];

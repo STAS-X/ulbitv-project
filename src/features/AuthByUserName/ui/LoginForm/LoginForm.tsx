@@ -35,7 +35,12 @@ const LoginForm: FC<LoginFormProps> = memo((props) => {
 		password,
 		error,
 		isLoading
-	} = useSelector<StateSchema, LoginSchema>(getLogin) ?? { username: '', password: '', error: '', isLoading: false };
+	} = useSelector<StateSchema, LoginSchema | undefined>(getLogin) ?? {
+		username: '',
+		password: '',
+		error: '',
+		isLoading: false
+	};
 
 	const onChangeUsername = useCallback(
 		(value: string) => {
@@ -93,7 +98,7 @@ const LoginForm: FC<LoginFormProps> = memo((props) => {
 
 	return (
 		<DynamicModuleLoader removeAfterUnmount reducers={reducers}>
-			<div className={classNames(classes.loginform, {}, [className])}>
+			<div className={classNames(classes.loginform, {})}>
 				<Text title={t('authTitle')} />
 				{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}
 				<Input ref={userNameRef} type="text" className={classes.input} onChange={onChangeUsername} value={login} />

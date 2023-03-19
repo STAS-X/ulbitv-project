@@ -22,3 +22,4 @@ declare module '*.css' {
 }
 
 declare const _DEV_MODE_: boolean;
+declare const _BASE_URL_: string;

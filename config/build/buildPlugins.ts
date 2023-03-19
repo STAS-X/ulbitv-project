@@ -7,7 +7,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstance[] {
-	const { paths, isDev } = options;
+	const { paths, isDev, apiURL } = options;
 
 	const plugins = [
 		new HTMLWebpackPlugin({
@@ -16,6 +16,7 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
 		new webpack.ProgressPlugin(),
 		new webpack.DefinePlugin({
 			_DEV_MODE_: JSON.stringify(options.isDev),
+			_BASE_URL_: JSON.stringify(apiURL),
 			'process.env': {
 				NODE_PORT: JSON.stringify(options.port)
 			}

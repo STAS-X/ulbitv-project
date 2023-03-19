@@ -1,8 +1,9 @@
+/* eslint-disable i18next/no-literal-string */
+import { StateSchema } from 'app/providers/StoreProvider';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { commonActions } from '..';
-import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import { getCommonValue } from '../model/selectors/getCommon/getCommon';
 
 interface commonProps {
@@ -10,7 +11,7 @@ interface commonProps {
 }
 
 export const Counter: FC<commonProps> = ({ commonValue = 1 }) => {
-	const value = useSelector<StateSchema>(getCommonValue);
+	const value = useSelector<StateSchema, number>(getCommonValue);
 	const dispatch = useDispatch();
 
 	const setIncrement = () => {

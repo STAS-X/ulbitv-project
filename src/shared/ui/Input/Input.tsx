@@ -29,16 +29,16 @@ export const Input: FC<InputProps> = memo(
 		};
 
 		return (
-			<div className={classNames(classes.inputwrapper, {}, [className])}>
+			<div className={classNames(classes.inputwrapper, {}, [className ?? ''])}>
 				{placeholder && <div className={classes.plaseholder}>{`${t(placeholder)}>`}</div>}
 				<div className={classes.caretwrapper}>
 					<InputRef
-						ref={ref}
 						className={classes.input}
 						value={value}
 						type={type}
 						onChange={onChangeValue}
 						{...otherProps}
+						ref={ref}
 					></InputRef>
 					<span className={classes.caret}></span>
 				</div>

@@ -1,3 +1,4 @@
+import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import { useDispatch } from 'react-redux';
 import {
 	configureStore,
@@ -5,11 +6,10 @@ import {
 	AnyAction,
 	EnhancedStore,
 	ThunkDispatch,
-	getDefaultMiddleware,
 	ThunkMiddleware,
 	MiddlewareArray
 } from '@reduxjs/toolkit';
-import { ExtraThunkArgs, ReducerManager, StateSchema } from './StateSchema';
+import { ExtraThunkArgs, ReducerManager } from './StateSchema';
 import { commonReducer } from 'entities/Common/model/slices/commonSlices';
 import { userReducer } from 'entities/User';
 import { createReducerManager } from './reducerManager';
@@ -33,15 +33,15 @@ export function createReduxStore(
 		AnyAction,
 		MiddlewareArray<[ThunkMiddleware<StateSchema, AnyAction, ExtraThunkArgs>]>
 	>({
-		reducer: reducerManager.reduce,
+		reducer: reducerManager.reduce as any,
 		devTools: _DEV_MODE_,
 		preloadedState: initialState,
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware({
 				thunk: {
 					extraArgument: {
-						api: extra.api ?? $apiAxios,
-						navigate: extra.navigate
+						api: extra?.api ?? $apiAxios,
+						navigate: extra?.navigate
 					}
 				}
 			})

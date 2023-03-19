@@ -16,7 +16,7 @@ export interface NavbarProps {
 export const Navbar = memo(({ className }: NavbarProps) => {
 	const { t } = useTranslation(['translation']);
 	const dispatch = useAppDispatch();
-	const userdata = useSelector<StateSchema, UserData>(getUserData);
+	const userdata = useSelector<StateSchema, UserData | undefined>(getUserData);
 
 	const [isAuthModal, setIsAuthModal] = useState(false);
 
@@ -33,7 +33,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 	}, [dispatch]);
 
 	return (
-		<div className={classNames(classes.navbar, {}, [className])}>
+		<div className={classNames(classes.navbar, {}, [className ?? ''])}>
 			<Button theme={ButtonTheme.INVERTED} className={classes.links} onClick={userdata ? setLogOut : showAuthModal}>
 				{t(userdata ? 'logout' : 'login')}
 			</Button>

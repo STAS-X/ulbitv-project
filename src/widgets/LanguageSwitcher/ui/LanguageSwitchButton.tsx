@@ -16,7 +16,7 @@ export const LanguageSwitchButton: FC<LanguageSwitchButtonProps> = memo(({ class
 	};
 
 	return (
-		<div className={classNames('', {}, [className])}>
+		<div className={classNames('', {}, [className ?? ''])}>
 			<Button theme={ButtonTheme.CLEAR} onClick={toggleLanguage}>
 				{t(short ? 'short lng' : 'language')}
 			</Button>

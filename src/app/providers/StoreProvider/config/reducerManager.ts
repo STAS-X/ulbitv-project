@@ -28,12 +28,13 @@ export function createReducerManager(initialReducers: ReducersMapObject<StateSch
 			}
 
 			// Delegate to the combined reducer
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 			return combinedReducer(state, action);
 		},
 
 		// Adds a new reducer with the specified key
-		add: (key: StateSchemaKey, reducer: Reducer) => {
-			if (!key || reducers[key]) {
+		add: (key: StateSchemaKey, reducer?: Reducer) => {
+			if (!key || !reducer || reducers[key]) {
 				return;
 			}
 

@@ -17,19 +17,16 @@ const Template: ComponentStory<typeof ProfilePage> = (args: ProfilePageProps) =>
 
 export const ProfilePagePrimary = Template.bind({});
 ProfilePagePrimary.args = {
-	children: 'Text primary',
-	theme: 'Primary'
+	children: 'Text primary'
 };
 
 export const ProfilePageSecondary = Template.bind({});
 ProfilePageSecondary.args = {
-	children: 'Text secondary',
-	theme: 'Secondary'
+	children: 'Text secondary'
 };
 
 export const ProfilePageSecondaryDark = Template.bind({});
 ProfilePageSecondaryDark.args = {
-	children: 'Text secondary',
-	theme: 'Secondary'
+	children: 'Text secondary'
 };
 ProfilePageSecondaryDark.decorators = [ThemeDecorator(Theme.DARK)];

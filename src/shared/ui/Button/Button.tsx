@@ -29,7 +29,7 @@ export const Button: FC<ButtonProps> = memo((props: ButtonProps) => {
 	const {
 		className,
 		theme = ButtonTheme.CLEAR,
-		square,
+		square = false,
 		disabled = false,
 		size = ButtonSize.M,
 		children,
@@ -44,7 +44,12 @@ export const Button: FC<ButtonProps> = memo((props: ButtonProps) => {
 	};
 
 	return (
-		<button type="button" className={classNames(classes.button, mods, [className])} disabled={disabled} {...otherProps}>
+		<button
+			type="button"
+			className={classNames(classes.button, mods, [className ?? ''])}
+			disabled={disabled}
+			{...otherProps}
+		>
 			{children}
 		</button>
 	);

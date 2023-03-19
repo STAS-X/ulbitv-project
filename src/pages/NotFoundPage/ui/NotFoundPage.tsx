@@ -13,7 +13,7 @@ export const NotFoundPage: FC<NotFoundPageProps> = memo<NotFoundPageProps>(({ cl
 	const { pathname: pageName } = useLocation();
 
 	return (
-		<div className={classNames(classes.notfoundpage, {}, [className])}>
+		<div className={classNames(classes.notfoundpage, {}, [className ?? ''])}>
 			{t('Page not found', { pageName: pageName.replace('/', '') })}
 		</div>
 	);

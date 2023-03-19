@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof LoginForm> = (args: LoginFormProps) => <Lo
 export const LoginFormPrimary = Template.bind({});
 LoginFormPrimary.args = {
 	isOpen: true,
-	onAuth: () => {
+	onSuccess: () => {
 		console.log('i am opened');
 	}
 };
@@ -26,25 +26,29 @@ LoginFormPrimary.args = {
 export const LoginFormWithError = Template.bind({});
 LoginFormWithError.args = {
 	isOpen: true,
-	onAuth: () => {
+	onSuccess: () => {
 		console.log('i am opened');
 	}
 };
-LoginFormWithError.decorators = [StoreDecorator({ loginForm: { error: 'Ошибка получения данных' } })];
+LoginFormWithError.decorators = [
+	StoreDecorator({ loginForm: { username: '', password: '', isLoading: false, error: 'Ошибка получения данных' } })
+];
 
 export const LoginFormLoading = Template.bind({});
 LoginFormLoading.args = {
 	isOpen: true,
-	onAuth: () => {
+	onSuccess: () => {
 		console.log('i am opened');
 	}
 };
-LoginFormLoading.decorators = [StoreDecorator({ loginForm: { isLoading: true } })];
+LoginFormLoading.decorators = [
+	StoreDecorator({ loginForm: { username: '', password: '', error: '', isLoading: true } })
+];
 
 export const LoginFormDark = Template.bind({});
 LoginFormDark.args = {
 	isOpen: true,
-	onAuth: () => {
+	onSuccess: () => {
 		console.log('i am opened');
 	}
 };

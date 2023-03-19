@@ -7,7 +7,7 @@ export interface LoaderProps {
 }
 
 export const Loader: FC<LoaderProps> = ({ className }) => (
-	<div className={classNames(classes['lds-grid'], {}, [className])}>
+	<div className={classNames(classes['lds-grid'], {}, [className ?? ''])}>
 		<div />
 		<div />
 		<div />
