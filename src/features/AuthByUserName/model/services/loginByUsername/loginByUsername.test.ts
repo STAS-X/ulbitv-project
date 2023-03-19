@@ -5,15 +5,25 @@ import { TestAsyncThunk } from 'shared/lib/tests/testAsyncThunk/testAsyncThunk';
 import { loginByUsername } from './loginByUsername';
 
 jest.mock('axios');
-const mockedAxios = jest.mocked(axios, true);
-
 describe('loginByUsername selector test', () => {
+	const apiAxios = axios.create({ baseURL: 'http://localhost:8000' });
+	// {
+	// 	baseURL: 'http://localhost:8000',
+	// 	headers: {
+	// 		Authorization: 'test'
+	// 	}
+	// });
+	const mockedAxios = axios as jest.Mocked<typeof axios>;
+
 	const testThunk = new TestAsyncThunk(loginByUsername);
 	const userValue = { username: 'admin', password: '12345', id: '1' };
-	// beforeEach(() => {
-	// 	dispatch = jest.fn();
-	// 	getState = jest.fn();
-	// });
+	beforeEach(() => {
+		jest.resetAllMocks();
+		mockedAxios.get.mockResolvedValue({
+			data: userValue
+		});
+	});
+	console.log(mockedAxios, apiAxios, testThunk, 'get data');
 
 	test('should fulfilled', async () => {
 		mockedAxios.post.mockReturnValue(Promise.resolve({ data: userValue }));
