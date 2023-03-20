@@ -14,17 +14,16 @@ export function useTheme(): UseThemeResult {
 
 	const toggleTheme = () => {
 		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
-		if (setTheme)
-			setTheme(
-				localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
-					? (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme)
-					: theme === Theme.LIGHT
-					? Theme.DARK
-					: Theme.LIGHT
-			);
+		setTheme?.(
+			localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+				? (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme)
+				: theme === Theme.LIGHT
+				? Theme.DARK
+				: Theme.LIGHT
+		);
 	};
 
-	const resultTheme: UseThemeResult = { theme, toggleTheme };
+	const resultTheme: UseThemeResult = { theme: theme || Theme.LIGHT, toggleTheme };
 
 	return resultTheme;
 }

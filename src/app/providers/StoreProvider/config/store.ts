@@ -7,7 +7,9 @@ import {
 	EnhancedStore,
 	ThunkDispatch,
 	ThunkMiddleware,
-	MiddlewareArray
+	MiddlewareArray,
+	CombinedState,
+	Reducer
 } from '@reduxjs/toolkit';
 import { ExtraThunkArgs, ReducerManager } from './StateSchema';
 import { commonReducer } from 'entities/Common/model/slices/commonSlices';
@@ -33,7 +35,7 @@ export function createReduxStore(
 		AnyAction,
 		MiddlewareArray<[ThunkMiddleware<StateSchema, AnyAction, ExtraThunkArgs>]>
 	>({
-		reducer: reducerManager.reduce as any,
+		reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
 		devTools: _DEV_MODE_,
 		preloadedState: initialState,
 		middleware: (getDefaultMiddleware) =>

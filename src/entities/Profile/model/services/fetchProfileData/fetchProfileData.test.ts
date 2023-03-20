@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import axios from 'axios';
 import { userActions } from 'entities/User';
 import { TestAsyncThunk } from 'shared/lib/tests/testAsyncThunk/testAsyncThunk';
 import { fetchProfileData } from './fetchProfileData';
 
-jest.mock('axios');
-const mockedAxios = jest.mocked(axios, true);
+//jest.mock('axios');
+//const mockedAxios = jest.mocked(axios, true);
 
 describe('loginByUsername selector test', () => {
 	const testThunk = new TestAsyncThunk(fetchProfileData);
@@ -16,23 +15,23 @@ describe('loginByUsername selector test', () => {
 	// });
 
 	test('should fulfilled', async () => {
-		mockedAxios.post.mockReturnValue(Promise.resolve({ data: userValue }));
-		const result = await testThunk.callThunk(userValue);
+		testThunk.api.post.mockReturnValue(Promise.resolve({ data: userValue }));
+		const result = await testThunk.callThunk();
 
 		console.log(result, 'result data from action');
 		expect(testThunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue));
 		expect(testThunk.dispatch).toHaveBeenCalledTimes(3);
-		expect(mockedAxios.post).toHaveBeenCalled();
+		expect(testThunk.api.post).toHaveBeenCalled();
 		expect(result.meta.requestStatus).toBe('fulfilled');
 		expect(result.payload).toBe(userValue);
 	});
 
 	test('should rejected', async () => {
-		mockedAxios.post.mockReturnValue(Promise.resolve({ status: 403 }));
-		const result = await testThunk.callThunk(userValue);
+		testThunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
+		const result = await testThunk.callThunk();
 
 		expect(testThunk.dispatch).toHaveBeenCalledTimes(2);
-		expect(mockedAxios.post).toHaveBeenCalled();
+		expect(testThunk.api.post).toHaveBeenCalled();
 		expect(result.meta.requestStatus).toBe('rejected');
 	});
 });

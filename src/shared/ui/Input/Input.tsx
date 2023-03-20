@@ -11,7 +11,7 @@ export interface InputProps extends HTMLInputProps {
 	value?: string;
 	type?: string;
 	placeholder?: string;
-	ref: ForwardedRef<HTMLInputElement>;
+	ref?: ForwardedRef<HTMLInputElement>;
 	onChange?: (value: string) => void;
 }
 

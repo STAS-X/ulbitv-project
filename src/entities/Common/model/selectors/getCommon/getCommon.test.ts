@@ -1,5 +1,4 @@
 import { getCommon, getCommonValue } from './getCommon';
-import { DeepPartial } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 
 describe('getCounter', () => {

@@ -1,29 +1,39 @@
 import { $apiAxios } from 'shared/api/api';
-import { ExtraThunkArgs } from 'app/providers/StoreProvider/config/StateSchema';
 import { AsyncThunkAction } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
-import { NavigateFunction } from 'react-router-dom';
+import { AppThunkDispatch } from '../../../../app/providers/StoreProvider/config/store';
+import axios, { AxiosStatic } from 'axios';
+//import { NavigateFunction } from 'react-router-dom';
 
-type ActionCreatorType<Return, Arg, ExtraThunkArgs, RejectedValue> = (
-	arg: Arg
-) => AsyncThunkAction<Return, Arg, { extra: ExtraThunkArgs; rejectValue: RejectedValue }>;
+type ActionCreatorType<Return, Args, RejectedValue> = (arg: Args) => AsyncThunkAction<
+	Return,
+	Args,
+	{
+		rejectValue?: RejectedValue;
+	}
+>;
 
-export class TestAsyncThunk<Return, Arg, ExtraThunkArgs, RejectedValue> {
-	dispatch: jest.Mocked<any>;
+jest.mock('axios');
+const mockedAxios = jest.mocked(axios, true);
+
+export class TestAsyncThunk<Return, Args, RejectedValue> {
+	dispatch: jest.MockedFn<any>;
 	getState: () => StateSchema;
-	navigate: NavigateFunction;
-	actionCreator: ActionCreatorType<Return, Arg, ExtraThunkArgs, RejectedValue>;
+	api: jest.MockedFunctionDeep<AxiosStatic>;
+	navigate: jest.MockedFn<any>;
+	actionCreator: ActionCreatorType<Return, Args, RejectedValue>;
 
-	constructor(actionCreator: ActionCreatorType<Return, Arg, ExtraThunkArgs, RejectedValue>) {
+	constructor(actionCreator: ActionCreatorType<Return, Args, RejectedValue>) {
 		this.actionCreator = actionCreator;
 		this.dispatch = jest.fn();
 		this.getState = jest.fn();
+		this.api = mockedAxios;
 		this.navigate = jest.fn();
 	}
 
-	async callThunk(arg: Arg) {
+	async callThunk(arg: Args) {
 		const action = this.actionCreator(arg);
-		const result = await action(this.dispatch, this.getState, { api: $apiAxios, navigate: this.navigate }, undefined);
+		const result = await action(this.dispatch, this.getState, { api: this.api, navigate: this.navigate });
 		return result;
 	}
 }

@@ -3,7 +3,7 @@ import { FC, memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { fetchProfileData, profileReducer } from '../../../entities/Profile';
+import { fetchProfileData, ProfileCard, profileReducer } from 'entities/Profile';
 //import classes from './ProfilePage.module.scss';
 
 const redusers: ReducerList = {
@@ -39,7 +39,9 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<div className={classNames('', {})}>{t('profile', { ns: 'pages' })}</div>
+			<div className={classNames('', {})}>
+				<ProfileCard />
+			</div>
 		</DynamicModuleLoader>
 	);
 });

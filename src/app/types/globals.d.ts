@@ -23,3 +23,5 @@ declare module '*.css' {
 
 declare const _DEV_MODE_: boolean;
 declare const _BASE_URL_: string;
+
+type DeepPartial<T> = T extends object ? { [P in keyof T]?: DeepPartial<T[P]> } : T;
