@@ -1,5 +1,13 @@
 {
 	"edit": "Edit",
-	"name":"Your name",
-	"surname": "Your surname"
+	"save": "Save",
+	"cancel": "Cancel",
+	"name": "Your name: ",
+	"surname": "Your surname: ",
+	"age": "Your age: ",
+	"city": "Your city: ",
+	"country": "Your country: ",
+	"currency": "Currency: ",
+	"username": "User name: ",
+	"avatar": "Avatar: "
 }

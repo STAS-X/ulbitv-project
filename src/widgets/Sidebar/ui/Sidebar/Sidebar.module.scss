@@ -11,12 +11,12 @@
 	position: absolute;
 	bottom: 20px;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
 	width: 100%;
 }
 
 .lang {
-	margin-left: 20px;
+	margin: auto 20px;
 }
 
 .collapsebtn {
@@ -41,6 +41,6 @@
 	}
 
 	.lang {
-		margin-left: 0;
+		margin: 10px;
 	}
 }

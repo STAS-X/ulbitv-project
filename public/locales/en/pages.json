@@ -1,7 +1,7 @@
 {
 	"about": "About",
 	"main": "Main",
-	"profile": "User profile",
+	"profile": "Profile",
 	"reloadPage": "Reload Page",
 	"Page not found": "Page '{{pageName}}' not found"
 }

@@ -11,11 +11,14 @@ export const fetchProfileData = createAppAsyncThunk<ProfileData>('profile/fetchP
 	const { extra, rejectWithValue } = thunkApi;
 
 	try {
+		console.log('start fetchibg profile...');
 		const response = await extra.api.get<ProfileData>('/profile');
 
 		if (!response.data) {
 			throw new Error('error');
 		}
+		//throw new Error('network error occured');
+
 		return response.data;
 	} catch (e: ThunkError) {
 		console.log(e.message, 'Внимание, во время запроса возникла ошибка');

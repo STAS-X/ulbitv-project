@@ -117,7 +117,7 @@
 	},
 	"loki": {
 		"diffingEngine": "looks-same",
-		"chromeTolerance": 20,
+		"chromeTolerance": 10,
 		"chromeLoadTimeout": 120000,
 		"chromeFlags": "--headless --disable-gpu --hide-scrollbars --no-sandbox",
 		"configurations": {

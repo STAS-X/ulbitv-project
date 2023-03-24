@@ -85,8 +85,8 @@ const contexts = [
 addDecorator(StyleDecorator);
 addDecorator(withContexts(contexts));
 addDecorator(ThemeDecorator(Theme.LIGHT));
-addDecorator(RouterDecorator);
 addDecorator(StoreDecorator({ loginForm: { username: 'test', password: '123' } }));
+addDecorator(RouterDecorator);
 
 //addDecorator(withScreenshot);
 //addParameters({ screenshot: { ...parameters.screenshot } });

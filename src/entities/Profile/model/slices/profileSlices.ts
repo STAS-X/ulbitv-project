@@ -1,7 +1,7 @@
 import { fetchProfileData } from './../services/fetchProfileData/fetchProfileData';
-import { PROFILE_KEY } from 'shared/const/localstorage';
 import { ProfileData, ProfileSchema } from 'entities/Profile';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 
 const initialState: ProfileSchema = {
 	readonly: true,
@@ -14,14 +14,18 @@ const profileSlice = createSlice({
 	name: 'profile',
 	initialState,
 	reducers: {
-		setProfileData: (state, action: PayloadAction<ProfileData>) => {
-			state.data = action.payload;
+		updateProfile: (state, action: PayloadAction<ProfileData>) => {
+			state.formData = { ...state.formData, ...action.payload };
 		},
-		initData: (state) => {
-			const profile = localStorage.getItem(PROFILE_KEY);
-			if (profile) {
-				state.data = JSON.parse(profile);
-			}
+		saveProfile: (state, action: PayloadAction<ProfileData>) => {
+			state.data = { ...state.data, ...action.payload };
+		},
+		cancelEditProfile: (state) => {
+			state.readonly = true;
+			state.formData = state.data;
+		},
+		setProfileReadOnly: (state, action: PayloadAction<boolean>) => {
+			state.readonly = action.payload;
 		}
 	},
 	extraReducers: (builder) => {
@@ -31,11 +35,25 @@ const profileSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(fetchProfileData.fulfilled, (state, action) => {
-			state.error = undefined;
 			state.data = action.payload;
+			state.formData = action.payload;
 			state.isLoading = false;
 		});
 		builder.addCase(fetchProfileData.rejected, (state, action) => {
+			state.isLoading = false;
+			state.error = action.payload || action.error?.message || 'Unknown error';
+		});
+		builder.addCase(updateProfileData.pending, (state) => {
+			state.error = undefined;
+			state.readonly = true;
+			state.isLoading = true;
+		});
+		builder.addCase(updateProfileData.fulfilled, (state, action) => {
+			state.data = action.payload;
+			state.formData = action.payload;
+			state.isLoading = false;
+		});
+		builder.addCase(updateProfileData.rejected, (state, action) => {
 			state.isLoading = false;
 			state.error = action.payload || action.error?.message || 'Unknown error';
 		});

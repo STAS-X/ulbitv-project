@@ -1,73 +1,82 @@
 import { FC, ForwardedRef, forwardRef, InputHTMLAttributes, memo } from 'react';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import classes from './Input.module.scss';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'readOnly' | 'onChange'>;
 
 export interface InputProps extends HTMLInputProps {
 	className?: string;
-	value?: string;
+	value?: string | number;
 	type?: string;
 	placeholder?: string;
-	ref?: ForwardedRef<HTMLInputElement>;
 	onChange?: (value: string) => void;
+	readonly?: boolean;
 }
 
-export const Input: FC<InputProps> = memo(
-	forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) => {
-		const { className, placeholder = 'userName', type = 'text', value, onChange, ...otherProps } = props;
-		const { t } = useTranslation();
+const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
+	const {
+		className,
+		placeholder = 'userName',
+		type = 'text',
+		readonly = false,
+		value = '',
+		onChange,
+		...otherProps
+	} = props;
+	const { t } = useTranslation();
 
-		const onChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-			const {
-				target: { value }
-			} = event;
-			onChange?.(value);
-			console.log(`current value is ${value}`);
-		};
+	const onChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const {
+			target: { value }
+		} = event;
+		onChange?.(value);
+		console.log(`current value is ${value}`);
+	};
 
-		return (
-			<div className={classNames(classes.inputwrapper, {}, [className ?? ''])}>
-				{placeholder && <div className={classes.plaseholder}>{`${t(placeholder)}>`}</div>}
-				<div className={classes.caretwrapper}>
-					<InputRef
-						className={classes.input}
-						value={value}
-						type={type}
-						onChange={onChangeValue}
-						{...otherProps}
-						ref={ref}
-					></InputRef>
-					<span className={classes.caret}></span>
-				</div>
+	const mods: Mods = {
+		[classes.readonly]: readonly
+	};
+
+	return (
+		<div className={classNames(classes.inputwrapper, {}, [className])}>
+			{placeholder && <div className={classes.plaseholder}>{`${t(placeholder)}>`}</div>}
+			<div className={classes.caretwrapper}>
+				<input
+					ref={ref || undefined}
+					className={classNames(classes.input, mods)}
+					value={value}
+					type={type}
+					onChange={onChangeValue}
+					readOnly={readonly}
+					{...otherProps}
+				></input>
+				<span className={classes.caret}></span>
 			</div>
-		);
-	})
-);
-
-Input.propTypes = {
-	className: PropTypes.string,
-	value: PropTypes.string,
-	type: PropTypes.string,
-	placeholder: PropTypes.string,
-	onChange: PropTypes.func
+		</div>
+	);
 };
 
-type HTMLInputRefProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> & {
-	ref?: React.Ref<HTMLInputElement>;
-};
+export const Input = memo(forwardRef<HTMLInputElement, InputProps>(InputRef));
 
-interface InputRefProps extends HTMLInputRefProps {
-	className?: string;
-	value?: string;
-	type?: string;
-	placeholder?: string;
-}
+// Input.propTypes = {
+// 	className: PropTypes.string,
+// 	value: PropTypes.string,
+// 	type: PropTypes.string,
+// 	placeholder: PropTypes.string,
+// 	onChange: PropTypes.func
+// };
 
-const InputRef: FC<InputRefProps> = forwardRef<HTMLInputElement, InputRefProps>((props, ref) => {
-	const { type = 'text', value, ...otherProps } = props;
+// type HTMLInputRefProps = InputHTMLAttributes<HTMLInputElement>;
 
-	return <input ref={ref} className={classes.input} value={value} type={type} {...otherProps} />;
-});
+// interface InputRefProps extends HTMLInputRefProps {
+// 	value?: string;
+// 	type?: string;
+// 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+// }
+
+// const InputRef: FC<InputRefProps> = forwardRef<HTMLInputElement, InputRefProps>((props, ref?) => {
+// 	const { type = 'text', value, onChange } = props;
+
+// 	return <input innerRef={ref || undefined} className={classes.input} onChange={onChange} value={value} type={type} />;
+// });

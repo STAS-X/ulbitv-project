@@ -1,34 +1,120 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Text } from 'shared/ui/Text/Text';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { getProfileData, getProfileError, getProfileIsLoading } from '../../model/selectors/getProfile/getProfileData';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
+import { ProfileData } from 'entities/Profile';
 import classes from './ProfileCard.module.scss';
 import { Input } from 'shared/ui/Input/Input';
+import { Loader } from 'shared/ui/Loader/Loader';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { CountrySelector } from 'entities/Country';
+import { CurrencySelector } from 'entities/Currency';
+
+export enum ProfileFieldType {
+	FIRST = 'first',
+	LAST = 'last',
+	AGE = 'age',
+	CITY = 'city',
+	USERNAME = 'username',
+	AVATAR = 'avatar',
+	COUNTRY = 'country',
+	CURRENCY = 'currency'
+}
 
 interface ProfileCardProps {
 	className?: string;
+	isLoading?: boolean;
+	readonly?: boolean;
+	error?: string;
+	data?: ProfileData;
+	onChangeProfileFields: (type?: ProfileFieldType) => (value?: string) => void;
 }
 
-export const ProfileCard: FC<ProfileCardProps> = ({ className }) => {
-	const { t } = useTranslation(['pages', 'profile']);
-	const data = useSelector(getProfileData);
-	const error = useSelector(getProfileError);
-	const isLoading = useSelector(getProfileIsLoading);
+export const ProfileCard: FC<ProfileCardProps> = (props) => {
+	const { data = {}, isLoading, error, onChangeProfileFields, readonly, className } = props;
+
+	const { t } = useTranslation(['profile', 'errors']);
+	const mods: Mods = {
+		[classes.editing]: !readonly
+	};
 
 	return (
-		<div className={classNames(classes.profilecard, {}, [className])}>
-			<div className={classes.header}>
-				<Text title={t('profile', { ns: 'pages' })} />
-				<Button className={classes.editbtn} theme={ButtonTheme.OUTLINE}>
-					{t('edit', { ns: 'profile' })}
-				</Button>
-			</div>
-			<div className={classes.data}>
-				<Input className={classes.input} value={data?.first} placeholder={t('name', { ns: 'profile' })} />
-				<Input className={classes.input} value={data?.lastname} placeholder={t('surname', { ns: 'profile' })} />
+		<div className={classNames(classes.profilecard, mods, [className])}>
+			<div className={classNames('', isLoading ? { [classes.loading]: true } : { [classes.error]: Boolean(error) })}>
+				{error ? (
+					<Text
+						title={t('errorTitle', { ns: 'errors' })}
+						content={t('errorApp', { ns: 'errors', message: error })}
+						theme={TextTheme.ERROR}
+						align={TextAlign.CENTER}
+					/>
+				) : isLoading ? (
+					<Loader />
+				) : (
+					<>
+						{data?.avatar && (
+							<div className={classes.avatarwrapper}>
+								<Avatar className={classes.avatar} size={100} src={data?.avatar} />
+							</div>
+						)}
+						<Input
+							className={classes.input}
+							value={data?.first}
+							readonly={readonly}
+							placeholder={t('name', { ns: 'profile' })}
+							onChange={onChangeProfileFields(ProfileFieldType.FIRST)}
+						/>
+						<Input
+							className={classes.input}
+							value={data?.lastname}
+							readonly={readonly}
+							placeholder={t('surname', { ns: 'profile' })}
+							onChange={onChangeProfileFields(ProfileFieldType.LAST)}
+						/>
+						<Input
+							className={classes.input}
+							value={data?.age}
+							readonly={readonly}
+							placeholder={t('age', { ns: 'profile' })}
+							onChange={onChangeProfileFields(ProfileFieldType.AGE)}
+						/>
+						<Input
+							className={classes.input}
+							value={data?.username}
+							readonly={readonly}
+							placeholder={t('username', { ns: 'profile' })}
+							onChange={onChangeProfileFields(ProfileFieldType.USERNAME)}
+						/>
+						<Input
+							className={classes.input}
+							value={data?.avatar}
+							readonly={readonly}
+							placeholder={t('avatar', { ns: 'profile' })}
+							onChange={onChangeProfileFields(ProfileFieldType.AVATAR)}
+						/>
+						<Input
+							className={classes.input}
+							value={data?.city}
+							readonly={readonly}
+							placeholder={t('city', { ns: 'profile' })}
+							onChange={onChangeProfileFields(ProfileFieldType.CITY)}
+						/>
+						<CountrySelector
+							className={classes.input}
+							value={data?.country}
+							readonly={readonly}
+							placeholder={t('country', { ns: 'profile' })}
+							onChange={onChangeProfileFields(ProfileFieldType.COUNTRY)}
+						/>
+						<CurrencySelector
+							className={classes.input}
+							value={data?.currency}
+							readonly={readonly}
+							placeholder={t('currency', { ns: 'profile' })}
+							onChange={onChangeProfileFields(ProfileFieldType.CURRENCY)}
+						/>
+					</>
+				)}
 			</div>
 		</div>
 	);

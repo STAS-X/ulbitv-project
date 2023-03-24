@@ -24,7 +24,7 @@ const reducers: ReducerList = {
 	loginForm: loginReducer
 };
 
-const LoginForm: FC<LoginFormProps> = memo((props) => {
+const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
 	const { className, isOpen, onSuccess } = props;
 	const { t } = useTranslation(['translation', 'errors']);
 	const userNameRef = useRef<HTMLInputElement>(null);
@@ -98,11 +98,11 @@ const LoginForm: FC<LoginFormProps> = memo((props) => {
 
 	return (
 		<DynamicModuleLoader removeAfterUnmount reducers={reducers}>
-			<div className={classNames(classes.loginform, {})}>
+			<div className={classNames(classes.loginform, {}, [className])}>
 				<Text title={t('authTitle')} />
 				{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}
 				<Input ref={userNameRef} type="text" className={classes.input} onChange={onChangeUsername} value={login} />
-				<Input ref={null} type="text" className={classes.input} onChange={onChangePassword} value={password} />
+				<Input type="text" className={classes.input} onChange={onChangePassword} value={password} />
 				<Button theme={ButtonTheme.OUTLINE} className={classes.loginbtn} disabled={isLoading} onClick={onLoginClick}>
 					{t('login')}
 				</Button>
