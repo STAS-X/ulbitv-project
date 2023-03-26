@@ -1,35 +1,41 @@
+import { NotFoundPage } from 'pages/NotFoundPage';
+import { ProfilePage } from 'pages/ProfilePage';
 import { AboutPage } from 'pages/AboutPage';
 import { MainPage } from 'pages/MainPage';
 import { RouteProps } from 'react-router-dom';
-export enum AppAuthRoutes {
-	PROFILE = 'profile',
-}
 
 export enum AppRoutes {
 	MAIN = 'main',
 	ABOUT = 'about',
+	PROFILE = 'profile',
 	NOT_FOUND = 'not_found'
 }
 
-export const RoutePath: Record<AppRoutes, RouteProps> = {
+export interface AuthRouteProps extends RouteProps {
+	isAuth?: boolean;
+	pathname?: string;
+	Element: React.FC;
+}
+
+export const RoutePath: Record<AppRoutes, AuthRouteProps> = {
 	[AppRoutes.MAIN]: {
 		pathname: '/',
-		element: <MainPage />
+		isAuth: false,
+		Element: MainPage
+	},
+	[AppRoutes.ABOUT]: {
+		pathname: '/about',
+		isAuth: false,
+		Element: AboutPage
+	},
+	[AppRoutes.PROFILE]: {
+		pathname: '/profile',
+		isAuth: true,
+		Element: ProfilePage
+	},
+	[AppRoutes.NOT_FOUND]: {
+		pathname: '*',
+		isAuth: false,
+		Element: NotFoundPage
 	}
-		,
-		[AppRoutes.ABOUT]: {
-			pathname: '/about',
-			element: <AboutPage/>
-		},
-
-			[AppRoutes.NOT_FOUND]: {
-				pathname: '*',
-				element: <Error
-	};
-
-		export const AuthRoutePath: Record<AppAuthRoutes, string> = {
-			[AppAuthRoutes.MAIN]: '/',
-			[AppAuthRoutes.ABOUT]: '/about',
-			[AppAuthRoutes.PROFILE]: '/profile',
-			[AppAuthRoutes.NOT_FOUND]: '*'
 };

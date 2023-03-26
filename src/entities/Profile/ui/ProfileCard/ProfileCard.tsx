@@ -2,13 +2,15 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import { ProfileData } from 'entities/Profile';
+import { getProfileValidation, ProfileData } from 'entities/Profile';
 import classes from './ProfileCard.module.scss';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { CountrySelector } from 'entities/Country';
 import { CurrencySelector } from 'entities/Currency';
+import { useSelector } from 'react-redux';
+import { ValidateProfileError } from 'entities/Profile/model/types/profileSchema';
 
 export enum ProfileFieldType {
 	FIRST = 'first',
@@ -34,6 +36,8 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 	const { data = {}, isLoading, error, onChangeProfileFields, readonly, className } = props;
 
 	const { t } = useTranslation(['profile', 'errors']);
+	const validateError = useSelector(getProfileValidation);
+
 	const mods: Mods = {
 		[classes.editing]: !readonly
 	};
@@ -57,6 +61,15 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 								<Avatar className={classes.avatar} size={100} src={data?.avatar} />
 							</div>
 						)}
+						{validateError?.[ValidateProfileError.INCORRECT_USER_FIRST] && (
+							<Text
+								content={t(validateError[ValidateProfileError.INCORRECT_USER_FIRST] || '', {
+									ns: 'profile'
+								})}
+								theme={TextTheme.ERROR}
+								align={TextAlign.LEFT}
+							/>
+						)}
 						<Input
 							className={classes.input}
 							value={data?.first}
@@ -64,6 +77,15 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 							placeholder={t('name', { ns: 'profile' })}
 							onChange={onChangeProfileFields(ProfileFieldType.FIRST)}
 						/>
+						{validateError?.[ValidateProfileError.INCORRECT_USER_LAST] && (
+							<Text
+								content={t(validateError[ValidateProfileError.INCORRECT_USER_LAST] || '', {
+									ns: 'profile'
+								})}
+								theme={TextTheme.ERROR}
+								align={TextAlign.LEFT}
+							/>
+						)}
 						<Input
 							className={classes.input}
 							value={data?.lastname}
@@ -71,6 +93,15 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 							placeholder={t('surname', { ns: 'profile' })}
 							onChange={onChangeProfileFields(ProfileFieldType.LAST)}
 						/>
+						{validateError?.[ValidateProfileError.INCORRECT_AGE] && (
+							<Text
+								content={t(validateError[ValidateProfileError.INCORRECT_AGE] || '', {
+									ns: 'profile'
+								})}
+								theme={TextTheme.ERROR}
+								align={TextAlign.LEFT}
+							/>
+						)}
 						<Input
 							className={classes.input}
 							value={data?.age}
@@ -78,6 +109,15 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 							placeholder={t('age', { ns: 'profile' })}
 							onChange={onChangeProfileFields(ProfileFieldType.AGE)}
 						/>
+						{validateError?.[ValidateProfileError.INCORRECT_USERNAME] && (
+							<Text
+								content={t(validateError[ValidateProfileError.INCORRECT_USERNAME] || '', {
+									ns: 'profile'
+								})}
+								theme={TextTheme.ERROR}
+								align={TextAlign.LEFT}
+							/>
+						)}
 						<Input
 							className={classes.input}
 							value={data?.username}
@@ -85,6 +125,15 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 							placeholder={t('username', { ns: 'profile' })}
 							onChange={onChangeProfileFields(ProfileFieldType.USERNAME)}
 						/>
+						{validateError?.[ValidateProfileError.INCORRECT_AVATAR] && (
+							<Text
+								content={t(validateError[ValidateProfileError.INCORRECT_AVATAR] || '', {
+									ns: 'profile'
+								})}
+								theme={TextTheme.ERROR}
+								align={TextAlign.LEFT}
+							/>
+						)}
 						<Input
 							className={classes.input}
 							value={data?.avatar}
@@ -92,6 +141,15 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 							placeholder={t('avatar', { ns: 'profile' })}
 							onChange={onChangeProfileFields(ProfileFieldType.AVATAR)}
 						/>
+						{validateError?.[ValidateProfileError.INCORRECT_CITY] && (
+							<Text
+								content={t(validateError[ValidateProfileError.INCORRECT_CITY] || '', {
+									ns: 'profile'
+								})}
+								theme={TextTheme.ERROR}
+								align={TextAlign.LEFT}
+							/>
+						)}
 						<Input
 							className={classes.input}
 							value={data?.city}

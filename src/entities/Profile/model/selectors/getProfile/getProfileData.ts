@@ -11,3 +11,7 @@ export const getProfileIsLoading = createSelector(
 	(profile: ProfileSchema | undefined) => profile?.isLoading
 );
 export const getProfileReadOnly = createSelector(getProfile, (profile: ProfileSchema | undefined) => profile?.readonly);
+export const getProfileValidation = createSelector(
+	getProfile,
+	(profile: ProfileSchema | undefined) => profile?.validateError
+);

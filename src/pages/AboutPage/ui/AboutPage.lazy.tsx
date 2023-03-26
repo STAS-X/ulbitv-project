@@ -1,6 +1,6 @@
-import { lazy } from 'react';
+import { FC, lazy } from 'react';
 
-export const AboutPageLazy = lazy(
+export const AboutPageLazy: FC = lazy(
 	() =>
 		new Promise((resolve) => {
 			// @ts-ignore

@@ -1,6 +1,17 @@
 import { Currency } from 'entities/Currency/model/types/currency';
 import { Country } from 'entities/Country/model/types/country';
 
+export enum ValidateProfileError {
+	INCORRECT_USER_FIRST = 'INCORRECT_FIRST',
+	INCORRECT_USER_LAST = 'INCORRECT_LAST',
+	INCORRECT_AGE = 'INCORRECT_AGE',
+	INCORRECT_CITY = 'INCORRECT_CITY',
+	INCORRECT_USERNAME = 'INCORRECT_LOGIN',
+	INCORRECT_AVATAR = 'INCORRECT_AVATAR'
+}
+
+export type ValidateErrorType = Partial<Record<ValidateProfileError, string>>;
+
 export interface ProfileData {
 	first?: string;
 	lastname?: string;
@@ -18,4 +29,5 @@ export interface ProfileSchema {
 	isLoading: boolean;
 	error?: string;
 	readonly: boolean;
+	validateError?: ValidateErrorType;
 }

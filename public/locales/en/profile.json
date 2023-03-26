@@ -9,5 +9,13 @@
 	"country": "Your country: ",
 	"currency": "Currency: ",
 	"username": "User name: ",
-	"avatar": "Avatar: "
+	"avatar": "Avatar: ",
+	"validation": {
+		"first": "Incorrect name",
+		"last": "Incorrect surname",
+		"age": "Incorrect age",
+		"city": "Incorrect city",
+		"username": "Incorrect username",
+		"avatar": "Incorrect URL IMAGE"
+	}
 }

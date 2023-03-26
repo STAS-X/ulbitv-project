@@ -17,10 +17,11 @@ enum ProfileEditType {
 interface ProfilePageHeaderProps {
 	className?: string;
 	isDirty?: boolean;
+	error?: string;
 }
 
 export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
-	const { isDirty = false, className } = props;
+	const { isDirty = false, className, error = '' } = props;
 
 	const { t } = useTranslation(['pages', 'profile']);
 	const readonly = useSelector(getProfileReadOnly);
@@ -60,7 +61,7 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
 						className={classes.editbtn}
 						theme={ButtonTheme.OUTLINE}
 						onClick={onChangeEdit(ProfileEditType.EDIT)}
-						disabled={isLoading}
+						disabled={isLoading || Boolean(error)}
 					>
 						{t('edit', { ns: 'profile' })}
 					</Button>

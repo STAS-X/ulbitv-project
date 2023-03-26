@@ -4,6 +4,7 @@ export {
 	getProfileError,
 	getProfileIsLoading,
 	getProfileReadOnly,
+	getProfileValidation,
 	getProfileData,
 	getProfileFormData
 } from './model/selectors/getProfile/getProfileData';

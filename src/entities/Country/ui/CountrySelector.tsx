@@ -11,7 +11,7 @@ interface CountrySelectorProps {
 }
 
 export const CountrySelector: FC<CountrySelectorProps> = memo((props: CountrySelectorProps) => {
-	const { className, readonly, value, onChange } = props;
+	const { className, readonly, value, placeholder, onChange } = props;
 
 	return (
 		<Select
@@ -19,6 +19,7 @@ export const CountrySelector: FC<CountrySelectorProps> = memo((props: CountrySel
 			options={Object.values(Country)}
 			readonly={readonly}
 			value={value}
+			placeholder={placeholder}
 			onChange={onChange}
 		/>
 	);

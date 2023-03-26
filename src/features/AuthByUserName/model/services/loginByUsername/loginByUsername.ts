@@ -11,7 +11,7 @@ export interface LoginByUsernameProps {
 export const loginByUsername = createAppAsyncThunk<UserData, LoginByUsernameProps>(
 	'login/fetchByUsername',
 	async (authData, thunkApi) => {
-		console.log(authData, thunkApi, 'auth data completed thunk data');
+		//console.log(authData, thunkApi, 'auth data completed thunk data');
 		const { extra, dispatch, rejectWithValue } = thunkApi;
 
 		try {

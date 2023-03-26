@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
 import { userActions, UserData } from 'entities/User';
 import { getUserData } from 'entities/User/model/selectors/getUser/getUser';
+import { useNavigate } from 'react-router-dom';
+import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
 
 export interface NavbarProps {
 	className?: string;
@@ -16,6 +18,7 @@ export interface NavbarProps {
 export const Navbar = memo(({ className }: NavbarProps) => {
 	const { t } = useTranslation(['translation']);
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 	const userdata = useSelector<StateSchema, UserData | undefined>(getUserData);
 
 	const [isAuthModal, setIsAuthModal] = useState(false);
@@ -30,7 +33,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 	}, []);
 	const setLogOut = useCallback(() => {
 		dispatch(userActions.logOut());
-	}, [dispatch]);
+		setTimeout(() => navigate(AppRoutes.ABOUT), 0);
+	}, [dispatch, navigate]);
 
 	return (
 		<div className={classNames(classes.navbar, {}, [className ?? ''])}>

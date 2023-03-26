@@ -11,7 +11,7 @@ interface CurrencySelectorProps {
 }
 
 export const CurrencySelector: FC<CurrencySelectorProps> = memo((props: CurrencySelectorProps) => {
-	const { className, readonly, value, onChange } = props;
+	const { className, readonly, value, placeholder, onChange } = props;
 
 	return (
 		<Select
@@ -19,6 +19,7 @@ export const CurrencySelector: FC<CurrencySelectorProps> = memo((props: Currency
 			options={Object.values(Currency)}
 			readonly={readonly}
 			value={value}
+			placeholder={placeholder}
 			onChange={onChange}
 		/>
 	);

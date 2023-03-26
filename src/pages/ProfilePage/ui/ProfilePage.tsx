@@ -74,6 +74,10 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 		checkFormDirty();
 	}, [formData, profileData]);
 
+	useEffect(() => {
+		if (isDirty) dispatch(profileActions.checkProfileValidation(formData ?? {}));
+	}, [dispatch, formData, isDirty]);
+
 	const onChangeProfileForm = useCallback(
 		(fieldType?: ProfileFieldType) => {
 			switch (fieldType) {
@@ -111,7 +115,7 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
 			<div className={classNames('', {})}>
-				<ProfilePageHeader isDirty={isDirty} />
+				<ProfilePageHeader isDirty={isDirty} error={error} />
 				<ProfileCard
 					data={formData}
 					isLoading={isLoading}
