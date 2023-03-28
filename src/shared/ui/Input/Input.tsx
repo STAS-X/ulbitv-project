@@ -1,6 +1,7 @@
 import { FC, ForwardedRef, forwardRef, InputHTMLAttributes, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { Text, TextAlign, TextTheme } from '../Text/Text';
 import classes from './Input.module.scss';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'readOnly' | 'onChange'>;
@@ -10,6 +11,7 @@ export interface InputProps extends HTMLInputProps {
 	value?: string | number;
 	type?: string;
 	placeholder?: string;
+	validation?: string;
 	onChange?: (value: string) => void;
 	readonly?: boolean;
 }
@@ -21,6 +23,7 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 		type = 'text',
 		readonly = false,
 		value = '',
+		validation = '',
 		onChange,
 		...otherProps
 	} = props;
@@ -40,6 +43,11 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 
 	return (
 		<div className={classNames(classes.inputwrapper, {}, [className])}>
+			{validation && (
+				<div className={classes.validation}>
+					<Text content={validation} theme={TextTheme.ERROR} align={TextAlign.LEFT} />
+				</div>
+			)}
 			{placeholder && <div className={classes.plaseholder}>{`${t(placeholder)}>`}</div>}
 			<div className={classes.caretwrapper}>
 				<input

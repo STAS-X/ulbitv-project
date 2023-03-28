@@ -16,7 +16,8 @@ export default ({ config }: { config: webpack.Configuration }) => {
 	config.plugins!.push(
 		new webpack.DefinePlugin({
 			_DEV_MODE_: JSON.stringify(true),
-			_BASE_URL_: JSON.stringify('')
+			_BASE_URL_: JSON.stringify(''),
+			_PROJECT_: JSON.stringify('storybook')
 			// 		MODE: JSON.stringify(true),
 		})
 	);
@@ -35,6 +36,12 @@ export default ({ config }: { config: webpack.Configuration }) => {
 		test: /\.svg$/,
 		use: ['@svgr/webpack']
 	});
+
+	config.module!.rules!.push({
+		test: /\.(png|jpe?g|gif|woff|woff2)$/i,
+		use: [{ loader: 'file-loader' }]
+	});
+
 	config.module!.rules!.push(buildCssLoader(true));
 	config.performance = { ...config.performance, hints: false };
 

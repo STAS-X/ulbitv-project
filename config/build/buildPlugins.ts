@@ -7,7 +7,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstance[] {
-	const { paths, isDev, apiURL } = options;
+	const { paths, isDev, port, project, apiURL } = options;
 
 	const plugins = [
 		new HTMLWebpackPlugin({
@@ -15,10 +15,11 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
 		}),
 		new webpack.ProgressPlugin(),
 		new webpack.DefinePlugin({
-			_DEV_MODE_: JSON.stringify(options.isDev),
+			_DEV_MODE_: JSON.stringify(isDev),
 			_BASE_URL_: JSON.stringify(apiURL),
+			_PROJECT_: JSON.stringify(project),
 			'process.env': {
-				NODE_PORT: JSON.stringify(options.port)
+				NODE_PORT: JSON.stringify(port)
 			}
 		}),
 		new MiniCssExtractPlugin({

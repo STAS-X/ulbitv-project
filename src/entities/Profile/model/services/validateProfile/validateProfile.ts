@@ -2,7 +2,7 @@ import { ProfileData } from 'entities/Profile';
 import { ValidateErrorType, ValidateProfileError } from '../../types/profileSchema';
 
 export const validateProfileData = (profile: ProfileData) => {
-	const { first, lastname, age = 0, city, username, avatar } = profile;
+	const { first, lastname, age, city, country, currency, username, avatar } = profile;
 	const errors: ValidateErrorType = {};
 
 	if (!first) {
@@ -12,7 +12,14 @@ export const validateProfileData = (profile: ProfileData) => {
 		errors[ValidateProfileError.INCORRECT_USER_LAST] = 'validation.last';
 	}
 
-	if (age < 1 || age > 120) {
+	if (
+		!age ||
+		age.toString()[0] === '0' ||
+		Number.isNaN(age) ||
+		!Number.isInteger(Number(age)) ||
+		age < 5 ||
+		age > 149
+	) {
 		errors[ValidateProfileError.INCORRECT_AGE] = 'validation.age';
 	}
 
@@ -26,7 +33,16 @@ export const validateProfileData = (profile: ProfileData) => {
 	if (!avatar || !checkAvatarUrl(avatar)) {
 		errors[ValidateProfileError.INCORRECT_AVATAR] = 'validation.avatar';
 	}
-	return errors;
+
+	if (!country) {
+		errors[ValidateProfileError.INCORRECT_COUNTRY] = 'validation.country';
+	}
+
+	if (!currency) {
+		errors[ValidateProfileError.INCORRECT_CURRENCY] = 'validation.currency';
+	}
+
+	return Object.keys(errors).length ? errors : undefined;
 };
 
 const checkAvatarUrl = (avatar: string) => {

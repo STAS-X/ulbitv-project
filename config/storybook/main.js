@@ -8,6 +8,7 @@ module.exports = {
 		//'storycap',
 		//'zisui/register',
 	],
+	staticDirs: ['../../src/shared/assets/images'],
 	framework: '@storybook/react',
 	core: {
 		builder: 'webpack5'

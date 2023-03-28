@@ -17,5 +17,12 @@ export const Avatar: FC<AvatarProps> = (props) => {
 		return { width: size };
 	}, [size]);
 
-	return <img src={src} style={styles} alt={alt} className={classNames(classes.avatar, mods, [className])} />;
+	return (
+		<img
+			src={_PROJECT_ === 'frontend' ? src : 'avatar.jpg'}
+			style={styles}
+			alt={alt}
+			className={classNames(classes.avatar, mods, [className])}
+		/>
+	);
 };

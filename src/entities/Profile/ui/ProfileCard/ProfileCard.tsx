@@ -23,7 +23,7 @@ export enum ProfileFieldType {
 	CURRENCY = 'currency'
 }
 
-interface ProfileCardProps {
+export interface ProfileCardProps {
 	className?: string;
 	isLoading?: boolean;
 	readonly?: boolean;
@@ -61,116 +61,82 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 								<Avatar className={classes.avatar} size={100} src={data?.avatar} />
 							</div>
 						)}
-						{validateError?.[ValidateProfileError.INCORRECT_USER_FIRST] && (
-							<Text
-								content={t(validateError[ValidateProfileError.INCORRECT_USER_FIRST] || '', {
+						<div className={classes.inputswrapper}>
+							<Input
+								className={classes.input}
+								value={data?.first}
+								readonly={readonly}
+								placeholder={t('name', { ns: 'profile' })}
+								validation={t(validateError?.[ValidateProfileError.INCORRECT_USER_FIRST] || '', {
 									ns: 'profile'
 								})}
-								theme={TextTheme.ERROR}
-								align={TextAlign.LEFT}
+								onChange={onChangeProfileFields(ProfileFieldType.FIRST)}
 							/>
-						)}
-						<Input
-							className={classes.input}
-							value={data?.first}
-							readonly={readonly}
-							placeholder={t('name', { ns: 'profile' })}
-							onChange={onChangeProfileFields(ProfileFieldType.FIRST)}
-						/>
-						{validateError?.[ValidateProfileError.INCORRECT_USER_LAST] && (
-							<Text
-								content={t(validateError[ValidateProfileError.INCORRECT_USER_LAST] || '', {
+							<Input
+								className={classes.input}
+								value={data?.lastname}
+								readonly={readonly}
+								placeholder={t('surname', { ns: 'profile' })}
+								validation={t(validateError?.[ValidateProfileError.INCORRECT_USER_LAST] || '', {
 									ns: 'profile'
 								})}
-								theme={TextTheme.ERROR}
-								align={TextAlign.LEFT}
+								onChange={onChangeProfileFields(ProfileFieldType.LAST)}
 							/>
-						)}
-						<Input
-							className={classes.input}
-							value={data?.lastname}
-							readonly={readonly}
-							placeholder={t('surname', { ns: 'profile' })}
-							onChange={onChangeProfileFields(ProfileFieldType.LAST)}
-						/>
-						{validateError?.[ValidateProfileError.INCORRECT_AGE] && (
-							<Text
-								content={t(validateError[ValidateProfileError.INCORRECT_AGE] || '', {
+							<Input
+								className={classes.input}
+								value={data?.age}
+								readonly={readonly}
+								placeholder={t('age', { ns: 'profile' })}
+								validation={t(validateError?.[ValidateProfileError.INCORRECT_AGE] || '', {
 									ns: 'profile'
 								})}
-								theme={TextTheme.ERROR}
-								align={TextAlign.LEFT}
+								onChange={onChangeProfileFields(ProfileFieldType.AGE)}
 							/>
-						)}
-						<Input
-							className={classes.input}
-							value={data?.age}
-							readonly={readonly}
-							placeholder={t('age', { ns: 'profile' })}
-							onChange={onChangeProfileFields(ProfileFieldType.AGE)}
-						/>
-						{validateError?.[ValidateProfileError.INCORRECT_USERNAME] && (
-							<Text
-								content={t(validateError[ValidateProfileError.INCORRECT_USERNAME] || '', {
+							<Input
+								className={classes.input}
+								value={data?.username}
+								readonly={readonly}
+								placeholder={t('username', { ns: 'profile' })}
+								validation={t(validateError?.[ValidateProfileError.INCORRECT_USERNAME] || '', {
 									ns: 'profile'
 								})}
-								theme={TextTheme.ERROR}
-								align={TextAlign.LEFT}
+								onChange={onChangeProfileFields(ProfileFieldType.USERNAME)}
 							/>
-						)}
-						<Input
-							className={classes.input}
-							value={data?.username}
-							readonly={readonly}
-							placeholder={t('username', { ns: 'profile' })}
-							onChange={onChangeProfileFields(ProfileFieldType.USERNAME)}
-						/>
-						{validateError?.[ValidateProfileError.INCORRECT_AVATAR] && (
-							<Text
-								content={t(validateError[ValidateProfileError.INCORRECT_AVATAR] || '', {
+							<Input
+								className={classes.input}
+								value={data?.avatar}
+								readonly={readonly}
+								placeholder={t('avatar', { ns: 'profile' })}
+								validation={t(validateError?.[ValidateProfileError.INCORRECT_AVATAR] || '', {
 									ns: 'profile'
 								})}
-								theme={TextTheme.ERROR}
-								align={TextAlign.LEFT}
+								onChange={onChangeProfileFields(ProfileFieldType.AVATAR)}
 							/>
-						)}
-						<Input
-							className={classes.input}
-							value={data?.avatar}
-							readonly={readonly}
-							placeholder={t('avatar', { ns: 'profile' })}
-							onChange={onChangeProfileFields(ProfileFieldType.AVATAR)}
-						/>
-						{validateError?.[ValidateProfileError.INCORRECT_CITY] && (
-							<Text
-								content={t(validateError[ValidateProfileError.INCORRECT_CITY] || '', {
+							<Input
+								className={classes.input}
+								value={data?.city}
+								readonly={readonly}
+								placeholder={t('city', { ns: 'profile' })}
+								validation={t(validateError?.[ValidateProfileError.INCORRECT_CITY] || '', {
 									ns: 'profile'
 								})}
-								theme={TextTheme.ERROR}
-								align={TextAlign.LEFT}
+								onChange={onChangeProfileFields(ProfileFieldType.CITY)}
 							/>
-						)}
-						<Input
-							className={classes.input}
-							value={data?.city}
-							readonly={readonly}
-							placeholder={t('city', { ns: 'profile' })}
-							onChange={onChangeProfileFields(ProfileFieldType.CITY)}
-						/>
-						<CountrySelector
-							className={classes.input}
-							value={data?.country}
-							readonly={readonly}
-							placeholder={t('country', { ns: 'profile' })}
-							onChange={onChangeProfileFields(ProfileFieldType.COUNTRY)}
-						/>
-						<CurrencySelector
-							className={classes.input}
-							value={data?.currency}
-							readonly={readonly}
-							placeholder={t('currency', { ns: 'profile' })}
-							onChange={onChangeProfileFields(ProfileFieldType.CURRENCY)}
-						/>
+							<CountrySelector
+								className={classes.input}
+								value={data?.country}
+								readonly={readonly}
+								placeholder={t('country', { ns: 'profile' })}
+								onChange={onChangeProfileFields(ProfileFieldType.COUNTRY)}
+							/>
+							<CurrencySelector
+								className={classes.input}
+								value={data?.currency}
+								readonly={readonly}
+								placeholder={t('currency', { ns: 'profile' })}
+								onChange={onChangeProfileFields(ProfileFieldType.CURRENCY)}
+							/>
+						</div>
 					</>
 				)}
 			</div>

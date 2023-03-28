@@ -22,7 +22,7 @@ export const fetchProfileData = createAppAsyncThunk<ProfileData>('profile/fetchP
 		return response.data;
 	} catch (e: ThunkError) {
 		console.log(e.message, 'Внимание, во время запроса возникла ошибка');
-		if (!e.response || !e.message) throw e;
+		//if (!e.response || !e.message) throw e;
 		return rejectWithValue(getErrorMessage(e));
 	}
 });

@@ -2,7 +2,14 @@ import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { getProfileIsLoading, getProfileReadOnly, profileActions, updateProfileData } from 'entities/Profile';
+import {
+	getProfileError,
+	getProfileIsLoading,
+	getProfileReadOnly,
+	getProfileValidation,
+	profileActions,
+	updateProfileData
+} from 'entities/Profile';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Text } from 'shared/ui/Text/Text';
 import classes from './ProfilePageHeader.module.scss';
@@ -17,18 +24,22 @@ enum ProfileEditType {
 interface ProfilePageHeaderProps {
 	className?: string;
 	isDirty?: boolean;
-	error?: string;
 }
 
 export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
-	const { isDirty = false, className, error = '' } = props;
+	const { isDirty = false, className } = props;
 
 	const { t } = useTranslation(['pages', 'profile']);
 	const readonly = useSelector(getProfileReadOnly);
 	const isLoading = useSelector(getProfileIsLoading);
+	const error = useSelector(getProfileError);
+	const validationError = useSelector(getProfileValidation);
+
 	const dispatch = useAppDispatch();
 
 	const updateProfileByForm = useCallback(async () => {
+		if (_PROJECT_ !== 'frontend') return;
+
 		const profileData = await dispatch(updateProfileData());
 		if (profileData.meta.requestStatus === 'fulfilled') {
 			//dispatch(loginActions.setEmpty());
@@ -71,7 +82,7 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
 							className={classes.editbtn}
 							theme={ButtonTheme.OUTLINE}
 							onClick={onChangeEdit(ProfileEditType.SAVE)}
-							disabled={!isDirty}
+							disabled={!isDirty || (isDirty && validationError && Object.keys(validationError).length > 0)}
 						>
 							{t('save', { ns: 'profile' })}
 						</Button>

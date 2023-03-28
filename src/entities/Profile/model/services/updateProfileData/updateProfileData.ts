@@ -1,3 +1,5 @@
+import { validateProfileData } from './../validateProfile/validateProfile';
+import { USER_LS_KEY } from 'shared/const/localstorage';
 import { ProfileData } from '../../types/profileSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
 import { getProfileFormData } from '../../selectors/getProfile/getProfileData';
@@ -8,27 +10,28 @@ import { getProfileFormData } from '../../selectors/getProfile/getProfileData';
 // }
 
 // First, create the thunk
-export const updateProfileData = createAppAsyncThunk<ProfileData>(
-	'profile/updateProfileData',
-	async (profileData, thunkApi) => {
-		const { extra, rejectWithValue, getState } = thunkApi;
+export const updateProfileData = createAppAsyncThunk<ProfileData>('profile/updateProfileData', async (_, thunkApi) => {
+	const { extra, rejectWithValue, getState } = thunkApi;
 
-		try {
-			console.log('start update profile...');
-			const formData = getProfileFormData(getState());
+	try {
+		console.log('start update profile...');
+		const formData = getProfileFormData(getState());
+		//console.log(formData, extra.api, 'get formData');
 
-			const response = await extra.api.put<ProfileData>('/profile', formData);
+		const validateError = validateProfileData(formData ?? {});
+		if (validateError) throw new Error(JSON.stringify(validateError));
 
-			if (!response.data) {
-				throw new Error('error');
-			}
-			//throw new Error('network error occured');
+		const response = await extra.api.put<ProfileData>('/profile', formData);
 
-			return response.data;
-		} catch (e: ThunkError) {
-			console.log(e.message, 'Внимание, во время запроса возникла ошибка');
-			if (!e.response || !e.message) throw e;
-			return rejectWithValue(getErrorMessage(e));
+		if (!response.data) {
+			throw new Error('error occured');
 		}
+		//throw new Error('network error occured');
+
+		return response.data;
+	} catch (e: ThunkError) {
+		console.log(e.message, 'Внимание, во время запроса возникла ошибка');
+		//if (!e.response || !e.message) throw e;
+		return rejectWithValue(getErrorMessage(e));
 	}
-);
+});

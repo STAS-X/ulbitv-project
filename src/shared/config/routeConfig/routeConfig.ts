@@ -3,6 +3,7 @@ import { ProfilePage } from 'pages/ProfilePage';
 import { AboutPage } from 'pages/AboutPage';
 import { MainPage } from 'pages/MainPage';
 import { RouteProps } from 'react-router-dom';
+import { FC } from 'react';
 
 export enum AppRoutes {
 	MAIN = 'main',
