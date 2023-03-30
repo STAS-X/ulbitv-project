@@ -14,11 +14,14 @@
 
 .inputwrapper > .validation {
 	flex: 1 1 100%;
-	p:after {
+
+	p::after {
 		content: ' \21B4';
+
 		/* display: inline-flexbox;
-		 width: fit-content;*/
+		 width: fit-content; */
 	}
+
 	margin-top: -25px;
 }
 
