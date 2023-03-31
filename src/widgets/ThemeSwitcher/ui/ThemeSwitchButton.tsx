@@ -1,9 +1,7 @@
 import { useTheme } from 'app/providers/ThemeProvider';
-import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
-import { FC, memo } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import LightIcon from 'shared/assets/icons/theme-light.svg';
-import DarkIcon from 'shared/assets/icons/theme-dark.svg';
+import ThemeIcon from 'shared/assets/icons/theme-icon.svg';
 import { Button } from 'shared/ui/Button/Button';
 
 export interface ThemeSwitchButtonProps {
@@ -12,10 +10,16 @@ export interface ThemeSwitchButtonProps {
 
 export const ThemeSwitchButton: FC<ThemeSwitchButtonProps> = memo(({ className }) => {
 	const { theme, toggleTheme } = useTheme();
+	const [fillColor, setFillColor] = useState('#dedeeb');
+
+	useEffect(() => {
+		const bgColor = getComputedStyle(document.body).getPropertyValue('--inverted-primary-color');
+		setFillColor(bgColor);
+	}, [theme]);
 
 	return (
-		<Button className={classNames('', {}, [className ?? ''])} onClick={toggleTheme}>
-			{theme === Theme.LIGHT ? <LightIcon transform="scale(0.75)" /> : <DarkIcon transform="scale(0.75)" />}
+		<Button className={classNames('', {}, [className])} onClick={toggleTheme}>
+			<ThemeIcon fill={fillColor} transform="scale(0.75)" />
 		</Button>
 	);
 });

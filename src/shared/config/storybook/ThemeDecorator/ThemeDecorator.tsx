@@ -2,7 +2,7 @@ import { Story } from '@storybook/react';
 import { Children, cloneElement, FC, isValidElement, ReactNode, useState } from 'react';
 import { Theme, ThemeContext } from 'app/providers/ThemeProvider/lib/ThemeContext';
 import 'app/styles/index.scss';
-import { LOCAL_STORAGE_THEME_KEY } from '../../../../app/providers/ThemeProvider/lib/useTheme';
+import { LOCAL_STORAGE_THEME_KEY } from 'app/providers/ThemeProvider/lib/useTheme';
 
 export interface StoryContextProps {
 	theme?: Theme;

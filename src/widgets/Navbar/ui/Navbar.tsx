@@ -33,11 +33,11 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 	}, []);
 	const setLogOut = useCallback(() => {
 		dispatch(userActions.logOut());
-		setTimeout(() => navigate(AppRoutes.ABOUT), 0);
-	}, [dispatch, navigate]);
+		//setTimeout(() => navigate(AppRoutes.ABOUT), 0);
+	}, [dispatch]);
 
 	return (
-		<div className={classNames(classes.navbar, {}, [className ?? ''])}>
+		<div className={classNames(classes.navbar, {}, [className])}>
 			<Button theme={ButtonTheme.INVERTED} className={classes.links} onClick={userdata ? setLogOut : showAuthModal}>
 				{t(userdata ? 'logout' : 'login')}
 			</Button>

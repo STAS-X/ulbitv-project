@@ -4,7 +4,7 @@ import classes from './SidebarItem.module.scss';
 import { useTranslation } from 'react-i18next';
 import { SidebarItemType } from '../../model/items';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 interface SidebarItemProps {
@@ -20,7 +20,7 @@ export const SidebarItem: FC<SidebarItemProps> = memo((props: SidebarItemProps) 
 	const location = useLocation();
 
 	const refreshPage: MouseEventHandler<HTMLAnchorElement> = (e) => {
-		if (location.pathname === AppRoutes.PROFILE && item?.path === AppRoutes.PROFILE) {
+		if (location.pathname.replace('/', '') === AppRoutes.PROFILE && item?.path === AppRoutes.PROFILE) {
 			e.preventDefault();
 			setTimeout(() => {
 				navigate('/');
