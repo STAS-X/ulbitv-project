@@ -39,8 +39,8 @@
 		"preserveConstEnums": true,
 		"sourceMap": true
 	},
-	"include": ["*",  "./config/**/*", "./src/**/*", "./scripts/*", "./json-server/*", ".eslintrc.cjs"],
-	"exclude": ["node_modules"],
+	"include": ["*", "./config/**/*", "./src/**/*", "./scripts/*", "./json-server/*", ".eslintrc.cjs"],
+	"exclude": ["node_modules", ".templates/**"],
 	"ts-node": {
 		"compilerOptions": {
 			"module": "commonjs"

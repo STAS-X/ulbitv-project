@@ -1,3 +1,4 @@
 /build/**
+/.templates/**
 .eslintrc.cjs
 .stylelintrc.cjs

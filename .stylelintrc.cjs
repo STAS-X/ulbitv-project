@@ -8,7 +8,7 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: ['*.scss', '**/*.scss'],
+			files: ['*.scss', 'src/*.scss'],
 			customSyntax: 'postcss-scss'
 		}
 	]
