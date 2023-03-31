@@ -1,5 +1,4 @@
 /build
-/.templates
 node_modules
 idea
 /extractedTranslations
@@ -8,3 +7,4 @@ idea
 .loki/current
 !.loki/reference
 .loki/report.*
+/.templates

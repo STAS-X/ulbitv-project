@@ -1,3 +1,5 @@
+import { ArticleDetailesPage } from './../../../pages/ArticleDetailesPage/ui/ArticleDetailesPage/ArticleDetailesPage';
+import { ArticlesPage } from './../../../pages/ArticlesPage/ui/ArticlesPage/ArticlesPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
 import { AboutPage } from 'pages/AboutPage';
@@ -9,6 +11,8 @@ export enum AppRoutes {
 	MAIN = 'main',
 	ABOUT = 'about',
 	PROFILE = 'profile',
+	ARTICLES = 'articles',
+	ARTICLE_DETAILES = 'article_detailes',
 	NOT_FOUND = 'not_found'
 }
 
@@ -33,6 +37,16 @@ export const RoutePath: Record<AppRoutes, AuthRouteProps> = {
 		pathname: '/profile',
 		isAuth: true,
 		Element: ProfilePage
+	},
+	[AppRoutes.ARTICLES]: {
+		pathname: '/articles',
+		isAuth: true,
+		Element: ArticlesPage
+	},
+	[AppRoutes.ARTICLE_DETAILES]: {
+		pathname: '/articles/:id',
+		isAuth: true,
+		Element: ArticleDetailesPage
 	},
 	[AppRoutes.NOT_FOUND]: {
 		pathname: '*',

@@ -1,8 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react';
 import componentStore from 'shared/lib/tests/componentStore/componentStore';
+import { StateSchema } from 'app/providers/StoreProvider';
 import { Counter } from './Common';
 
-const initialState = {
+const initialState: StateSchema = {
 	common: { value: 8, isLazyModal: false },
 	user: { _loaded: true }
 };

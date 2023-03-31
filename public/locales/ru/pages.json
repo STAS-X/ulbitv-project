@@ -2,6 +2,8 @@
 	"about": "О сайте",
 	"main": "Главная",
 	"profile": "Профиль",
+	"articles": "Статьи",
+	"articleDetailes": "Сведения о статье",
 	"reloadPage": "Обновить страницу",
 	"Page not found": "Страница '{{pageName}}' не найдена"
 }
