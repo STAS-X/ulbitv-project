@@ -43,6 +43,8 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 	const [isDirty, setIsDirty] = useState(false);
 
 	const fetchProfileByUser = useCallback(async () => {
+		if (_PROJECT_ !== 'frontend') return;
+
 		const profileData = await dispatch(fetchProfileData());
 		if (profileData.meta.requestStatus === 'fulfilled') {
 			//dispatch(loginActions.setEmpty());
@@ -53,6 +55,8 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 	useEffect(() => {
 		fetchProfileByUser();
 		console.log('profile refreshed');
+		if (formData) dispatch(profileActions.checkProfileValidation(formData));
+		console.log('profile validated');
 		return () => {
 			console.log('profile unmount');
 		};
@@ -64,7 +68,7 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 			let hasChanges = false;
 			Object.entries(formData ?? {}).forEach(([key, value]) => {
 				if (profileData?.[key as unknown as keyof ProfileData] !== value) {
-					console.log(key, profileData?.[key as unknown as keyof ProfileData], 'different value');
+					//console.log(key, profileData?.[key as unknown as keyof ProfileData], 'different value');
 					hasChanges = true;
 					return;
 				}
@@ -75,8 +79,8 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 	}, [formData, profileData]);
 
 	useEffect(() => {
-		if (isDirty) dispatch(profileActions.checkProfileValidation(formData ?? {}));
-	}, [dispatch, formData, isDirty]);
+		if (formData) dispatch(profileActions.checkProfileValidation(formData));
+	}, [dispatch, formData]);
 
 	const onChangeProfileForm = useCallback(
 		(fieldType?: ProfileFieldType) => {
@@ -86,7 +90,7 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 				case ProfileFieldType.LAST:
 					return (value?: any) => dispatch(profileActions.updateProfile({ lastname: (value as string) || '' }));
 				case ProfileFieldType.AGE:
-					return (value?: any) => dispatch(profileActions.updateProfile({ age: (value as number) || 0 }));
+					return (value?: any) => dispatch(profileActions.updateProfile({ age: value }));
 
 				case ProfileFieldType.CITY:
 					return (value?: any) => dispatch(profileActions.updateProfile({ city: (value as string) || '' }));
@@ -115,7 +119,7 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
 			<div className={classNames('', {})}>
-				<ProfilePageHeader isDirty={isDirty} error={error} />
+				<ProfilePageHeader isDirty={isDirty} />
 				<ProfileCard
 					data={formData}
 					isLoading={isLoading}

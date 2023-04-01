@@ -7,3 +7,4 @@ idea
 .loki/current
 !.loki/reference
 .loki/report.*
+/.templates

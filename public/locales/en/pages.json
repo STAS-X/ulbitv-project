@@ -2,6 +2,8 @@
 	"about": "About",
 	"main": "Main",
 	"profile": "Profile",
+	"articles": "Articles",
+	"articleDetailes": "Article Detailes",
 	"reloadPage": "Reload Page",
 	"Page not found": "Page '{{pageName}}' not found"
 }

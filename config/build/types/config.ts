@@ -1,4 +1,5 @@
 export type BuildMode = 'production' | 'development';
+export type ProjectMode = 'storybook' | 'frontend' | 'jest';
 
 export interface BuildPaths {
 	entry: string;
@@ -16,4 +17,5 @@ export interface BuildEnv {
 export interface BuildOptions extends BuildEnv {
 	paths: BuildPaths;
 	isDev: boolean;
+	project: ProjectMode;
 }

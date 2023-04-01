@@ -16,6 +16,8 @@
 		"age": "Incorrect age",
 		"city": "Incorrect city",
 		"username": "Incorrect username",
-		"avatar": "Incorrect URL IMAGE"
+		"avatar": "Incorrect URL IMAGE",
+		"country": "Incorrect country",
+		"currency": "Incorrect currency"
 	}
 }

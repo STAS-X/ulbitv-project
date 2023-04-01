@@ -3,6 +3,12 @@
 	border: 2px solid var(--inverted-bg-color);
 }
 
+.inputswrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
 .input {
 	margin-top: 10px;
 }
@@ -22,5 +28,5 @@
 
 .editing {
 	border: 2px solid var(--inverted-primary-color);
-	background-color: rgb(220, 240, 240);
+	background-color: rgb(220 240 240 / 20%);
 }

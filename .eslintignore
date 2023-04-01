@@ -1,3 +1,5 @@
 /build/**
+/storybook-static
 .eslintrc.cjs
 .stylelintrc.cjs
+/.templates/**

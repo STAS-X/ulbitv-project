@@ -1,13 +1,13 @@
 {
-	"i18n-ally.localesPaths": "",
+	"i18n-ally.localesPaths": ["public/locales", "src/shared/config/i18n"],
 	"scss.validate": true,
 	"css.validate": true,
 	"less.validate": true,
 
 	"editor.codeActionsOnSave": {
-		"source.fixAll.stylelint": true,
+		"source.fixAll.stylelint": true
 	},
 	"prettier.printWidth": 120,
-	"prettier.endOfLine": "auto"
+	"prettier.endOfLine": "auto",
+	"files.autoSave": "onWindowChange"
 }
-

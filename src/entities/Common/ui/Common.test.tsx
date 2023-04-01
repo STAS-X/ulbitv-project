@@ -1,11 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { StateSchema } from 'app/providers/StoreProvider';
 import componentStore from 'shared/lib/tests/componentStore/componentStore';
+import { StateSchema } from 'app/providers/StoreProvider';
 import { Counter } from './Common';
 
 const initialState: StateSchema = {
-	common: { value: 8, isLazyModal: true },
-	user: { authData: { id: '', username: '', password: '' } }
+	common: { value: 8, isLazyModal: false },
+	user: { _loaded: true }
 };
 
 describe('Counter component test', () => {

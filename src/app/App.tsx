@@ -4,12 +4,14 @@ import { Navbar } from 'widgets/Navbar';
 import { Suspense, useEffect } from 'react';
 import { AppRouter } from './providers/router';
 import { Sidebar } from 'widgets/Sidebar';
-import { userActions } from 'entities/User';
+import { getUserStatus, userActions } from 'entities/User';
 import { useAppDispatch } from './providers/StoreProvider';
+import { useSelector } from 'react-redux';
 
 const App = () => {
 	const { theme } = useTheme();
 	const dispatch = useAppDispatch();
+	const isRouterLoaded = Boolean(useSelector(getUserStatus));
 
 	useEffect(() => {
 		dispatch(userActions.initAuthData());
@@ -21,7 +23,7 @@ const App = () => {
 				<Navbar />
 				<div className="content-page">
 					<Sidebar />
-					<AppRouter />
+					{isRouterLoaded && <AppRouter />}
 				</div>
 			</Suspense>
 		</div>
