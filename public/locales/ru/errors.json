@@ -1,4 +1,5 @@
 {
     "errorApp": "Произошла ошибка: {{message}}",
-    "errorTitle": "Информация об ошибке"
+    "errorTitle": "Информация об ошибке",
+    "articleNotFound": "Статья '{{articleId}}' не найдена"
 }

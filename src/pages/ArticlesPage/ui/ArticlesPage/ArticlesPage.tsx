@@ -7,9 +7,11 @@ export interface ArticlesPageProps {
 	className?: string;
 }
 
-export const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
+const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	const { className } = props;
 	const { t } = useTranslation();
 
 	return <div className={classNames(classes.ArticlesPage, {}, [className])}>ARTICLES PAGE</div>;
 });
+
+export default ArticlesPage;

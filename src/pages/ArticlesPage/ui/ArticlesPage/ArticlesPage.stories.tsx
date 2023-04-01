@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ArticlesPageProps, ArticlesPage } from './ArticlesPage';
+import ArticlesPage, { ArticlesPageProps } from './ArticlesPage';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 

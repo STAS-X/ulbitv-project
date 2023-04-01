@@ -1,11 +1,10 @@
-import { ArticleDetailesPage } from './../../../pages/ArticleDetailesPage/ui/ArticleDetailesPage/ArticleDetailesPage';
-import { ArticlesPage } from './../../../pages/ArticlesPage/ui/ArticlesPage/ArticlesPage';
+import { ArticlesPage } from 'pages/ArticlesPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
 import { AboutPage } from 'pages/AboutPage';
 import { MainPage } from 'pages/MainPage';
 import { RouteProps } from 'react-router-dom';
-import { FC } from 'react';
+import { ArticleDetailesPage } from 'entities/Article';
 
 export enum AppRoutes {
 	MAIN = 'main',

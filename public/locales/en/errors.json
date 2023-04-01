@@ -1,4 +1,5 @@
 {
-    "errorApp": "Error has occured: {{message}}",
-    "errorTitle": "Error data"
+	"errorApp": "Error has occured: {{message}}",
+	"errorTitle": "Error data",
+	"articleNotFound": "Article '{{articleId}}' not found"
 }
