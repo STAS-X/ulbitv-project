@@ -11,7 +11,7 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'plugin:@typescript-eslint/recommended-requiring-type-checking',
 		'plugin:react-hooks/recommended',
-		'prettier'
+		'prettier/recommended'
 	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
@@ -23,13 +23,18 @@ module.exports = {
 	},
 	root: true,
 	rules: {
-		'prettier/prettier': 2, // Means error
-		indent: [
-			2,
-			'tab',
+		'prettier/prettier': [
+			'error', // Means error
 			{
-				SwitchCase: 1,
-				VariableDeclarator: 1
+				indent: [
+					2,
+					'tab',
+					{
+						SwitchCase: 1,
+						VariableDeclarator: 1
+					}
+				],
+				singleQuote: true
 			}
 		],
 		'react/jsx-indent': [
@@ -51,12 +56,6 @@ module.exports = {
 		quotes: ['error', 'single'],
 		'no-tabs': 0,
 		'linebreak-style': 0,
-		'prettier/prettier': [
-			'error',
-			{
-				usePrettierrc: true
-			}
-		],
 		'import/no-unresolved': 'off',
 		'import/extensions': 'off',
 		'import/named': 'off',

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { TextProps, Text, TextTheme } from './Text';
+import { TextProps, Text, TextTheme, TextSize } from './Text';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 
@@ -44,6 +44,13 @@ TextPrimaryTitle.args = {
 export const TextPrimaryContent = Template.bind({});
 TextPrimaryContent.args = {
 	content: 'Text only'
+};
+
+export const TextSizeL = Template.bind({});
+TextPrimaryTitle.args = {
+	title: 'Some title',
+	content: 'Some content',
+	size: TextSize.L
 };
 
 export const TextDark = Template.bind({});

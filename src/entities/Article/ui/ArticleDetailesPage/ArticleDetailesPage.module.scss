@@ -15,8 +15,32 @@
 
 .title {
 	margin-top: 20px;
+	margin-bottom: 5px;
 }
 
 .skeleton {
 	margin-top: 15px;
+}
+
+.block {
+	margin-top: 10px;
+}
+
+.articleinfo {
+	display: flex;
+	align-items: center;
+	p {
+		margin:0;
+	}
+
+}
+
+.icon {
+	margin-right: 10px;
+}
+
+.avatarwrapper {
+	display: flex;
+	width: 100%;
+	justify-content: center;
 }

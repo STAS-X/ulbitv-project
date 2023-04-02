@@ -10,10 +10,10 @@ export interface ThemeSwitchButtonProps {
 
 export const ThemeSwitchButton: FC<ThemeSwitchButtonProps> = memo(({ className }) => {
 	const { theme, toggleTheme } = useTheme();
-	const [fillColor, setFillColor] = useState('#dedeeb');
+	const [fillColor, setFillColor] = useState('');
 
 	useEffect(() => {
-		const bgColor = getComputedStyle(document.body).getPropertyValue('--inverted-primary-color');
+		const bgColor = getComputedStyle(document.body).getPropertyValue('--theme-icon-flood-color');
 		setFillColor(bgColor);
 	}, [theme]);
 

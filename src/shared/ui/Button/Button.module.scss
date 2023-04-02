@@ -3,6 +3,16 @@
 	color: var(--inverted-primary-color);
 	background-color: var(--inverted-secondary-color);
 	padding: 10px 15px;
+
+	&:hover {
+		opacity: 0.8;
+		fill-opacity: 0.8;
+		stroke-opacity: 0.8;
+	}
+
+	svg > path {
+		stroke: var(--primary-color);
+	}
 }
 
 .button[disabled] {
