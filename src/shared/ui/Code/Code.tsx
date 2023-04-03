@@ -13,12 +13,12 @@ export interface CodeProps {
 export const Code: FC<CodeProps> = memo((props: CodeProps) => {
 	const { children, className } = props;
 	const onCodeCopy = useCallback(() => {
-		const onlyText = Children.toArray(children).reduce((totalText, child) => {
-			if (typeof child === 'string') totalText = totalText + String(child);
+		const onlyText = Children.toArray(children).reduce((totalText: string, child) => {
+			if (typeof child === 'string') totalText.concat(String(child));
 			return totalText;
-		}, '') as string;
+		}, '');
 		//console.log(onlyText, 'get text from code block');
-		navigator.clipboard.writeText(onlyText);
+		void navigator.clipboard.writeText(onlyText);
 	}, [children]);
 
 	return (

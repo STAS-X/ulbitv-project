@@ -17,7 +17,6 @@ export const fetchArticleById = createAppAsyncThunk<ArticleSchema, ArticleByIdPr
 		const { extra, rejectWithValue } = thunkApi;
 
 		try {
-			console.log('start fetching article detailes data...');
 			const response = await extra.api.get<ArticleSchema>(`/articles/${articleId}`);
 
 			if (!response.data) {

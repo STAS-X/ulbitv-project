@@ -4,7 +4,7 @@ import { ProfilePage } from 'pages/ProfilePage';
 import { AboutPage } from 'pages/AboutPage';
 import { MainPage } from 'pages/MainPage';
 import { RouteProps } from 'react-router-dom';
-import { ArticleDetailesPage } from 'entities/Article';
+import { ArticleDetailesPage } from 'pages/ArticleDetailesPage';
 
 export enum AppRoutes {
 	MAIN = 'main',

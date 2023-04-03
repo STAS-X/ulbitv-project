@@ -3,12 +3,18 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ArticleImageBlockComponentProps, ArticleImageBlockComponent } from './ArticleImageBlockComponent';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
+import { ArticleBlockType } from '../../model/types/articleSchema';
 
 export default {
 	title: 'shared/ArticleImageBlockComponent',
 	component: ArticleImageBlockComponent,
-	argTypes: {
-		backgroundColor: { control: 'color' }
+	args: {
+		block: {
+			id: '2',
+			type: ArticleBlockType.IMAGE,
+			src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
+			title: 'Рисунок 1 - скриншот сайта'
+		}
 	}
 } as ComponentMeta<typeof ArticleImageBlockComponent>;
 
@@ -21,13 +27,8 @@ ArticleImageBlockComponentPrimary.args = {
 	children: 'Text primary'
 };
 
-export const ArticleImageBlockComponentSecondary = Template.bind({});
-ArticleImageBlockComponentSecondary.args = {
+export const ArticleImageBlockComponentDark = Template.bind({});
+ArticleImageBlockComponentDark.args = {
 	children: 'Text secondary'
 };
-
-export const ArticleImageBlockComponentSecondaryDark = Template.bind({});
-ArticleImageBlockComponentSecondaryDark.args = {
-	children: 'Text secondary'
-};
-ArticleImageBlockComponentSecondaryDark.decorators = [ThemeDecorator(Theme.DARK)];
+ArticleImageBlockComponentDark.decorators = [ThemeDecorator(Theme.DARK)];

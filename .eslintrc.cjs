@@ -11,7 +11,7 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'plugin:@typescript-eslint/recommended-requiring-type-checking',
 		'plugin:react-hooks/recommended',
-		'prettier/recommended'
+		'plugin:prettier/recommended'
 	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
@@ -53,7 +53,7 @@ module.exports = {
 				extensions: ['.js', '.jsx', '.tsx']
 			}
 		],
-		quotes: ['error', 'single'],
+		quotes: ['error', 'single', { allowTemplateLiterals: true }],
 		'no-tabs': 0,
 		'linebreak-style': 0,
 		'import/no-unresolved': 'off',

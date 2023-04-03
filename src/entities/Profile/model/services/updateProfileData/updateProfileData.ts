@@ -1,5 +1,4 @@
 import { validateProfileData } from './../validateProfile/validateProfile';
-import { USER_LS_KEY } from 'shared/const/localstorage';
 import { ProfileData } from '../../types/profileSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
 import { getProfileFormData } from '../../selectors/getProfile/getProfileData';

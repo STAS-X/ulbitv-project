@@ -7,7 +7,7 @@ import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDeco
 import { ArticleBlockType, ArticleType } from 'entities/Article/model/types/articleSchema';
 
 export default {
-	title: 'entities/ArticleDetailesPage',
+	title: 'pages/ArticleDetailesPage',
 	component: ArticleDetailesPage,
 	argTypes: {
 		backgroundColor: { control: 'color' }
@@ -67,7 +67,7 @@ ArticleDetailesPageWithStoreDark.decorators = [
 					{
 						id: '3',
 						type: ArticleBlockType.CODE,
-						code: "const path = require('path');\n\nconst server = jsonServer.create();\n\nconst router = jsonServer.router(path.resolve(__dirname, 'db.json'));\n\nserver.use(jsonServer.defaults({}));\nserver.use(jsonServer.bodyParser);"
+						code: `const path = require('path');\n\nconst server = jsonServer.create();\n\nconst router = jsonServer.router(path.resolve(__dirname, 'db.json'));\n\nserver.use(jsonServer.defaults({}));\nserver.use(jsonServer.bodyParser);`
 					},
 					{
 						id: '7',
