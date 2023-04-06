@@ -1,5 +1,6 @@
 {
-    "errorApp": "Произошла ошибка: {{message}}",
-    "errorTitle": "Информация об ошибке",
-    "articleNotFound": "Статья '{{articleId}}' не найдена"
+	"errorApp": "Произошла ошибка: {{message}}",
+	"errorTitle": "Информация об ошибке",
+	"articleNotFound": "Статья '{{articleId}}' не найдена",
+	"articleIdNotFound": "Параметр articleId не передан"
 }

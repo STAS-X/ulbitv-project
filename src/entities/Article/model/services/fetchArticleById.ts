@@ -6,7 +6,7 @@ import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/t
 // 	password: string;
 // }
 export interface ArticleByIdProps {
-	articleId: number;
+	articleId?: string;
 }
 
 // First, create the thunk
@@ -16,17 +16,20 @@ export const fetchArticleById = createAppAsyncThunk<ArticleSchema, ArticleByIdPr
 		const { articleId } = articleData;
 		const { extra, rejectWithValue } = thunkApi;
 
+		if (!articleId) return rejectWithValue('articleIdNotFound');
+
 		try {
 			const response = await extra.api.get<ArticleSchema>(`/articles/${articleId}`);
+			console.log(response.data, 'get data from json server');
 
 			if (!response.data) {
-				throw new Error('error');
+				throw new Error('articleNotFound');
 			}
 			//throw new Error('network error occured');
 
 			return response.data;
 		} catch (e: ThunkError) {
-			console.log(e.message, 'Внимание, во время запроса возникла ошибка');
+			if (e.response?.status === 404) return rejectWithValue('articleNotFound');
 			//if (!e.response || !e.message) throw e;
 			return rejectWithValue(getErrorMessage(e));
 		}

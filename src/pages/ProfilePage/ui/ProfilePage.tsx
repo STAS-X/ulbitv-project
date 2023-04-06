@@ -43,7 +43,7 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 	const [isDirty, setIsDirty] = useState(false);
 
 	const fetchProfileByUser = useCallback(async () => {
-		if (_PROJECT_ !== 'frontend') return;
+		if (_PROJECT_ === 'storybook') return;
 
 		const profileData = await dispatch(fetchProfileData());
 		if (profileData.meta.requestStatus === 'fulfilled') {

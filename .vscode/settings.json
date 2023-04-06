@@ -9,5 +9,6 @@
 	},
 	"prettier.printWidth": 120,
 	"prettier.endOfLine": "auto",
-	"files.autoSave": "onWindowChange"
+	"files.autoSave": "onWindowChange",
+	"i18n-ally.keystyle": "nested"
 }

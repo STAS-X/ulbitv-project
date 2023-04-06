@@ -12,12 +12,11 @@ import { articleDetailsActions, articleDetailsReducer } from 'entities/Article/m
 import { FC, memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Text, TextAlign, TextSize, TextTheme } from 'shared/ui/Text/Text';
-import classes from './ArticleDetailesPage.module.scss';
+import classes from './ArticleDetailes.module.scss';
 import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
@@ -28,13 +27,13 @@ const redusers: ReducerList = {
 	articleDetailes: articleDetailsReducer
 };
 
-export interface ArticleDetailesPageProps {
+export interface ArticleDetailesProps {
 	className?: string;
+	articleId?: string;
 }
 
-const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDetailesPageProps) => {
-	const { className } = props;
-	const { id: articleId = '1' } = useParams<{ id: string }>();
+export const ArticleDetailes: FC<ArticleDetailesProps> = memo((props: ArticleDetailesProps) => {
+	const { articleId, className } = props;
 	const dispatch = useAppDispatch();
 	const { t } = useTranslation(['articles', 'errors']);
 
@@ -61,12 +60,9 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 
 	useEffect(() => {
 		const fetchArticle = async () => {
-			if (_PROJECT_ !== 'frontend') return;
-			await dispatch(fetchArticleById({ articleId: Number(articleId) }));
+			if (_PROJECT_ !== 'storybook') await dispatch(fetchArticleById({ articleId }));
 		};
-		if (!isNaN(parseInt(articleId))) {
-			void fetchArticle();
-		} else dispatch(articleDetailsActions.setArticleError('articleNotFound'));
+		void fetchArticle();
 	}, [dispatch, articleId]);
 
 	useEffect(() => {
@@ -75,7 +71,7 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<div className={classNames(classes.articledetailespage, {}, [className])}>
+			<div className={classNames(classes.articledetailespage, mods, [className])}>
 				{error ? (
 					<Text
 						title={t('errorTitle', { ns: 'errors' })}
@@ -119,5 +115,3 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 		</DynamicModuleLoader>
 	);
 });
-
-export default ArticleDetailesPage;

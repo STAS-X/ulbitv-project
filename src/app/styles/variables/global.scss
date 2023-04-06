@@ -10,15 +10,16 @@
 	--font-line-xl: 40px;
 	--font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
-	// Размеры
+	/* Размеры */
 	--navbar-heigth: 50px;
 	--sidebar-width: 300px;
 	--sidebar-width-collapsed: 80px;
 
-	// z-Index компонентов
+	/* z-Index компонентов */
+	--bars-z-index: 5;
 	--modal-z-index: 10;
 
-	// Цвета фона
+	/* Цвета фона */
 	--bg-overlay: rgb(0 0 0 / 60%);
 	--red-light: rgb(246 50 50);
 	--red-dark: rgb(180 10 10);

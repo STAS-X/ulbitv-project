@@ -4,9 +4,11 @@ const path = require('path');
 
 const server = jsonServer.create();
 
-const router = jsonServer.router(path.resolve(__dirname, 'db.json'));
+const router = jsonServer.router(path.resolve(__dirname, 'db.json'), { foreignKeySuffix: 'Id' });
+//router.db._.id = 'userId';
 
 server.use(jsonServer.defaults({}));
+server.use(jsonServer.rewriter({ '/comments/:id': '/comments?articleId=:id&_expand=user&_sort=id&_order=asc' }));
 server.use(jsonServer.bodyParser);
 
 // Нужно для небольшой задержки, чтобы запрос проходил не мгновенно, имитация реального апи
@@ -48,7 +50,6 @@ server.use((req, res, next) => {
 });
 
 server.use(router);
-
 // запуск сервера
 server.listen(8000, () => {
 	console.log('server is running on 8000 port');

@@ -3,13 +3,15 @@ import { Story } from '@storybook/react';
 import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
 import { articleDetailsReducer } from 'entities/Article';
 import { profileReducer } from 'entities/Profile';
+import { reducerArticleComments } from 'pages/ArticleDetailesPage';
 import { loginReducer } from 'features/AuthByUserName/model/slices/loginSlice';
 import { ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 const initialReducers: ReducerList = {
 	loginForm: loginReducer,
 	profile: profileReducer,
-	articleDetailes: articleDetailsReducer
+	articleDetailes: articleDetailsReducer,
+	articleDetailesComments: reducerArticleComments
 };
 
 export const StoreDecorator =

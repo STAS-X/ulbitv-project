@@ -28,5 +28,5 @@ DarkAuthBar.args = {};
 
 DarkAuthBar.decorators = [
 	ThemeDecorator(Theme.DARK),
-	StoreDecorator({ user: { authData: { id: '1', username: 'XXX', password: 'XYZ' } } })
+	StoreDecorator({ user: { authData: { id: '1', username: 'XXX' } } })
 ];

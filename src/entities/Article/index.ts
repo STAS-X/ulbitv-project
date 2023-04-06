@@ -5,3 +5,4 @@ export { articleDetailsActions, articleDetailsReducer } from './model/slices/art
 export { ArticleCodeBlockComponent } from './ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 export { ArticleImageBlockComponent } from './ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
 export { ArticleTextBlockComponent } from './ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
+export { ArticleDetailes } from './ui/ArticleDetailes/ArticleDetailes';

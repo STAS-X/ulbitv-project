@@ -38,7 +38,7 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
 	const dispatch = useAppDispatch();
 
 	const updateProfileByForm = useCallback(async () => {
-		if (_PROJECT_ !== 'frontend') return;
+		if (_PROJECT_ === 'storybook') return;
 
 		const profileData = await dispatch(updateProfileData());
 		if (profileData.meta.requestStatus === 'fulfilled') {

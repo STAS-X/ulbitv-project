@@ -14,7 +14,8 @@ export const Code: FC<CodeProps> = memo((props: CodeProps) => {
 	const { children, className } = props;
 	const onCodeCopy = useCallback(() => {
 		const onlyText = Children.toArray(children).reduce((totalText: string, child) => {
-			if (typeof child === 'string') totalText.concat(String(child));
+			//console.log(typeof child, child.toString(), 'type of child');
+			if (typeof child === 'string') totalText = totalText.concat(child.toString());
 			return totalText;
 		}, '');
 		//console.log(onlyText, 'get text from code block');

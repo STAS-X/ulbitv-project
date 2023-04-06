@@ -23,6 +23,22 @@ ArticleDetailesPageWithStoreDark.args = {};
 ArticleDetailesPageWithStoreDark.decorators = [
 	ThemeDecorator(Theme.DARK),
 	StoreDecorator({
+		articleDetailesComments: {
+			isLoading: false,
+			ids: ['1', '2'],
+			entities: {
+				'1': {
+					id: '1',
+					text: 'some comment four',
+					user: { id: '1', username: 'User1', avatar: '' }
+				},
+				'2': {
+					id: '2',
+					text: 'some comment five',
+					user: { id: '2', username: 'User2', avatar: '' }
+				}
+			}
+		},
 		articleDetailes: {
 			isLoading: false,
 			data: {

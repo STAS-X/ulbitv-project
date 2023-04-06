@@ -1,7 +1,7 @@
 export interface UserData {
 	id: string;
 	username: string;
-	password: string;
+	avatar?: string;
 }
 
 export interface UserSchema {

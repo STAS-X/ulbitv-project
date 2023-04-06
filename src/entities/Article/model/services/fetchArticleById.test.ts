@@ -1,7 +1,6 @@
 import { ArticleSchema } from './../types/articleSchema';
 import { ArticleType } from 'entities/Article/model/types/articleSchema';
 /* eslint-disable @typescript-eslint/unbound-method */
-import { userActions } from 'entities/User';
 import { TestAsyncThunk } from 'shared/lib/tests/testAsyncThunk/testAsyncThunk';
 import { ArticleBlockType } from '../types/articleSchema';
 import { fetchArticleById } from './fetchArticleById';
@@ -11,7 +10,7 @@ import { fetchArticleById } from './fetchArticleById';
 
 describe('fetchArticleById selector test', () => {
 	const testThunk = new TestAsyncThunk(fetchArticleById);
-	const articleParams = { articleId: 1 };
+	const articleParams = { articleId: '1' };
 	const articleData: ArticleSchema = {
 		id: 1,
 		title: 'Javascript news',
@@ -111,7 +110,7 @@ describe('fetchArticleById selector test', () => {
 
 	test('should rejected', async () => {
 		testThunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }));
-		const result = await testThunk.callThunk({ articleId: 2 });
+		const result = await testThunk.callThunk({ articleId: '2' });
 		//console.log(result.payload, 'payload after empty article')
 		expect(testThunk.dispatch).toHaveBeenCalledTimes(2);
 		expect(testThunk.api.get).toHaveBeenCalled();

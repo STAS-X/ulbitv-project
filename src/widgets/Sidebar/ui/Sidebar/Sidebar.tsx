@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import { useState, memo, useEffect } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ThemeSwitchButton } from 'widgets/ThemeSwitcher';
 import { LanguageSwitchButton } from 'widgets/LanguageSwitcher/';
@@ -16,6 +16,18 @@ export interface SidebarProps {
 export const Sidebar = memo(({ className }: SidebarProps) => {
 	const [collapsed, setCollapsed] = useState(false);
 	const isAuth = Boolean(useSelector(getUserData));
+
+	useEffect(() => {
+		const pageContent = document.querySelector('div.content-page');
+		console.log(pageContent, 'get pageContent element');
+		if (pageContent) {
+			if (
+				(collapsed && !pageContent.classList.contains('content-page-collapsed')) ||
+				(!collapsed && pageContent.classList.contains('content-page-collapsed'))
+			)
+				pageContent.classList.toggle('content-page-collapsed');
+		}
+	}, [collapsed]);
 
 	const onToggle = () => {
 		setCollapsed((prev) => !prev);

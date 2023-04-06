@@ -1,7 +1,11 @@
 .navbar {
+	position: fixed;
 	width: 100%;
 	height: var(--navbar-heigth);
 	background: var(--inverted-bg-color);
+	left: 0;
+	top: 0;
+	z-index: var(--bars-z-index);
 	display: flex;
 	align-items: center;
 	padding: 20px;
