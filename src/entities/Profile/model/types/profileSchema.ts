@@ -1,3 +1,4 @@
+import { UserData } from 'entities/User/model/types/userSchema';
 import { Currency } from 'entities/Currency/model/types/currency';
 import { Country } from 'entities/Country/model/types/country';
 
@@ -15,6 +16,7 @@ export enum ValidateProfileError {
 export type ValidateErrorType = Partial<Record<ValidateProfileError, string>>;
 
 export interface ProfileData {
+	id?: string;
 	first?: string;
 	lastname?: string;
 	age?: number;

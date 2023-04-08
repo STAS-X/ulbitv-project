@@ -1,6 +1,7 @@
 export interface UserData {
 	id: string;
 	username: string;
+	profileId: string;
 	avatar?: string;
 }
 

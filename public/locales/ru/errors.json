@@ -2,5 +2,7 @@
 	"errorApp": "Произошла ошибка: {{message}}",
 	"errorTitle": "Информация об ошибке",
 	"articleNotFound": "Статья '{{articleId}}' не найдена",
-	"articleIdNotFound": "Параметр articleId не передан"
+	"profileNotFound": "Профиль пользователя '{{userId}}' не найден",
+	"articleIdNotFound": "Параметр articleId не передан",
+	"commentError": "Произошла ошибка: {{message}}"
 }

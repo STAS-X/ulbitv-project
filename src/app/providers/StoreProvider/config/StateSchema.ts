@@ -1,3 +1,4 @@
+import { AddCommentFormSchema } from 'features/AddCommentForm/model/types/addCommentForm';
 import { LoginSchema } from 'features/AuthByUserName';
 import { UserSchema } from 'entities/User';
 import { CommonSchema } from 'entities/Common';
@@ -16,6 +17,7 @@ export interface StateSchema {
 	profile?: ProfileSchema;
 	articleDetailes?: ArticleDetailesSchema;
 	articleDetailesComments?: ArticleDetailesCommentsSchema;
+	addCommentForm?: AddCommentFormSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

@@ -1,4 +1,6 @@
 {
 	"commentForm": "Комментарии",
-	"noComments": "Комментарии отсутствуют"
+	"noComments": "Комментарии отсутствуют",
+	"commentPlaceholder": "Введите текст комментария",
+	"commentSubmit": "Отправить"
 }

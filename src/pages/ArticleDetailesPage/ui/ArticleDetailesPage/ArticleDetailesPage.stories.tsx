@@ -30,12 +30,12 @@ ArticleDetailesPageWithStoreDark.decorators = [
 				'1': {
 					id: '1',
 					text: 'some comment four',
-					user: { id: '1', username: 'User1', avatar: '' }
+					user: { id: '1', username: 'User1', profileId: '1', avatar: '' }
 				},
 				'2': {
 					id: '2',
 					text: 'some comment five',
-					user: { id: '2', username: 'User2', avatar: '' }
+					user: { id: '2', username: 'User2', profileId: '2', avatar: '' }
 				}
 			}
 		},

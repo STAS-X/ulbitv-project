@@ -1,4 +1,4 @@
-import { Suspense, useCallback } from 'react';
+import { Fragment, Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { PageLoader } from 'widgets/PageLoader/PageLoader';
 import { AuthRouteProps } from 'shared/config/routeConfig/routeConfig';
@@ -14,12 +14,25 @@ export const AppRouter = () => {
 			</Suspense>
 		);
 
-		return (
+		return !!route.withId ? (
+			<Fragment key={route.pathname}>
+				<Route
+					index={!!route.index}
+					path={route.pathname}
+					element={!!route.isAuth ? <RequireAuth>{element}</RequireAuth> : element}
+				/>
+				<Route
+					index={!!route.index}
+					path={`${route.pathname}/:id`}
+					element={!!route.isAuth ? <RequireAuth>{element}</RequireAuth> : element}
+				/>
+			</Fragment>
+		) : (
 			<Route
 				key={route.pathname}
 				index={!!route.index}
-				path={route.pathname || '/'}
-				element={route.isAuth ? <RequireAuth>{element}</RequireAuth> : element}
+				path={route.pathname}
+				element={!!route.isAuth ? <RequireAuth>{element}</RequireAuth> : element}
 			/>
 		);
 	}, []);

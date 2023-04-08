@@ -15,8 +15,12 @@ describe('loginByUsername selector test', () => {
 		currency: 'RUB',
 		country: 'Russia',
 		city: 'Moscow',
-		username: 'admin',
-		avatar: 'https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg'
+		user: {
+			id: '1',
+			username: 'admin',
+			avatar:
+				'https://bipbap.ru/wp-content/uploads/2021/07/Kartinki-na-avu-v-VK-dlya-parnej-i-muzhchin-samye-klassnye-i-krutye-3.jpg'
+		}
 	};
 	// beforeEach(() => {
 	// 	dispatch = jest.fn();
@@ -25,7 +29,7 @@ describe('loginByUsername selector test', () => {
 
 	test('should fulfilled', async () => {
 		testThunk.api.get.mockReturnValue(Promise.resolve({ data: profileValue }));
-		const result = await testThunk.callThunk();
+		const result = await testThunk.callThunk({ profileId: '1' });
 
 		console.log(result, 'result data from action');
 		//expect(testThunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue));
@@ -37,7 +41,7 @@ describe('loginByUsername selector test', () => {
 
 	test('should rejected', async () => {
 		testThunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }));
-		const result = await testThunk.callThunk();
+		const result = await testThunk.callThunk({ profileId: '1' });
 
 		expect(testThunk.dispatch).toHaveBeenCalledTimes(2);
 		expect(testThunk.api.get).toHaveBeenCalled();

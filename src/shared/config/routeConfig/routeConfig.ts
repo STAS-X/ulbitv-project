@@ -17,24 +17,24 @@ export enum AppRoutes {
 
 export interface AuthRouteProps extends RouteProps {
 	isAuth?: boolean;
-	pathname?: string;
+	withId?: boolean;
+	pathname: string;
 	Element: React.FC;
 }
 
 export const RoutePath: Record<AppRoutes, AuthRouteProps> = {
 	[AppRoutes.MAIN]: {
 		pathname: '/',
-		isAuth: false,
 		Element: MainPage
 	},
 	[AppRoutes.ABOUT]: {
 		pathname: '/about',
-		isAuth: false,
 		Element: AboutPage
 	},
 	[AppRoutes.PROFILE]: {
 		pathname: '/profile',
 		isAuth: true,
+		withId: true,
 		Element: ProfilePage
 	},
 	[AppRoutes.ARTICLES]: {
@@ -49,7 +49,6 @@ export const RoutePath: Record<AppRoutes, AuthRouteProps> = {
 	},
 	[AppRoutes.NOT_FOUND]: {
 		pathname: '*',
-		isAuth: false,
 		Element: NotFoundPage
 	}
 };

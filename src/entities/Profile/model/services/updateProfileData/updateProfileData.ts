@@ -1,3 +1,4 @@
+import { StateSchema } from './../../../../../app/providers/StoreProvider/config/StateSchema';
 import { validateProfileData } from './../validateProfile/validateProfile';
 import { ProfileData } from '../../types/profileSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
@@ -14,13 +15,17 @@ export const updateProfileData = createAppAsyncThunk<ProfileData>('profile/updat
 
 	try {
 		console.log('start update profile...');
-		const formData = getProfileFormData(getState());
+		const formData = getProfileFormData(getState()) as ProfileData;
 		//console.log(formData, extra.api, 'get formData');
 
-		const validateError = validateProfileData(formData ?? {});
+		const validateError = validateProfileData(formData);
 		if (validateError) throw new Error(JSON.stringify(validateError));
 
-		const response = await extra.api.put<ProfileData>('/profile', formData);
+		if (!formData?.id) {
+			throw new Error('error occured with profileId');
+		}
+
+		const response = await extra.api.put<ProfileData>(`/profiles/${formData.id}`, formData);
 
 		if (!response.data) {
 			throw new Error('error occured');

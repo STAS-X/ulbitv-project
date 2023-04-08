@@ -11,6 +11,7 @@ import { CountrySelector } from 'entities/Country';
 import { CurrencySelector } from 'entities/Currency';
 import { useSelector } from 'react-redux';
 import { ValidateProfileError } from 'entities/Profile/model/types/profileSchema';
+import { useParams } from 'react-router-dom';
 
 export enum ProfileFieldType {
 	FIRST = 'first',
@@ -35,6 +36,9 @@ export interface ProfileCardProps {
 export const ProfileCard: FC<ProfileCardProps> = (props) => {
 	const { data = {}, isLoading, error, onChangeProfileFields, readonly, className } = props;
 
+	const { id: userId = '' } = useParams<{ id: string }>();
+
+	console.log(data, userId, 'get input data');
 	const { t } = useTranslation(['profile', 'errors']);
 	const validateError = useSelector(getProfileValidation);
 
@@ -48,7 +52,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 				{error ? (
 					<Text
 						title={t('errorTitle', { ns: 'errors' })}
-						content={t('errorApp', { ns: 'errors', message: error })}
+						content={t('errorApp', { ns: 'errors', message: t(error, { ns: 'errors', userId }) })}
 						theme={TextTheme.ERROR}
 						align={TextAlign.CENTER}
 					/>

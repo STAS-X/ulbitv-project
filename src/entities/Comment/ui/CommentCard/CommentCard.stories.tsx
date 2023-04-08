@@ -8,7 +8,6 @@ export default {
 	title: 'shared/CommentCard',
 	component: CommentCard,
 	args: {
-		isLoading: false,
 		comment: { id: '1', text: 'Some text for comment', user: { id: '1', username: 'UserName' } }
 	}
 } as ComponentMeta<typeof CommentCard>;
@@ -19,13 +18,6 @@ export const CommentCardPrimary = Template.bind({});
 CommentCardPrimary.args = {
 	children: 'Text primary'
 };
-
-export const CommentCardLoadingDark = Template.bind({});
-CommentCardLoadingDark.args = {
-	children: 'Text secondary',
-	isLoading: true
-};
-CommentCardLoadingDark.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const CommentCardDark = Template.bind({});
 CommentCardDark.args = {

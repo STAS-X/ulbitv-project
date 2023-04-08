@@ -19,6 +19,8 @@ import { getProfileData, getProfileFormData } from 'entities/Profile/model/selec
 import { ProfileFieldType } from 'entities/Profile/ui/ProfileCard/ProfileCard';
 import { Currency } from 'entities/Currency/model/types/currency';
 import { Country } from 'entities/Country/model/types/country';
+import { useParams } from 'react-router-dom';
+import { getUserData, UserData } from '../../../entities/User';
 //import classes from './ProfilePage.module.scss';
 
 const redusers: ReducerList = {
@@ -32,8 +34,12 @@ export interface ProfilePageProps {
 const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: ProfilePageProps) => {
 	const { className } = props;
 
+	const { id: profileId } = useParams<{ id: string }>();
+	const userData = useSelector(getUserData);
+
 	const { t } = useTranslation(['pages']);
 	const dispatch = useAppDispatch();
+
 	const formData = useSelector(getProfileFormData);
 	const error = useSelector(getProfileError);
 	const isLoading = useSelector(getProfileIsLoading);
@@ -45,12 +51,14 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 	const fetchProfileByUser = useCallback(async () => {
 		if (_PROJECT_ === 'storybook') return;
 
-		const profileData = await dispatch(fetchProfileData());
-		if (profileData.meta.requestStatus === 'fulfilled') {
-			//dispatch(loginActions.setEmpty());
-			console.log(`Profile data is '${JSON.stringify(profileData.payload)}'`);
+		if (profileId || userData?.profileId) {
+			const profileData = await dispatch(fetchProfileData({ profileId: profileId || userData?.profileId }));
+			if (profileData.meta.requestStatus === 'fulfilled') {
+				//dispatch(loginActions.setEmpty());
+				console.log(`Profile data is '${JSON.stringify(profileData.payload)}'`);
+			}
 		}
-	}, [dispatch]);
+	}, [dispatch, profileId, userData]);
 
 	useEffect(() => {
 		fetchProfileByUser();

@@ -20,7 +20,10 @@ export const SidebarItem: FC<SidebarItemProps> = memo((props: SidebarItemProps) 
 	const location = useLocation();
 
 	const refreshPage: MouseEventHandler<HTMLAnchorElement> = (e) => {
-		if (location.pathname.replace('/', '') === AppRoutes.PROFILE && item?.path === AppRoutes.PROFILE) {
+		if (
+			location.pathname.replace('/', '').indexOf(AppRoutes.PROFILE) === 0 &&
+			item?.path.indexOf(AppRoutes.PROFILE) === 0
+		) {
 			e.preventDefault();
 			setTimeout(() => {
 				navigate('/');

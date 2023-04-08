@@ -6,23 +6,35 @@ import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/t
 // 	password: string;
 // }
 
+export interface ProfileByIdProps {
+	profileId?: string;
+}
+
 // First, create the thunk
-export const fetchProfileData = createAppAsyncThunk<ProfileData>('profile/fetchProfileData', async (_, thunkApi) => {
-	const { extra, rejectWithValue } = thunkApi;
+export const fetchProfileData = createAppAsyncThunk<ProfileData, ProfileByIdProps>(
+	'profile/fetchProfileData',
+	async (props, thunkApi) => {
+		const { profileId } = props;
+		const { extra, rejectWithValue } = thunkApi;
 
-	try {
-		console.log('start fetchibg profile...');
-		const response = await extra.api.get<ProfileData>('/profile');
+		if (!profileId) return rejectWithValue('profileNotFound');
 
-		if (!response.data) {
-			throw new Error('error');
+		try {
+			console.log('start fetchibg profile...');
+			const response = await extra.api.get<ProfileData>(`/profiles/${profileId}`);
+
+			console.log(response.data, 'get data from profiles');
+			if (!response.data) {
+				throw new Error('profileNotFound');
+			}
+			//throw new Error('network error occured');
+
+			return response.data;
+		} catch (e: ThunkError) {
+			//console.log(e.message, 'Внимание, во время запроса возникла ошибка');
+			if (e.response?.status === 404) return rejectWithValue('profileNotFound');
+			//if (!e.response || !e.message) throw e;
+			return rejectWithValue(getErrorMessage(e));
 		}
-		//throw new Error('network error occured');
-
-		return response.data;
-	} catch (e: ThunkError) {
-		console.log(e.message, 'Внимание, во время запроса возникла ошибка');
-		//if (!e.response || !e.message) throw e;
-		return rejectWithValue(getErrorMessage(e));
 	}
-});
+);

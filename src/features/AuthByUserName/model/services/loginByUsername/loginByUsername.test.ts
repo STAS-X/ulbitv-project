@@ -14,7 +14,7 @@ describe('loginByUsername selector test', () => {
 	//const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 	const testThunk = new TestAsyncThunk(loginByUsername);
-	const userValue = { username: 'admin', password: '12345', id: '1' };
+	const userValue = { username: 'admin', password: '12345', profileId: '1', id: '1' };
 	// beforeEach(() => {
 	// 	jest.resetAllMocks();
 	// 	mockedAxios.get.mockResolvedValue({
