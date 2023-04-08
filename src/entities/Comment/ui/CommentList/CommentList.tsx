@@ -19,16 +19,30 @@ export const CommentList: FC<CommentListProps> = memo((props: CommentListProps) 
 
 	return (
 		<div className={classNames(classes.CommentList, {}, [className])}>
-			{comments?.length ? (
-				comments.map((comment) => <CommentCard className={classes.comment} key={comment.id} comment={comment} />)
-			) : isLoading ? (
-				<>
-					<div className={classes.header}>
-						<Skeleton width={32} height={32} border="50%" className={classes.avatar} />
-						<Skeleton width={100} height={16} className={classes.username} />
+			{isLoading ? (
+				comments?.length ? (
+					<>
+						{comments.map((comment, index) => (
+							<div key={index} className={classes.comment}>
+								<div className={classes.header}>
+									<Skeleton width={32} height={32} border="50%" className={classes.avatar} />
+									<Skeleton width={100} height={16} className={classes.username} />
+								</div>
+								<Skeleton width={'100%'} height={50} className={classes.text} />
+							</div>
+						))}
+					</>
+				) : (
+					<div className={classes.comment}>
+						<div className={classes.header}>
+							<Skeleton width={32} height={32} border="50%" className={classes.avatar} />
+							<Skeleton width={100} height={16} className={classes.username} />
+						</div>
+						<Skeleton width={'100%'} height={50} className={classes.text} />
 					</div>
-					<Skeleton width={'100%'} height={50} className={classes.text} />
-				</>
+				)
+			) : comments?.length ? (
+				comments.map((comment) => <CommentCard className={classes.comment} key={comment.id} comment={comment} />)
 			) : (
 				<Text content={t('noComments')} />
 			)}

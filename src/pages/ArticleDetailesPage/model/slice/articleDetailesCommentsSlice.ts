@@ -33,16 +33,6 @@ const articleDetailesCommentsSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(fetchCommentsByArticleId.fulfilled, (state, action: PayloadAction<CommentSchema[]>) => {
-			// if (action.payload?.length) {
-			// 	state.entities = {};
-			// 	state.ids = [];
-
-			// 	action.payload.forEach((comment) => {
-			// 		const { id, text, user } = comment;
-			// 		state.entities[comment.id] = { id, text, user };
-			// 		state.ids.push(id);
-			// 	});
-			// }
 			articleCommentsAdapter.setAll(state, action.payload);
 			state.isLoading = false;
 			state.error = undefined;

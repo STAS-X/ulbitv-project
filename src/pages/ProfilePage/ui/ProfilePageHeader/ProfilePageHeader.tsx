@@ -24,10 +24,11 @@ enum ProfileEditType {
 interface ProfilePageHeaderProps {
 	className?: string;
 	isDirty?: boolean;
+	isEdit?: boolean;
 }
 
 export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
-	const { isDirty = false, className } = props;
+	const { isDirty = false, isEdit = false, className } = props;
 
 	const { t } = useTranslation(['pages', 'profile']);
 	const readonly = useSelector(getProfileReadOnly);
@@ -67,34 +68,35 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
 		<div className={classNames(classes.profilepageheader, {}, [className])}>
 			<Text title={t('profile', { ns: 'pages' })} />
 			<div className={classes.btns}>
-				{readonly ? (
-					<Button
-						className={classes.editbtn}
-						theme={ButtonTheme.OUTLINE}
-						onClick={onChangeEdit(ProfileEditType.EDIT)}
-						disabled={isLoading || Boolean(error)}
-					>
-						{t('edit', { ns: 'profile' })}
-					</Button>
-				) : (
-					<>
+				{isEdit &&
+					(readonly ? (
 						<Button
 							className={classes.editbtn}
 							theme={ButtonTheme.OUTLINE}
-							onClick={onChangeEdit(ProfileEditType.SAVE)}
-							disabled={!isDirty || (isDirty && validationError && Object.keys(validationError).length > 0)}
+							onClick={onChangeEdit(ProfileEditType.EDIT)}
+							disabled={isLoading || Boolean(error)}
 						>
-							{t('save', { ns: 'profile' })}
+							{t('edit', { ns: 'profile' })}
 						</Button>
-						<Button
-							className={classes.editbtn}
-							theme={ButtonTheme.OUTLINE_RED}
-							onClick={onChangeEdit(ProfileEditType.CANCEL)}
-						>
-							{t('cancel', { ns: 'profile' })}
-						</Button>
-					</>
-				)}
+					) : (
+						<>
+							<Button
+								className={classes.editbtn}
+								theme={ButtonTheme.OUTLINE}
+								onClick={onChangeEdit(ProfileEditType.SAVE)}
+								disabled={!isDirty || (isDirty && validationError && Object.keys(validationError).length > 0)}
+							>
+								{t('save', { ns: 'profile' })}
+							</Button>
+							<Button
+								className={classes.editbtn}
+								theme={ButtonTheme.OUTLINE_RED}
+								onClick={onChangeEdit(ProfileEditType.CANCEL)}
+							>
+								{t('cancel', { ns: 'profile' })}
+							</Button>
+						</>
+					))}
 			</div>
 		</div>
 	);

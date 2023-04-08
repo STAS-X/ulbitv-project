@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import AddCommentForm from './AddCommentForm';
 import { AddCommentFormProps } from './AddCommentForm';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 
 export default {
-	title: 'shared/AddCommentForm',
+	title: 'feature/AddCommentForm',
 	component: AddCommentForm,
 	argTypes: {
 		backgroundColor: { control: 'color' }
@@ -15,18 +16,13 @@ export default {
 
 const Template: ComponentStory<typeof AddCommentForm> = (args: AddCommentFormProps) => <AddCommentForm {...args} />;
 
-export const AddCommentFormPrimary = Template.bind({});
-AddCommentFormPrimary.args = {
-	children: 'Text primary'
+export const AddCommentFormNormal = Template.bind({});
+AddCommentFormNormal.args = {
+	onSendComment: action('onSendComment')
 };
 
-export const AddCommentFormSecondary = Template.bind({});
-AddCommentFormSecondary.args = {
-	children: 'Text secondary'
+export const AddCommentFormDark = Template.bind({});
+AddCommentFormDark.args = {
+	onSendComment: action('onSendComment')
 };
-
-export const AddCommentFormSecondaryDark = Template.bind({});
-AddCommentFormSecondaryDark.args = {
-	children: 'Text secondary'
-};
-AddCommentFormSecondaryDark.decorators = [ThemeDecorator(Theme.DARK)];
+AddCommentFormDark.decorators = [ThemeDecorator(Theme.DARK)];

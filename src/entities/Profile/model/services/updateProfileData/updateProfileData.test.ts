@@ -10,6 +10,7 @@ import { updateProfileData } from './updateProfileData';
 
 describe('updateProfileData thunk test', () => {
 	const profileData = {
+		id: '1',
 		first: 'Станислав',
 		lastname: '-XYZ-',
 		age: 33,

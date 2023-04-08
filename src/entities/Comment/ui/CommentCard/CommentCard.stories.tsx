@@ -5,7 +5,7 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 
 export default {
-	title: 'shared/CommentCard',
+	title: 'entities/Comment/CommentCard',
 	component: CommentCard,
 	args: {
 		comment: { id: '1', text: 'Some text for comment', user: { id: '1', username: 'UserName' } }

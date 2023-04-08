@@ -18,7 +18,7 @@ import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicM
 
 export interface AddCommentFormProps {
 	className?: string;
-	onSendComment: (content: string) => CommentSchema | string | undefined;
+	onSendComment: (content: string) => CommentSchema | string | undefined | void;
 }
 
 const reducers: ReducerList = {

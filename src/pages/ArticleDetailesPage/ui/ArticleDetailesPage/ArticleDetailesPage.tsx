@@ -9,7 +9,7 @@ import classes from './ArticleDetailesPage.module.scss';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { getArticleComments, reducerArticleComments } from '../../model/slice/articleDetailesCommentsSlice';
 import { useSelector } from 'react-redux';
-import { getArticleCommentsIsLoading } from '../../model/selectors/getArticleCommentsData';
+import { getArticleCommentsError, getArticleCommentsIsLoading } from '../../model/selectors/getArticleCommentsData';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
@@ -33,7 +33,7 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 	const sendCommentForArticle = useFetchCommentForArticle();
 	const dispatch = useAppDispatch();
 
-	console.log(comments, 'get comments data');
+	console.log(comments, isLoading, 'get comments data');
 
 	const { t } = useTranslation(['comments']);
 

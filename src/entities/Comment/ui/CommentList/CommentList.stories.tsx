@@ -5,7 +5,7 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 
 export default {
-	title: 'shared/CommentList',
+	title: 'entities/Comment/CommentList',
 	component: CommentList,
 	args: {
 		isLoading: false,

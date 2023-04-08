@@ -15,13 +15,14 @@ export const useFetchCommentForArticle = () => {
 
 	return (content: string) => {
 		const commentData: ExtendedCommentData = { key: 'articleId', value: articleId, content };
-
-		void dispatch(sendComment(commentData)).then(async (res) => {
-			if (res.payload) {
-				setData(res.payload);
-				await dispatch(fetchCommentsByArticleId({ articleId }));
-			} else dispatch(addCommentFormActions.setCommentError('comment post failed'));
-		});
+		if (articleId) {
+			void dispatch(sendComment(commentData)).then(async (res) => {
+				if (res.payload) {
+					setData(res.payload);
+					void (await dispatch(fetchCommentsByArticleId({ articleId })));
+				} else dispatch(addCommentFormActions.setCommentError('comment post failed'));
+			});
+		}
 
 		return data ? data : undefined;
 	};

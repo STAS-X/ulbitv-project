@@ -20,7 +20,7 @@ import { ProfileFieldType } from 'entities/Profile/ui/ProfileCard/ProfileCard';
 import { Currency } from 'entities/Currency/model/types/currency';
 import { Country } from 'entities/Country/model/types/country';
 import { useParams } from 'react-router-dom';
-import { getUserData, UserData } from '../../../entities/User';
+import { getUserData } from '../../../entities/User';
 //import classes from './ProfilePage.module.scss';
 
 const redusers: ReducerList = {
@@ -34,8 +34,8 @@ export interface ProfilePageProps {
 const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: ProfilePageProps) => {
 	const { className } = props;
 
-	const { id: profileId } = useParams<{ id: string }>();
 	const userData = useSelector(getUserData);
+	const { id: profileId = userData?.profileId } = useParams<{ id: string }>();
 
 	const { t } = useTranslation(['pages']);
 	const dispatch = useAppDispatch();
@@ -51,16 +51,17 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 	const fetchProfileByUser = useCallback(async () => {
 		if (_PROJECT_ === 'storybook') return;
 
-		if (profileId || userData?.profileId) {
-			const profileData = await dispatch(fetchProfileData({ profileId: profileId || userData?.profileId }));
+		if (profileId) {
+			const profileData = await dispatch(fetchProfileData({ profileId }));
 			if (profileData.meta.requestStatus === 'fulfilled') {
 				//dispatch(loginActions.setEmpty());
 				console.log(`Profile data is '${JSON.stringify(profileData.payload)}'`);
 			}
 		}
-	}, [dispatch, profileId, userData]);
+	}, [dispatch, profileId]);
 
 	useEffect(() => {
+		console.log(userData?.profileId === profileId, userData, profileId, 'get profileId data');
 		fetchProfileByUser();
 		console.log('profile refreshed');
 		if (formData) dispatch(profileActions.checkProfileValidation(formData));
@@ -127,7 +128,7 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
 			<div className={classNames('', {})}>
-				<ProfilePageHeader isDirty={isDirty} />
+				<ProfilePageHeader isDirty={isDirty} isEdit={userData?.profileId === profileId} />
 				<ProfileCard
 					data={formData}
 					isLoading={isLoading}
