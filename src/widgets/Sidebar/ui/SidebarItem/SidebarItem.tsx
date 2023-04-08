@@ -9,25 +9,26 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 interface SidebarItemProps {
 	item?: SidebarItemType;
+	userId?: string;
 	collapsed: boolean;
 }
 
 export const SidebarItem: FC<SidebarItemProps> = memo((props: SidebarItemProps) => {
-	const { item, collapsed } = props;
+	const { item, collapsed, userId } = props;
 	const { t } = useTranslation(['pages']);
 
 	const navigate = useNavigate();
-	const location = useLocation();
+	//const location = useLocation();
 
 	const refreshPage: MouseEventHandler<HTMLAnchorElement> = (e) => {
 		if (
-			location.pathname.replace('/', '').indexOf(AppRoutes.PROFILE) === 0 &&
+			//location.pathname.replace('/', '').indexOf(AppRoutes.PROFILE) === 0 &&
 			item?.path.indexOf(AppRoutes.PROFILE) === 0
 		) {
 			e.preventDefault();
 			setTimeout(() => {
-				navigate('/');
-				navigate(AppRoutes.PROFILE, { replace: true });
+				//navigate('/');
+				if (userId) navigate(`${AppRoutes.PROFILE}/${userId}`, { replace: true });
 			}, 0);
 			//return false;
 		}

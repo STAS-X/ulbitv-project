@@ -15,7 +15,7 @@ export interface SidebarProps {
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
 	const [collapsed, setCollapsed] = useState(false);
-	const isAuth = Boolean(useSelector(getUserData));
+	const authData = useSelector(getUserData);
 
 	useEffect(() => {
 		const pageContent = document.querySelector('div.content-page');
@@ -50,8 +50,8 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 				{collapsed ? '>' : '<'}
 			</Button>
 			<div className={classes.items}>
-				{configSideBarItem(isAuth).map((item) => (
-					<SidebarItem key={item.path} collapsed={collapsed} item={item} />
+				{configSideBarItem(Boolean(authData)).map((item) => (
+					<SidebarItem key={item.path} collapsed={collapsed} userId={authData?.id} item={item} />
 				))}
 			</div>
 			<div className={classes.switchers}>

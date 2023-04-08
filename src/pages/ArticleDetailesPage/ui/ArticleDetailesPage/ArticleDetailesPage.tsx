@@ -9,7 +9,7 @@ import classes from './ArticleDetailesPage.module.scss';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { getArticleComments, reducerArticleComments } from '../../model/slice/articleDetailesCommentsSlice';
 import { useSelector } from 'react-redux';
-import { getArticleCommentsError, getArticleCommentsIsLoading } from '../../model/selectors/getArticleCommentsData';
+import { getArticleCommentsIsLoading } from '../../model/selectors/getArticleCommentsData';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';

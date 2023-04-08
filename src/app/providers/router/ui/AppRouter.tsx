@@ -14,20 +14,7 @@ export const AppRouter = () => {
 			</Suspense>
 		);
 
-		return !!route.withId ? (
-			<Fragment key={route.pathname}>
-				<Route
-					index={!!route.index}
-					path={route.pathname}
-					element={!!route.isAuth ? <RequireAuth>{element}</RequireAuth> : element}
-				/>
-				<Route
-					index={!!route.index}
-					path={`${route.pathname}/:id`}
-					element={!!route.isAuth ? <RequireAuth>{element}</RequireAuth> : element}
-				/>
-			</Fragment>
-		) : (
+		return (
 			<Route
 				key={route.pathname}
 				index={!!route.index}

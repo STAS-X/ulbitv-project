@@ -17,7 +17,6 @@ export enum AppRoutes {
 
 export interface AuthRouteProps extends RouteProps {
 	isAuth?: boolean;
-	withId?: boolean;
 	pathname: string;
 	Element: React.FC;
 }
@@ -32,9 +31,8 @@ export const RoutePath: Record<AppRoutes, AuthRouteProps> = {
 		Element: AboutPage
 	},
 	[AppRoutes.PROFILE]: {
-		pathname: '/profile',
+		pathname: '/profile/:id',
 		isAuth: true,
-		withId: true,
 		Element: ProfilePage
 	},
 	[AppRoutes.ARTICLES]: {
