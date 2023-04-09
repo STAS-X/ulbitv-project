@@ -1,3 +1,4 @@
+import { UserData } from './../../../User/model/types/userSchema';
 export interface ArticleBaseCodeBlock {
 	id: string;
 	type: ArticleBlockType;
@@ -19,6 +20,10 @@ export interface ArticleTextBlock extends ArticleBaseCodeBlock {
 }
 
 export type ArticleBlock = ArticleCodeBlock | ArticleImageBlock | ArticleTextBlock;
+export enum ArticleView {
+	LIST = 'LIST',
+	TILE = 'TILE'
+}
 
 export enum ArticleBlockType {
 	CODE = 'CODE',
@@ -39,6 +44,7 @@ export interface ArticleSchema {
 	img: string;
 	views: number;
 	createdAt: string;
+	user: UserData;
 	type: Array<ArticleType>;
 	blocks: Array<ArticleBlock>;
 }

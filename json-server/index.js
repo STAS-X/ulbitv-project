@@ -8,7 +8,12 @@ const router = jsonServer.router(path.resolve(__dirname, 'db.json'), { foreignKe
 //router.db._.id = 'userId';
 
 server.use(jsonServer.defaults({}));
-server.use(jsonServer.rewriter({ '/comments/:id': '/comments?articleId=:id&_expand=user&_sort=id&_order=asc' }));
+server.use(
+	jsonServer.rewriter({
+		'/comments/:id': '/comments?articleId=:id&_expand=user&_sort=id&_order=asc',
+		'/articles/:id': '/articles?_expand=user'
+	})
+);
 server.use(jsonServer.bodyParser);
 
 // Нужно для небольшой задержки, чтобы запрос проходил не мгновенно, имитация реального апи

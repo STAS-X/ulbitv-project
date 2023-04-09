@@ -1,16 +1,36 @@
-import { StateSchema } from 'app/providers/StoreProvider';
-import { ArticleBlockType, ArticleType, ArticleSchema } from './../types/articleSchema';
-import { getArticleData, getArticleError, getArticleIsLoading } from './getArticleData';
-import { DeepPartial } from '@reduxjs/toolkit';
+import * as React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ArticleListProps, ArticleList } from './ArticleList';
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
+import { ArticleBlockType, ArticleSchema, ArticleType, ArticleView } from 'entities/Article/model/types/articleSchema';
 
-const articleData: ArticleSchema = {
+export default {
+	title: 'entities/Article/ArticleList',
+	component: ArticleList,
+	args: {
+		articles: Array.from({ length: 20 }, (_, index) => {
+			return { ...article, id: index + 1 } as ArticleSchema;
+		})
+	}
+} as ComponentMeta<typeof ArticleList>;
+
+const Template: ComponentStory<typeof ArticleList> = (args: ArticleListProps) => <ArticleList {...args} />;
+
+const article = {
 	id: 1,
 	title: 'Javascript news',
 	subtitle: 'Что нового в JS за 2022 год?',
 	img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
 	views: 1022,
 	createdAt: '26.02.2022',
-	user: { id: '1', username: 'QQQ', profileId: '1' },
+	user: {
+		id: '1',
+		username: '-XXX-',
+		avatar:
+			'https://bipbap.ru/wp-content/uploads/2021/07/unikal-nye-kartinki-na-avu-vk-i-odnoklassniki-samye-krasivye-2.jpg',
+		profileId: '1'
+	},
 	type: [ArticleType.IT],
 	blocks: [
 		{
@@ -46,7 +66,7 @@ const articleData: ArticleSchema = {
 		{
 			id: '3',
 			type: ArticleBlockType.CODE,
-			code: 'const path = require("path");\n\nconst server = jsonServer.create();\n\nconst router = jsonServer.router(path.resolve(__dirname, "db.json"));\n\nserver.use(jsonServer.defaults({}));\nserver.use(jsonServer.bodyParser);'
+			code: `const path = require('path');\n\nconst server = jsonServer.create();\n\nconst router = jsonServer.router(path.resolve(__dirname, 'db.json'));\n\nserver.use(jsonServer.defaults({}));\nserver.use(jsonServer.bodyParser);`
 		},
 		{
 			id: '7',
@@ -74,30 +94,33 @@ const articleData: ArticleSchema = {
 	]
 };
 
-const articleOptions = {
-	isLoading: true,
-	error: undefined
+export const ArticleListEmpty = Template.bind({});
+ArticleListEmpty.args = {
+	children: 'Text primary',
+	articles: []
 };
 
-describe('getArticleData', () => {
-	test('should return profile data', () => {
-		const state: DeepPartial<StateSchema> = {
-			articleDetailes: { data: articleData ?? {}, ...articleOptions }
-		};
-		expect(getArticleData(state as StateSchema)).toEqual(articleData);
-	});
+export const ArticleListTile = Template.bind({});
+ArticleListTile.args = {
+	children: 'Text primary',
+	view: ArticleView.TILE
+};
 
-	test('should return larticle oading status', () => {
-		const state: DeepPartial<StateSchema> = {
-			articleDetailes: { ...articleOptions }
-		};
-		expect(getArticleIsLoading(state as StateSchema)).toEqual(true);
-	});
+export const ArticleListLoading = Template.bind({});
+ArticleListLoading.args = {
+	children: 'Text primary',
+	isLoading: true
+};
 
-	test('should return error message', () => {
-		const state: DeepPartial<StateSchema> = {
-			articleDetailes: { ...articleOptions }
-		};
-		expect(getArticleError(state as StateSchema)).toEqual(undefined);
-	});
-});
+export const ArticleListListDark = Template.bind({});
+ArticleListListDark.args = {
+	children: 'Text secondary'
+};
+ArticleListListDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const ArticleListTileDark = Template.bind({});
+ArticleListTileDark.args = {
+	children: 'Text secondary',
+	view: ArticleView.TILE
+};
+ArticleListTileDark.decorators = [ThemeDecorator(Theme.DARK)];

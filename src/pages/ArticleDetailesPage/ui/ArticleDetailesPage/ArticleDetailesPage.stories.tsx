@@ -48,6 +48,7 @@ ArticleDetailesPageWithStoreDark.decorators = [
 				img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
 				views: 1022,
 				createdAt: '26.02.2022',
+				user: { id: '1', username: 'QWERTY', profileId: '1' },
 				type: [ArticleType.IT],
 				blocks: [
 					{

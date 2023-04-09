@@ -1,4 +1,4 @@
-export { ArticleSchema } from './model/types/articleSchema';
+export { ArticleSchema, ArticleBlockType, ArticleView } from './model/types/articleSchema';
 export { ArticleDetailesSchema } from './model/types/articleDetailesSchema';
 export { getArticleData, getArticleError, getArticleIsLoading } from './model/selectors/getArticleData';
 export { articleDetailsActions, articleDetailsReducer } from './model/slices/articleSlice';

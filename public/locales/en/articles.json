@@ -1,3 +1,6 @@
 {
-	"article": "Article Page"
+	"article": "Article Page",
+	"noArticles": "Articles not found",
+	"readMore": "Read more",
+	"backToList": "Back to list"
 }
