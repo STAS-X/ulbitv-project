@@ -3,11 +3,10 @@ import {
 	ArticleCodeBlockComponent,
 	ArticleImageBlockComponent,
 	ArticleTextBlockComponent,
-	getArticleData,
 	getArticleError,
-	getArticleIsLoading
+	getArticleIsLoading,
+	getArticleData
 } from 'entities/Article';
-import { fetchArticleById } from 'entities/Article/model/services/fetchArticleById';
 import { articleDetailsReducer } from 'entities/Article/model/slices/articleSlice';
 import { FC, memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -22,6 +21,7 @@ import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { ArticleBlock, ArticleBlockType } from 'entities/Article/model/types/articleSchema';
+import { fetchArticleById } from '../../model/services/fetchArticleById';
 
 const redusers: ReducerList = {
 	articleDetailes: articleDetailsReducer
@@ -33,13 +33,13 @@ export interface ArticleDetailesProps {
 }
 
 export const ArticleDetailes: FC<ArticleDetailesProps> = memo((props: ArticleDetailesProps) => {
-	const { articleId, className } = props;
+	const { articleId = '', className } = props;
 	const dispatch = useAppDispatch();
 	const { t } = useTranslation(['articles', 'errors']);
 
-	const articleData = useSelector(getArticleData);
 	const error = useSelector(getArticleError);
 	const isLoading = useSelector(getArticleIsLoading);
+	const articleData = useSelector(getArticleData);
 
 	const renderBlock = useCallback((block: ArticleBlock) => {
 		switch (block.type) {
@@ -59,15 +59,15 @@ export const ArticleDetailes: FC<ArticleDetailesProps> = memo((props: ArticleDet
 	};
 
 	useEffect(() => {
+		console.log(articleData, articleId, 'get data from articleDetailes');
+	}, [articleData, articleId]);
+
+	useEffect(() => {
 		const fetchArticle = async () => {
 			if (_PROJECT_ !== 'storybook') await dispatch(fetchArticleById({ articleId }));
 		};
 		void fetchArticle();
 	}, [dispatch, articleId]);
-
-	useEffect(() => {
-		if (articleData) console.log(articleData, `get article ${articleData?.id} data`);
-	}, [articleData]);
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
@@ -89,27 +89,29 @@ export const ArticleDetailes: FC<ArticleDetailesProps> = memo((props: ArticleDet
 						<Skeleton className={classes.skeleton} width={'100%'} height={160} />
 					</div>
 				) : (
-					<>
-						<div className={classes.avatarwrapper}>
-							<Avatar size={200} src={articleData?.img} className={classes.avatar} />
-						</div>
+					articleData && (
+						<>
+							<div className={classes.avatarwrapper}>
+								<Avatar size={200} src={articleData.img} className={classes.avatar} />
+							</div>
 
-						<Text
-							className={classes.title}
-							title={articleData?.title}
-							content={articleData?.subtitle}
-							size={TextSize.L}
-						/>
-						<div className={classes.articleinfo}>
-							<Icon Svg={EyeIcon} className={classes.icon} />
-							<Text content={String(articleData?.views)} />
-						</div>
-						<div className={classes.articleinfo}>
-							<Icon Svg={CalendarIcon} className={classes.icon} />
-							<Text content={articleData?.createdAt} />
-						</div>
-						{articleData?.blocks.map(renderBlock)}
-					</>
+							<Text
+								className={classes.title}
+								title={articleData.title}
+								content={articleData.subtitle}
+								size={TextSize.L}
+							/>
+							<div className={classes.articleinfo}>
+								<Icon Svg={EyeIcon} className={classes.icon} />
+								<Text content={String(articleData.views)} />
+							</div>
+							<div className={classes.articleinfo}>
+								<Icon Svg={CalendarIcon} className={classes.icon} />
+								<Text content={articleData.createdAt} />
+							</div>
+							{articleData.blocks?.map(renderBlock)}
+						</>
+					)
 				)}
 			</div>
 		</DynamicModuleLoader>

@@ -1,4 +1,3 @@
-import { StateSchema } from './../../../../../app/providers/StoreProvider/config/StateSchema';
 import { validateProfileData } from './../validateProfile/validateProfile';
 import { ProfileData } from '../../types/profileSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';

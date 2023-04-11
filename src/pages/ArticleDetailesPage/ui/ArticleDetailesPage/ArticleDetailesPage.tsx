@@ -2,7 +2,7 @@ import { FC, memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ArticleDetailes } from 'entities/Article';
+import { ArticleDetailes, ArticleSchema } from 'entities/Article';
 import { CommentList, CommentSchema } from 'entities/Comment';
 import { Text } from 'shared/ui/Text/Text';
 import classes from './ArticleDetailesPage.module.scss';
@@ -35,8 +35,6 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 	const isLoading = useSelector(getArticleCommentsIsLoading);
 	const sendCommentForArticle = useFetchCommentForArticle();
 	const dispatch = useAppDispatch();
-
-	console.log(comments, isLoading, 'get comments data');
 
 	const navigateToList = useCallback(() => {
 		navigate(`/${AppRoutes.ARTICLES}`);

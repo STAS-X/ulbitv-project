@@ -11,7 +11,8 @@ server.use(jsonServer.defaults({}));
 server.use(
 	jsonServer.rewriter({
 		'/comments/:id': '/comments?articleId=:id&_expand=user&_sort=id&_order=asc',
-		'/articles/:id': '/articles?_expand=user'
+		'/articles/:id': '/articles/:id?_expand=user',
+		'/articles': '/articles?_expand=user'
 	})
 );
 server.use(jsonServer.bodyParser);

@@ -1,3 +1,4 @@
+import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { AddCommentFormSchema } from 'features/AddCommentForm/model/types/addCommentForm';
 import { LoginSchema } from 'features/AuthByUserName';
 import { UserSchema } from 'entities/User';
@@ -18,6 +19,7 @@ export interface StateSchema {
 	articleDetailes?: ArticleDetailesSchema;
 	articleDetailesComments?: ArticleDetailesCommentsSchema;
 	addCommentForm?: AddCommentFormSchema;
+	articlesPage?: ArticlesPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

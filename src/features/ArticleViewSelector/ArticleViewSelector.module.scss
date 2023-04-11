@@ -1,0 +1,13 @@
+.selector {
+	svg > path {
+		fill: var(--secondary-color);
+		stroke: var(--secondary-color);
+	}
+}
+
+.selected {
+	svg > path {
+		fill: var(--primary-color);
+		stroke: var(--primary-color);
+	}
+}

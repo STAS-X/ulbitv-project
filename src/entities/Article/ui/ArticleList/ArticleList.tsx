@@ -22,11 +22,12 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 	const { t } = useTranslation(['articles']);
 	const navigate = useNavigate();
 	const renderArticles = (article: ArticleSchema) => {
+		console.log(article, 'get article data by article list');
 		return <ArticleListItem key={article.id} article={article} view={view} navigateTo={onOpenArticle} />;
 	};
 
-	const renderSkeletons = (article: ArticleSchema) => {
-		return <ArticleListItemSkeleton key={article.id} view={view} />;
+	const renderSkeletons = (skeleton: { id: number }) => {
+		return <ArticleListItemSkeleton key={skeleton.id} view={view} />;
 	};
 
 	const onOpenArticle = useCallback(
@@ -39,7 +40,9 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 	if (isLoading) {
 		return (
 			<div className={classNames(classes.articlelist, {}, [className])}>
-				{articles.length ? articles.map((article) => renderSkeletons(article)) : <Text content={t('noArticles')} />}
+				{Array.from({ length: 10 }, (_, index) => {
+					return { id: index + 1 };
+				}).map((skeleton) => renderSkeletons(skeleton))}
 			</div>
 		);
 	}

@@ -23,32 +23,42 @@ import resourcesToBackend from 'i18next-resources-to-backend';
 // 		pages: pagesEN,
 // 	},
 // };
-i18n
-	.use(Backend)
-	.use(LanguageDetector)
-	.use(initReactI18next)
-	.use(
-		resourcesToBackend(
-			(language: string, namespace: string) => import(`../../../../public/locales/${language}/${namespace}.json`)
+const initI18n = async () => {
+	await i18n
+		.use(Backend)
+		.use(LanguageDetector)
+		.use(initReactI18next)
+		.use(
+			resourcesToBackend(
+				(language: string, namespace: string) => import(`../../../../public/locales/${language}/${namespace}.json`)
+			)
 		)
-	)
-	.init({
-		fallbackLng: 'ru',
-		react: {
-			useSuspense: false
-		},
-		//resources,
-		debug: _DEV_MODE_,
-		// have a common namespace used around the full app
-		partialBundledLanguages: true,
-		ns: [],
-		resources: {},
-		interpolation: {
-			escapeValue: false // not needed for react as it escapes by default
-		},
-		backend: {
-			loadPath: '/locales/{{lng}}/{{ns}}.json'
-		}
-	});
+		.init(
+			{
+				fallbackLng: 'ru',
+				react: {
+					useSuspense: false
+				},
+				//resources,
+				debug: _DEV_MODE_,
+				// have a common namespace used around the full app
+				partialBundledLanguages: true,
+				ns: [],
+				resources: {},
+				interpolation: {
+					escapeValue: false // not needed for react as it escapes by default
+				},
+				backend: {
+					loadPath: '/locales/{{lng}}/{{ns}}.json'
+				}
+			},
+			(err) => {
+				if (err) {
+					console.log(err, 'error occured');
+				} else console.log('init completed');
+			}
+		);
+	return i18n;
+};
 
-export default i18n;
+export default initI18n();
