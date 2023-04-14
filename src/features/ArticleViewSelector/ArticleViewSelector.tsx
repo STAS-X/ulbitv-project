@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleView } from '../../entities/Article';
 import classes from './ArticleViewSelector.module.scss';
 import ListIcon from 'shared/assets/icons/list-24-24.svg';
@@ -22,7 +22,7 @@ export const ArticleViewSelector: FC<ArticleViewSelectorProps> = (props: Article
 	const { className, view, onViewClick } = props;
 
 	const handleChangeView = (newView: ArticleView) => () => {
-		if (onViewClick) onViewClick(newView);
+		if (onViewClick && newView !== view) onViewClick(newView);
 	};
 
 	return (

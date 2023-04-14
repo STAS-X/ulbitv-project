@@ -1,6 +1,8 @@
 const fs = require('fs');
 const jsonServer = require('json-server');
 const path = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const cors = require('cors');
 
 const server = jsonServer.create();
 
@@ -11,8 +13,7 @@ server.use(jsonServer.defaults({}));
 server.use(
 	jsonServer.rewriter({
 		'/comments/:id': '/comments?articleId=:id&_expand=user&_sort=id&_order=asc',
-		'/articles/:id': '/articles/:id?_expand=user',
-		'/articles': '/articles?_expand=user'
+		'/articles/:id': '/articles/:id?_expand=user'
 	})
 );
 server.use(jsonServer.bodyParser);
@@ -56,6 +57,17 @@ server.use((req, res, next) => {
 });
 
 server.use(router);
+// cors C-TOTAL-COUNT from json-server
+server.use(
+	cors({
+		origin: true,
+		credentials: true,
+		preflightContinue: false,
+		methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+	})
+);
+server.options('*', cors());
+
 // запуск сервера
 server.listen(8000, () => {
 	console.log('server is running on 8000 port');

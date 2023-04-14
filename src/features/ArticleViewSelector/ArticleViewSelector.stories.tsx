@@ -18,19 +18,17 @@ const Template: ComponentStory<typeof ArticleViewSelector> = (args: ArticleViewS
 
 export const ArticleViewSelectorPrimary = Template.bind({});
 ArticleViewSelectorPrimary.args = {
-	children: 'Text primary',
-	theme: 'Primary'
+	children: 'Text primary'
 };
 
 export const ArticleViewSelectorSecondary = Template.bind({});
 ArticleViewSelectorSecondary.args = {
-	children: 'Text secondary',
-	theme: 'Secondary'
+	children: 'Text secondary'
 };
 
 export const ArticleViewSelectorSecondaryDark = Template.bind({});
 ArticleViewSelectorSecondaryDark.args = {
-	children: 'Text secondary',
-	theme: 'Secondary'
+	children: 'Text secondary'
 };
+
 ArticleViewSelectorSecondaryDark.decorators = [ThemeDecorator(Theme.DARK)];

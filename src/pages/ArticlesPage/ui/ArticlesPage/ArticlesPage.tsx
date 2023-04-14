@@ -7,9 +7,16 @@ import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicM
 import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
 import { articlesPageReducer, getArticlesPage, articlesPageActions } from '../../model/slices/articlePageSlice';
 import classes from './ArticlesPage.module.scss';
-import { getArticlesPageIsLoading, getArticlesPageView } from '../../model/selectors/getArticlesPageData';
-import { fetchArticlesList } from '../../model/services/fetchArticesList/fetchArticlesList';
+import {
+	getArticlesPageHasMore,
+	getArticlesPageIsLoading,
+	getArticlesPageLimit,
+	getArticlesPageTotal,
+	getArticlesPageView
+} from '../../model/selectors/getArticlesPageData';
 import { ArticleViewSelector } from 'features/ArticleViewSelector/ArticleViewSelector';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 
 export interface ArticlesPageProps {
 	className?: string;
@@ -24,16 +31,28 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 
 	const dispatch = useAppDispatch();
 	const isLoading = useSelector(getArticlesPageIsLoading);
+	const hasMore = useSelector(getArticlesPageHasMore);
 	const view = useSelector(getArticlesPageView);
+	const total = useSelector(getArticlesPageTotal);
 	const articles = useSelector<StateSchema, ArticleSchema[]>(getArticlesPage.selectAll);
+	const limit = useSelector(getArticlesPageLimit);
+	const currentLimit = Math.min(limit, articles?.length > 0 && total > 0 ? total - articles.length : limit);
+
+	const onLoadNextArticlesPage = useCallback(async () => {
+		if (_PROJECT_ !== 'storybook' && !isLoading && hasMore) await dispatch(fetchNextArticlesPage());
+	}, [dispatch, isLoading, hasMore]);
+
+	// const fetchArticlesPage = useCallback(async () => {
+	// 	if (page === 0 && hasMore) {
+	// 		dispatch(articlesPageActions.initState());
+	// 		await onLoadNextArticlesPage();
+	// 	}
+	// }, [dispatch, onLoadNextArticlesPage, hasMore, page]);
 
 	useEffect(() => {
-		const fetchArticlesPage = async () => {
-			if (_PROJECT_ !== 'storybook') await dispatch(fetchArticlesList());
-			dispatch(articlesPageActions.initState());
-		};
-		void fetchArticlesPage();
+		dispatch(articlesPageActions.initState());
 	}, [dispatch]);
+	console.log(isLoading, 'get loading status');
 
 	const handleChangeView = useCallback(
 		(newView: ArticleView) => {
@@ -44,14 +63,21 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-			<div className={classNames(classes.articlespage, {}, [className])}>
+			<PageWrapper className={classNames(classes.articlespage, {}, [className])}>
 				<div className={classes.header}>
-					<ArticleViewSelector view={view ?? ArticleView.LIST} onViewClick={handleChangeView} />
+					<ArticleViewSelector view={view} onViewClick={handleChangeView} />
 				</div>
 				<div className={classes.articlelist}>
-					<ArticleList view={view} isLoading={isLoading} articles={articles} />
+					<ArticleList
+						view={view}
+						isLoading={isLoading}
+						hasMore={hasMore}
+						limit={currentLimit}
+						articles={articles}
+						onLoadNext={onLoadNextArticlesPage}
+					/>
 				</div>
-			</div>
+			</PageWrapper>
 		</DynamicModuleLoader>
 	);
 });

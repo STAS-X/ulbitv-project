@@ -37,11 +37,11 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 	}, [dispatch]);
 
 	return (
-		<div className={classNames(classes.navbar, {}, [className])}>
+		<header className={classNames(classes.navbar, {}, [className])}>
 			<Button theme={ButtonTheme.INVERTED} className={classes.links} onClick={userdata ? setLogOut : showAuthModal}>
 				{t(userdata ? 'logout' : 'login')}
 			</Button>
 			<LoginModal isOpen={isAuthModal} onClose={closeAuthModal} />
-		</div>
+		</header>
 	);
 });

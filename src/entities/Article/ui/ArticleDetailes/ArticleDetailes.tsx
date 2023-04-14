@@ -59,10 +59,6 @@ export const ArticleDetailes: FC<ArticleDetailesProps> = memo((props: ArticleDet
 	};
 
 	useEffect(() => {
-		console.log(articleData, articleId, 'get data from articleDetailes');
-	}, [articleData, articleId]);
-
-	useEffect(() => {
 		const fetchArticle = async () => {
 			if (_PROJECT_ !== 'storybook') await dispatch(fetchArticleById({ articleId }));
 		};

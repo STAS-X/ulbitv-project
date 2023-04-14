@@ -3,7 +3,12 @@ export { ArticlesPageLazy as ArticlesPage } from './ui/ArticlesPage/ArticlesPage
 export {
 	getArticlesPageIsLoading,
 	getArticlesPageError,
-	getArticlesPageView
+	getArticlesPageView,
+	getArticlesPageNumber,
+	getArticlesPageLimit,
+	getArticlesPageTotal,
+	getArticlesPageHasMore
 } from './model/selectors/getArticlesPageData';
 export { getArticlesPage } from './model/slices/articlePageSlice';
 export { fetchArticlesList } from './model/services/fetchArticesList/fetchArticlesList';
+export { fetchNextArticlesPage } from './model/services/fetchNextArticlesPage/fetchNextArticlesPage';

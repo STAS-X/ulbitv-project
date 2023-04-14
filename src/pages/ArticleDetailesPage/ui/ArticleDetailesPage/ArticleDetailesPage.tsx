@@ -17,6 +17,7 @@ import AddCommentForm from 'features/AddCommentForm/ui/AddCommentForm/AddComment
 import { useFetchCommentForArticle } from '../../model/services/fetchCommentForArticle/fetchCommentForArticle';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 
 export interface ArticleDetailesPageProps {
 	className?: string;
@@ -51,7 +52,7 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<div className={classNames(classes.articledetailespage, {}, [className])}>
+			<PageWrapper className={classNames(classes.articledetailespage, {}, [className])}>
 				<Button theme={ButtonTheme.OUTLINE} onClick={navigateToList}>
 					{t('backToList', { ns: 'articles' })}
 				</Button>
@@ -59,7 +60,7 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 				<Text className={classes.commentTitle} title={t('commentForm')} />
 				<AddCommentForm onSendComment={sendCommentForArticle} />
 				<CommentList isLoading={isLoading} comments={comments} />
-			</div>
+			</PageWrapper>
 		</DynamicModuleLoader>
 	);
 });

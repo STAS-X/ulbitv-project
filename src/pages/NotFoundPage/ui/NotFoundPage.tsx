@@ -2,6 +2,7 @@ import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import classes from './NotFoundPage.module.scss';
 
 interface NotFoundPageProps {
@@ -13,8 +14,8 @@ export const NotFoundPage: FC<NotFoundPageProps> = memo<NotFoundPageProps>(({ cl
 	const { pathname: pageName } = useLocation();
 
 	return (
-		<div className={classNames(classes.notfoundpage, {}, [className ?? ''])}>
+		<PageWrapper className={classNames(classes.notfoundpage, {}, [className ?? ''])}>
 			{t('Page not found', { pageName: pageName.replace('/', '') })}
-		</div>
+		</PageWrapper>
 	);
 });

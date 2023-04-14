@@ -1,7 +1,6 @@
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
 	fetchProfileData,
@@ -20,7 +19,8 @@ import { ProfileFieldType } from 'entities/Profile/ui/ProfileCard/ProfileCard';
 import { Currency } from 'entities/Currency/model/types/currency';
 import { Country } from 'entities/Country/model/types/country';
 import { useParams } from 'react-router-dom';
-import { getUserData } from '../../../entities/User';
+import { getUserData } from 'entities/User';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 //import classes from './ProfilePage.module.scss';
 
 const redusers: ReducerList = {
@@ -127,7 +127,7 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<div className={classNames('', {})}>
+			<PageWrapper>
 				<ProfilePageHeader isDirty={isDirty} isEdit={userData?.profileId === profileId} />
 				<ProfileCard
 					data={formData}
@@ -136,7 +136,7 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 					readonly={readonly}
 					onChangeProfileFields={onChangeProfileForm}
 				/>
-			</div>
+			</PageWrapper>
 		</DynamicModuleLoader>
 	);
 });
