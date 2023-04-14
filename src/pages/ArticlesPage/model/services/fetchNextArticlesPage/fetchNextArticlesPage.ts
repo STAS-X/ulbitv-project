@@ -13,7 +13,8 @@ export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArti
 	const count = getArticlesPage.selectTotal(getState());
 	const hasMore = getArticlesPageHasMore(getState());
 	if (!hasMore) return [];
-	console.log(count, page, limit, hasMore, 'get state data');
+	console.log(limit, page, count, hasMore, getState().articlesPage, 'get state data');
+	//console.log(count, page, limit, hasMore, 'get state data');
 
 	try {
 		const response = await extra.api.get<ArticleSchema[]>('/articles', {
@@ -25,7 +26,7 @@ export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArti
 		});
 
 		if (!response.data) {
-			throw new Error('error');
+			throw new Error('error occured');
 		}
 
 		if (response.headers['x-total-count']) {
