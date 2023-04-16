@@ -8,16 +8,19 @@ import 'app/styles/index.scss';
 // import i18n (needs to be bundled ;))
 import 'shared/config/i18n/i18n';
 import { StoreProvider } from './app/providers/StoreProvider';
+import RouterUtils from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
 
 render(
 	<BrowserRouter>
-		<StoreProvider>
-			<ThemeProvider>
-				<ErrorBoundary>
-					<App />
-				</ErrorBoundary>
-			</ThemeProvider>
-		</StoreProvider>
+		<RouterUtils>
+			<StoreProvider>
+				<ThemeProvider>
+					<ErrorBoundary>
+						<App />
+					</ErrorBoundary>
+				</ThemeProvider>
+			</StoreProvider>
+		</RouterUtils>
 	</BrowserRouter>,
 	document.getElementById('story-root')
 );

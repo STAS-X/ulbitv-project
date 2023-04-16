@@ -13,7 +13,6 @@ export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArti
 	const count = getArticlesPage.selectTotal(getState());
 	const hasMore = getArticlesPageHasMore(getState());
 	if (!hasMore) return [];
-	console.log(limit, page, count, hasMore, getState().articlesPage, 'get state data');
 	//console.log(count, page, limit, hasMore, 'get state data');
 
 	try {

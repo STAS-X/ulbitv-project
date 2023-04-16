@@ -40,7 +40,7 @@ const initI18n = async () => {
 					useSuspense: false
 				},
 				//resources,
-				debug: _DEV_MODE_,
+				debug: false, //_DEV_MODE_,
 				// have a common namespace used around the full app
 				partialBundledLanguages: true,
 				ns: [],

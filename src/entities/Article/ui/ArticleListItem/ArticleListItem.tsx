@@ -34,7 +34,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 	if (view === ArticleView.LIST) {
 		const textBlock = article.blocks.find((block) => block.type === ArticleBlockType.TEXT) as ArticleTextBlock;
 		return (
-			<div className={classNames('', {}, [className, classes[view]])}>
+			<div className={classNames('article_list_item', {}, [className, classes[view]])} id={String(article.id)}>
 				<Card className={classes.card}>
 					<div className={classes.header}>
 						<Avatar size={30} src={article.user.avatar} />

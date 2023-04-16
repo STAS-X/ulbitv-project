@@ -1,6 +1,6 @@
+import { useLocation } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import classes from './NotFoundPage.module.scss';

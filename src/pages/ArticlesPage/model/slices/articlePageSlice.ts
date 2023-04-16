@@ -33,6 +33,8 @@ const articlesPageSlice = createSlice({
 		total: 0,
 		limit: 5,
 		hasMore: true,
+		scrollTo: '',
+		_inited: false,
 		ids: [],
 		entities: {}
 	}),
@@ -47,13 +49,18 @@ const articlesPageSlice = createSlice({
 		setTotal: (state, action: PayloadAction<number>) => {
 			state.total = action.payload;
 		},
+		setScrollToArticleId: (state, action: PayloadAction<string>) => {
+			state.scrollTo = action.payload;
+			//localStorage.setItem(ARTICLE_SCROLL_TOP, String(action.payload));
+		},
 		setHasMore: (state, action: PayloadAction<boolean>) => {
 			state.hasMore = action.payload;
-			console.log(action.payload, 'new hasMore');
+			//console.log(action.payload, 'new hasMore');
 		},
 		initState: (state) => {
 			state.view = initView();
 			state.limit = state.view === ArticleView.LIST ? 5 : 10;
+			state._inited = true;
 		}
 	},
 	extraReducers: (builder) => {

@@ -1,7 +1,7 @@
 import { ReducersMapObject } from '@reduxjs/toolkit';
+import { useNavigate } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
 import { FC, ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { $apiAxios } from 'shared/api/api';
 import { StateSchema } from '../config/StateSchema';
 import { createReduxStore } from '../config/store';
@@ -14,6 +14,7 @@ export interface StoreProviderProps {
 
 export const StoreProvider: FC<StoreProviderProps> = (props) => {
 	const { children, initialState, asyncReducers } = props;
+	// useRef retains object reference between re-renders
 	const navigate = useNavigate();
 	const api = $apiAxios;
 

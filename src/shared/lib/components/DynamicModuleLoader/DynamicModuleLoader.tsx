@@ -17,7 +17,7 @@ export type ReducerList = {
 };
 
 export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
-	const { children, reducers, removeAfterUnmount = true } = props;
+	const { children, reducers, removeAfterUnmount = false } = props;
 
 	const dispatch = useAppDispatch();
 	const store = useStore() as AppStoreWithReducerManager;
@@ -25,7 +25,9 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
 	useEffect(() => {
 		console.log('mound dynamic module');
 		Object.entries(reducers).forEach(([name, reducer]) => {
+			//console.log(Object.keys(store.reducerManager.getReducerMap()).length, 'reducers count before add');
 			store.reducerManager.add(name as StateSchemaKey, reducer);
+			//console.log(Object.keys(store.reducerManager.getReducerMap()).length, 'reducers count after add');
 			dispatch({ type: `@@INIT ${name}` });
 		});
 		return () => {

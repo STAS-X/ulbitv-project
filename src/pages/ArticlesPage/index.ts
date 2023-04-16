@@ -7,7 +7,9 @@ export {
 	getArticlesPageNumber,
 	getArticlesPageLimit,
 	getArticlesPageTotal,
-	getArticlesPageHasMore
+	getArticlesPageHasMore,
+	getArticlesPageScrollToArticleId,
+	getArticlesPageInited
 } from './model/selectors/getArticlesPageData';
 export { getArticlesPage } from './model/slices/articlePageSlice';
 export { fetchArticlesList } from './model/services/fetchArticesList/fetchArticlesList';

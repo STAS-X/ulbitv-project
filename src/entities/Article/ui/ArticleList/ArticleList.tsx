@@ -1,5 +1,5 @@
 import { ArticleSchema, ArticleView } from 'entities/Article';
-import { FC, memo, useCallback } from 'react';
+import { FC, memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
