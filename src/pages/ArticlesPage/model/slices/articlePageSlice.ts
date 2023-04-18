@@ -33,7 +33,7 @@ const articlesPageSlice = createSlice({
 		total: 0,
 		limit: 5,
 		hasMore: true,
-		scrollTo: '',
+		scrollTo: 0,
 		_inited: false,
 		ids: [],
 		entities: {}
@@ -49,7 +49,7 @@ const articlesPageSlice = createSlice({
 		setTotal: (state, action: PayloadAction<number>) => {
 			state.total = action.payload;
 		},
-		setScrollToArticleId: (state, action: PayloadAction<string>) => {
+		setScrollToArticleId: (state, action: PayloadAction<number>) => {
 			state.scrollTo = action.payload;
 			//localStorage.setItem(ARTICLE_SCROLL_TOP, String(action.payload));
 		},

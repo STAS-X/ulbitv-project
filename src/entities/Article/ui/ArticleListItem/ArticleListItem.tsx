@@ -1,5 +1,5 @@
 import { ArticleSchema, ArticleTextBlockComponent, ArticleBlockType, ArticleView } from 'entities/Article';
-import { FC, memo } from 'react';
+import { FC, memo, MutableRefObject, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './ArticleListItem.module.scss';
@@ -15,13 +15,15 @@ export interface ArticleListItemProps {
 	className?: string;
 	article: ArticleSchema;
 	view: ArticleView;
+	scrollingTo?: (article: HTMLDivElement, id: number) => void;
 	navigateTo?: (id: number) => void;
 }
 
 export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleListItemProps) => {
-	const { article, view, navigateTo, className } = props;
+	const { article, view, scrollingTo, navigateTo, className } = props;
 	const { t } = useTranslation(['articles']);
 	//const [isHover, bindHover] = useHover();
+	const articleParent = useRef<HTMLDivElement>(null);
 
 	const types = <Text content={article.type.join(',')} className={classes.types} />;
 	const views = (
@@ -31,10 +33,20 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 		</>
 	);
 
+	useEffect(() => {
+		// После подгрузки статьи запускаем функцию скролла к последней просмотренной статье
+		if (scrollingTo && articleParent.current) scrollingTo(articleParent.current, Number(article.id));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [articleParent]);
+
 	if (view === ArticleView.LIST) {
 		const textBlock = article.blocks.find((block) => block.type === ArticleBlockType.TEXT) as ArticleTextBlock;
 		return (
-			<div className={classNames('article_list_item', {}, [className, classes[view]])} id={String(article.id)}>
+			<div
+				ref={articleParent}
+				className={classNames('article_list_item', {}, [className, classes[view]])}
+				id={String(article.id)}
+			>
 				<Card className={classes.card}>
 					<div className={classes.header}>
 						<Avatar size={30} src={article.user.avatar} />
@@ -63,7 +75,11 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 	}
 
 	return (
-		<div className={classNames('', {}, [className, classes[view]])}>
+		<div
+			ref={articleParent}
+			className={classNames('article_list_item', {}, [className, classes[view]])}
+			id={String(article.id)}
+		>
 			<Card
 				className={classes.card}
 				onClick={() => {

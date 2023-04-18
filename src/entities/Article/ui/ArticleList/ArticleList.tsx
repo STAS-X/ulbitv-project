@@ -17,16 +17,34 @@ export interface ArticleListProps {
 	hasMore?: boolean;
 	limit?: number;
 	view?: ArticleView;
+	onInitScroll?: (article: HTMLDivElement, id: number) => void;
 	onLoadNext?: () => void;
 }
 
 export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) => {
-	const { articles, isLoading, hasMore, limit = 1, view = ArticleView.LIST, onLoadNext, className } = props;
+	const {
+		articles,
+		isLoading,
+		hasMore,
+		limit = 1,
+		view = ArticleView.LIST,
+		onInitScroll,
+		onLoadNext,
+		className
+	} = props;
 
 	const { t } = useTranslation(['articles']);
 	const navigate = useNavigate();
 	const renderArticles = (article: ArticleSchema) => {
-		return <ArticleListItem key={article.id} article={article} view={view} navigateTo={onOpenArticle} />;
+		return (
+			<ArticleListItem
+				key={article.id}
+				article={article}
+				view={view}
+				scrollingTo={onInitScroll}
+				navigateTo={onOpenArticle}
+			/>
+		);
 	};
 
 	const renderSkeletons = (skeleton: { id: number }) => {

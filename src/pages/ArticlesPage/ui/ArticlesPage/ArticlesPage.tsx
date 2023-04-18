@@ -49,7 +49,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	//  );
 
 	// debounce scroll articles
-	const [scrollArticleId, setScrollArticleId] = useState('');
+	const [scrollArticleId, setScrollArticleId] = useState(0);
 	// onload status div wrapper-page element
 	const [scrolledWrapper, setScrolledWrapper] = useState(false);
 
@@ -58,8 +58,8 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	const handleScrollToState = useCallback(
 		(value: string | number) => {
 			if (scrolledWrapper) {
-				dispatch(articlesPageActions.setScrollToArticleId(String(value)));
-				console.log(value, 'new articleId to scroll');
+				dispatch(articlesPageActions.setScrollToArticleId(Number(value)));
+				//console.log(value, 'new articleId to scroll');
 			}
 		},
 		[dispatch, scrolledWrapper]
@@ -83,60 +83,55 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 		(event: Event) => {
 			if (event.target) {
 				const target = event.target as HTMLDivElement;
-
 				const wrapperHeight = target.getBoundingClientRect().height;
 				const articles = target.querySelectorAll(ARTICLE_ITEM_SELECTOR);
-				let articleIdToScroll = '';
-				articles.forEach((article, index) => {
-					if (article.getBoundingClientRect().bottom - 50 <= wrapperHeight) {
-						//console.log(article.getBoundingClientRect().bottom, wrapperHeight, index, article.id, 'get article data');
-						//console.log(`article ${index}  ${article.id} in viewport`);
-						if (index > 0) articleIdToScroll = article.id;
+				let scrollBaseTop = 0;
+				let newScrollArticleId = -1;
+				articles.forEach((article: Element | HTMLElement, index) => {
+					if (newScrollArticleId > -1) return;
+					if (index === 0) scrollBaseTop = article.getBoundingClientRect().top;
+					if (
+						article.getBoundingClientRect().top - 50 >= 0 &&
+						article.getBoundingClientRect().bottom - 50 <= wrapperHeight &&
+						article.getBoundingClientRect().top >= scrollBaseTop
+					) {
+						if (Number(article.id) !== scrollArticleId) {
+							//console.log(`${article.getBoundingClientRect().top} ${article.getBoundingClientRect().bottom} ${index}`);
+							//console.log(`article new ${index === 0 ? 0 : article.id} old ${scrollArticleId}`);
+							newScrollArticleId = index === 0 ? 0 : Number(article.id);
+							return;
+						}
 					}
 				});
-
-				//console.log(`article new ${articleIdToScroll} old ${scrollArticleId}`);
-				if (articleIdToScroll !== scrollArticleId) {
-					console.log(`article new ${articleIdToScroll} old ${scrollArticleId}`);
-					setScrollArticleId(articleIdToScroll);
-				}
+				if (newScrollArticleId > -1) setScrollArticleId(newScrollArticleId);
 			}
 		},
 		[setScrollArticleId, scrollArticleId]
 	);
 
-	// Функция иницализации первичного скролла на статью с id - scrollTo после onmount
-	const initScrollWrapper = (wrapperElement: HTMLDivElement | null) => {
-		if (scrolledWrapper || !wrapperElement || !scrollTo) {
-			if (!scrolledWrapper) setScrolledWrapper(true);
-			return;
-		}
-		const nodeArray: HTMLDivElement[] = Array.from(wrapperElement.querySelectorAll(`${ARTICLE_ITEM_SELECTOR}`));
-
-		if (nodeArray.length === 0) {
-			setTimeout(() => initScrollWrapper(wrapperElement), DEBOUNCE_DELAY);
-		} else {
-			nodeArray.forEach((article) => {
-				if (article.id === '3') {
-					console.log(article.id, scrollTo, 'get article data');
-					//wrapperElement.scrollTo({ top: article.getBoundingClientRect().top, behavior: 'smooth' });
+	// Функция иницализации первичного скролла на статью после завершения onmount элемента статьи article
+	const initScrollWrapper = useCallback(
+		(article: HTMLDivElement, articleId: number) => {
+			if (!scrolledWrapper && articleId === scrollTo) {
+				setTimeout(() => {
 					article.scrollIntoView({
 						block: 'center',
 						behavior: 'smooth'
 					});
-				}
-			});
-			setScrolledWrapper(true);
-			console.log('scrolling loaded and finish');
-		}
-	};
+					setScrolledWrapper(true);
+				}, DEBOUNCE_DELAY);
+				console.log('scrolling loaded and finish');
+			}
+		},
+		[scrolledWrapper, scrollTo]
+	);
 
 	// Добавление функции слежения за скролом на div page-wrapper
 	useEffect(() => {
 		const pageWrapper: HTMLDivElement | null = document.querySelector(DIV_SCROLL_SELECTOR);
 
-		initScrollWrapper(pageWrapper);
 		pageWrapper?.addEventListener('scroll', handleScrollPage);
+		if (scrollTo === 0) setScrolledWrapper(true);
 
 		return () => {
 			pageWrapper?.removeEventListener('scroll', handleScrollPage);
@@ -171,6 +166,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 						hasMore={hasMore}
 						limit={currentLimit}
 						articles={articles}
+						onInitScroll={initScrollWrapper}
 						onLoadNext={onLoadNextArticlesPage}
 					/>
 				</div>

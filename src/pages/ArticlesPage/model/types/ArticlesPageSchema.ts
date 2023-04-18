@@ -10,6 +10,6 @@ export interface ArticlesPageSchema extends EntityState<ArticleSchema> {
 	page?: number;
 	limit?: number;
 	total?: number;
-	scrollTo?: string;
+	scrollTo?: number;
 	hasMore?: boolean;
 }
