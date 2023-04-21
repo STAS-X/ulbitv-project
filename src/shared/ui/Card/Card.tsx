@@ -1,5 +1,6 @@
 import { FC, HTMLAttributes, memo, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { ArticleView } from 'entities/Article';
 import classes from './Card.module.scss';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {

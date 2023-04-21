@@ -47,7 +47,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 				className={classNames('article_list_item', {}, [className, classes[view]])}
 				id={String(article.id)}
 			>
-				<Card className={classes.card}>
+				<Card className={classNames(classes.card, {}, [classes.cardlist])}>
 					<div className={classes.header}>
 						<Avatar size={30} src={article.user.avatar} />
 						<Text content={article.user.username} className={classes.username} />
@@ -81,7 +81,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 			id={String(article.id)}
 		>
 			<Card
-				className={classes.card}
+				className={classNames(classes.card, {}, [classes.cardtile])}
 				onClick={() => {
 					if (navigateTo) navigateTo(article.id);
 				}}

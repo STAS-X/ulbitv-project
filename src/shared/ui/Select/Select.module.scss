@@ -2,6 +2,10 @@
 	display: flex;
 }
 
+span {
+	pointer-events: none;
+}
+
 .select {
 	background: none;
 	outline: none;

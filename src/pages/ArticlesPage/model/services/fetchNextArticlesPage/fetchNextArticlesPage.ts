@@ -1,4 +1,9 @@
-import { getArticlesPageHasMore, getArticlesPageNumber } from './../../selectors/getArticlesPageData';
+import {
+	getArticlesPageHasMore,
+	getArticlesPageNumber,
+	getArticlesPageScrollField,
+	getArticlesPageScrollOrder
+} from './../../selectors/getArticlesPageData';
 import { getArticlesPage } from './../../slices/articlePageSlice';
 import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
@@ -11,7 +16,10 @@ export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArti
 	const limit = getArticlesPageLimit(getState());
 	const page = getArticlesPageNumber(getState()) + 1;
 	const count = getArticlesPage.selectTotal(getState());
+	const field = getArticlesPageScrollField(getState());
+	const order = getArticlesPageScrollOrder(getState());
 	const hasMore = getArticlesPageHasMore(getState());
+
 	if (!hasMore) return [];
 	//console.log(count, page, limit, hasMore, 'get state data');
 
@@ -20,7 +28,9 @@ export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArti
 			params: {
 				_expand: 'user',
 				_page: page,
-				_limit: limit
+				_limit: limit,
+				_sort: field,
+				_order: order
 			}
 		});
 

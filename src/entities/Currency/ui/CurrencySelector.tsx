@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { Select } from 'shared/ui/Select/Select';
 import { Currency } from '../../Currency';
 
@@ -13,10 +13,16 @@ interface CurrencySelectorProps {
 export const CurrencySelector: FC<CurrencySelectorProps> = memo((props: CurrencySelectorProps) => {
 	const { className, readonly, value, placeholder, onChange } = props;
 
+	const options = useMemo(() => {
+		return Object.values(Currency).map((value) => {
+			return { value, description: value };
+		});
+	}, []);
+
 	return (
 		<Select
 			className={className}
-			options={Object.values(Currency)}
+			options={options}
 			readonly={readonly}
 			value={value}
 			placeholder={placeholder}

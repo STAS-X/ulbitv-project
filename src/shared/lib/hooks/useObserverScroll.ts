@@ -2,7 +2,7 @@ import { MutableRefObject, useEffect } from 'react';
 
 export interface ObserverScrollOptions {
 	triggerRef: MutableRefObject<HTMLDivElement>;
-	callback: () => void;
+	callback?: () => void;
 }
 
 export const useObserverScroll = (props: ObserverScrollOptions) => {
@@ -18,7 +18,7 @@ export const useObserverScroll = (props: ObserverScrollOptions) => {
 		const observer = new IntersectionObserver(([entery]) => {
 			if (entery.isIntersecting) {
 				console.log('intersecting find');
-				callback();
+				if (callback) callback();
 			}
 		}, options);
 

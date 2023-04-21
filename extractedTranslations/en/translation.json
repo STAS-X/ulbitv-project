@@ -22,11 +22,22 @@
   "main": "",
   "noArticles": "",
   "noComments": "",
+  "noFiltedArticles": "",
+  "noFiltredArticles": "",
   "pages:errorApp": "",
   "pages:reloadPage": "",
   "profile": "",
   "readMore": "",
   "reloadPage": "",
+  "search": {
+    "filterHolder": "",
+    "formTitle": ""
+  },
+  "selectors": {
+    "fieldHolder": "",
+    "formTitle": "",
+    "orderHolder": ""
+  },
   "toggle": "",
   "translation:login": "",
   "translationlogin": "",

@@ -10,7 +10,7 @@ export const AppRouter = () => {
 	const renderWithAuthWrapper = useCallback((route: AuthRouteProps) => {
 		const element = (
 			<Suspense fallback={<PageLoader />}>
-				<div className="page-wrapper">{<route.Element />}</div>
+				<main>{<route.Element />}</main>
 			</Suspense>
 		);
 

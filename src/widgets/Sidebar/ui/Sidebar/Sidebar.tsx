@@ -17,16 +17,21 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 	const [collapsed, setCollapsed] = useState(false);
 	const authData = useSelector(getUserData);
 
+	const handleCollapsedElement = (element: HTMLElement, collapsed: boolean, className: string) => {
+		if (element) {
+			if (
+				(collapsed && !element.classList.contains(className)) ||
+				(!collapsed && element.classList.contains(className))
+			)
+				element.classList.toggle(className);
+		}
+	};
+
 	useEffect(() => {
 		const pageContent = document.querySelector('div.content-page');
-		console.log(pageContent, 'get pageContent element');
-		if (pageContent) {
-			if (
-				(collapsed && !pageContent.classList.contains('content-page-collapsed')) ||
-				(!collapsed && pageContent.classList.contains('content-page-collapsed'))
-			)
-				pageContent.classList.toggle('content-page-collapsed');
-		}
+		const pageHeader = document.querySelector('div.articles-header');
+		handleCollapsedElement(pageContent as HTMLElement, collapsed, 'content-page-collapsed');
+		handleCollapsedElement(pageHeader as HTMLElement, collapsed, 'articles-header-collapsed');
 	}, [collapsed]);
 
 	const onToggle = () => {

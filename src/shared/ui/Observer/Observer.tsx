@@ -10,7 +10,7 @@ export interface ObserverProps {
 }
 
 export const Observer: FC<ObserverProps> = (props: ObserverProps) => {
-	const { onScrollEnd = () => null, children, className } = props;
+	const { onScrollEnd, children, className } = props;
 	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
 	useObserverScroll({
@@ -21,7 +21,7 @@ export const Observer: FC<ObserverProps> = (props: ObserverProps) => {
 	return (
 		<div className={classNames('', {}, [className])}>
 			{children}
-			{<div ref={triggerRef} className={classes.trigger}></div>}
+			{onScrollEnd && <div ref={triggerRef} className={classes.trigger}></div>}
 		</div>
 	);
 };

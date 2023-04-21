@@ -48,7 +48,7 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 					<Text content={validation} theme={TextTheme.ERROR} align={TextAlign.LEFT} />
 				</div>
 			)}
-			{placeholder && <div className={classes.plaseholder}>{`${t(placeholder)}>`}</div>}
+			{placeholder && <span className={classes.placeholder}>{`${t(placeholder)}>`}</span>}
 			<div className={classes.caretwrapper}>
 				<input
 					ref={ref || undefined}

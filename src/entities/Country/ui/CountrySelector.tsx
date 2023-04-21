@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { Select } from 'shared/ui/Select/Select';
 import { Country } from '../../Country';
 
@@ -13,10 +13,16 @@ interface CountrySelectorProps {
 export const CountrySelector: FC<CountrySelectorProps> = memo((props: CountrySelectorProps) => {
 	const { className, readonly, value, placeholder, onChange } = props;
 
+	const options = useMemo(() => {
+		return Object.values(Country).map((value) => {
+			return { value, description: value };
+		});
+	}, []);
+
 	return (
 		<Select
 			className={className}
-			options={Object.values(Country)}
+			options={options}
 			readonly={readonly}
 			value={value}
 			placeholder={placeholder}

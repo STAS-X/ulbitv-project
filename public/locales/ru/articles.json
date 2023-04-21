@@ -1,6 +1,21 @@
 {
 	"article": "Страница статей",
 	"noArticles": "Статьи не найдены",
+	"noFiltredArticles": "Статьи по фильтру `{{filter}}` не найдены",	
 	"readMore": "Читать далее",
-	"backToList": "Назад к списку"
+	"backToList": "Назад к списку",
+	"selectors": {
+		"views": "Просмотры",
+		"title": "Наименование",
+		"createdAt": "Создано",
+		"asc": "возрастание",
+		"desc": "убывание",
+		"formTitle": "Параметры сортировки",
+		"fieldHolder": "Сортировать по",
+		"orderHolder": "Порядок по"
+	},
+	"search": {
+		"formTitle": "Поиск статей",
+		"filterHolder": "Искать по названию"
+	}
 }

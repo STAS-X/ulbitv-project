@@ -1,25 +1,34 @@
+import { getArticlesPageNumber } from './../../selectors/getArticlesPageData';
 import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
-import { getArticlesPageLimit } from '../../selectors/getArticlesPageData';
-import { articlesPageActions } from '../../slices/articlePageSlice';
+import {
+	getArticlesPageLimit,
+	getArticlesPageScrollField,
+	getArticlesPageScrollOrder
+} from '../../selectors/getArticlesPageData';
 
 interface ArticlesListProps {
-	page: number;
+	page?: number;
+	pageExpanded?: boolean;
 }
 
 export const fetchArticlesList = createAppAsyncThunk<ArticleSchema[], ArticlesListProps>(
 	'articles/fetchArticlesList',
 	async (props, thunkApi) => {
-		const { extra, rejectWithValue, dispatch, getState } = thunkApi;
-		const { page } = props;
+		const { extra, rejectWithValue, getState } = thunkApi;
+		const { page = getArticlesPageNumber(getState()) + 1, pageExpanded = false } = props;
 		const limit = getArticlesPageLimit(getState());
+		const field = getArticlesPageScrollField(getState());
+		const order = getArticlesPageScrollOrder(getState());
 
 		try {
 			const response = await extra.api.get<ArticleSchema[]>('/articles', {
 				params: {
 					_expand: 'user',
-					_page: page,
-					_limit: limit
+					_page: pageExpanded ? 1 : page,
+					_limit: pageExpanded ? page * limit : limit,
+					_sort: field,
+					_order: order
 				}
 			});
 
@@ -27,10 +36,10 @@ export const fetchArticlesList = createAppAsyncThunk<ArticleSchema[], ArticlesLi
 				throw new Error('error');
 			}
 
-			if (page === 1 && response.headers['x-total-count']) {
-				const total = Number(response.headers['x-total-count']);
-				//dispatch(articlesPageActions.setTotal(total));
-			}
+			// if (page === 1 && response.headers['x-total-count']) {
+			// 	const total = Number(response.headers['x-total-count']);
+			// 	//dispatch(articlesPageActions.setTotal(total));
+			// }
 			//throw new Error('network error occured');
 			// const commentsData = response.data.map((commentExt) => {
 			// 	const {

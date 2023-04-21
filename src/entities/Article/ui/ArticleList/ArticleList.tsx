@@ -1,5 +1,5 @@
 import { ArticleSchema, ArticleView } from 'entities/Article';
-import { FC, memo, useCallback, useEffect } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
@@ -16,6 +16,7 @@ export interface ArticleListProps {
 	isLoading?: boolean;
 	hasMore?: boolean;
 	limit?: number;
+	filter?: string;
 	view?: ArticleView;
 	onInitScroll?: (article: HTMLDivElement, id: number) => void;
 	onLoadNext?: () => void;
@@ -28,6 +29,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 		hasMore,
 		limit = 1,
 		view = ArticleView.LIST,
+		filter = '',
 		onInitScroll,
 		onLoadNext,
 		className
@@ -58,6 +60,8 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 		[navigate]
 	);
 
+	let messageElement: JSX.Element | null = null;
+
 	if (isLoading) {
 		return (
 			<div className={classNames(classes.articlelist, {}, [className])}>
@@ -69,13 +73,17 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 				</>
 			</div>
 		);
+	} else {
+		if (!hasMore && !filter) {
+			messageElement = <Text content={t('noArticles')} />;
+		} else if (filter) {
+			messageElement = <Text content={t('noFiltredArticles', { filter })} />;
+		}
 	}
 
 	return (
 		<Observer className={classNames(classes.articlelist, {}, [className])} onScrollEnd={onLoadNext}>
-			{articles.length > 0
-				? articles.map((article) => renderArticles(article))
-				: !isLoading && !hasMore && <Text content={t('noArticles')} />}
+			{articles.length > 0 ? articles.map((article) => renderArticles(article)) : messageElement}
 		</Observer>
 	);
 });

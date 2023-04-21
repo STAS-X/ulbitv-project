@@ -1,12 +1,21 @@
 .selector {
-	svg > path {
+	margin-right: 10px;
+	& svg {
+		transform: scale(1.25);
+		margin: 5px 0 0 0;
+	}
+	& svg > path {
 		fill: var(--secondary-color);
 		stroke: var(--secondary-color);
 	}
 }
 
 .selected {
-	svg > path {
+	& svg {
+		transform: scale(1.25);
+		margin: 5px 0 0 0;
+	}
+	& svg > path {
 		fill: var(--primary-color);
 		stroke: var(--primary-color);
 	}

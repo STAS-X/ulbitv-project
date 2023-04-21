@@ -19,7 +19,12 @@ SelectPrimary.args = {
 	placeholder: 'light theme',
 	readonly: false,
 	value: '123',
-	options: ['123', '234', '3454', '456']
+	options: [
+		{ value: '123', description: '123' },
+		{ value: '234', description: '12334' },
+		{ value: '3234', description: '6543' },
+		{ value: '546', description: '365' }
+	]
 };
 
 export const SelectReadOnly = Template.bind({});
@@ -27,7 +32,12 @@ SelectReadOnly.args = {
 	placeholder: 'light readonly',
 	readonly: true,
 	value: '234',
-	options: ['123', '234', '3454', '456']
+	options: [
+		{ value: '123', description: '123' },
+		{ value: '234', description: '12334' },
+		{ value: '3234', description: '6543' },
+		{ value: '546', description: '365' }
+	]
 };
 
 export const SelectDark = Template.bind({});
@@ -35,6 +45,11 @@ SelectDark.args = {
 	placeholder: 'dark theme',
 	readonly: false,
 	value: '345',
-	options: ['121', '345', '454', '789']
+	options: [
+		{ value: '123', description: '123' },
+		{ value: '234', description: '12334' },
+		{ value: '3234', description: '6543' },
+		{ value: '546', description: '365' }
+	]
 };
 SelectDark.decorators = [ThemeDecorator(Theme.DARK)];

@@ -31,10 +31,25 @@ body {
 	width: calc(100vw - var(--sidebar-width-collapsed));
 }
 
+.articles-header {
+	left: calc(var(--sidebar-width) + 50px);
+}
+.articles-header-collapsed {
+	left: calc(var(--sidebar-width-collapsed) + 50px);
+}
+
+main {
+	display: flex;
+	width: 100vw;
+	overflow-y: auto;
+}
+
 .page-wrapper {
 	position: relative;
 	flex-grow: 1;
-	padding: 20px 20px 20px 45px;
+	padding: var(--section-header-heigth) 30px 30px 60px;
 	margin-top: 0;
-	overflow-y: auto;
+	pointer-events: all;
+	//margin-bottom: 20px;
+	//overflow-y: auto;
 }

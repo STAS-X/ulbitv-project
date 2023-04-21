@@ -1,11 +1,7 @@
 .card {
 	padding: 15px;
 	border-radius: 12px;
-    border: 1px solid var(--card-bg);
+	border: 1px solid var(--card-bg);
 	background: var(--card-bg);
 	transition: all ease 0.3s;
-	&:hover {
-		cursor: pointer;
-		border: 1px solid var(--primary-color);
-	}
 }

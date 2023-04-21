@@ -9,8 +9,11 @@ export {
 	getArticlesPageTotal,
 	getArticlesPageHasMore,
 	getArticlesPageScrollToArticleId,
+	getArticlesPageScrollField,
+	getArticlesPageScrollOrder,
+	getArticlesPageFilter,
 	getArticlesPageInited
 } from './model/selectors/getArticlesPageData';
-export { getArticlesPage } from './model/slices/articlePageSlice';
+export { getArticlesPage, getFiltredArticles } from './model/slices/articlePageSlice';
 export { fetchArticlesList } from './model/services/fetchArticesList/fetchArticlesList';
 export { fetchNextArticlesPage } from './model/services/fetchNextArticlesPage/fetchNextArticlesPage';

@@ -1,11 +1,11 @@
-import { ArticleSchema, ArticleView } from 'entities/Article/model/types/articleSchema';
+import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
 import { ArticleList } from 'entities/Article/ui/ArticleList/ArticleList';
-import { FC, memo, useEffect, useCallback, useState, useRef, MutableRefObject } from 'react';
+import { FC, memo, useEffect, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
-import { articlesPageReducer, getArticlesPage, articlesPageActions } from '../../model/slices/articlePageSlice';
+import { articlesPageReducer, articlesPageActions, getFiltredArticles } from '../../model/slices/articlePageSlice';
 import classes from './ArticlesPage.module.scss';
 import {
 	getArticlesPageHasMore,
@@ -14,13 +14,14 @@ import {
 	getArticlesPageLimit,
 	getArticlesPageScrollToArticleId,
 	getArticlesPageTotal,
-	getArticlesPageView
+	getArticlesPageView,
+	getArticlesPageFilter
 } from '../..';
-import { ArticleViewSelector } from 'features/ArticleViewSelector/ArticleViewSelector';
 import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { ARTICLE_ITEM_SELECTOR, DEBOUNCE_DELAY, DIV_SCROLL_SELECTOR } from 'shared/const/localstorage';
 import { useDebounce as useScrollDebounce } from 'shared/lib/hooks/useDebounce';
+import { ArticlesPageFilters } from 'entities/Article';
 
 export interface ArticlesPageProps {
 	className?: string;
@@ -37,8 +38,9 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	const isLoading = useSelector(getArticlesPageIsLoading);
 	const hasMore = useSelector(getArticlesPageHasMore);
 	const view = useSelector(getArticlesPageView);
+	const filter = useSelector(getArticlesPageFilter);
 	const total = useSelector(getArticlesPageTotal);
-	const articles = useSelector<StateSchema, ArticleSchema[]>(getArticlesPage.selectAll);
+	const articles = useSelector<StateSchema, ArticleSchema[]>(getFiltredArticles); //(getArticlesPage.selectAll);
 	const limit = useSelector(getArticlesPageLimit);
 	const scrollTo = useSelector(getArticlesPageScrollToArticleId);
 	const inited = useSelector(getArticlesPageInited);
@@ -68,8 +70,8 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 
 	// Подгрузка новых статей после завершения скрола текущей ленты
 	const onLoadNextArticlesPage = useCallback(async () => {
-		if (_PROJECT_ !== 'storybook' && !isLoading && hasMore) await dispatch(fetchNextArticlesPage());
-	}, [dispatch, isLoading, hasMore]);
+		if (_PROJECT_ !== 'storybook' && !isLoading && !filter && hasMore) await dispatch(fetchNextArticlesPage());
+	}, [dispatch, isLoading, hasMore, filter]);
 
 	// const fetchArticlesPage = useCallback(async () => {
 	// 	if (page === 0 && hasMore) {
@@ -103,10 +105,10 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 						}
 					}
 				});
-				if (newScrollArticleId > -1) setScrollArticleId(newScrollArticleId);
+				if (newScrollArticleId > -1 && !isLoading) setScrollArticleId(newScrollArticleId);
 			}
 		},
-		[setScrollArticleId, scrollArticleId]
+		[setScrollArticleId, scrollArticleId, isLoading]
 	);
 
 	// Функция иницализации первичного скролла на статью после завершения onmount элемента статьи article
@@ -131,13 +133,16 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 		const pageWrapper: HTMLDivElement | null = document.querySelector(DIV_SCROLL_SELECTOR);
 
 		pageWrapper?.addEventListener('scroll', handleScrollPage);
-		if (scrollTo === 0) setScrolledWrapper(true);
+		if (scrollTo === 0) {
+			if (pageWrapper?.scrollTop) pageWrapper.scrollTop = 0;
+			setScrolledWrapper(true);
+		}
 
 		return () => {
 			pageWrapper?.removeEventListener('scroll', handleScrollPage);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [scrollTo]);
 
 	// Инициализация state.articlePages
 	useEffect(() => {
@@ -146,24 +151,16 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 		}
 	}, [dispatch, inited]);
 
-	const handleChangeView = useCallback(
-		(newView: ArticleView) => {
-			dispatch(articlesPageActions.setView(newView));
-		},
-		[dispatch]
-	);
-
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+			<ArticlesPageFilters />
 			<PageWrapper className={classNames(classes.articlespage, {}, [className])}>
-				<div className={classes.header}>
-					<ArticleViewSelector view={view} onViewClick={handleChangeView} />
-				</div>
 				<div className={classes.articlelist}>
 					<ArticleList
 						view={view}
 						isLoading={isLoading}
 						hasMore={hasMore}
+						filter={filter}
 						limit={currentLimit}
 						articles={articles}
 						onInitScroll={initScrollWrapper}

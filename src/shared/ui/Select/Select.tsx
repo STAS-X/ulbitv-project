@@ -5,12 +5,17 @@ import classes from './Select.module.scss';
 
 type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'onChange'>;
 
+export type OptionType = {
+	value: string;
+	description: string;
+};
+
 export interface SelectProps extends HTMLSelectProps {
 	className?: string;
 	readonly?: boolean;
 	placeholder?: string;
 	value?: string;
-	options?: Array<string>;
+	options?: OptionType[];
 	onChange?: (value: string) => void;
 }
 
@@ -23,6 +28,7 @@ export const Select: FC<SelectProps> = (props) => {
 		const {
 			target: { value }
 		} = event;
+		//event.target.options[0].
 		onChange?.(value);
 		console.log(`current value is ${value}`);
 	};
@@ -40,9 +46,9 @@ export const Select: FC<SelectProps> = (props) => {
 				className={classNames(classes.select, mods)}
 				{...otherProps}
 			>
-				{options?.map((item) => (
-					<option className={classes.option} key={item}>
-						{item}
+				{options?.map((option) => (
+					<option className={classes.option} value={option.value} key={option.value}>
+						{option.description}
 					</option>
 				))}
 			</select>
