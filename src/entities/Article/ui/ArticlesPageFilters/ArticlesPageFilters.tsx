@@ -5,18 +5,19 @@ import { ArticleViewSelector } from 'features/ArticleViewSelector/ArticleViewSel
 import classes from './ArticlesPageFilters.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { articlesPageActions } from 'pages/ArticlesPage/model/slices/articlePageSlice';
-import { useSelector } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
 import { fieldsForSort, ordersForSort } from 'shared/lib/filters/sortTypes';
 import {
 	fetchArticlesList,
 	getArticlesPageFilter,
+	getArticlesPageInProcess,
 	getArticlesPageScrollField,
 	getArticlesPageScrollOrder,
 	getArticlesPageView
 } from 'pages/ArticlesPage';
 import { ArticleView } from '../../model/types/articleSchema';
 import { useAppDispatch } from 'app/providers/StoreProvider';
-import { ArticlesSort } from 'pages/ArticlesPage/model/types/ArticlesPageSchema';
+import { ArticlesSearch, ArticlesSort } from 'pages/ArticlesPage/model/types/ArticlesPageSchema';
 import { useTranslation } from 'react-i18next';
 import type { OptionType } from 'shared/ui/Select/Select';
 
@@ -31,9 +32,16 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: Ar
 	const order = useSelector(getArticlesPageScrollOrder);
 	const filter = useSelector(getArticlesPageFilter);
 	const view = useSelector(getArticlesPageView);
+	const inProgress = useSelector(getArticlesPageInProcess);
+	//const store = useStore<StateSchema>();
 
 	const dispatch = useAppDispatch();
 	const { t } = useTranslation(['articles']);
+
+	const renderProgress = useCallback(() => {
+		if (inProgress) return <div className={classNames('', { [classes.inprogress]: true })}></div>;
+		return null;
+	}, [inProgress]);
 
 	const handleChangeView = useCallback(
 		(newView: ArticleView) => {
@@ -45,17 +53,21 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: Ar
 	const handleSortArticles = useCallback(
 		async (newSort: ArticlesSort) => {
 			//console.log(newSort, nextSort, 'next sort data');
-			if (newSort.field === field && newSort.order === order) return;
+			//if (newSort.field === field && newSort.order === order) return;
 
 			dispatch(articlesPageActions.setSortiration(newSort));
-			await dispatch(fetchArticlesList({ pageExpanded: true }));
+			await dispatch(fetchArticlesList());
 		},
-		[dispatch, field, order]
+		[dispatch]
 	);
 
 	const handleSearchArticles = useCallback(
-		(newSearch: string) => {
+		async (newSearch: ArticlesSearch) => {
+			//if (newSearch === filter) return;
+
 			dispatch(articlesPageActions.setFilter(newSearch));
+			await dispatch(fetchArticlesList());
+			//dispatch(articlesPageActions.checkIsFiltred(store.getState()));
 		},
 		[dispatch]
 	);
@@ -83,6 +95,7 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: Ar
 			<div className={classes.headerviews}>
 				<ArticleViewSelector view={view} onViewClick={handleChangeView} />
 			</div>
+			{renderProgress()}
 		</div>
 	);
 });

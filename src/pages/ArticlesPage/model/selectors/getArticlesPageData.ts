@@ -11,5 +11,7 @@ export const getArticlesPageScrollToArticleId = (state: StateSchema) => state.ar
 export const getArticlesPageScrollField = (state: StateSchema) => state.articlesPage?.sortField ?? 'title';
 export const getArticlesPageScrollOrder = (state: StateSchema) => state.articlesPage?.sortOrder ?? 'asc';
 export const getArticlesPageFilter = (state: StateSchema) => state.articlesPage?.searchFilter ?? '';
+//export const getArticlesPageIsFiltered = (state: StateSchema) => state.articlesPage?.isFiltered ?? false;
+export const getArticlesPageInProcess = (state: StateSchema) => state.articlesPage?.inProcessed ?? false;
 export const getArticlesPageHasMore = (state: StateSchema) => state.articlesPage?.hasMore ?? true;
 export const getArticlesPageInited = (state: StateSchema) => state.articlesPage?._inited;

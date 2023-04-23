@@ -1,25 +1,24 @@
-import { getArticlesPageNumber } from './../../selectors/getArticlesPageData';
+import { getArticlesPageFilter, getArticlesPageNumber } from './../../selectors/getArticlesPageData';
 import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
-import {
-	getArticlesPageLimit,
-	getArticlesPageScrollField,
-	getArticlesPageScrollOrder
-} from '../../selectors/getArticlesPageData';
+import { getArticlesPageLimit, getArticlesPageScrollField, getArticlesPageScrollOrder } from '../../..';
 
 interface ArticlesListProps {
 	page?: number;
 	pageExpanded?: boolean;
 }
 
-export const fetchArticlesList = createAppAsyncThunk<ArticleSchema[], ArticlesListProps>(
+export const fetchArticlesList = createAppAsyncThunk<ArticleSchema[], ArticlesListProps | undefined>(
 	'articles/fetchArticlesList',
 	async (props, thunkApi) => {
 		const { extra, rejectWithValue, getState } = thunkApi;
-		const { page = getArticlesPageNumber(getState()) + 1, pageExpanded = false } = props;
+		const { page = getArticlesPageNumber(getState()) + 1, pageExpanded = false } = props
+			? props
+			: { page: getArticlesPageNumber(getState()) + 1, pageExpanded: false };
 		const limit = getArticlesPageLimit(getState());
 		const field = getArticlesPageScrollField(getState());
 		const order = getArticlesPageScrollOrder(getState());
+		const filter = getArticlesPageFilter(getState());
 
 		try {
 			const response = await extra.api.get<ArticleSchema[]>('/articles', {
@@ -28,7 +27,8 @@ export const fetchArticlesList = createAppAsyncThunk<ArticleSchema[], ArticlesLi
 					_page: pageExpanded ? 1 : page,
 					_limit: pageExpanded ? page * limit : limit,
 					_sort: field,
-					_order: order
+					_order: order,
+					_q: filter
 				}
 			});
 

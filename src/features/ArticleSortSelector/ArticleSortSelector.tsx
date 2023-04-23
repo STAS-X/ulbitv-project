@@ -21,7 +21,7 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = memo((props: Ar
 
 	const [field, setField] = useState(sortBy.field);
 	const [order, setOrder] = useState(sortBy.order);
-
+	console.log(sortBy, 'init sortBy');
 	const { t } = useTranslation(['articles']);
 
 	const handleChangeSortiration = useCallback(

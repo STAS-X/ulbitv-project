@@ -58,9 +58,9 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	// The goal is to only have the API call fire when user stops typing ...
 	// ... so that we aren't hitting our API rapidly.
 	const handleScrollToState = useCallback(
-		(value: string | number) => {
+		(value: number) => {
 			if (scrolledWrapper) {
-				dispatch(articlesPageActions.setScrollToArticleId(Number(value)));
+				dispatch(articlesPageActions.setScrollToArticleId(value));
 				//console.log(value, 'new articleId to scroll');
 			}
 		},
@@ -70,8 +70,8 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 
 	// Подгрузка новых статей после завершения скрола текущей ленты
 	const onLoadNextArticlesPage = useCallback(async () => {
-		if (_PROJECT_ !== 'storybook' && !isLoading && !filter && hasMore) await dispatch(fetchNextArticlesPage());
-	}, [dispatch, isLoading, hasMore, filter]);
+		if (_PROJECT_ !== 'storybook' && !isLoading && hasMore) await dispatch(fetchNextArticlesPage());
+	}, [dispatch, isLoading, hasMore]);
 
 	// const fetchArticlesPage = useCallback(async () => {
 	// 	if (page === 0 && hasMore) {
@@ -160,8 +160,8 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 						view={view}
 						isLoading={isLoading}
 						hasMore={hasMore}
-						filter={filter}
 						limit={currentLimit}
+						filter={filter}
 						articles={articles}
 						onInitScroll={initScrollWrapper}
 						onLoadNext={onLoadNextArticlesPage}

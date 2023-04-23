@@ -21,7 +21,7 @@ export interface SelectProps extends HTMLSelectProps {
 
 export const Select: FC<SelectProps> = (props) => {
 	const { placeholder, onChange, options, value, readonly = true, className, ...otherProps } = props;
-
+	//console.log(`init select value is ${value || ''}`);
 	const { t } = useTranslation();
 
 	const onChangeValue = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -47,7 +47,12 @@ export const Select: FC<SelectProps> = (props) => {
 				{...otherProps}
 			>
 				{options?.map((option) => (
-					<option className={classes.option} value={option.value} key={option.value}>
+					<option
+						selected={Boolean(option.value === value)}
+						className={classes.option}
+						value={option.value}
+						key={option.value}
+					>
 						{option.description}
 					</option>
 				))}

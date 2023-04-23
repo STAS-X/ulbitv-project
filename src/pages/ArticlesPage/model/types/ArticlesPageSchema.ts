@@ -18,6 +18,9 @@ export interface ArticlesPageSchema extends EntityState<ArticleSchema> {
 	sortOrder: SortOrder;
 	sortField: SortFields;
 	searchFilter: string;
+	isFiltered?: boolean;
+	inProcessed?: boolean;
 }
 
 export type ArticlesSort = { field: SortFields; order: SortOrder };
+export type ArticlesSearch = string;

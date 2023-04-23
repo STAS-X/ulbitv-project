@@ -12,6 +12,7 @@ export {
 	getArticlesPageScrollField,
 	getArticlesPageScrollOrder,
 	getArticlesPageFilter,
+	getArticlesPageInProcess,
 	getArticlesPageInited
 } from './model/selectors/getArticlesPageData';
 export { getArticlesPage, getFiltredArticles } from './model/slices/articlePageSlice';

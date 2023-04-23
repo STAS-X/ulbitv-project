@@ -1,9 +1,10 @@
 import {
+	getArticlesPageFilter,
 	getArticlesPageHasMore,
 	getArticlesPageNumber,
 	getArticlesPageScrollField,
 	getArticlesPageScrollOrder
-} from './../../selectors/getArticlesPageData';
+} from './../../..';
 import { getArticlesPage } from './../../slices/articlePageSlice';
 import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
@@ -15,10 +16,11 @@ export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArti
 
 	const limit = getArticlesPageLimit(getState());
 	const page = getArticlesPageNumber(getState()) + 1;
-	const count = getArticlesPage.selectTotal(getState());
+	//const count = getArticlesPage.selectTotal(getState());
 	const field = getArticlesPageScrollField(getState());
 	const order = getArticlesPageScrollOrder(getState());
 	const hasMore = getArticlesPageHasMore(getState());
+	const filter = getArticlesPageFilter(getState());
 
 	if (!hasMore) return [];
 	//console.log(count, page, limit, hasMore, 'get state data');
@@ -30,7 +32,8 @@ export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArti
 				_page: page,
 				_limit: limit,
 				_sort: field,
-				_order: order
+				_order: order,
+				_q: filter
 			}
 		});
 
@@ -40,8 +43,8 @@ export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArti
 
 		if (response.headers['x-total-count']) {
 			const total = Number(response.headers['x-total-count']);
-			const currentArtilces = count + response.data.length;
-			dispatch(articlesPageActions.setHasMore(Boolean(currentArtilces < total)));
+			//const currentArtilces = count + response.data.length;
+			dispatch(articlesPageActions.setHasMore(Boolean(response.data.length === limit)));
 			dispatch(articlesPageActions.setTotal(total));
 			dispatch(articlesPageActions.setPage(page));
 			//console.log(currentArtilces, total, Boolean(currentArtilces < total), 'data from thunk');

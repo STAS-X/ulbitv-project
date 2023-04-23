@@ -17,6 +17,7 @@ export const getArticlesPage = articlesAdapter.getSelectors<StateSchema>(
 	(state) => state.articlesPage || articlesAdapter.getInitialState()
 );
 
+// Селектор для фильтрации статей на клиенте - пока не используем
 export const getFiltredArticles = createSelector(
 	getArticlesPage.selectAll,
 	getArticlesPageFilter,
@@ -38,11 +39,11 @@ const initView = () =>
 	localStorage.getItem(ARTICLE_VIEW) ? (localStorage.getItem(ARTICLE_VIEW) as ArticleView) : ArticleView.LIST;
 const initSortField = () =>
 	localStorage.getItem(ARTICLE_SORT)
-		? (JSON.parse(localStorage.getItem(ARTICLE_SORT) as string) as ArticlesSort).field
+		? (JSON.parse(localStorage.getItem(ARTICLE_SORT) ?? '') as ArticlesSort).field
 		: 'title';
 const initSortOrder = () =>
 	localStorage.getItem(ARTICLE_SORT)
-		? (JSON.parse(localStorage.getItem(ARTICLE_SORT) as string) as ArticlesSort).order
+		? (JSON.parse(localStorage.getItem(ARTICLE_SORT) ?? '') as ArticlesSort).order
 		: 'asc';
 
 const articlesPageSlice = createSlice({
@@ -59,6 +60,8 @@ const articlesPageSlice = createSlice({
 		sortOrder: initSortOrder(),
 		sortField: initSortField(),
 		searchFilter: '',
+		isFiltered: false,
+		inProcessed: false,
 		_inited: false,
 		ids: [],
 		entities: {}
@@ -79,6 +82,10 @@ const articlesPageSlice = createSlice({
 		},
 		setFilter: (state, action: PayloadAction<string>) => {
 			state.searchFilter = action.payload;
+			if (state.scrollTo) state.scrollTo = 0;
+		},
+		setProcessing: (state, action: PayloadAction<boolean>) => {
+			state.inProcessed = action.payload;
 		},
 		setSortiration(state, action: PayloadAction<ArticlesSort>) {
 			state.sortField = action.payload.field;
@@ -94,6 +101,12 @@ const articlesPageSlice = createSlice({
 			state.hasMore = action.payload;
 			//console.log(action.payload, 'new hasMore');
 		},
+		/*checkIsFiltred: (state, action: PayloadAction<StateSchema>) => {
+			const filtredArticles = getFiltredArticles(action.payload).length;
+			const totalArticles = getArticlesPage.selectTotal(action.payload);
+			state.isFiltered = filtredArticles < totalArticles;
+			//console.log(action.payload, 'new hasMore');
+		},*/
 		initState: (state) => {
 			articlesPageSlice.getInitialState();
 			state._inited = true;
@@ -106,7 +119,7 @@ const articlesPageSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(fetchNextArticlesPage.fulfilled, (state, action: PayloadAction<ArticleSchema[]>) => {
-			articlesAdapter.addMany(state, action.payload);
+			if (action.payload.length > 0) articlesAdapter.addMany(state, action.payload);
 			state.isLoading = false;
 			state.error = undefined;
 		});
@@ -117,16 +130,19 @@ const articlesPageSlice = createSlice({
 
 		builder.addCase(fetchArticlesList.pending, (state) => {
 			articlesAdapter.removeAll(state);
+			state.inProcessed = true;
 			state.error = undefined;
 			state.isLoading = true;
 		});
 		builder.addCase(fetchArticlesList.fulfilled, (state, action: PayloadAction<ArticleSchema[]>) => {
+			//state._inited = false;
 			articlesAdapter.setAll(state, action.payload);
+			state.inProcessed = false;
 			state.isLoading = false;
 			state.error = undefined;
 		});
 		builder.addCase(fetchArticlesList.rejected, (state, action) => {
-			state._inited = false;
+			state.inProcessed = false;
 			state.isLoading = false;
 			state.error = action.payload || action.error?.message || 'Unknown error';
 		});

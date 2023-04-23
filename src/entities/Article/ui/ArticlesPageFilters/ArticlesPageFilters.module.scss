@@ -33,3 +33,20 @@
 .headerviews {
 	margin-left: auto;
 }
+
+.inprogress {
+    position: absolute;
+    background: linear-gradient(to left, lime 28px, red 77%, cyan);;
+    top:calc(100% - 5px);
+    left:0;
+    right: 0;
+    height: 5px;
+    animation: progressBar 1s ease-in-out;
+    animation-iteration-count: infinite;
+}
+@keyframes progressBar {
+  0% { width:0 }
+  50% { left:0;width:100%; }
+  100% {left:100%; width:0}
+
+}

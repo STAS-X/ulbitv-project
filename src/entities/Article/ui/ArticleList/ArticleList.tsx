@@ -28,8 +28,8 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 		isLoading,
 		hasMore,
 		limit = 1,
-		view = ArticleView.LIST,
 		filter = '',
+		view = ArticleView.LIST,
 		onInitScroll,
 		onLoadNext,
 		className
