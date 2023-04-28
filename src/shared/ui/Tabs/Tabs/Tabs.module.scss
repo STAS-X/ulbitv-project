@@ -1,6 +1,6 @@
 .tabs {
 	display: flex;
-	width: 100%;
+	height: 100%;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
@@ -11,10 +11,6 @@
 .cardtab {
 	background: var(--bg-color);
 	transition: all 0.1s ease-in;
-	.selected {
-		color: var(--inverted-primary-color);
-		background: var(--inverted-bg-color);
-	}
 	cursor: pointer;
 
 	&::selection {
@@ -23,7 +19,12 @@
 
 	&:hover {
 		opacity: 0.8;
-		transform: scale(1.05);
-		border: 1px solid var(--primary-color);
+		transform: scale(1.1);
+		border: 2px solid var(--primary-color);
 	}
+}
+
+.selected {
+	color: var(--inverted-primary-color);
+	background: var(--inverted-bg-color);
 }

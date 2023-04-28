@@ -1,7 +1,7 @@
 {
 	"article": "Страница статей",
 	"noArticles": "Статьи не найдены",
-	"noFiltredArticles": "Статьи по фильтру `{{filter}}` не найдены",
+	"noFiltredArticles": "Статьи по фильтру `{{filter}}` и категориям `{{category}}` не найдены",
 	"readMore": "Читать далее",
 	"backToList": "Назад к списку",
 	"selectors": {

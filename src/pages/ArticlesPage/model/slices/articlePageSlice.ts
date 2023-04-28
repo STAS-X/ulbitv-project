@@ -135,7 +135,13 @@ const articlesPageSlice = createSlice({
 						state.searchFilter = String(value);
 						break;
 					case 'category':
-						state.categoryFilter = value ? value.split('|') : [];
+						console.log(value, 'new category to set state');
+						if (value) {
+							const categorySet = Array.from(new Set(value.split(',')));
+							state.categoryFilter = categorySet.filter((category) =>
+								(Object.values(ArticleType) as string[]).includes(category)
+							);
+						} else state.categoryFilter = [];
 						break;
 				}
 			});

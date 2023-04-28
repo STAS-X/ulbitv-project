@@ -6,7 +6,7 @@ import { Text } from '../../Text/Text';
 import classes from './Tabs.module.scss';
 
 interface TabItem {
-	value: string;
+	value: ArticleType;
 	content: ReactNode;
 }
 
@@ -21,16 +21,16 @@ export const Tabs: FC<TabsProps> = memo((props: TabsProps) => {
 	const { className, tabs, category = [], onTabClick } = props;
 	//tabs.push(...tabs);
 	const handleCategoryClick = useCallback(
-		(tabValue: string) => {
+		(tabValue: ArticleType) => {
 			const newCategory = [...category];
-
+			console.log(newCategory, 'data category before update');
 			if (newCategory.includes(tabValue)) {
-				newCategory.slice(newCategory.indexOf(tabValue), 1);
+				newCategory.splice(newCategory.indexOf(tabValue), 1);
 			} else newCategory.push(tabValue);
 			//if (Object.keys(category).includes(tabValue)) {
 			//	delete category[tabValue];
 			//} else category[tabValue] = tabValue;
-			console.log(newCategory, 'data category after append');
+			console.log(newCategory, 'data category after update');
 
 			if (onTabClick) onTabClick(newCategory);
 		},
@@ -41,7 +41,7 @@ export const Tabs: FC<TabsProps> = memo((props: TabsProps) => {
 		<div className={classNames(classes.tabs, {}, [className])}>
 			{tabs.map((tab) => (
 				<Card
-					className={classNames(classes.cardtab, { [classes.selected]: category.includes(tab.value) })}
+					className={classNames(classes.cardtab, { [classes.selected]: category.includes(tab.value as string) })}
 					key={tab.value}
 					onClick={() => handleCategoryClick(tab.value)}
 				>

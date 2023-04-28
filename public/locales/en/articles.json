@@ -1,7 +1,7 @@
 {
 	"article": "Article Page",
 	"noArticles": "Articles not found",
-	"noFiltredArticles": "Articles by filter `{{filter}}` not found",
+	"noFiltredArticles": "Articles by filter `{{filter}}` and category `{{category}}` not found",
 	"readMore": "Read more",
 	"backToList": "Back to list",
 	"selectors": {

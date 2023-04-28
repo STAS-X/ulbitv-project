@@ -22,6 +22,7 @@ export const ArticleCategorySelector: FC<ArticleCategorySelectorProps> = memo((p
 
 	const handleChangeCategory = useCallback(
 		(newCategory: string[]) => {
+			setCategory(newCategory);
 			if (onCategoryArticle) {
 				onCategoryArticle(newCategory);
 			}
@@ -34,7 +35,7 @@ export const ArticleCategorySelector: FC<ArticleCategorySelectorProps> = memo((p
 	const tabs = useMemo(
 		() =>
 			Object.values(ArticleType).map((item) => {
-				return { value: item as string, content: t(`category.${item}`) };
+				return { value: item, content: t(`category.${item}`) };
 			}),
 		[t]
 	);

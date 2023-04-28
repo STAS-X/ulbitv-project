@@ -17,6 +17,7 @@ export interface ArticleListProps {
 	hasMore?: boolean;
 	limit?: number;
 	filter?: string;
+	category?: string[];
 	view?: ArticleView;
 	onInitScroll?: (article: HTMLDivElement, id: number) => void;
 	onLoadNext?: () => void;
@@ -29,6 +30,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 		hasMore,
 		limit = 1,
 		filter = '',
+		category = [],
 		view = ArticleView.LIST,
 		onInitScroll,
 		onLoadNext,
@@ -60,6 +62,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 		[navigate]
 	);
 
+	const hasFilter = !!filter || category.length > 0;
 	let messageElement: JSX.Element | null = null;
 
 	if (isLoading) {
@@ -74,10 +77,14 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 			</div>
 		);
 	} else {
-		if (!hasMore && !filter) {
+		if (!hasMore && !hasFilter) {
 			messageElement = <Text content={t('noArticles')} />;
-		} else if (filter) {
-			messageElement = <Text content={t('noFiltredArticles', { filter })} />;
+		} else {
+			messageElement = (
+				<Text
+					content={t('noFiltredArticles', { filter, category: category.length > 0 ? category.join(',') : 'ALL' })}
+				/>
+			);
 		}
 	}
 

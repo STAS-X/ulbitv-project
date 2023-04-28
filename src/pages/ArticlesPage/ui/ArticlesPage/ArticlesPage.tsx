@@ -20,7 +20,8 @@ import {
 	getArticlesPageScrollToArticleId,
 	getArticlesPageTotal,
 	getArticlesPageView,
-	getArticlesPageFilter
+	getArticlesPageFilter,
+	getArticlesPageCategory
 } from '../..';
 import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
@@ -46,6 +47,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	const hasMore = useSelector(getArticlesPageHasMore);
 	const view = useSelector(getArticlesPageView);
 	const filter = useSelector(getArticlesPageFilter);
+	const category = useSelector(getArticlesPageCategory);
 	const total = useSelector<StateSchema, number>(getArticlesPageTotal);
 	const selectedTotal = useSelector<StateSchema, number>(getArticlesPage.selectTotal);
 	const articles = useSelector<StateSchema, ArticleSchema[]>(getFiltredArticles); //(getArticlesPage.selectAll);
@@ -107,8 +109,8 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 
 					if (index === 0) scrollBaseTop = article.getBoundingClientRect().top;
 					if (
-						article.getBoundingClientRect().top - 50 >= 0 &&
-						article.getBoundingClientRect().bottom - 50 <= wrapperHeight &&
+						article.getBoundingClientRect().top - 60 >= 0 &&
+						article.getBoundingClientRect().bottom - 60 <= wrapperHeight &&
 						article.getBoundingClientRect().top > scrollBaseTop
 					) {
 						if (Number(article.id) !== scrollArticleId) {
@@ -181,6 +183,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 						isLoading={isLoading}
 						hasMore={hasMore}
 						filter={filter}
+						category={category}
 						limit={currentLimit}
 						articles={articles}
 						onInitScroll={initScrollWrapper}

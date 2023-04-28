@@ -32,14 +32,14 @@
 }
 
 .headercategory {
-	max-width: 30vw;
-	min-width: 25vw;
-	height: 60px;
+	min-width: 30vw;
+	min-height: var(--headers-heigth);
+	margin-left: 20px;
 }
 
 .headerviews {
 	margin-left: auto;
-	width: 80px;
+	min-width: 80px;
 }
 
 .inprogress {
