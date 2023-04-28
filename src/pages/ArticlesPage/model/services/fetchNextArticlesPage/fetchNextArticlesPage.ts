@@ -1,15 +1,17 @@
 import {
+	getArticlesPageLimit,
+	getArticlesPageSortField,
+	getArticlesPageSortOrder,
 	getArticlesPageFilter,
-	getArticlesPageHasMore,
 	getArticlesPageNumber,
-	getArticlesPageScrollField,
-	getArticlesPageScrollOrder
-} from './../../..';
+	getArticlesPageHasMore,
+	getArticlesPageCategory
+} from '../../..';
 import { getArticlesPage } from './../../slices/articlePageSlice';
 import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
-import { getArticlesPageLimit } from '../../selectors/getArticlesPageData';
 import { articlesPageActions } from '../../slices/articlePageSlice';
+import { addQueryParams } from 'shared/lib/url/queryParams/addQueryParams';
 
 export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArticlesPage', async (_, thunkApi) => {
 	const { extra, rejectWithValue, dispatch, getState } = thunkApi;
@@ -17,23 +19,24 @@ export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArti
 	const limit = getArticlesPageLimit(getState());
 	const page = getArticlesPageNumber(getState()) + 1;
 	//const count = getArticlesPage.selectTotal(getState());
-	const field = getArticlesPageScrollField(getState());
-	const order = getArticlesPageScrollOrder(getState());
 	const hasMore = getArticlesPageHasMore(getState());
+	const field = getArticlesPageSortField(getState());
+	const order = getArticlesPageSortOrder(getState());
 	const filter = getArticlesPageFilter(getState());
+	const category = getArticlesPageCategory(getState());
 
 	if (!hasMore) return [];
 	//console.log(count, page, limit, hasMore, 'get state data');
 
 	try {
+		addQueryParams({ field, order, filter, category: category.join(',') });
 		const response = await extra.api.get<ArticleSchema[]>('/articles', {
 			params: {
 				_expand: 'user',
 				_page: page,
 				_limit: limit,
 				_sort: field,
-				_order: order,
-				_q: filter
+				_order: order
 			}
 		});
 
@@ -41,12 +44,14 @@ export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArti
 			throw new Error('error occured');
 		}
 
-		if (response.headers['x-total-count']) {
-			const total = Number(response.headers['x-total-count']);
-			//const currentArtilces = count + response.data.length;
-			dispatch(articlesPageActions.setHasMore(Boolean(response.data.length === limit)));
-			dispatch(articlesPageActions.setTotal(total));
+		dispatch(articlesPageActions.setHasMore(Boolean(response.data.length === limit)));
+		if (response.data.length > 0) {
 			dispatch(articlesPageActions.setPage(page));
+			if (response.headers['x-total-count']) {
+				//const currentArtilces = count + response.data.length;
+				const total = Number(response.headers['x-total-count']);
+				dispatch(articlesPageActions.setTotal(total));
+			}
 			//console.log(currentArtilces, total, Boolean(currentArtilces < total), 'data from thunk');
 		}
 		//throw new Error('network error occured');

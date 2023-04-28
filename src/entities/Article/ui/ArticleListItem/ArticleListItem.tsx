@@ -1,5 +1,5 @@
 import { ArticleSchema, ArticleTextBlockComponent, ArticleBlockType, ArticleView } from 'entities/Article';
-import { FC, memo, MutableRefObject, useEffect, useRef } from 'react';
+import { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './ArticleListItem.module.scss';
@@ -10,6 +10,7 @@ import { Card } from 'shared/ui/Card/Card';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { ArticleTextBlock } from '../../model/types/articleSchema';
+import { DEBOUNCE_DELAY } from 'shared/const/localstorage';
 
 export interface ArticleListItemProps {
 	className?: string;
@@ -33,11 +34,15 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 		</>
 	);
 
+	const forceScrollTo = useCallback(() => {
+		if (scrollingTo && articleParent?.current)
+			if (articleParent.current) scrollingTo(articleParent.current, Number(article.id));
+	}, [scrollingTo, article.id, articleParent]);
+
 	useEffect(() => {
 		// После подгрузки статьи запускаем функцию скролла к последней просмотренной статье
-		if (scrollingTo && articleParent.current) scrollingTo(articleParent.current, Number(article.id));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [articleParent]);
+		setTimeout(forceScrollTo, DEBOUNCE_DELAY);
+	}, [forceScrollTo]);
 
 	if (view === ArticleView.LIST) {
 		const textBlock = article.blocks.find((block) => block.type === ArticleBlockType.TEXT) as ArticleTextBlock;

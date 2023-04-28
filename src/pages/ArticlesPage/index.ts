@@ -9,9 +9,10 @@ export {
 	getArticlesPageTotal,
 	getArticlesPageHasMore,
 	getArticlesPageScrollToArticleId,
-	getArticlesPageScrollField,
-	getArticlesPageScrollOrder,
+	getArticlesPageSortField,
+	getArticlesPageSortOrder,
 	getArticlesPageFilter,
+	getArticlesPageCategory,
 	getArticlesPageInProcess,
 	getArticlesPageInited
 } from './model/selectors/getArticlesPageData';

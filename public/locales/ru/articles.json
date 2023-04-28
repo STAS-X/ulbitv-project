@@ -1,7 +1,7 @@
 {
 	"article": "Страница статей",
 	"noArticles": "Статьи не найдены",
-	"noFiltredArticles": "Статьи по фильтру `{{filter}}` не найдены",	
+	"noFiltredArticles": "Статьи по фильтру `{{filter}}` не найдены",
 	"readMore": "Читать далее",
 	"backToList": "Назад к списку",
 	"selectors": {
@@ -17,5 +17,10 @@
 	"search": {
 		"formTitle": "Поиск статей",
 		"filterHolder": "Искать по названию"
+	},
+	"category": {
+		"IT": "ИТ",
+		"SCIENCE": "Наука",
+		"ECONOMICS": "Экономика"
 	}
 }

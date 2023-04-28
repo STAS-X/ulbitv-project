@@ -6,6 +6,7 @@ import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 import { RouterDecorator } from 'shared/config/storybook/RouterDecorator/RouterDecorator';
 import { createContext, useState } from 'react';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import { NavigateDecorator } from 'shared/config/storybook/NavigateDecorator/NavigateDecorator';
 
 export const parameters = {
 	actions: { argTypesRegex: '^on[A-Z].*' },
@@ -86,6 +87,7 @@ addDecorator(StyleDecorator);
 addDecorator(withContexts(contexts));
 addDecorator(ThemeDecorator(Theme.LIGHT));
 addDecorator(StoreDecorator({ loginForm: { username: 'test', password: '123' } }));
+addDecorator(NavigateDecorator);
 addDecorator(RouterDecorator);
 
 //addDecorator(withScreenshot);

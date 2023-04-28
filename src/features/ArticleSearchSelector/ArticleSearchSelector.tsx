@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useState } from 'react';
+import { FC, ForwardedRef, memo, MutableRefObject, useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './ArticleSearchSelector.module.scss';
 import { useTranslation } from 'react-i18next';
@@ -9,12 +9,13 @@ import { ArticlesSearch } from 'pages/ArticlesPage/model/types/ArticlesPageSchem
 
 export interface ArticleSearchSelectorProps {
 	className?: string;
+	refInput?: MutableRefObject<HTMLInputElement | undefined>;
 	searchBy?: ArticlesSearch;
 	onFilterArticle?: (filterBy: ArticlesSearch) => void;
 }
 
 export const ArticleSearchSelector: FC<ArticleSearchSelectorProps> = memo((props: ArticleSearchSelectorProps) => {
-	const { className, searchBy = '', onFilterArticle } = props;
+	const { className, searchBy = '', refInput, onFilterArticle } = props;
 
 	const [filter, setFilter] = useState(searchBy);
 
@@ -38,6 +39,7 @@ export const ArticleSearchSelector: FC<ArticleSearchSelectorProps> = memo((props
 	</div>*/}
 			<div className={classes.filters}>
 				<Input
+					ref={refInput as ForwardedRef<HTMLInputElement>}
 					className={classes.input}
 					value={filter}
 					readonly={false}

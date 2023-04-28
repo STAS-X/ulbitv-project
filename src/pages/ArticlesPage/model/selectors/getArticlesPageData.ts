@@ -8,9 +8,10 @@ export const getArticlesPageNumber = (state: StateSchema) => state.articlesPage?
 export const getArticlesPageTotal = (state: StateSchema) => state.articlesPage?.total ?? 0;
 export const getArticlesPageLimit = (state: StateSchema) => state.articlesPage?.limit ?? 1;
 export const getArticlesPageScrollToArticleId = (state: StateSchema) => state.articlesPage?.scrollTo ?? 0;
-export const getArticlesPageScrollField = (state: StateSchema) => state.articlesPage?.sortField ?? 'title';
-export const getArticlesPageScrollOrder = (state: StateSchema) => state.articlesPage?.sortOrder ?? 'asc';
+export const getArticlesPageSortField = (state: StateSchema) => state.articlesPage?.sortField ?? 'title';
+export const getArticlesPageSortOrder = (state: StateSchema) => state.articlesPage?.sortOrder ?? 'asc';
 export const getArticlesPageFilter = (state: StateSchema) => state.articlesPage?.searchFilter ?? '';
+export const getArticlesPageCategory = (state: StateSchema) => state.articlesPage?.categoryFilter ?? [];
 //export const getArticlesPageIsFiltered = (state: StateSchema) => state.articlesPage?.isFiltered ?? false;
 export const getArticlesPageInProcess = (state: StateSchema) => state.articlesPage?.inProcessed ?? false;
 export const getArticlesPageHasMore = (state: StateSchema) => state.articlesPage?.hasMore ?? true;

@@ -28,25 +28,40 @@
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 15px;
+	width: fit-content;
+}
+
+.headercategory {
+	max-width: 30vw;
+	min-width: 25vw;
+	height: 60px;
 }
 
 .headerviews {
 	margin-left: auto;
+	width: 80px;
 }
 
 .inprogress {
-    position: absolute;
-    background: linear-gradient(to left, lime 28px, red 77%, cyan);;
-    top:calc(100% - 5px);
-    left:0;
-    right: 0;
-    height: 5px;
-    animation: progressBar 1s ease-in-out;
-    animation-iteration-count: infinite;
+	position: absolute;
+	background: linear-gradient(to left, lime 28px, red 77%, cyan);
+	top: calc(100% - 5px);
+	left: 0;
+	right: 0;
+	height: 5px;
+	animation: progressBar 1s ease-in-out;
+	animation-iteration-count: infinite;
 }
 @keyframes progressBar {
-  0% { width:0 }
-  50% { left:0;width:100%; }
-  100% {left:100%; width:0}
-
+	0% {
+		width: 0;
+	}
+	50% {
+		left: 0;
+		width: 100%;
+	}
+	100% {
+		left: 100%;
+		width: 0;
+	}
 }

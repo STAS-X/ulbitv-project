@@ -1,0 +1,29 @@
+.tabs {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	overflow-x: auto;
+	pointer-events: all;
+}
+
+.cardtab {
+	background: var(--bg-color);
+	transition: all 0.1s ease-in;
+	.selected {
+		color: var(--inverted-primary-color);
+		background: var(--inverted-bg-color);
+	}
+	cursor: pointer;
+
+	&::selection {
+		background-color: transparent;
+	}
+
+	&:hover {
+		opacity: 0.8;
+		transform: scale(1.05);
+		border: 1px solid var(--primary-color);
+	}
+}

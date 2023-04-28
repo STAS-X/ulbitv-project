@@ -47,12 +47,7 @@ export const Select: FC<SelectProps> = (props) => {
 				{...otherProps}
 			>
 				{options?.map((option) => (
-					<option
-						selected={Boolean(option.value === value)}
-						className={classes.option}
-						value={option.value}
-						key={option.value}
-					>
+					<option className={classes.option} value={option.value} key={option.value}>
 						{option.description}
 					</option>
 				))}

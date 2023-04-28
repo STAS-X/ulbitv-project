@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleView } from '../../entities/Article';
 import classes from './ArticleViewSelector.module.scss';
@@ -21,12 +21,15 @@ export interface ArticleViewSelectorProps {
 export const ArticleViewSelector: FC<ArticleViewSelectorProps> = (props: ArticleViewSelectorProps) => {
 	const { className, view, onViewClick } = props;
 
-	const handleChangeView = (newView: ArticleView) => () => {
-		if (onViewClick && newView !== view) onViewClick(newView);
-	};
+	const handleChangeView = useCallback(
+		(newView: ArticleView) => () => {
+			if (onViewClick) onViewClick(newView);
+		},
+		[onViewClick]
+	);
 
 	return (
-		<div className={classNames('', {}, [className])}>
+		<div className={classNames(classes.view, {}, [className])}>
 			{viewTypes.map((viewItem) => (
 				<Button
 					key={viewItem.view}

@@ -1,7 +1,7 @@
 {
 	"article": "Article Page",
 	"noArticles": "Articles not found",
-	"noFiltredArticles": "Articles by filter `{{filter}}` not found",	
+	"noFiltredArticles": "Articles by filter `{{filter}}` not found",
 	"readMore": "Read more",
 	"backToList": "Back to list",
 	"selectors": {
@@ -17,5 +17,10 @@
 	"search": {
 		"formTitle": "Search setting",
 		"filterHolder": "Filter by text"
+	},
+	"category": {
+		"IT": "IT",
+		"SIENCE": "SIENCE",
+		"ECONOMICS": "ECONOMICS"
 	}
 }

@@ -1,7 +1,14 @@
-import { getArticlesPageFilter, getArticlesPageNumber } from './../../selectors/getArticlesPageData';
 import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
-import { getArticlesPageLimit, getArticlesPageScrollField, getArticlesPageScrollOrder } from '../../..';
+import {
+	getArticlesPageLimit,
+	getArticlesPageSortField,
+	getArticlesPageSortOrder,
+	getArticlesPageFilter,
+	getArticlesPageNumber,
+	getArticlesPageCategory
+} from '../../..';
+import { addQueryParams } from 'shared/lib/url/queryParams/addQueryParams';
 
 interface ArticlesListProps {
 	page?: number;
@@ -12,23 +19,24 @@ export const fetchArticlesList = createAppAsyncThunk<ArticleSchema[], ArticlesLi
 	'articles/fetchArticlesList',
 	async (props, thunkApi) => {
 		const { extra, rejectWithValue, getState } = thunkApi;
-		const { page = getArticlesPageNumber(getState()) + 1, pageExpanded = false } = props
-			? props
-			: { page: getArticlesPageNumber(getState()) + 1, pageExpanded: false };
+		const pagesNums =
+			getArticlesPageNumber(getState()) > 0 ? getArticlesPageNumber(getState()) : getArticlesPageNumber(getState()) + 1;
+		const { page = pagesNums, pageExpanded = true } = props ? props : { page: pagesNums, pageExpanded: true };
 		const limit = getArticlesPageLimit(getState());
-		const field = getArticlesPageScrollField(getState());
-		const order = getArticlesPageScrollOrder(getState());
+		const field = getArticlesPageSortField(getState());
+		const order = getArticlesPageSortOrder(getState());
 		const filter = getArticlesPageFilter(getState());
+		const category = getArticlesPageCategory(getState());
 
 		try {
+			addQueryParams({ field, order, filter, category: category.join(',') });
 			const response = await extra.api.get<ArticleSchema[]>('/articles', {
 				params: {
 					_expand: 'user',
 					_page: pageExpanded ? 1 : page,
 					_limit: pageExpanded ? page * limit : limit,
 					_sort: field,
-					_order: order,
-					_q: filter
+					_order: order
 				}
 			});
 
