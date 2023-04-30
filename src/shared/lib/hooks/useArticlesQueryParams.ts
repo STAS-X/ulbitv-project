@@ -1,27 +1,18 @@
 import { useSelector } from 'react-redux';
-import { addQueryParams } from 'shared/lib/url/queryParams/addQueryParams';
 import { OptionalRecord } from './../url/queryParams/addQueryParams';
 import { useSearchParams } from 'react-router-dom';
-import { useState, useEffect, useMemo } from 'react';
-import {
-	getArticlesPageFilter,
-	getArticlesPageSortOrder,
-	getArticlesPageSortField,
-	getArticlesPageCategory
-} from 'pages/ArticlesPage';
+import { useState, useEffect } from 'react';
+import { getArticlesPageInited } from 'pages/ArticlesPage';
 
-export const useArticlesParams = (inited: boolean) => {
+export const useArticlesParams = () => {
 	const [searchParams] = useSearchParams();
 	const [queryParams, setQueryParams] = useState<OptionalRecord | null>(null);
 
-	const filter = useSelector(getArticlesPageFilter);
-	const field = useSelector(getArticlesPageSortField);
-	const order = useSelector(getArticlesPageSortOrder);
-	const category = useSelector(getArticlesPageCategory);
-	console.log(category, 'new category');
-	const currentParams = useMemo(() => {
-		return { field, order, filter, category: category.join(',') };
-	}, [field, order, filter, category]);
+	const inited = useSelector(getArticlesPageInited);
+
+	// const currentParams = useMemo(() => {
+	// 	return { field, order, filter, category: Array.isArray(category) ? category.join(',') : '' };
+	// }, [field, order, filter, category]);
 
 	useEffect(() => {
 		if (!inited) {
@@ -31,10 +22,10 @@ export const useArticlesParams = (inited: boolean) => {
 				allParams[key] = value;
 			});
 
-			addQueryParams(allParams);
-			setQueryParams({ ...currentParams, ...allParams });
+			//addQueryParams(allParams);
+			setQueryParams(allParams);
 		}
-	}, [setQueryParams, currentParams, searchParams, inited]);
+	}, [setQueryParams, searchParams, inited]);
 
 	return { queryParams };
 };

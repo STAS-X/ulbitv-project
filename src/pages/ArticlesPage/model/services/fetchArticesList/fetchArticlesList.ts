@@ -29,7 +29,7 @@ export const fetchArticlesList = createAppAsyncThunk<ArticleSchema[], ArticlesLi
 		const category = getArticlesPageCategory(getState());
 
 		try {
-			addQueryParams({ field, order, filter, category: category.join(',') });
+			addQueryParams({ field, order, filter });
 			const response = await extra.api.get<ArticleSchema[]>('/articles', {
 				params: {
 					_expand: 'user',

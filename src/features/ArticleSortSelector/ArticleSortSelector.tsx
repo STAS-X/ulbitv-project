@@ -18,8 +18,8 @@ export interface ArticleSortSelectorProps {
 export const ArticleSortSelector: FC<ArticleSortSelectorProps> = memo((props: ArticleSortSelectorProps) => {
 	const { className, sortBy, fields, orders, onSortArticle } = props;
 
-	const [field, setField] = useState('');
-	const [order, setOrder] = useState('');
+	const [field, setField] = useState(sortBy.field);
+	const [order, setOrder] = useState(sortBy.order);
 
 	const { t } = useTranslation(['articles']);
 
@@ -33,11 +33,12 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = memo((props: Ar
 	);
 
 	useEffect(() => {
-		handleChangeSortiration({
-			field: field || sortBy.field,
-			order: order || sortBy.order
-		} as ArticlesSort);
-	}, [handleChangeSortiration, field, sortBy.field, order, sortBy.order]);
+		if (field && order)
+			handleChangeSortiration({
+				field,
+				order
+			} as ArticlesSort);
+	}, [handleChangeSortiration, field, order]);
 
 	return (
 		<div className={classNames(classes.sortiration, {}, [className])}>
@@ -48,14 +49,14 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = memo((props: Ar
 				<Select
 					placeholder={t('selectors.fieldHolder')}
 					readonly={false}
-					value={field || sortBy.field}
+					value={field}
 					options={fields}
 					onChange={setField}
 				/>
 				<Select
 					placeholder={t('selectors.orderHolder')}
 					readonly={false}
-					value={order || sortBy.order}
+					value={order}
 					options={orders}
 					onChange={setOrder}
 				/>

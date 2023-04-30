@@ -13,7 +13,6 @@ export {
 	getArticlesPageSortOrder,
 	getArticlesPageFilter,
 	getArticlesPageCategory,
-	getArticlesPageInProcess,
 	getArticlesPageInited
 } from './model/selectors/getArticlesPageData';
 export { getArticlesPage, getFiltredArticles } from './model/slices/articlePageSlice';

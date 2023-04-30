@@ -8,13 +8,12 @@ import { articlesPageActions } from 'pages/ArticlesPage/model/slices/articlePage
 import { useSelector } from 'react-redux';
 import { fieldsForSort, ordersForSort } from 'shared/lib/filters/sortTypes';
 import {
-	fetchArticlesList,
 	getArticlesPageFilter,
 	getArticlesPageCategory,
-	getArticlesPageInProcess,
 	getArticlesPageSortField,
 	getArticlesPageSortOrder,
-	getArticlesPageView
+	getArticlesPageView,
+	getArticlesPageIsLoading
 } from 'pages/ArticlesPage';
 import { ArticleType, ArticleView } from '../../model/types/articleSchema';
 import { useAppDispatch } from 'app/providers/StoreProvider';
@@ -35,7 +34,7 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: Ar
 	const filter = useSelector(getArticlesPageFilter);
 	const category = useSelector(getArticlesPageCategory);
 	const view = useSelector(getArticlesPageView);
-	const inProgress = useSelector(getArticlesPageInProcess);
+	const isLoading = useSelector(getArticlesPageIsLoading);
 	//const store = useStore<StateSchema>();
 
 	const dispatch = useAppDispatch();
@@ -43,9 +42,9 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: Ar
 	const { t } = useTranslation(['articles']);
 
 	const renderProgress = useCallback(() => {
-		if (inProgress) return <div className={classNames('', { [classes.inprogress]: true })}></div>;
+		if (isLoading) return <div className={classNames('', { [classes.inprogress]: true })}></div>;
 		return null;
-	}, [inProgress]);
+	}, [isLoading]);
 
 	const handleChangeView = useCallback(
 		(newView: ArticleView) => {
@@ -56,27 +55,26 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: Ar
 	);
 
 	const handleSearchArticles = useCallback(
-		async (newSearch: ArticlesSearch) => {
+		(newSearch: ArticlesSearch) => {
 			//if (newSearch === filter) return;
 
 			dispatch(articlesPageActions.setFilter(newSearch));
-			await dispatch(fetchArticlesList());
+			//await dispatch(fetchArticlesList());
 		},
 		[dispatch]
 	);
 
 	const handleCategoryArticles = useCallback(
-		async (newCategory: string[]) => {
+		(newCategory: string[]) => {
 			//if (newSearch === filter) return;
 
 			dispatch(articlesPageActions.setCategory(newCategory));
-			await dispatch(fetchArticlesList());
 		},
 		[dispatch]
 	);
 
 	const handleSortArticles = useCallback(
-		async (newSort: ArticlesSort) => {
+		(newSort: ArticlesSort) => {
 			//console.log(newSort, nextSort, 'next sort data');
 			if (!newSort.field || !newSort.order) return;
 
@@ -85,7 +83,6 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: Ar
 			if (refSearch?.current) refSearch.current.value = '';
 
 			dispatch(articlesPageActions.setSortiration(newSort));
-			await dispatch(fetchArticlesList());
 		},
 		[dispatch]
 	);

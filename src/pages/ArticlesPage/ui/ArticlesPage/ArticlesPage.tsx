@@ -5,12 +5,7 @@ import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
-import {
-	articlesPageReducer,
-	articlesPageActions,
-	getFiltredArticles,
-	getArticlesPage
-} from '../../model/slices/articlePageSlice';
+import { articlesPageReducer, articlesPageActions, getArticlesPage } from '../../model/slices/articlePageSlice';
 import classes from './ArticlesPage.module.scss';
 import {
 	getArticlesPageHasMore,
@@ -18,7 +13,6 @@ import {
 	getArticlesPageIsLoading,
 	getArticlesPageLimit,
 	getArticlesPageScrollToArticleId,
-	getArticlesPageTotal,
 	getArticlesPageView,
 	getArticlesPageFilter,
 	getArticlesPageCategory
@@ -29,7 +23,6 @@ import { ARTICLE_ITEM_SELECTOR, DEBOUNCE_DELAY, DIV_SCROLL_SELECTOR } from 'shar
 import { useDebounce as useScrollDebounce } from 'shared/lib/hooks/useDebounce';
 import { ArticlesPageFilters } from 'entities/Article';
 import { useArticlesParams } from 'shared/lib/hooks/useArticlesQueryParams';
-import { useSearchParams } from 'react-router-dom';
 
 export interface ArticlesPageProps {
 	className?: string;
@@ -48,16 +41,13 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	const view = useSelector(getArticlesPageView);
 	const filter = useSelector(getArticlesPageFilter);
 	const category = useSelector(getArticlesPageCategory);
-	const total = useSelector<StateSchema, number>(getArticlesPageTotal);
-	const selectedTotal = useSelector<StateSchema, number>(getArticlesPage.selectTotal);
-	const articles = useSelector<StateSchema, ArticleSchema[]>(getFiltredArticles); //(getArticlesPage.selectAll);
-	const isFiltred = Boolean(selectedTotal !== articles.length);
+	const articles = useSelector<StateSchema, ArticleSchema[]>(getArticlesPage.selectAll);
 	const limit = useSelector(getArticlesPageLimit);
 	const scrollTo = useSelector(getArticlesPageScrollToArticleId);
 	const inited = useSelector(getArticlesPageInited);
-	const currentLimit = Math.min(limit, selectedTotal >= 0 && total > 0 ? total - selectedTotal : limit);
+	//const currentLimit = Math.min(limit, selectedTotal >= 0 && total > 0 ? total - selectedTotal : limit);
 
-	const { queryParams } = useArticlesParams(Boolean(inited));
+	const { queryParams } = useArticlesParams();
 	//  const pageWrapper: MutableRefObject<HTMLDivElement | null> = useRef(
 	//  	document.querySelector(DIV_SCROLL_SELECTOR)
 	//  );
@@ -83,9 +73,8 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 
 	// Подгрузка новых статей после завершения скрола текущей ленты
 	const onLoadNextArticlesPage = useCallback(async () => {
-		if (_PROJECT_ !== 'storybook' && inited && !isLoading && !isFiltred && hasMore)
-			await dispatch(fetchNextArticlesPage());
-	}, [dispatch, isLoading, inited, hasMore, isFiltred]);
+		if (_PROJECT_ !== 'storybook' && inited && !isLoading && hasMore) await dispatch(fetchNextArticlesPage());
+	}, [dispatch, isLoading, inited, hasMore]);
 
 	// const fetchArticlesPage = useCallback(async () => {
 	// 	if (page === 0 && hasMore) {
@@ -167,10 +156,14 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 
 	// Инициализация state.articlePages после загрузки query параметров
 	useEffect(() => {
-		if (!inited && queryParams) {
-			//console.log(Object.keys(queryParams).length, 'query length');
-			dispatch(articlesPageActions.initState(queryParams));
-		}
+		const initWithFetch = () => {
+			if (!inited && queryParams) {
+				console.log(queryParams, 'query params');
+				dispatch(articlesPageActions.initState(queryParams));
+				//await dispatch(fetchNextArticlesPage());
+			}
+		};
+		initWithFetch();
 	}, [dispatch, queryParams, inited]);
 
 	return (
@@ -184,7 +177,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 						hasMore={hasMore}
 						filter={filter}
 						category={category}
-						limit={currentLimit}
+						limit={limit}
 						articles={articles}
 						onInitScroll={initScrollWrapper}
 						onLoadNext={onLoadNextArticlesPage}

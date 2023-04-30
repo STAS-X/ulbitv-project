@@ -95,7 +95,7 @@
       "createdAt": "2022.02.26",
       "userId": "1",
       "type": [
-        "IT"
+        "PROG","ECONOMICS"
       ],
       "blocks": [
         {
@@ -167,7 +167,7 @@
       "createdAt": "2023.03.20",
       "userId": "2",
       "type": [
-        "IT"
+        "IT", "SCIENCE"
       ],
       "blocks": [
         {
@@ -239,7 +239,7 @@
       "createdAt": "2021.10.13",
       "userId": "2",
       "type": [
-        "IT"
+        "IT", "SCIENCE"
       ],
       "blocks": [
         {

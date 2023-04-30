@@ -80,11 +80,12 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 		if (!hasMore && !hasFilter) {
 			messageElement = <Text content={t('noArticles')} />;
 		} else {
-			messageElement = (
-				<Text
-					content={t('noFiltredArticles', { filter, category: category.length > 0 ? category.join(',') : 'ALL' })}
-				/>
-			);
+			messageElement =
+				hasMore || isLoading ? null : (
+					<Text
+						content={t('noFiltredArticles', { filter, category: Array.isArray(category) ? category.join(',') : 'ALL' })}
+					/>
+				);
 		}
 	}
 
