@@ -1,3 +1,4 @@
+import { ArticleDetailesPageSchema } from 'pages/ArticleDetailesPage';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { AddCommentFormSchema } from 'features/AddCommentForm/model/types/addCommentForm';
 import { LoginSchema } from 'features/AuthByUserName';
@@ -8,7 +9,6 @@ import { AnyAction, CombinedState, Reducer, ReducersMapObject } from '@reduxjs/t
 import { AxiosInstance } from 'axios';
 import { NavigateFunction } from 'react-router-dom';
 import { ArticleDetailesSchema } from 'entities/Article';
-import { ArticleDetailesCommentsSchema } from 'pages/ArticleDetailesPage';
 
 export interface StateSchema {
 	common: CommonSchema;
@@ -17,9 +17,9 @@ export interface StateSchema {
 	loginForm?: LoginSchema;
 	profile?: ProfileSchema;
 	articleDetailes?: ArticleDetailesSchema;
-	articleDetailesComments?: ArticleDetailesCommentsSchema;
 	addCommentForm?: AddCommentFormSchema;
 	articlesPage?: ArticlesPageSchema;
+	articleDetailesPage?: ArticleDetailesPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

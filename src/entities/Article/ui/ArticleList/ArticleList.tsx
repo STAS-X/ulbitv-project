@@ -34,7 +34,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 		view = ArticleView.LIST,
 		onInitScroll,
 		onLoadNext,
-		className
+		className = ''
 	} = props;
 
 	const { t } = useTranslation(['articles']);
@@ -94,7 +94,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 	}
 
 	return (
-		<Observer className={classNames(classes.articlelist, {}, [className])} onScrollEnd={onLoadNext}>
+		<Observer className={classNames(className, {}, [classes.articlelist])} onScrollEnd={onLoadNext}>
 			{articles.length > 0 ? articles.map((article) => renderArticles(article)) : messageElement}
 		</Observer>
 	);

@@ -18,12 +18,9 @@ const Template: ComponentStory<typeof ArticleDetailesPage> = (args: ArticleDetai
 	<ArticleDetailesPage {...args} />
 );
 
-export const ArticleDetailesPageWithStoreDark = Template.bind({});
-ArticleDetailesPageWithStoreDark.args = {};
-ArticleDetailesPageWithStoreDark.decorators = [
-	ThemeDecorator(Theme.DARK),
-	StoreDecorator({
-		articleDetailesComments: {
+const extraReducers = {
+	articleDetailesPage: {
+		comments: {
 			isLoading: false,
 			ids: ['1', '2'],
 			entities: {
@@ -39,6 +36,43 @@ ArticleDetailesPageWithStoreDark.decorators = [
 				}
 			}
 		},
+		recommendations: {
+			isLoading: false,
+			ids: ['2', '3'],
+			entities: {
+				'2': {
+					id: 2,
+					title: 'Python news',
+					subtitle: 'Что нового в Python за 2020 год?',
+					img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
+					views: 822,
+					createdAt: '26.02.2020',
+					user: { id: '1', username: 'QWERTY', profileId: '1' },
+					type: [ArticleType.IT],
+					blocks: []
+				},
+				'3': {
+					id: 3,
+					title: 'Basic.Net news',
+					subtitle: 'Что нового в Basic.Net за 2023 год?',
+					img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
+					views: 922,
+					createdAt: '21.09.2022',
+					user: { id: '1', username: 'QWERTY', profileId: '1' },
+					type: [ArticleType.IT],
+					blocks: []
+				}
+			}
+		}
+	}
+};
+
+export const ArticleDetailesPageWithStoreDark = Template.bind({});
+ArticleDetailesPageWithStoreDark.args = {};
+ArticleDetailesPageWithStoreDark.decorators = [
+	ThemeDecorator(Theme.DARK),
+	StoreDecorator({
+		...extraReducers,
 		articleDetailes: {
 			isLoading: false,
 			data: {
@@ -120,6 +154,7 @@ ArticleDetailesPageLoading.args = {};
 ArticleDetailesPageLoading.decorators = [
 	ThemeDecorator(Theme.LIGHT),
 	StoreDecorator({
+		...extraReducers,
 		articleDetailes: {
 			isLoading: true
 		}
@@ -131,6 +166,7 @@ ArticleDetailesPageError.args = {};
 ArticleDetailesPageError.decorators = [
 	ThemeDecorator(Theme.LIGHT),
 	StoreDecorator({
+		...extraReducers,
 		articleDetailes: {
 			isLoading: false,
 			error: 'Error fetch article'

@@ -22,7 +22,7 @@ export const useObserverScroll = (props: ObserverScrollOptions) => {
 			}
 		}, options);
 
-		observer.observe(triggerRef.current);
+		if (triggerRef.current) observer.observe(triggerRef.current);
 
 		return () => {
 			// eslint-disable-next-line react-hooks/exhaustive-deps

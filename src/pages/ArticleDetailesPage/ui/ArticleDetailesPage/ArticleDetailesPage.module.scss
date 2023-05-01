@@ -3,6 +3,14 @@
 	width: 100vw;
 }
 
-.commentTitle {
+.title {
 	margin-top: 20px;
+}
+
+.recommendation {
+	margin-top: 20px;
+	padding: 10px;
+	overflow-y: hidden;
+	overflow-x: auto;
+	flex-wrap: nowrap;
 }

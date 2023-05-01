@@ -2,12 +2,12 @@ import { FC, memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ArticleDetailes } from 'entities/Article';
+import { ArticleDetailes, ArticleSchema, ArticleView } from 'entities/Article';
 import { CommentList, CommentSchema } from 'entities/Comment';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import classes from './ArticleDetailesPage.module.scss';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { getArticleComments, reducerArticleComments } from '../../model/slice/articleDetailesCommentsSlice';
+import { getArticleComments, getArticleRecommended, getArticleRecommendedIsLoading } from '../..';
 import { useSelector } from 'react-redux';
 import { getArticleCommentsIsLoading } from '../../model/selectors/getArticleCommentsData';
 import { useAppDispatch } from 'app/providers/StoreProvider';
@@ -18,13 +18,16 @@ import { useFetchCommentForArticle } from '../../model/services/fetchCommentForA
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
 import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
+import { ArticleList } from 'entities/Article/ui/ArticleList/ArticleList';
+import { fetchRecommendationsForArticle } from 'pages/ArticleDetailesPage/model/services/fetchRecommendationsForArticle/fetchRecommendationsForArticle';
+import { articleDetailesPageReducer } from './../../model/slice';
 
 export interface ArticleDetailesPageProps {
 	className?: string;
 }
 
 const redusers: ReducerList = {
-	articleDetailesComments: reducerArticleComments
+	articleDetailesPage: articleDetailesPageReducer
 };
 
 const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDetailesPageProps) => {
@@ -33,7 +36,9 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 	const navigate = useNavigate();
 
 	const comments = useSelector<StateSchema, CommentSchema[]>(getArticleComments.selectAll);
+	const recomendations = useSelector<StateSchema, ArticleSchema[]>(getArticleRecommended.selectAll);
 	const isLoading = useSelector(getArticleCommentsIsLoading);
+	const recomendaionsIsLoading = useSelector(getArticleRecommendedIsLoading);
 	const sendCommentForArticle = useFetchCommentForArticle();
 	const dispatch = useAppDispatch();
 
@@ -45,7 +50,10 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 
 	useEffect(() => {
 		const fetchCommentByArticle = async () => {
-			if (_PROJECT_ !== 'storybook') await dispatch(fetchCommentsByArticleId({ articleId }));
+			if (_PROJECT_ !== 'storybook') {
+				await dispatch(fetchRecommendationsForArticle({ articleId }));
+				await dispatch(fetchCommentsByArticleId({ articleId }));
+			}
 		};
 		void fetchCommentByArticle();
 	}, [dispatch, articleId]);
@@ -57,7 +65,15 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 					{t('backToList', { ns: 'articles' })}
 				</Button>
 				<ArticleDetailes articleId={articleId} />
-				<Text className={classes.commentTitle} title={t('commentForm')} />
+				<Text size={TextSize.L} className={classes.title} title={t('recommendedForm', { ns: 'articles' })} />
+				<ArticleList
+					className={classes.recommendation}
+					articles={recomendations}
+					isLoading={recomendaionsIsLoading}
+					view={ArticleView.TILE}
+					hasMore={false}
+				/>
+				<Text className={classes.title} title={t('commentForm')} />
 				<AddCommentForm onSendComment={sendCommentForArticle} />
 				<CommentList isLoading={isLoading} comments={comments} />
 			</PageWrapper>

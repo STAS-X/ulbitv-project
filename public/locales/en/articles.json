@@ -1,26 +1,27 @@
 {
-	"article": "Article Page",
-	"noArticles": "Articles not found",
-	"noFiltredArticles": "Articles by filter `{{filter}}` and category `{{category}}` not found",
-	"readMore": "Read more",
-	"backToList": "Back to list",
-	"selectors": {
-		"views": "Views",
-		"title": "Title",
-		"createdAt": "Created",
-		"asc": "ASC",
-		"desc": "DESC",
-		"formTitle": "Sort setting",
-		"fieldHolder": "By field",
-		"orderHolder": "By order"
-	},
-	"search": {
-		"formTitle": "Search setting",
-		"filterHolder": "Filter by text"
-	},
-	"category": {
-		"IT": "IT",
-		"SIENCE": "SIENCE",
-		"ECONOMICS": "ECONOMICS"
-	}
+  "article": "Article Page",
+  "noArticles": "Articles not found",
+  "noFiltredArticles": "Articles by filter `{{filter}}` and category `{{category}}` not found",
+  "readMore": "Read more",
+  "backToList": "Back to list",
+  "selectors": {
+    "views": "Views",
+    "title": "Title",
+    "createdAt": "Created",
+    "asc": "ASC",
+    "desc": "DESC",
+    "formTitle": "Sort setting",
+    "fieldHolder": "By field",
+    "orderHolder": "By order"
+  },
+  "search": {
+    "formTitle": "Search setting",
+    "filterHolder": "Filter by text"
+  },
+  "category": {
+    "IT": "IT",
+    "SIENCE": "SIENCE",
+    "ECONOMICS": "ECONOMICS"
+  },
+  "recommendedForm": "Recommendations"
 }
