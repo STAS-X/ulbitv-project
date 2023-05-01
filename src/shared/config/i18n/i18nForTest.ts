@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
 
-const initI18n = async () => {
+const initI18nTest = async () => {
 	await i18n
 		//.use(Backend)
 		//.use(LanguageDetector)
@@ -44,4 +44,4 @@ const initI18n = async () => {
 	return i18n;
 };
 
-export default initI18n();
+export default initI18nTest();

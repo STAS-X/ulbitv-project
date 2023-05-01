@@ -49,14 +49,14 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = memo((props: Ar
 				<Select
 					placeholder={t('selectors.fieldHolder')}
 					readonly={false}
-					value={field}
+					value={field ?? sortBy.field}
 					options={fields}
 					onChange={setField}
 				/>
 				<Select
 					placeholder={t('selectors.orderHolder')}
 					readonly={false}
-					value={order}
+					value={order ?? sortBy.order}
 					options={orders}
 					onChange={setOrder}
 				/>

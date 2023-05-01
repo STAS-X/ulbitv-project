@@ -38,7 +38,7 @@ export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArti
 				_sort: field,
 				_order: order,
 				type_like: category,
-				_q: filter
+				q: filter
 			},
 			paramsSerializer: (params) => {
 				console.log(params, 'get params');

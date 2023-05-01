@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Observer } from 'shared/ui/Observer/Observer';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
@@ -78,12 +78,16 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 		);
 	} else {
 		if (!hasMore && !hasFilter) {
-			messageElement = <Text content={t('noArticles')} />;
+			messageElement = <Text size={TextSize.L} content={t('noArticles')} />;
 		} else {
 			messageElement =
 				hasMore || isLoading ? null : (
 					<Text
-						content={t('noFiltredArticles', { filter, category: Array.isArray(category) ? category.join(',') : 'ALL' })}
+						size={TextSize.L}
+						content={t('noFiltredArticles', {
+							filter,
+							category: Array.isArray(category) ? category.join(', ') : 'ALL'
+						})}
 					/>
 				);
 		}

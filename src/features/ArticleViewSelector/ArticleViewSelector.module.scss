@@ -4,10 +4,12 @@
 
 .selector {
 	margin-right: 10px;
+
 	& svg {
 		transform: scale(1.25);
-		margin: 5px 0 0 0;
+		margin: 5px 0 0;
 	}
+
 	& svg > path {
 		fill: var(--secondary-color);
 		stroke: var(--secondary-color);
@@ -17,8 +19,9 @@
 .selected {
 	& svg {
 		transform: scale(1.25);
-		margin: 5px 0 0 0;
+		margin: 5px 0 0;
 	}
+
 	& svg > path {
 		fill: var(--primary-color);
 		stroke: var(--primary-color);

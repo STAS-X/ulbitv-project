@@ -5,18 +5,6 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 import { ArticleBlockType, ArticleSchema, ArticleType, ArticleView } from 'entities/Article/model/types/articleSchema';
 
-export default {
-	title: 'entities/Article/ArticleList',
-	component: ArticleList,
-	args: {
-		articles: Array.from({ length: 20 }, (_, index) => {
-			return { ...article, id: index + 1 } as ArticleSchema;
-		})
-	}
-} as ComponentMeta<typeof ArticleList>;
-
-const Template: ComponentStory<typeof ArticleList> = (args: ArticleListProps) => <ArticleList {...args} />;
-
 const article = {
 	id: 1,
 	title: 'Javascript news',
@@ -93,6 +81,18 @@ const article = {
 		}
 	]
 };
+
+export default {
+	title: 'entities/Article/ArticleList',
+	component: ArticleList,
+	args: {
+		articles: Array.from({ length: 20 }, (_, index) => {
+			return { ...article, id: index + 1 } as ArticleSchema;
+		})
+	}
+} as ComponentMeta<typeof ArticleList>;
+
+const Template: ComponentStory<typeof ArticleList> = (args: ArticleListProps) => <ArticleList {...args} />;
 
 export const ArticleListEmpty = Template.bind({});
 ArticleListEmpty.args = {

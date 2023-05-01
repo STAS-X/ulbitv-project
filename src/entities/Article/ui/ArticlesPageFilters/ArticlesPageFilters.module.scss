@@ -7,9 +7,11 @@
 	padding: 10px 20px;
 	right: 40px;
 	z-index: var(--bars-z-index);
+
 	&:hover {
 		pointer-events: none;
 	}
+
 	& button,
 	select {
 		cursor: pointer;
@@ -49,17 +51,20 @@
 	left: 0;
 	right: 0;
 	height: 5px;
-	animation: progressBar 1s ease-in-out;
+	animation: progress-bar 1s ease-in-out;
 	animation-iteration-count: infinite;
 }
-@keyframes progressBar {
+
+@keyframes progress-bar {
 	0% {
 		width: 0;
 	}
+
 	50% {
 		left: 0;
 		width: 100%;
 	}
+
 	100% {
 		left: 100%;
 		width: 0;

@@ -41,7 +41,7 @@ export const ArticleSearchSelector: FC<ArticleSearchSelectorProps> = memo((props
 				<Input
 					ref={refInput as ForwardedRef<HTMLInputElement>}
 					className={classes.input}
-					value={filter}
+					value={filter ?? searchBy}
 					readonly={false}
 					placeholder={t('search.filterHolder')}
 					onChange={setFilter}

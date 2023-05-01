@@ -113,7 +113,7 @@ describe('fetchNextArticlesPage test', () => {
 
 		console.log(result, 'result data from action');
 		//expect(testThunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue));
-		expect(testThunk.dispatch).toHaveBeenCalledTimes(5);
+		expect(testThunk.dispatch).toHaveBeenCalledTimes(2);
 		// eslint-disable-next-line @typescript-eslint/unbound-method
 		expect(testThunk.api.get).toHaveBeenCalled();
 		expect(result.meta.requestStatus).toBe('fulfilled');

@@ -34,6 +34,7 @@ body {
 .articles-header {
 	left: calc(var(--sidebar-width) + 50px);
 }
+
 .articles-header-collapsed {
 	left: calc(var(--sidebar-width-collapsed) + 50px);
 }
@@ -50,6 +51,4 @@ main {
 	padding: var(--section-header-heigth) 30px 30px 60px;
 	margin-top: 0;
 	pointer-events: all;
-	//margin-bottom: 20px;
-	//overflow-y: auto;
 }

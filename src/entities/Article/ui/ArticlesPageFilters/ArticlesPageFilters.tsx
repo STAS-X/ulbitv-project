@@ -80,7 +80,7 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: Ar
 
 			// Обнуляем текущий фильтр поиска
 			//dispatch(articlesPageActions.setFilter(''));
-			if (refSearch?.current) refSearch.current.value = '';
+			//if (refSearch?.current) refSearch.current.value = '';
 
 			dispatch(articlesPageActions.setSortiration(newSort));
 		},
