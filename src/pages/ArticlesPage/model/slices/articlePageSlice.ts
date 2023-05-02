@@ -2,15 +2,17 @@ import {
 	ARTICLE_SELECTORS,
 	ARTICLE_FILTER,
 	ARTICLE_CATEGORY,
-	SelectorType
-} from './../../../../shared/const/localstorage';
+	SelectorType,
+	ARTICLE_SORT,
+	ARTICLE_VIEW
+} from 'shared/const/localstorage';
 import { SortFields, SortOrder, fieldsForSort, ordersForSort } from 'shared/lib/filters/sortTypes';
-import { OptionalRecord } from './../../../../shared/lib/url/queryParams/addQueryParams';
+import { OptionalRecord } from 'shared/lib/url/queryParams/addQueryParams';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import { ArticlesPageSchema, fetchNextArticlesPage } from 'pages/ArticlesPage';
 import { ArticleSchema, ArticleView, ArticleType } from 'entities/Article/model/types/articleSchema';
 import { createEntityAdapter, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ARTICLE_SORT, ARTICLE_VIEW } from 'shared/const/localstorage';
+
 import { ArticlesSort } from '../types/ArticlesPageSchema';
 import { getArticlesPageCategory, getArticlesPageFilter } from '../selectors/getArticlesPageData';
 
@@ -109,6 +111,7 @@ const articlesPageSlice = createSlice({
 		sortField: initDataFromLS('sortField'),
 		searchFilter: initDataFromLS('filter'),
 		categoryFilter: initDataFromLS('category'),
+		_target: '_blank',
 		_inited: false,
 		ids: [],
 		entities: {}
@@ -126,6 +129,9 @@ const articlesPageSlice = createSlice({
 		},
 		setTotal: (state, action: PayloadAction<number>) => {
 			state.total = action.payload;
+		},
+		setTarget: (state, action: PayloadAction<string>) => {
+			state._target = action.payload;
 		},
 		setLoading: (state, action: PayloadAction<boolean>) => {
 			state.isLoading = action.payload;

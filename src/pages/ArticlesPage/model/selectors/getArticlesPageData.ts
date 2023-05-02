@@ -14,3 +14,4 @@ export const getArticlesPageFilter = (state: StateSchema) => state.articlesPage?
 export const getArticlesPageCategory = (state: StateSchema) => state.articlesPage?.categoryFilter ?? [];
 export const getArticlesPageHasMore = (state: StateSchema) => state.articlesPage?.hasMore ?? true;
 export const getArticlesPageInited = (state: StateSchema) => state.articlesPage?._inited;
+export const getArticlesPageTarget = (state: StateSchema) => state.articlesPage?._target;

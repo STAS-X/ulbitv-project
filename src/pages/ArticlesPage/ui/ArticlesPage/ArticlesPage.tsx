@@ -15,7 +15,8 @@ import {
 	getArticlesPageScrollToArticleId,
 	getArticlesPageView,
 	getArticlesPageFilter,
-	getArticlesPageCategory
+	getArticlesPageCategory,
+	getArticlesPageTarget
 } from '../..';
 import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
@@ -44,6 +45,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	const articles = useSelector<StateSchema, ArticleSchema[]>(getArticlesPage.selectAll);
 	const limit = useSelector(getArticlesPageLimit);
 	const scrollTo = useSelector(getArticlesPageScrollToArticleId);
+	const target = useSelector(getArticlesPageTarget);
 	const inited = useSelector(getArticlesPageInited);
 	//const currentLimit = Math.min(limit, selectedTotal >= 0 && total > 0 ? total - selectedTotal : limit);
 
@@ -177,6 +179,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 						hasMore={hasMore}
 						filter={filter}
 						category={category}
+						target={target}
 						limit={limit}
 						articles={articles}
 						onInitScroll={initScrollWrapper}

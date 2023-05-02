@@ -154,7 +154,6 @@ ArticleDetailesPageLoading.args = {};
 ArticleDetailesPageLoading.decorators = [
 	ThemeDecorator(Theme.LIGHT),
 	StoreDecorator({
-		...extraReducers,
 		articleDetailes: {
 			isLoading: true
 		}
@@ -166,7 +165,6 @@ ArticleDetailesPageError.args = {};
 ArticleDetailesPageError.decorators = [
 	ThemeDecorator(Theme.LIGHT),
 	StoreDecorator({
-		...extraReducers,
 		articleDetailes: {
 			isLoading: false,
 			error: 'Error fetch article'

@@ -19,7 +19,7 @@ export const Observer: FC<ObserverProps> = (props: ObserverProps) => {
 	});
 
 	return (
-		<div className={classNames('', {}, [className])}>
+		<div className={className}>
 			{children}
 			{onScrollEnd && <div ref={triggerRef} className={classes.trigger}></div>}
 		</div>

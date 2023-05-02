@@ -17,6 +17,7 @@ export interface ArticleListProps {
 	hasMore?: boolean;
 	limit?: number;
 	filter?: string;
+	target?: string;
 	category?: string[];
 	view?: ArticleView;
 	onInitScroll?: (article: HTMLDivElement, id: number) => void;
@@ -34,6 +35,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 		view = ArticleView.LIST,
 		onInitScroll,
 		onLoadNext,
+		target = '',
 		className = ''
 	} = props;
 
@@ -57,9 +59,13 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 
 	const onOpenArticle = useCallback(
 		(articleId: number) => {
-			if (articleId) navigate(`/${AppRoutes.ARTICLES}/${articleId}`);
+			if (target) {
+				window.open(`/${AppRoutes.ARTICLES}/${articleId}`, target);
+			} else {
+				if (articleId) navigate(`/${AppRoutes.ARTICLES}/${articleId}`);
+			}
 		},
-		[navigate]
+		[navigate, target]
 	);
 
 	const hasFilter = !!filter || category.length > 0;
@@ -94,7 +100,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 	}
 
 	return (
-		<Observer className={classNames(className, {}, [classes.articlelist])} onScrollEnd={onLoadNext}>
+		<Observer className={classNames(className || classes.articlelist, {}, [])} onScrollEnd={onLoadNext}>
 			{articles.length > 0 ? articles.map((article) => renderArticles(article)) : messageElement}
 		</Observer>
 	);

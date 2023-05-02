@@ -21,6 +21,8 @@ import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { ArticleList } from 'entities/Article/ui/ArticleList/ArticleList';
 import { fetchRecommendationsForArticle } from 'pages/ArticleDetailesPage/model/services/fetchRecommendationsForArticle/fetchRecommendationsForArticle';
 import { articleDetailesPageReducer } from './../../model/slice';
+import { useLocation } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { OptionalRecord } from 'shared/lib/url/queryParams/addQueryParams';
 
 export interface ArticleDetailesPageProps {
 	className?: string;
@@ -34,6 +36,7 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 	const { className } = props;
 	const { id: articleId } = useParams<{ id: string }>();
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const comments = useSelector<StateSchema, CommentSchema[]>(getArticleComments.selectAll);
 	const recomendations = useSelector<StateSchema, ArticleSchema[]>(getArticleRecommended.selectAll);
@@ -45,6 +48,17 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 	const navigateToList = useCallback(() => {
 		navigate(`/${AppRoutes.ARTICLES}`);
 	}, [navigate]);
+
+	useEffect(() => {
+		// При первичном рендере компонента в случае необходимост перебрасываем на новую вкладку
+		const state = location.state as OptionalRecord;
+		const { search, pathname } = location;
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+		if (state?.target) {
+			window.open(`${pathname}${search ? '?' + search : ''}`, state.target);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const { t } = useTranslation(['comments', 'articles']);
 
