@@ -3,7 +3,7 @@ import HTMLWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-
+import CopyPlugin from 'copy-webpack-plugin';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstance[] {
@@ -25,6 +25,9 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
 		new MiniCssExtractPlugin({
 			filename: 'css/[name].[contenthash:8].css',
 			chunkFilename: 'css/[name].[chunkhash:8].css'
+		}),
+		new CopyPlugin({
+			patterns: [{ from: paths.locales, to: paths.buildLocales }]
 		}),
 		new webpack.HotModuleReplacementPlugin()
 	];

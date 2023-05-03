@@ -60,6 +60,7 @@ module.exports = {
 		'import/extensions': 'off',
 		'import/named': 'off',
 		'no-underscore-dangle': 'off',
+		'import/default': 'recommended',
 		'import/prefer-default-export': 'off',
 		'import/no-extraneous-dependencies': 'off',
 		'no-unused-vars': ['warn', { vars: 'local', vars: 'local', args: 'none' }],

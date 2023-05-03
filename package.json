@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "webpack serve --env port=3000",
 		"start:dev": "concurrently \"npm start\" \"npm run start:json:server\"",
-		"build:prod": "webpack --env mode=production",
+		"build:prod": "webpack --env mode=production apiUrl=https://backend-sigma-beryl.vercel.app/",
 		"build:dev": "webpack --env mode=development",
 		"start:json:server": "node ./json-server/index.js",
 		"lint:ts": "eslint \"**/*.{ts,tsx}\"",
@@ -63,6 +63,7 @@
 		"@typescript-eslint/parser": "^5.12.1",
 		"babel-loader": "^8.2.3",
 		"babel-plugin-i18next-extract": "^0.8.3",
+		"copy-webpack-plugin": "^11.0.0",
 		"cors": "^2.8.5",
 		"css-loader": "^6.6.0",
 		"eslint": "^8.10.0",
