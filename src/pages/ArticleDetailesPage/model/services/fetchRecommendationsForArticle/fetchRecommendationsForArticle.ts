@@ -9,10 +9,11 @@ interface RecommendationsForArticle {
 export const fetchRecommendationsForArticle = createAppAsyncThunk<ArticleSchema[], RecommendationsForArticle>(
 	'articles/fetchRecommendationsForArticle',
 	async (props, thunkApi) => {
-		const { articleId = '' } = props;
+		const { articleId } = props;
 		const { extra, rejectWithValue } = thunkApi;
 
 		//const limit = getState().articlesPage?.limit;
+		if (!articleId || !Number(articleId)) return [];
 
 		try {
 			const response = await extra.api.get<ArticleSchema[]>(`/articles`, {

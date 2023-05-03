@@ -5,6 +5,7 @@ import { AboutPage } from 'pages/AboutPage';
 import { MainPage } from 'pages/MainPage';
 import { RouteProps } from 'react-router-dom';
 import { ArticleDetailesPage } from 'pages/ArticleDetailesPage';
+import { ArticleEditPage } from 'pages/ArticleEditPage';
 
 export enum AppRoutes {
 	MAIN = 'main',
@@ -12,6 +13,8 @@ export enum AppRoutes {
 	PROFILE = 'profile',
 	ARTICLES = 'articles',
 	ARTICLE_DETAILES = 'article_detailes',
+	ARTICLE_CREATE = 'article_create',
+	ARTICLE_EDIT = 'article_edit',
 	NOT_FOUND = 'not_found'
 }
 
@@ -44,6 +47,16 @@ export const RoutePath: Record<AppRoutes, AuthRouteProps> = {
 		pathname: '/articles/:id',
 		isAuth: true,
 		Element: ArticleDetailesPage
+	},
+	[AppRoutes.ARTICLE_CREATE]: {
+		pathname: '/articles/create',
+		isAuth: true,
+		Element: ArticleEditPage
+	},
+	[AppRoutes.ARTICLE_EDIT]: {
+		pathname: '/articles/:id/edit',
+		isAuth: true,
+		Element: ArticleEditPage
 	},
 	[AppRoutes.NOT_FOUND]: {
 		pathname: '*',

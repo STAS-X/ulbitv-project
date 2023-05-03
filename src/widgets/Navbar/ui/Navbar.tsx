@@ -8,17 +8,19 @@ import { useSelector } from 'react-redux';
 import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
 import { userActions, UserData } from 'entities/User';
 import { getUserData } from 'entities/User/model/selectors/getUser/getUser';
-import { useNavigate } from 'react-router-dom';
-import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from '../../../shared/config/routeConfig/routeConfig';
 
 export interface NavbarProps {
 	className?: string;
 }
 
 export const Navbar = memo(({ className }: NavbarProps) => {
-	const { t } = useTranslation(['translation']);
+	const { t } = useTranslation(['translation', 'articles']);
+
 	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
+
 	const userdata = useSelector<StateSchema, UserData | undefined>(getUserData);
 
 	const [isAuthModal, setIsAuthModal] = useState(false);
@@ -38,6 +40,10 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
 	return (
 		<header className={classNames(classes.navbar, {}, [className])}>
+			<Text className={classes.appName} theme={TextTheme.INVERTED} title={t('appName')} />
+			<AppLink className={classes.createLink} to={RoutePath.article_create} theme={AppLinkTheme.SECONDARY}>
+				{t('createArticle', { ns: 'articles' })}
+			</AppLink>
 			<Button theme={ButtonTheme.INVERTED} className={classes.links} onClick={userdata ? setLogOut : showAuthModal}>
 				{t(userdata ? 'logout' : 'login')}
 			</Button>

@@ -23,5 +23,9 @@
     "SCIENCE": "Наука",
     "ECONOMICS": "Экономика"
   },
-  "recommendedForm": "Рекомендуем к просмотру"
+  "recommendedForm": "Рекомендуем к просмотру",
+  "editArticle": "Редактировать",
+  "editArticleId": "Редактирование статьи ID = {{id}}",
+  "newArticle": "Создание новой статьи",
+  "createArticle": "Создать статью"
 }

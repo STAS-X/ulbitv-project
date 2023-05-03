@@ -1,4 +1,6 @@
+import { getUserCanEditArticle } from './model/selectors/getArticleEditable';
 export { ArticleDetailesPageLazy as ArticleDetailesPage } from './ui/ArticleDetailesPage/ArticleDetailesPage.lazy';
+export { ArticleDetailesPageHeader } from './ui/ArticleDetailesPageHeader/ArticleDetailesPageHeader';
 export { ArticleDetailesPageSchema } from './model/types';
 export { ArticleDetailesCommentsSchema } from './model/types/ArticleDetailesCommentsSchema';
 export {

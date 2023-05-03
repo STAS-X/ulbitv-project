@@ -23,5 +23,9 @@
     "SIENCE": "SIENCE",
     "ECONOMICS": "ECONOMICS"
   },
-  "recommendedForm": "Recommendations"
+  "recommendedForm": "Recommendations",
+  "editArticle": "Edit",
+  "editArticleId": "Edite article ID = {{id}}",
+  "newArticle": "Create new article",
+  "createArticle": "Create article"
 }

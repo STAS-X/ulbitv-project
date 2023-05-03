@@ -19,7 +19,11 @@ export const fetchArticleById = createAppAsyncThunk<ArticleSchema, ArticleByIdPr
 		if (!articleId) return rejectWithValue('articleIdNotFound');
 
 		try {
-			const response = await extra.api.get<ArticleSchema>(`/articles/${articleId}`);
+			const response = await extra.api.get<ArticleSchema>(`/articles/${articleId}`, {
+				params: {
+					_expand: 'user'
+				}
+			});
 			console.log(response.data, 'get data from json server');
 
 			if (!response.data) {
