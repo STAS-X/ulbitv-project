@@ -58,6 +58,7 @@ export function createReduxStore(
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type AppState = ReturnType<typeof createReduxStore>;
 // 2. Create a type for thunk dispatch
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AppThunkDispatch = ThunkDispatch<StateSchema, any, AnyAction>;
 // 3. Create a type for store using RootState and Thunk enabled dispatch
 export type AppStoreWithReducerManager = Omit<EnhancedStore<StateSchema>, 'reducerManager'> & {

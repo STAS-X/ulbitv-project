@@ -8,7 +8,8 @@ export interface ThemeSwitchButtonProps {
 	className?: string;
 }
 
-export const ThemeSwitchButton: FC<ThemeSwitchButtonProps> = memo(({ className }) => {
+export const ThemeSwitchButton: FC<ThemeSwitchButtonProps> = memo((props: ThemeSwitchButtonProps) => {
+	const { className = '' } = props;
 	const { theme, toggleTheme } = useTheme();
 	const [fillColor, setFillColor] = useState('');
 

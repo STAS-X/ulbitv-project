@@ -6,6 +6,6 @@ export const $apiAxios = axios.create({
 });
 
 $apiAxios.interceptors.request.use((config) => {
-	if (config.headers) config.headers.authorization = localStorage.getItem(USER_LS_KEY) ?? ''
+	if (config.headers) config.headers.authorization = localStorage.getItem(USER_LS_KEY) ?? '';
 	return config;
 });

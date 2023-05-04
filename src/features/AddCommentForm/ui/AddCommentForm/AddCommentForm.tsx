@@ -18,7 +18,7 @@ import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicM
 
 export interface AddCommentFormProps {
 	className?: string;
-	onSendComment: (content: string) => CommentSchema | string | undefined | void;
+	onSendComment?: (content: string) => CommentSchema | string | undefined | void;
 }
 
 const reducers: ReducerList = {
@@ -44,7 +44,7 @@ const AddCommentForm: FC<AddCommentFormProps> = (props: AddCommentFormProps) => 
 	const handleSendComment = useCallback(() => {
 		console.log(content, 'get comment data');
 		if (content) {
-			onSendComment(content);
+			if (onSendComment) onSendComment(content);
 		}
 	}, [content, onSendComment]);
 
