@@ -27,6 +27,7 @@ export default (env: BuildEnv) => {
 		port: PORT,
 		project: PROJECT
 	};
+	console.log(env,'init options');
 
 	return options;
 };
