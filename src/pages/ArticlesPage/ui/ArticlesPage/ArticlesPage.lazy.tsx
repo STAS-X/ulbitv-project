@@ -1,3 +1,5 @@
 import { FC, lazy } from 'react';
 
-export const ArticlesPageLazy: FC = lazy(() => new Promise((resolve) => import('./ArticlesPage')));
+export const ArticlesPageLazy: FC = lazy(
+	() => new Promise<{ default: FC<{}> }>((resolve) => resolve(import('./ArticlesPage')))
+);
