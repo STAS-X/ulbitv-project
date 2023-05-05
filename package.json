@@ -103,6 +103,9 @@
 		"@loki/create-async-callback": "^0.31.0",
 		"@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
 		"@reduxjs/toolkit": "^1.8.0",
+		"@types/react-virtualized-auto-sizer": "^1.0.1",
+		"@types/react-window": "^1.8.5",
+		"@types/react-window-infinite-loader": "^1.0.6",
 		"axios": "^0.26.1",
 		"concurrently": "^7.0.0",
 		"i18next": "^21.6.11",
@@ -113,7 +116,10 @@
 		"react-dom": "^17.0.2",
 		"react-i18next": "^11.15.5",
 		"react-redux": "^7.2.6",
-		"react-router-dom": "^6.2.1"
+		"react-router-dom": "^6.2.1",
+		"react-virtualized-auto-sizer": "^1.0.15",
+		"react-window": "^1.8.9",
+		"react-window-infinite-loader": "^1.0.9"
 	},
 	"overrides": {
 		"chrome-remote-interface": "^0.32.1"

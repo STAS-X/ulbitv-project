@@ -1,6 +1,6 @@
 import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
 import { ArticleList } from 'entities/Article/ui/ArticleList/ArticleList';
-import { FC, memo, useEffect, useCallback, useState } from 'react';
+import { FC, memo, useEffect, useCallback, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -12,18 +12,19 @@ import {
 	getArticlesPageInited,
 	getArticlesPageIsLoading,
 	getArticlesPageLimit,
-	getArticlesPageScrollToArticleId,
 	getArticlesPageView,
 	getArticlesPageFilter,
 	getArticlesPageCategory,
+	getArticlesPageSortField,
+	getArticlesPageSortOrder,
 	getArticlesPageTarget
 } from '../..';
 import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
-import { ARTICLE_ITEM_SELECTOR, DEBOUNCE_DELAY, DIV_SCROLL_SELECTOR } from 'shared/const/localstorage';
-import { useDebounce as useScrollDebounce } from 'shared/lib/hooks/useDebounce';
 import { ArticlesPageFilters } from 'entities/Article';
 import { useArticlesParams } from 'shared/lib/hooks/useArticlesQueryParams';
+import { ArticleInfiniteLoader } from 'entities/Article/ui/ArticleInfiniteLoader/ArticleInfiniteLoader';
+import { ArticleInfiniteGridLoader } from 'entities/Article/ui/ArticleInfiniteLoader/ArticleInfiniteGridLoader';
 
 export interface ArticlesPageProps {
 	className?: string;
@@ -44,37 +45,36 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	const category = useSelector(getArticlesPageCategory);
 	const articles = useSelector<StateSchema, ArticleSchema[]>(getArticlesPage.selectAll);
 	const limit = useSelector(getArticlesPageLimit);
-	const scrollTo = useSelector(getArticlesPageScrollToArticleId);
+	const sortField = useSelector(getArticlesPageSortField);
+	const sortOrder = useSelector(getArticlesPageSortOrder);
 	const target = useSelector(getArticlesPageTarget);
-	const inited = useSelector(getArticlesPageInited);
+	const inited = useSelector(getArticlesPageInited) || false;
 	//const currentLimit = Math.min(limit, selectedTotal >= 0 && total > 0 ? total - selectedTotal : limit);
 
 	const { queryParams } = useArticlesParams();
-	//  const pageWrapper: MutableRefObject<HTMLDivElement | null> = useRef(
-	//  	document.querySelector(DIV_SCROLL_SELECTOR)
-	//  );
 
 	// debounce scroll articles
-	const [scrollArticleId, setScrollArticleId] = useState(scrollTo);
+	//const [scrollArticleId, setScrollArticleId] = useState(scrollTo);
 	// onload status div wrapper-page element
-	const [scrolledWrapper, setScrolledWrapper] = useState(false);
+	//const [scrolledWrapper, setScrolledWrapper] = useState(false);
 
 	// The goal is to only have the API call fire when user stops typing ...
 	// ... so that we aren't hitting our API rapidly.
-	const handleScrollToState = useCallback(
-		(value: string | number) => {
-			console.log(scrolledWrapper, value, 'get scrolledWrapped');
-			if (scrolledWrapper) {
-				dispatch(articlesPageActions.setScrollToArticleId(Number(value)));
-				//console.log(value, 'new articleId to scroll');
-			}
-		},
-		[dispatch, scrolledWrapper]
-	);
-	useScrollDebounce(scrollArticleId, DEBOUNCE_DELAY, handleScrollToState);
+	// const handleScrollToState = useCallback(
+	// 	(value: string | number) => {
+	// 		console.log(scrolledWrapper, value, 'get scrolledWrapped');
+	// 		if (scrolledWrapper) {
+	// 			dispatch(articlesPageActions.setScrollToArticleId(Number(value)));
+	// 			//console.log(value, 'new articleId to scroll');
+	// 		}
+	// 	},
+	// 	[dispatch, scrolledWrapper]
+	// );
+	// useScrollDebounce(scrollArticleId, DEBOUNCE_DELAY, handleScrollToState);
 
 	// Подгрузка новых статей после завершения скрола текущей ленты
 	const onLoadNextArticlesPage = useCallback(async () => {
+		console.log(inited, isLoading, hasMore, 'get data from store');
 		if (_PROJECT_ !== 'storybook' && inited && !isLoading && hasMore) await dispatch(fetchNextArticlesPage());
 	}, [dispatch, isLoading, inited, hasMore]);
 
@@ -86,83 +86,66 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	// }, [dispatch, onLoadNextArticlesPage, hasMore, page]);
 
 	// Сохранение текущего скрола страницы для хука useDebounce
-	const handleScrollPage = useCallback(
-		(event: Event) => {
-			if (event.target) {
-				const target = event.target as HTMLDivElement;
-				const wrapperHeight = target.getBoundingClientRect().height;
-				const articles = target.querySelectorAll(ARTICLE_ITEM_SELECTOR);
-				let scrollBaseTop = 0;
-				let newScrollArticleId = -1;
-				articles.forEach((article: Element | HTMLElement, index) => {
-					//console.log(newScrollArticleId, article.id, isLoading, scrollArticleId, 'get data scrolling');
-					if (newScrollArticleId > -1) return;
+	// const handleScrollPage = useCallback(
+	// 	(event: Event) => {
+	// 		if (event.target) {
+	// 			const target = event.target as HTMLDivElement;
+	// 			const wrapperHeight = target.getBoundingClientRect().height;
+	// 			const articles = target.querySelectorAll(ARTICLE_ITEM_SELECTOR);
+	// 			let scrollBaseTop = 0;
+	// 			let newScrollArticleId = -1;
+	// 			articles.forEach((article: Element | HTMLElement, index) => {
+	// 				//console.log(newScrollArticleId, article.id, isLoading, scrollArticleId, 'get data scrolling');
+	// 				if (newScrollArticleId > -1) return;
 
-					if (index === 0) scrollBaseTop = article.getBoundingClientRect().top;
-					if (
-						article.getBoundingClientRect().top - 60 >= 0 &&
-						article.getBoundingClientRect().bottom - 60 <= wrapperHeight &&
-						article.getBoundingClientRect().top > scrollBaseTop
-					) {
-						if (Number(article.id) !== scrollArticleId) {
-							//console.log(`${article.getBoundingClientRect().top} ${article.getBoundingClientRect().bottom} ${index}`);
-							//console.log(`article new ${index === 0 ? 0 : article.id} old ${scrollArticleId}`);
-							newScrollArticleId = index === 0 ? 0 : Number(article.id);
-							return;
-						}
-					}
-				});
-				//console.log(newScrollArticleId, isLoading, 'get data scrolling');
-				if (newScrollArticleId > -1 && !isLoading) {
-					//console.log(scrollArticleId, isLoading, 'get data SCROLLLLL');
-					setScrollArticleId(newScrollArticleId);
-				}
-			}
-		},
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[setScrollArticleId, scrollArticleId, isLoading]
-	);
+	// 				if (index === 0) scrollBaseTop = article.getBoundingClientRect().top;
+	// 				if (
+	// 					article.getBoundingClientRect().top - 60 >= 0 &&
+	// 					article.getBoundingClientRect().bottom - 60 <= wrapperHeight &&
+	// 					article.getBoundingClientRect().top > scrollBaseTop
+	// 				) {
+	// 					if (Number(article.id) !== scrollArticleId) {
+	// 						//console.log(`${article.getBoundingClientRect().top} ${article.getBoundingClientRect().bottom} ${index}`);
+	// 						//console.log(`article new ${index === 0 ? 0 : article.id} old ${scrollArticleId}`);
+	// 						newScrollArticleId = index === 0 ? 0 : Number(article.id);
+	// 						return;
+	// 					}
+	// 				}
+	// 			});
+	// 			//console.log(newScrollArticleId, isLoading, 'get data scrolling');
+	// 			if (newScrollArticleId > -1 && !isLoading) {
+	// 				//console.log(scrollArticleId, isLoading, 'get data SCROLLLLL');
+	// 				setScrollArticleId(newScrollArticleId);
+	// 			}
+	// 		}
+	// 	},
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// 	[setScrollArticleId, scrollArticleId, isLoading]
+	// );
 
 	// Функция иницализации первичного скролла на статью после завершения onmount элемента статьи article
-	const initScrollWrapper = useCallback(
-		(article: HTMLDivElement, articleId: number) => {
-			//console.log(`scrolling start ${String(scrolledWrapper)} - ${articleId} - ${scrollTo}`);
-			if (!scrolledWrapper && articleId === scrollTo) {
-				//console.log(`${articleId} - scrolling to article`);
-				article.scrollIntoView({
-					block: 'center',
-					behavior: 'auto'
-				});
-				setScrolledWrapper(true);
-			}
-		},
-		[scrolledWrapper, scrollTo]
-	);
-
-	// Добавление функции слежения за скролом на div page-wrapper
-	useEffect(() => {
-		const pageWrapper: HTMLDivElement | null = document.querySelector(DIV_SCROLL_SELECTOR);
-
-		pageWrapper?.addEventListener('scroll', handleScrollPage);
-		//console.log(pageWrapper, `scroll to TOP! ${scrollTo} ${String(isLoading)}`);
-		if (scrollTo === 0 && !isLoading) {
-			if (pageWrapper?.scrollTop && pageWrapper?.scrollTop > 0) pageWrapper.scrollTop = 0;
-			setScrolledWrapper(true);
-		}
-
-		return () => {
-			pageWrapper?.removeEventListener('scroll', handleScrollPage);
-		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [scrollTo, isLoading]);
+	// const initScrollWrapper = useCallback(
+	// 	(article: HTMLDivElement, articleId: number) => {
+	// 		//console.log(`scrolling start ${String(scrolledWrapper)} - ${articleId} - ${scrollTo}`);
+	// 		if (!scrolledWrapper && articleId === scrollTo) {
+	// 			//console.log(`${articleId} - scrolling to article`);
+	// 			article.scrollIntoView({
+	// 				block: 'center',
+	// 				behavior: 'auto'
+	// 			});
+	// 			setScrolledWrapper(true);
+	// 		}
+	// 	},
+	// 	[scrolledWrapper, scrollTo]
+	// );
 
 	// Инициализация state.articlePages после загрузки query параметров
 	useEffect(() => {
 		const initWithFetch = () => {
 			if (!inited && queryParams) {
 				console.log(queryParams, 'query params');
-				dispatch(articlesPageActions.initState(queryParams));
 				//await dispatch(fetchNextArticlesPage());
+				dispatch(articlesPageActions.initState(queryParams));
 			}
 		};
 		initWithFetch();
@@ -173,7 +156,16 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 			{inited && <ArticlesPageFilters />}
 			<PageWrapper className={classNames(classes.articlespage, {}, [className])}>
 				<div className={classes.articlelist}>
-					<ArticleList
+					<ArticleInfiniteGridLoader
+						inited={inited}
+						view={view}
+						hasNextPage={hasMore}
+						isNextPageLoading={isLoading}
+						items={articles}
+						limit={limit}
+						fetchMore={onLoadNextArticlesPage}
+					/>
+					{/* <ArticleList
 						view={view}
 						isLoading={isLoading}
 						hasMore={hasMore}
@@ -184,7 +176,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 						articles={articles}
 						onInitScroll={initScrollWrapper}
 						onLoadNext={onLoadNextArticlesPage}
-					/>
+					/> */}
 				</div>
 			</PageWrapper>
 		</DynamicModuleLoader>

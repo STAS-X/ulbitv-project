@@ -2,8 +2,10 @@
 	min-height: 100%;
 	overflow: auto;
 	padding-top: var(--section-header-heigth);
+	padding-right: 0;
 }
 
 .articlelist {
 	margin-top: 30px;
+	min-height: calc(100% - 30px);
 }
