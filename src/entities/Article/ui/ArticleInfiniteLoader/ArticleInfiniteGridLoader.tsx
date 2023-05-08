@@ -1,173 +1,349 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import InfiniteLoader from 'react-window-infinite-loader';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { VariableSizeGrid as Grid } from 'react-window';
+import { VariableSizeGrid as Grid, areEqual } from 'react-window';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import AutoSizer from 'react-virtualized-auto-sizer';
-import { FC, useCallback, useEffect, useRef } from 'react';
+import { FC, memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { ArticleSchema, ArticleView } from '../../model/types/articleSchema';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
-import classes from 'ArticleInfiniteLoader.module.scss';
+import classes from './ArticleInfiniteLoader.module.scss';
+import {
+	LIST_ARTICLE_HEIGHT,
+	TILE_ARTICLE_HEIGTH,
+	LIST_SCELETON_HEIGTH,
+	TILE_ARTICLE_WIDTH
+} from 'shared/const/localstorage';
+import { useSelector } from 'react-redux';
+import {
+	getArticlesPageCategory,
+	getArticlesPageFilter,
+	getArticlesPageSortField,
+	getArticlesPageSortOrder
+} from 'pages/ArticlesPage';
 
 export interface ArticleInfiniteGridLoaderProps {
 	className?: string;
-	inited: boolean;
+	//inited: boolean;
 	view: ArticleView;
 	hasNextPage: boolean;
 	isNextPageLoading: boolean;
-	items: ArticleSchema[];
+	items?: ArticleSchema[];
 	limit: number;
 	fetchMore: () => Promise<void> | void;
 }
 
-const LIST_ARTICLE_HEIGHT = 670;
-const TILE_ARTICLE_WIDTH = 240;
-const TILE_ARTICLE_HEIGTH = 290;
+interface InfiniteScrollGridWrapperProps {
+	isItemLoaded: (index: number) => boolean;
+	itemCount: number;
+	loadMoreItems: (start: number, stop: number) => void;
+	items: Array<unknown>;
+	view: ArticleView;
+	threshold?: number;
+	isLoading: boolean;
+	columnCount: number;
+	rowCount: number;
+	width: number;
+	height: number;
+	columnWidth: (index: number) => number;
+	rowHeight: (index: number) => number;
+}
 
-export const ArticleInfiniteGridLoader: FC<ArticleInfiniteGridLoaderProps> = (
-	props: ArticleInfiniteGridLoaderProps
-) => {
+const InfiniteScrollGridWrapper: FC<InfiniteScrollGridWrapperProps> = memo((props: InfiniteScrollGridWrapperProps) => {
 	const {
-		// Are there more items to load?
-		// (This information comes from the most recent API request.)
-		hasNextPage,
-
-		// Are we currently loading a page of items?
-		// (This may be an in-flight flag in your Redux store for example.)
-		isNextPageLoading,
-
-		// Array of items loaded so far.
+		isItemLoaded,
+		itemCount,
+		loadMoreItems,
 		items,
-
-		// Callback function responsible for loading the next page of items.
-		fetchMore,
-
-		limit,
-
-		inited = false,
-
-		view
+		view,
+		isLoading,
+		threshold = 5,
+		columnCount,
+		rowCount,
+		columnWidth,
+		rowHeight,
+		width,
+		height
 	} = props;
 
 	// We create a reference for the InfiniteLoader
-	const infiniteLoaderRef = useRef<InfiniteLoader>(null);
+	const infiniteLoaderRef = useRef<InfiniteLoader | null>(null);
 	const hasMountedRef = useRef(false);
+	const gridRef = useRef<Grid | null>(null);
+
+	const sortField = useSelector(getArticlesPageSortField);
+	const sortOrder = useSelector(getArticlesPageSortOrder);
+	const filter = useSelector(getArticlesPageFilter);
+	const category = useSelector(getArticlesPageCategory);
 
 	// Each time the sort prop changed we called the method resetloadMoreItemsCache to clear the cache
 	useEffect(() => {
-		// We only need to reset cached items when "sortOrder" changes.
+		// We only need to reset cached items when "view" changes.
 		// This effect will run on mount too; there's no need to reset in that case.
 		if (hasMountedRef.current) {
-			if (infiniteLoaderRef.current) {
+			if (infiniteLoaderRef?.current) {
 				infiniteLoaderRef.current.resetloadMoreItemsCache();
 			}
 		}
 		hasMountedRef.current = true;
-	}, []);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [sortField, sortOrder, filter, category]);
 
-	const handleNextPage = useCallback(
-		// Only load 1 page of items at a time.
-		// Pass an empty callback to InfiniteLoader in case it asks us to load more than once.
-		(startIndex?: number, stopIndex?: number) => {
-			isNextPageLoading
-				? () => {
-						return;
-				  }
-				: void fetchMore();
-		},
-
-		[isNextPageLoading, fetchMore]
-	);
+	// Each time the sort prop changed we called the method resetSize of list items
+	useEffect(() => {
+		if (hasMountedRef.current) {
+			if (gridRef?.current) {
+				gridRef.current.resetAfterIndices({ columnIndex: 0, rowIndex: 0 });
+				gridRef.current.scrollTo({ scrollTop: 0 });
+			}
+		}
+		hasMountedRef.current = true;
+	}, [view]);
 
 	useEffect(() => {
-		const initFetchData = () => {
-			if (inited && items.length === 0) fetchMore();
+		if (hasMountedRef.current) {
+			if (gridRef?.current) {
+				gridRef.current.resetAfterIndices({ columnIndex: 0, rowIndex: 0 });
+			}
+		}
+		hasMountedRef.current = true;
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isLoading]);
+
+	//console.log(items.length, itemCount, view, 'get init data');
+	const GridItems = memo(({ columnIndex, rowIndex, data, style }: any) => {
+		const { list, columnCount, columnWidth } = data;
+		const newStyle = {
+			...style,
+			padding: 10,
+			gap: 10,
+			...(view === ArticleView.LIST ? { width: columnWidth(columnIndex) } : {})
 		};
-		void initFetchData();
-	}, [inited, items, fetchMore]);
+		console.log(columnIndex, rowIndex, 'renderer data for Grid component');
+		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+		const itemIndex = Number(rowIndex * columnCount + columnIndex);
+		console.log(itemIndex, list[itemIndex], Boolean(list[itemIndex]), 'get item renderer data');
+		const item = list[itemIndex];
+		//isItemLoaded(itemIndex)
+		return isItemLoaded(itemIndex) ? (
+			item ? (
+				<div style={{ ...newStyle }}>
+					<ArticleListItem article={item as ArticleSchema} view={view} />
+				</div>
+			) : null
+		) : (
+			<div style={{ ...newStyle }}>
+				<ArticleListItemSkeleton view={view} />
+			</div>
+		);
+	}, areEqual);
 
 	return (
-		<AutoSizer>
-			{({ width = 0, height = 0 }) => {
-				const columnCount = view === ArticleView.LIST ? 1 : Math.floor(width / (TILE_ARTICLE_WIDTH + 10));
-				const rowCount =
-					view === ArticleView.LIST ? items.length : Math.floor(items.length / (width / (TILE_ARTICLE_WIDTH + 10)));
+		<InfiniteLoader
+			ref={infiniteLoaderRef}
+			isItemLoaded={isItemLoaded}
+			itemCount={itemCount}
+			loadMoreItems={loadMoreItems}
+			threshold={threshold}
+		>
+			{({ onItemsRendered, style, ref }: any) => {
+				const newItemsRendered = (gridData: any) => {
+					const useOverscanForLoading = true;
+					const {
+						visibleRowStartIndex,
+						visibleRowStopIndex,
+						visibleColumnStartIndex,
+						visibleColumnStopIndex,
+						overscanRowStartIndex,
+						overscanRowStopIndex,
+						overscanColumnStartIndex,
+						overscanColumnStopIndex
+					} = gridData;
 
-				// Every row is loaded except for our loading indicator row.
+					const startCol = Number(useOverscanForLoading ? overscanColumnStartIndex : visibleColumnStartIndex);
+					const endCol = Number(useOverscanForLoading ? overscanColumnStopIndex : visibleColumnStopIndex);
 
-				const isItemLoaded = (index: number) => !hasNextPage || index < items.length;
+					const startRow = Number(useOverscanForLoading ? overscanRowStartIndex : visibleRowStartIndex);
+					const endRow = Number(useOverscanForLoading ? overscanRowStopIndex : visibleRowStopIndex);
+
+					const visibleStartIndex = startRow * (endCol + 1); // (startRow - 1) * columnCount + 1;
+					const visibleStopIndex = endRow * (endCol + 1); // endRow * columnCount + 1;
+					const startIndex = startRow * columnCount + startCol;
+					const stopIndex = endRow * columnCount + endCol;
+
+					console.log(
+						gridData,
+						columnCount,
+						visibleStartIndex,
+						visibleStopIndex,
+						startIndex,
+						stopIndex,
+						'get grid data to overload'
+					);
+
+					onItemsRendered({
+						//call onItemsRendered from InfiniteLoader so it can load more if needed
+						visibleStartIndex: startIndex,
+						visibleStopIndex: stopIndex
+					});
+				};
 
 				return (
-					<InfiniteLoader
-						ref={infiniteLoaderRef}
-						isItemLoaded={isItemLoaded}
-						itemCount={hasNextPage || items.length === 0 ? 20 : items.length}
-						loadMoreItems={handleNextPage}
-						threshold={limit}
+					<Grid
+						className={classes.grid}
+						width={width}
+						height={height - 20}
+						style={{ ...style, overflowX: 'hidden' }}
+						columnWidth={columnWidth}
+						columnCount={columnCount}
+						itemData={{ list: items, columnCount, columnWidth }}
+						ref={gridRef}
+						onItemsRendered={newItemsRendered}
+						rowCount={rowCount}
+						rowHeight={rowHeight}
 					>
-						{({ onItemsRendered, ref }: any) => {
-							const newItemsRendered = (gridData: any) => {
-								const useOverscanForLoading = true;
-								const {
-									visibleRowStartIndex,
-									visibleRowStopIndex,
-									visibleColumnStopIndex,
-									overscanRowStartIndex,
-									overscanRowStopIndex,
-									overscanColumnStopIndex
-								} = gridData;
-
-								const endCol = +(useOverscanForLoading || true ? overscanColumnStopIndex : visibleColumnStopIndex) + 1;
-
-								const startRow = useOverscanForLoading || true ? overscanRowStartIndex : visibleRowStartIndex;
-								const endRow = useOverscanForLoading || true ? overscanRowStopIndex : visibleRowStopIndex;
-
-								const visibleStartIndex = startRow * endCol;
-								const visibleStopIndex = endRow * endCol;
-
-								onItemsRendered({
-									//call onItemsRendered from InfiniteLoader so it can load more if needed
-									visibleStartIndex,
-									visibleStopIndex
-								});
-							};
-							const columnWidth = (index: number) => (view === ArticleView.LIST ? width - 30 : TILE_ARTICLE_WIDTH + 10);
-							const rowHeight = (index: number) =>
-								view === ArticleView.LIST ? LIST_ARTICLE_HEIGHT + 10 : TILE_ARTICLE_HEIGTH + 10;
-
-							return (
-								<Grid
-									width={width}
-									height={height - 15}
-									columnWidth={columnWidth}
-									columnCount={columnCount}
-									itemData={{ list: items, columnCount }}
-									ref={ref}
-									onItemsRendered={newItemsRendered}
-									rowCount={rowCount}
-									rowHeight={rowHeight}
-								>
-									{({ columnIndex, rowIndex, data, style }) => {
-										const newStyle = { ...style, padding: 10, gap: 10 };
-										const { list, columnCount } = data;
-										const item = list[rowIndex * columnCount + columnIndex];
-										return isItemLoaded(rowIndex * columnCount + columnIndex) ? (
-											<div style={{ ...newStyle }}>
-												<ArticleListItem article={item} view={view} />
-											</div>
-										) : isNextPageLoading ? (
-											<div style={{ ...newStyle }}>
-												<ArticleListItemSkeleton view={view} />
-											</div>
-										) : null;
-									}}
-								</Grid>
-							);
-						}}
-					</InfiniteLoader>
+						{GridItems}
+					</Grid>
 				);
 			}}
-		</AutoSizer>
+		</InfiniteLoader>
 	);
-};
+});
+
+export const ArticleInfiniteGridLoader: FC<ArticleInfiniteGridLoaderProps> = memo(
+	(props: ArticleInfiniteGridLoaderProps) => {
+		const {
+			// Are there more items to load?
+			// (This information comes from the most recent API request.)
+			hasNextPage,
+
+			// Are we currently loading a page of items?
+			// (This may be an in-flight flag in your Redux store for example.)
+			isNextPageLoading,
+
+			// Array of items loaded so far.
+			items = [],
+
+			// Callback function responsible for loading the next page of items.
+			fetchMore,
+
+			// Limit items to load on some page or count of sceletons when loading
+			limit,
+
+			// Init load items when component onMount
+			//inited = false,
+
+			// Type view of ArticeList: LIST or TILE
+			view
+		} = props;
+
+		//const items = useSelector<StateSchema, ArticleSchema[]>(getArticlesPage.selectAll);
+
+		useEffect(() => {
+			if (items.length === 0) fetchMore();
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		}, [items]);
+
+		const handleNextPage = useCallback(
+			// Only load 1 page of items at a time.
+			// Pass an empty callback to InfiniteLoader in case it asks us to load more than once.
+			(startIndex?: number, stopIndex?: number) => {
+				console.log('has page loading');
+				void fetchMore();
+			},
+
+			[fetchMore]
+		);
+
+		// useEffect(() => {
+		// 	const initFetchData = () => {
+		// 		if (!inited && hasNextPage && items.length === 0) fetchMore();
+		// 	};
+		// 	void initFetchData();
+		// }, [inited, items, hasNextPage, fetchMore]);
+
+		const itemCount = useMemo(() => (hasNextPage ? items.length + limit : items.length), [hasNextPage, limit, items]);
+
+		const columnCount = useCallback(
+			(width: number) => (view === ArticleView.LIST ? 1 : Math.floor(width / (TILE_ARTICLE_WIDTH + 10))),
+			[view]
+		);
+		const rowCount = useCallback(
+			(heigth: number) => (view === ArticleView.LIST ? itemCount : Math.ceil(itemCount / columnCount(heigth))),
+			[itemCount, columnCount, view]
+		);
+
+		useEffect(() => {
+			console.log(
+				view,
+				itemCount,
+				columnWidth(1080)(1),
+				columnCount(1080),
+				rowHeight(1),
+				rowCount(1080),
+				'changed view'
+			);
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		}, [view, itemCount, columnCount, rowCount]);
+
+		console.log(itemCount, items.length, 'item count to infinite');
+
+		// Every row is loaded except for our loading indicator row.
+		const isItemLoaded = useCallback(
+			(index: number) => {
+				//console.log(index, nextItems.length, Boolean(nextItems[index]), hasNextPage, 'get init loading data');
+				return !hasNextPage || index < items.length;
+			},
+			[hasNextPage, items]
+		);
+
+		const columnWidth = useCallback(
+			(width: number) => (column: number) => view === ArticleView.LIST ? width - 30 : TILE_ARTICLE_WIDTH + 10,
+			[view]
+		);
+
+		const rowHeight = useCallback(
+			(row: number) =>
+				view === ArticleView.LIST
+					? isItemLoaded(row)
+						? LIST_ARTICLE_HEIGHT + 10
+						: LIST_SCELETON_HEIGTH + 10
+					: TILE_ARTICLE_HEIGTH + 10,
+			[view, isItemLoaded]
+		);
+
+		// const nextItems: Array<unknown> = useMemo(
+		// 	() => (hasNextPage ? [...items, ...Array.from({ length: limit }, (_, i) => i)] : [...items]),
+		// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// 	[hasNextPage, limit, items]
+		// );
+		console.log(items.length, hasNextPage, limit, itemCount, 'refreshed items');
+
+		return (
+			<AutoSizer>
+				{({ width = 0, height = 0 }) => {
+					console.log(width, height, 'get area of autosizer');
+
+					return (
+						<InfiniteScrollGridWrapper
+							isItemLoaded={isItemLoaded}
+							itemCount={itemCount}
+							loadMoreItems={handleNextPage}
+							items={[...items]}
+							threshold={limit}
+							columnWidth={columnWidth(width)}
+							rowHeight={rowHeight}
+							columnCount={columnCount(width)}
+							rowCount={rowCount(width)}
+							isLoading={isNextPageLoading}
+							width={width}
+							height={height}
+							view={view}
+						/>
+					);
+				}}
+			</AutoSizer>
+		);
+	}
+);

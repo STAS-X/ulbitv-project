@@ -41,17 +41,18 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	const isLoading = useSelector(getArticlesPageIsLoading);
 	const hasMore = useSelector(getArticlesPageHasMore);
 	const view = useSelector(getArticlesPageView);
-	const filter = useSelector(getArticlesPageFilter);
-	const category = useSelector(getArticlesPageCategory);
 	const articles = useSelector<StateSchema, ArticleSchema[]>(getArticlesPage.selectAll);
 	const limit = useSelector(getArticlesPageLimit);
-	const sortField = useSelector(getArticlesPageSortField);
-	const sortOrder = useSelector(getArticlesPageSortOrder);
 	const target = useSelector(getArticlesPageTarget);
 	const inited = useSelector(getArticlesPageInited) || false;
 	//const currentLimit = Math.min(limit, selectedTotal >= 0 && total > 0 ? total - selectedTotal : limit);
 
 	const { queryParams } = useArticlesParams();
+
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// useEffect(() => {
+	// 	setReloading(false);
+	// });
 
 	// debounce scroll articles
 	//const [scrollArticleId, setScrollArticleId] = useState(scrollTo);
@@ -144,11 +145,11 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 		const initWithFetch = () => {
 			if (!inited && queryParams) {
 				console.log(queryParams, 'query params');
-				//await dispatch(fetchNextArticlesPage());
 				dispatch(articlesPageActions.initState(queryParams));
+				//await dispatch(fetchNextArticlesPage());
 			}
 		};
-		initWithFetch();
+		void initWithFetch();
 	}, [dispatch, queryParams, inited]);
 
 	return (
@@ -156,15 +157,16 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 			{inited && <ArticlesPageFilters />}
 			<PageWrapper className={classNames(classes.articlespage, {}, [className])}>
 				<div className={classes.articlelist}>
-					<ArticleInfiniteGridLoader
-						inited={inited}
-						view={view}
-						hasNextPage={hasMore}
-						isNextPageLoading={isLoading}
-						items={articles}
-						limit={limit}
-						fetchMore={onLoadNextArticlesPage}
-					/>
+					{inited && (
+						<ArticleInfiniteGridLoader
+							view={view}
+							hasNextPage={hasMore}
+							isNextPageLoading={isLoading}
+							items={articles}
+							limit={limit}
+							fetchMore={onLoadNextArticlesPage}
+						/>
+					)}
 					{/* <ArticleList
 						view={view}
 						isLoading={isLoading}
