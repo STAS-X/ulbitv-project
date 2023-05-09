@@ -11,6 +11,7 @@ import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { ArticleTextBlock } from '../../model/types/articleSchema';
 import { DEBOUNCE_DELAY } from 'shared/const/localstorage';
+import { Image } from 'shared/ui/Image/Image';
 
 export interface ArticleListItemProps {
 	className?: string;
@@ -61,7 +62,14 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 					<Text title={article.title} className={classes.title} />
 					{types}
 
-					<img src={article.img} alt={article.title} className={classes.img} />
+					<Image
+						width={'100%'}
+						height={250}
+						border={15}
+						src={article.img}
+						alt={article.title}
+						className={classes.img}
+					/>
 					{textBlock && <ArticleTextBlockComponent block={textBlock} className={classes.textblock} />}
 					<div className={classes.footer}>
 						<Button
@@ -92,7 +100,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 				}}
 			>
 				<div className={classes.imagewrapper}>
-					<img src={article.img} alt={article.title} className={classes.img} />
+					<Image width={200} height={200} src={article.img} alt={article.title} className={classes.img} />
 					<Text content={article.createdAt} className={classes.date} />
 				</div>
 				<div className={classes.infowrapper}>

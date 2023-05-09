@@ -1,10 +1,10 @@
 module.exports = {
 	env: {
 		browser: true,
-		es2022: true,
+		es2021: true,
 		jest: true
 	},
-	plugins: ['react', '@typescript-eslint', 'prettier', 'i18next'],
+	plugins: ['react', '@typescript-eslint', 'prettier', 'i18next', 'stas-eslint-plugin'],
 	extends: [
 		'plugin:react/recommended',
 		'plugin:import/recommended',
@@ -54,6 +54,7 @@ module.exports = {
 			}
 		],
 		quotes: ['error', 'single', { allowTemplateLiterals: true }],
+		'stas-eslint-plugin/path-relative': 'error',
 		'no-tabs': 0,
 		'linebreak-style': 0,
 		'import/no-unresolved': 'off',
