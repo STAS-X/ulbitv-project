@@ -6,6 +6,7 @@ import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { CommentSchema } from '../../model/types/commentSchema';
 import { CommentCard } from '../CommentCard/CommentCard';
 import classes from './CommentList.module.scss';
+import { HStack, VStack } from '../../../../shared/ui/Stack';
 
 export interface CommentListProps {
 	className?: string;
@@ -18,34 +19,34 @@ export const CommentList: FC<CommentListProps> = memo((props: CommentListProps) 
 	const { t } = useTranslation(['comments']);
 
 	return (
-		<div className={classNames(classes.commentlist, {}, [className])}>
+		<VStack gap={10} className={classNames(classes.commentlist, {}, [className])} max>
 			{isLoading ? (
 				comments?.length ? (
 					<>
 						{comments.map((comment, index) => (
-							<div key={index} className={classes.comment}>
-								<div className={classes.header}>
+							<VStack gap={10} key={index} className={classes.comment} max>
+								<HStack gap={4}>
 									<Skeleton width={32} height={32} border="50%" className={classes.avatar} />
 									<Skeleton width={100} height={16} className={classes.username} />
-								</div>
+								</HStack>
 								<Skeleton width={'100%'} height={50} className={classes.text} />
-							</div>
+							</VStack>
 						))}
 					</>
 				) : (
-					<div className={classes.comment}>
-						<div className={classes.header}>
+					<VStack gap={10} className={classes.comment} max>
+						<HStack gap={4}>
 							<Skeleton width={32} height={32} border="50%" className={classes.avatar} />
 							<Skeleton width={100} height={16} className={classes.username} />
-						</div>
+						</HStack>
 						<Skeleton width={'100%'} height={50} className={classes.text} />
-					</div>
+					</VStack>
 				)
 			) : comments?.length ? (
 				comments.map((comment) => <CommentCard className={classes.comment} key={comment.id} comment={comment} />)
 			) : (
 				<Text content={t('noComments')} />
 			)}
-		</div>
+		</VStack>
 	);
 });

@@ -1,3 +1,9 @@
+import placeholder from 'shared/assets/images/placeholder.jpg';
+import avatar from 'shared/assets/images/avatar.jpg';
+
+export const PLACEHOLDER_IMAGE = placeholder;
+export const PLACEHOLDER_AVATAR = avatar;
+
 export const USER_LS_KEY = 'user';
 export const PROFILE_KEY = 'profile';
 export const ARTICLE_VIEW = 'view';
@@ -12,4 +18,5 @@ export const LIST_ARTICLE_HEIGHT = 670;
 export const TILE_ARTICLE_WIDTH = 240;
 export const TILE_ARTICLE_HEIGTH = 290;
 export const LIST_SCELETON_HEIGTH = 360;
+
 export type SelectorType = 'view' | 'sortOrder' | 'sortField' | 'filter' | 'category';

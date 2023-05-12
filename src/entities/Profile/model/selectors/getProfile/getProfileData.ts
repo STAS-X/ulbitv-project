@@ -1,4 +1,4 @@
-import { ProfileSchema } from 'entities/Profile';
+import { ProfileSchema } from '../../../';
 import { createSelector } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 

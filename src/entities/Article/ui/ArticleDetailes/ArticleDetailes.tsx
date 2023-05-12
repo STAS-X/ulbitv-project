@@ -6,8 +6,8 @@ import {
 	getArticleError,
 	getArticleIsLoading,
 	getArticleData
-} from 'entities/Article';
-import { articleDetailsReducer } from 'entities/Article/model/slices/articleSlice';
+} from '../../';
+import { articleDetailsReducer } from '../../model/slices/articleSlice';
 import { FC, memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -20,8 +20,9 @@ import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { ArticleBlock, ArticleBlockType } from 'entities/Article/model/types/articleSchema';
+import { ArticleBlock, ArticleBlockType } from '../../model/types/articleSchema';
 import { fetchArticleById } from '../../model/services/fetchArticleById';
+import { HStack, VStack } from '../../../../shared/ui/Stack';
 
 const redusers: ReducerList = {
 	articleDetailes: articleDetailsReducer
@@ -67,7 +68,7 @@ export const ArticleDetailes: FC<ArticleDetailesProps> = memo((props: ArticleDet
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<div className={classNames('', mods, [className])}>
+			<VStack gap={16} className={classNames('', mods, [className])}>
 				{error ? (
 					<Text
 						title={t('errorTitle', { ns: 'errors' })}
@@ -87,29 +88,30 @@ export const ArticleDetailes: FC<ArticleDetailesProps> = memo((props: ArticleDet
 				) : (
 					articleData && (
 						<>
-							<div className={classes.avatarwrapper}>
+							<HStack justify={'center'} max>
 								<Avatar size={200} src={articleData.img} className={classes.avatar} />
-							</div>
-
-							<Text
-								className={classes.title}
-								title={articleData.title}
-								content={articleData.subtitle}
-								size={TextSize.L}
-							/>
-							<div className={classes.articleinfo}>
-								<Icon Svg={EyeIcon} className={classes.icon} />
-								<Text content={String(articleData.views)} />
-							</div>
-							<div className={classes.articleinfo}>
-								<Icon Svg={CalendarIcon} className={classes.icon} />
-								<Text content={articleData.createdAt} />
-							</div>
+							</HStack>
+							<VStack gap={4}>
+								<Text
+									className={classes.title}
+									title={articleData.title}
+									content={articleData.subtitle}
+									size={TextSize.L}
+								/>
+								<HStack gap={10} max className={classes.articleinfo}>
+									<Icon Svg={EyeIcon} className={classes.icon} />
+									<Text content={String(articleData.views)} />
+								</HStack>
+								<HStack gap={10} max className={classes.articleinfo}>
+									<Icon Svg={CalendarIcon} className={classes.icon} />
+									<Text content={articleData.createdAt} />
+								</HStack>
+							</VStack>
 							{articleData.blocks?.map(renderBlock)}
 						</>
 					)
 				)}
-			</div>
+			</VStack>
 		</DynamicModuleLoader>
 	);
 });

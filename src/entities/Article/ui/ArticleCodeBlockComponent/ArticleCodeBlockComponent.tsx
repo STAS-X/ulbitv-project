@@ -1,4 +1,4 @@
-import { ArticleCodeBlock } from 'entities/Article/model/types/articleSchema';
+import { ArticleCodeBlock } from '../../model/types/articleSchema';
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';

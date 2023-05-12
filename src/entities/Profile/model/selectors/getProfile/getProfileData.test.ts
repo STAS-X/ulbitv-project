@@ -6,7 +6,7 @@ import {
 	getProfileError,
 	getProfileReadOnly,
 	getProfileFormData
-} from 'entities/Profile';
+} from '../../../';
 import { StateSchema } from 'app/providers/StoreProvider';
 
 const profileData = {

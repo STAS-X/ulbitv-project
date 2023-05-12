@@ -15,7 +15,7 @@ import {
 	getArticlesPageView,
 	getArticlesPageIsLoading
 } from 'pages/ArticlesPage';
-import { ArticleType, ArticleView } from '../../model/types/articleSchema';
+import { ArticleView } from '../../model/types/articleSchema';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { ArticlesSearch, ArticlesSort } from 'pages/ArticlesPage/model/types/ArticlesPageSchema';
 import { useTranslation } from 'react-i18next';

@@ -1,9 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { CSSProperties, FC, ReactElement, useCallback, useEffect, useMemo, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { CSSProperties, FC, useCallback, useEffect, useMemo, useRef } from 'react';
 import { ArticleSchema, ArticleView } from '../../model/types/articleSchema';
-import { FixedSizeList as List, VariableSizeGrid } from 'react-window';
+import { FixedSizeList as List } from 'react-window';
 import InfiniteLoader from 'react-window-infinite-loader';
 import classes from './ArticleInfiniteLoader.module.scss';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';

@@ -14,6 +14,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Text } from 'shared/ui/Text/Text';
 import classes from './ProfilePageHeader.module.scss';
 import { useAppDispatch } from 'app/providers/StoreProvider';
+import { HStack } from '../../../../shared/ui/Stack/HStack/HStack';
 
 enum ProfileEditType {
 	EDIT = 'edit',
@@ -65,7 +66,7 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
 	);
 
 	return (
-		<div className={classNames(classes.profilepageheader, {}, [className])}>
+		<HStack className={classNames(classes.profilepageheader, {}, [className])} justify={'between'} max={true}>
 			<Text title={t('profile', { ns: 'pages' })} />
 			<div className={classes.btns}>
 				{isEdit &&
@@ -79,7 +80,7 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
 							{t('edit', { ns: 'profile' })}
 						</Button>
 					) : (
-						<>
+						<HStack gap={10}>
 							<Button
 								className={classes.editbtn}
 								theme={ButtonTheme.OUTLINE}
@@ -95,9 +96,9 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
 							>
 								{t('cancel', { ns: 'profile' })}
 							</Button>
-						</>
+						</HStack>
 					))}
 			</div>
-		</div>
+		</HStack>
 	);
 };

@@ -1,9 +1,13 @@
-import { CSSProperties, FC, useMemo, useState } from 'react';
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { FC, Suspense, useEffect, useState, ReactNode } from 'react';
+
+import { classNames } from 'shared/lib/classNames/classNames';
+import { PLACEHOLDER_IMAGE } from '../../const/localstorage';
+import { ImageResource } from '../../lib/reactImageSource/imageSource';
 import { Skeleton } from '../Skeleton/Skeleton';
 
 export interface ImageProps {
 	className?: string;
+	children?: ReactNode;
 	src?: string;
 	width?: string | number;
 	height?: string | number;
@@ -11,26 +15,29 @@ export interface ImageProps {
 	alt?: string;
 }
 
-export const Image: FC<ImageProps> = (props) => {
-	const { src = '', width = '100%', height = '100%', border = 0, alt = '', className = '' } = props;
+const LazyLoadImage: FC<ImageProps> = (props) => {
+	const { src = PLACEHOLDER_IMAGE, border = '10%', className = '', alt = '', ...otherProps } = props;
 
 	const [loaded, setLoaded] = useState<boolean>(false);
 
-	const mods: Mods = {};
-
-	const styles = useMemo<CSSProperties>(() => {
-		return { width, height, display: loaded ? 'block': 'none'  };
-	}, [width, height, loaded]);
-
-	const handleLoadImage = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
-		console.log(`The image with url of ${event.currentTarget.src} has been loaded`);
-		setLoaded(true);
-	};
+	useEffect(() => {
+		const clearId = setTimeout(() => setLoaded(true), 100);
+		return () => clearTimeout(clearId);
+	}, []);
 
 	return (
-		<>
-			<img src={src} style={styles} onLoad={handleLoadImage} alt={alt} className={classNames('', mods, [className])} />
-			{!loaded && <Skeleton width={width} height={height} border={border} />}
-		</>
+		<Suspense fallback={<Skeleton border={border} {...otherProps} />}>
+			{loaded && <OriginImage src={src} alt={alt} className={classNames('', {}, [className])} {...otherProps} />}
+		</Suspense>
 	);
 };
+
+const OriginImage: FC<ImageProps> = (props: ImageProps) => {
+	const { src = PLACEHOLDER_IMAGE, ...otherProps } = props;
+
+	const srcOut = ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_IMAGE;
+
+	return <img src={srcOut} {...otherProps} />;
+};
+
+export { LazyLoadImage as Image };

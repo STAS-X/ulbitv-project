@@ -1,5 +1,5 @@
 import { CommonSchema } from '../types/commonSchema';
-import { commonReducer, commonActions } from 'entities/Common';
+import { commonReducer, commonActions } from '../../';
 
 const state: CommonSchema = {
 	value: 20,

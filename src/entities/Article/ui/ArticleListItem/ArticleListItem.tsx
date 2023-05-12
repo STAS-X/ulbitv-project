@@ -1,4 +1,4 @@
-import { ArticleSchema, ArticleTextBlockComponent, ArticleBlockType, ArticleView } from 'entities/Article';
+import { ArticleSchema, ArticleTextBlockComponent, ArticleBlockType, ArticleView } from '../../';
 import { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';

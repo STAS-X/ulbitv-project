@@ -1,8 +1,8 @@
 import { ArticleSchema } from './../types/articleSchema';
-import { ArticleType } from 'entities/Article/model/types/articleSchema';
+import { ArticleType, ArticleBlockType } from '../types/articleSchema';
 /* eslint-disable @typescript-eslint/unbound-method */
 import { TestAsyncThunk } from 'shared/lib/tests/testAsyncThunk/testAsyncThunk';
-import { ArticleBlockType } from '../types/articleSchema';
+
 import { fetchArticleById } from './fetchArticleById';
 
 //jest.mock('axios');
