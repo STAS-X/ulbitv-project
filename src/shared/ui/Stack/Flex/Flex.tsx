@@ -8,7 +8,9 @@ export type FlexJustify = 'start' | 'center' | 'end' | 'between' | 'around' | 'e
 export type FlexAlign = 'start' | 'center' | 'end';
 export type FlexDirection = 'row' | 'column';
 
-export interface FlexProps {
+type DivProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+
+export interface FlexProps extends DivProps {
 	className?: string;
 	children: ReactNode;
 	justify?: FlexJustify;

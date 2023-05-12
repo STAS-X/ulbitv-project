@@ -48,9 +48,16 @@ TextPrimaryContent.args = {
 
 export const TextSizeL = Template.bind({});
 TextPrimaryTitle.args = {
-	title: 'Some title',
-	content: 'Some content',
+	title: 'Some title L',
+	content: 'Some content L',
 	size: TextSize.L
+};
+
+export const TextSizeS = Template.bind({});
+TextPrimaryTitle.args = {
+	title: 'Some title S',
+	content: 'Some content S',
+	size: TextSize.S
 };
 
 export const TextDark = Template.bind({});
