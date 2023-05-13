@@ -1,11 +1,12 @@
-import { FC, memo, useMemo } from 'react';
+import { FC, memo, ReactNode, useMemo } from 'react';
+import { ListBoxSelector } from 'shared/ui/ListBox/ListBoxSelector';
 import { Select } from 'shared/ui/Select/Select';
 import { Currency } from '../../Currency';
 
 interface CurrencySelectorProps {
 	className?: string;
 	readonly?: boolean;
-	placeholder?: string;
+	placeholder: string;
 	value?: string;
 	onChange?: (value: string) => void;
 }
@@ -14,17 +15,18 @@ export const CurrencySelector: FC<CurrencySelectorProps> = memo((props: Currency
 	const { className, readonly, value, placeholder, onChange } = props;
 
 	const options = useMemo(() => {
-		return Object.values(Currency).map((value) => {
-			return { value, description: value };
+		return Object.values(Currency).map((value, index) => {
+			return { id: index, value, content: value as ReactNode };
 		});
 	}, []);
 
 	return (
-		<Select
+		<ListBoxSelector
 			className={className}
-			options={options}
+			items={options}
 			readonly={readonly}
 			value={value}
+			defaultValue={value}
 			placeholder={placeholder}
 			onChange={onChange}
 		/>
