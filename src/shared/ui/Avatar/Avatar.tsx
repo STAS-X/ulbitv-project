@@ -32,7 +32,11 @@ const LazyLoadAvatar: FC<AvatarProps> = (props) => {
 const OriginAvatar: FC<AvatarProps> = (props: AvatarProps) => {
 	const { src = PLACEHOLDER_AVATAR, size = 100, ...otherProps } = props;
 
-	const srcOut = ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_AVATAR;
+	let srcOut;
+
+	if (_PROJECT_ === 'frontend') {
+		srcOut = ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_AVATAR;
+	} else srcOut = 'avatar.jpg';
 
 	return <img src={srcOut} width={size} height={size} {...otherProps} />;
 };

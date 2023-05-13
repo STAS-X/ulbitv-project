@@ -1,8 +1,5 @@
-import placeholder from 'shared/assets/images/placeholder.jpg';
-import avatar from 'shared/assets/images/avatar.jpg';
-
-export const PLACEHOLDER_IMAGE = placeholder;
-export const PLACEHOLDER_AVATAR = avatar;
+export { PLACEHOLDER_IMAGE } from 'shared/assets/images/placeholder.jpg';
+export { PLACEHOLDER_AVATAR } from 'shared/assets/images/avatar.jpg';
 
 export const USER_LS_KEY = 'user';
 export const PROFILE_KEY = 'profile';

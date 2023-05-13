@@ -34,8 +34,11 @@ const LazyLoadImage: FC<ImageProps> = (props) => {
 
 const OriginImage: FC<ImageProps> = (props: ImageProps) => {
 	const { src = PLACEHOLDER_IMAGE, ...otherProps } = props;
+	let srcOut;
 
-	const srcOut = ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_IMAGE;
+	if (_PROJECT_ === 'frontend') {
+		srcOut = ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_IMAGE;
+	} else srcOut = 'placeholder.jpg';
 
 	return <img src={srcOut} {...otherProps} />;
 };

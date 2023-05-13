@@ -12,6 +12,7 @@
 	"moduleFileExtensions": ["js", "jsx", "ts", "tsx", "json", "node"],
 	"moduleNameMapper": {
 		"\\.s?css$": "identity-obj-proxy",
+		"\\.jpe?g|png|tif?f|bmp$": "identity-obj-proxy",
 		"\\.svg$": "<rootDir>/config/jest/mock/mockEmptyJest.tsx"
 	},
 	"testMatch": ["<rootDir>/src/**/*(*.)@(spec|test).[tj]s?(x)"],
