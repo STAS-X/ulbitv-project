@@ -21,11 +21,12 @@ export interface ListBoxSelectorProps {
 	defaultValue?: string;
 	placeholder: string;
 	readonly?: boolean;
+	horizontal?: boolean;
 	onChange?: <T extends string>(value: T) => void;
 }
 
 export const ListBoxSelector: FC<ListBoxSelectorProps> = (props: ListBoxSelectorProps) => {
-	const { className, items, defaultValue, placeholder, readonly, value, onChange } = props;
+	const { className, items, defaultValue, placeholder, horizontal, readonly, value, onChange } = props;
 
 	const [selectedValue, setSelectedValue] = useState(defaultValue);
 
@@ -40,9 +41,10 @@ export const ListBoxSelector: FC<ListBoxSelectorProps> = (props: ListBoxSelector
 			className={classNames(classes.ListBox, {}, [className])}
 			value={selectedValue}
 			disabled={readonly}
+			horizontal={horizontal}
 			onChange={handleChange}
 		>
-			<Listbox.Label className={classes.label}>{placeholder}</Listbox.Label>
+			{placeholder && <Listbox.Label className={classes.label}>{placeholder}</Listbox.Label>}
 			<Listbox.Button className={classes.trigger}>
 				{({ open }) => (
 					<HStack justify={'between'} max>
