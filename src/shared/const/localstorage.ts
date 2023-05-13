@@ -1,5 +1,5 @@
-export { PLACEHOLDER_IMAGE } from 'shared/assets/images/placeholder.jpg';
-export { PLACEHOLDER_AVATAR } from 'shared/assets/images/avatar.jpg';
+export * as PLACEHOLDER_IMAGE from 'shared/assets/images/placeholder.jpg';
+export * as PLACEHOLDER_AVATAR from 'shared/assets/images/avatar.jpg';
 
 export const USER_LS_KEY = 'user';
 export const PROFILE_KEY = 'profile';

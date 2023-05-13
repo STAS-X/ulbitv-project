@@ -27,7 +27,10 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
 			chunkFilename: 'css/[name].[chunkhash:8].css'
 		}),
 		new CopyPlugin({
-			patterns: [{ from: paths.locales, to: paths.buildLocales }]
+			patterns: [
+				{ from: paths.locales, to: paths.buildLocales },
+				{ from: paths.assets, to: paths.buildAssets }
+			]
 		}),
 		new webpack.HotModuleReplacementPlugin()
 	];
