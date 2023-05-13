@@ -9,7 +9,7 @@ import {
 import { SortFields, SortOrder, fieldsForSort, ordersForSort } from 'shared/lib/filters/sortTypes';
 import { OptionalRecord } from 'shared/lib/url/queryParams/addQueryParams';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
-import { ArticlesPageSchema, fetchNextArticlesPage } from 'pages/ArticlesPage';
+import { ArticlesPageSchema, fetchNextArticlesPage } from '../../';
 import { ArticleSchema, ArticleView, ArticleType } from 'entities/Article/model/types/articleSchema';
 import { createEntityAdapter, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 

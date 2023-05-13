@@ -3,27 +3,13 @@
 	border: 2px solid var(--inverted-bg-color);
 }
 
-.inputswrapper {
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-}
-
 .input {
-	margin-top: 10px;
+	flex-grow: 1;
 }
 
-.loading {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.loading,
+.error {
 	height: 30vh;
-}
-
-.avatarwrapper {
-	display: flex;
-	width: 100%;
-	justify-content: center;
 }
 
 .editing {

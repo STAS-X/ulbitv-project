@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import { getProfileValidation, ProfileData } from 'entities/Profile';
+import { getProfileValidation, ProfileData } from '../../';
 import classes from './ProfileCard.module.scss';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader/Loader';
@@ -10,8 +10,10 @@ import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { CountrySelector } from 'entities/Country';
 import { CurrencySelector } from 'entities/Currency';
 import { useSelector } from 'react-redux';
-import { ValidateProfileError } from 'entities/Profile/model/types/profileSchema';
+import { ValidateProfileError } from '../../model/types/profileSchema';
 import { useParams } from 'react-router-dom';
+import { VStack } from '../../../../shared/ui/Stack/VStack/VStack';
+import { HStack } from '../../../../shared/ui/Stack/HStack/HStack';
 
 export enum ProfileFieldType {
 	FIRST = 'first',
@@ -47,8 +49,13 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 	};
 
 	return (
-		<div className={classNames(classes.profilecard, mods, [className])}>
-			<div className={classNames('', isLoading ? { [classes.loading]: true } : { [classes.error]: Boolean(error) })}>
+		<VStack className={classNames(classes.profilecard, mods, [className])} max>
+			<VStack
+				className={classNames('', isLoading ? { [classes.loading]: true } : { [classes.error]: Boolean(error) })}
+				align={'center'}
+				justify={'center'}
+				max
+			>
 				{error ? (
 					<Text
 						title={t('errorTitle', { ns: 'errors' })}
@@ -59,13 +66,13 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 				) : isLoading ? (
 					<Loader />
 				) : (
-					<>
+					<VStack gap={10} max>
 						{data?.avatar && (
-							<div className={classes.avatarwrapper}>
+							<HStack justify={'center'} max>
 								<Avatar className={classes.avatar} size={100} src={data?.avatar} />
-							</div>
+							</HStack>
 						)}
-						<div className={classes.inputswrapper}>
+						<VStack gap={16}>
 							<Input
 								className={classes.input}
 								value={data?.first}
@@ -140,10 +147,10 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 								placeholder={t('currency', { ns: 'profile' })}
 								onChange={onChangeProfileFields(ProfileFieldType.CURRENCY)}
 							/>
-						</div>
-					</>
+						</VStack>
+					</VStack>
 				)}
-			</div>
-		</div>
+			</VStack>
+		</VStack>
 	);
 };

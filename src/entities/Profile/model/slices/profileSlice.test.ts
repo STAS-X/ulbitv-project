@@ -1,4 +1,3 @@
-import { isValidElement } from 'react';
 import { fetchProfileData } from './../services/fetchProfileData/fetchProfileData';
 import { Country } from 'entities/Country/model/types/country';
 import { Currency } from 'entities/Currency/model/types/currency';

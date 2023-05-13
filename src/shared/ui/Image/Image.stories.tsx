@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Image, ImageProps } from './Image';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import ImageImg from 'shared/assets/images/Image.jpg';
+import ImageImg from 'shared/assets/images/avatar.jpg';
 
 export default {
 	title: 'shared/Image',
@@ -26,7 +26,6 @@ export const ImagePrimary = Template.bind({});
 ImagePrimary.args = {
 	width: 50,
 	height: 50,
-	border: '50%',
 	alt: 'img primary'
 };
 
@@ -35,7 +34,6 @@ export const ImageSecondary = Template.bind({});
 ImageSecondary.args = {
 	width: 100,
 	height: 100,
-	border: 15,
 	alt: 'img secondary'
 };
 

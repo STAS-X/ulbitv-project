@@ -1,6 +1,5 @@
-import { ArticleImageBlock } from 'entities/Article/model/types/articleSchema';
+import { ArticleImageBlock } from '../../model/types/articleSchema';
 import { FC, memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text, TextAlign } from 'shared/ui/Text/Text';
 import classes from './ArticleImageBlockComponent.module.scss';
@@ -13,7 +12,6 @@ export interface ArticleImageBlockComponentProps {
 export const ArticleImageBlockComponent: FC<ArticleImageBlockComponentProps> = memo(
 	(props: ArticleImageBlockComponentProps) => {
 		const { block, className } = props;
-		const { t } = useTranslation();
 
 		return (
 			<div className={classNames(classes.ArticleImageBlockComponent, {}, [className])}>

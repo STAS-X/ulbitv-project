@@ -1,4 +1,4 @@
-import { CommonSchema } from 'entities/Common';
+import { CommonSchema } from '../../../';
 import { createSelector } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 

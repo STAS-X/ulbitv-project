@@ -1,4 +1,4 @@
-import { UserSchema } from 'entities/User';
+import { UserSchema } from '../../../';
 import { createSelector } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 

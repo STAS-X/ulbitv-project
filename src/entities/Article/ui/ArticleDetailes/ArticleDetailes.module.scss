@@ -24,8 +24,6 @@
 }
 
 .articleinfo {
-	display: flex;
-	align-items: center;
 
 	p {
 		margin: 0;
@@ -34,10 +32,4 @@
 
 .icon {
 	margin-right: 10px;
-}
-
-.avatarwrapper {
-	display: flex;
-	width: 100%;
-	justify-content: center;
 }

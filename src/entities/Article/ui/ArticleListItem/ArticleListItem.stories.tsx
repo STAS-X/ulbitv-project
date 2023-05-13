@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ArticleListItemProps, ArticleListItem } from './ArticleListItem';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
-import { ArticleBlockType, ArticleType, ArticleView } from 'entities/Article/model/types/articleSchema';
+import { ArticleBlockType, ArticleType, ArticleView } from '../../model/types/articleSchema';
 
 export default {
 	title: 'entities/Article/ArticleListItem',

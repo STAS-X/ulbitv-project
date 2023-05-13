@@ -15,6 +15,7 @@ import { useAppDispatch } from 'app/providers/StoreProvider';
 import { CommentSchema } from 'entities/Comment/model/types/commentSchema';
 import { addCommentFormActions, addCommentFormReducer } from '../../model/slices/addCommentFormSlice';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { HStack, VStack } from '../../../../shared/ui/Stack';
 
 export interface AddCommentFormProps {
 	className?: string;
@@ -50,9 +51,9 @@ const AddCommentForm: FC<AddCommentFormProps> = (props: AddCommentFormProps) => 
 
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-			<div className={classNames(classes.addCommentform, {}, [className])}>
+			<VStack gap={10} className={classNames(classes.addCommentform, {}, [className])} max>
 				{error ? (
-					<>
+					<HStack justify={'between'} max>
 						<Text
 							theme={TextTheme.ERROR}
 							title={t('commentForm')}
@@ -61,9 +62,9 @@ const AddCommentForm: FC<AddCommentFormProps> = (props: AddCommentFormProps) => 
 						<Button theme={ButtonTheme.OUTLINE} disabled>
 							{t('commentSubmit')}
 						</Button>
-					</>
+					</HStack>
 				) : (
-					<>
+					<HStack justify={'between'} max>
 						<Input
 							className={classes.input}
 							placeholder={t('commentPlaceholder')}
@@ -77,9 +78,9 @@ const AddCommentForm: FC<AddCommentFormProps> = (props: AddCommentFormProps) => 
 						>
 							{t('commentSubmit')}
 						</Button>
-					</>
+					</HStack>
 				)}
-			</div>
+			</VStack>
 		</DynamicModuleLoader>
 	);
 };

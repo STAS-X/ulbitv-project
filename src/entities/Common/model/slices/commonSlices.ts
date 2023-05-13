@@ -1,4 +1,4 @@
-import { CommonSchema } from 'entities/Common';
+import { CommonSchema } from '../../';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 

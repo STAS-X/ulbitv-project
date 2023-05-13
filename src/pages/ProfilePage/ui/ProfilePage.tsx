@@ -21,7 +21,9 @@ import { Country } from 'entities/Country/model/types/country';
 import { useParams } from 'react-router-dom';
 import { getUserData } from 'entities/User';
 import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
-//import classes from './ProfilePage.module.scss';
+import { VStack } from '../../../shared/ui/Stack/VStack/VStack';
+import { classNames } from '../../../shared/lib/classNames/classNames';
+import classes from './ProfilePage.module.scss';
 
 const redusers: ReducerList = {
 	profile: profileReducer
@@ -128,14 +130,16 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
 			<PageWrapper>
-				<ProfilePageHeader isDirty={isDirty} isEdit={userData?.profileId === profileId} />
-				<ProfileCard
-					data={formData}
-					isLoading={isLoading}
-					error={error}
-					readonly={readonly}
-					onChangeProfileFields={onChangeProfileForm}
-				/>
+				<VStack className={classes.profilepage} gap={10} max={true}>
+					<ProfilePageHeader isDirty={isDirty} isEdit={userData?.profileId === profileId} />
+					<ProfileCard
+						data={formData}
+						isLoading={isLoading}
+						error={error}
+						readonly={readonly}
+						onChangeProfileFields={onChangeProfileForm}
+					/>
+				</VStack>
 			</PageWrapper>
 		</DynamicModuleLoader>
 	);

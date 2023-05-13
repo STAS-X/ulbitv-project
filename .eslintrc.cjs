@@ -95,7 +95,8 @@ module.exports = {
 		'i18next/no-literal-string': [
 			'warn',
 			{
-				markupOnly: true
+				markupOnly: true,
+				ignoreAttribute: ['role', 'data-testid', 'to', 'target', 'justify', 'align', 'direction']
 			}
 		]
 	},

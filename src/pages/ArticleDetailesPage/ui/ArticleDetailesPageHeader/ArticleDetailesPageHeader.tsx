@@ -2,12 +2,12 @@ import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
-import { useNavigate, useParams } from 'react-router-dom';
-import classes from './ArticleDetailesPageHeader.module.scss';
+import { useNavigate } from 'react-router-dom';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useSelector } from 'react-redux';
 import { getUserCanEditArticle } from '../../model/selectors/getArticleEditable';
 import { getArticleData } from '../../../../entities/Article';
+import { HStack } from '../../../../shared/ui/Stack';
 
 export interface ArticleDetailesPageHeaderProps {
 	className?: string;
@@ -33,15 +33,15 @@ export const ArticleDetailesPageHeader: FC<ArticleDetailesPageHeaderProps> = (
 	}, [navigate, articleId]);
 
 	return (
-		<div className={classNames(classes.ArticleDetailesPageHeader, {}, [className])}>
+		<HStack className={classNames('', {}, [className])} justify={'between'} max>
 			<Button theme={ButtonTheme.OUTLINE} onClick={navigateToList}>
 				{t('backToList')}
 			</Button>
 			{isEditable && (
-				<Button className={classes.editBtn} theme={ButtonTheme.OUTLINE} onClick={navigateToEditArticle}>
+				<Button theme={ButtonTheme.OUTLINE} onClick={navigateToEditArticle}>
 					{t('editArticle')}
 				</Button>
 			)}
-		</div>
+		</HStack>
 	);
 };

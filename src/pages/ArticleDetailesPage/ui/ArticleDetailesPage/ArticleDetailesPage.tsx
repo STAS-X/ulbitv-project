@@ -2,7 +2,7 @@ import { FC, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ArticleDetailes, ArticleSchema, ArticleView, getArticleData } from 'entities/Article';
+import { ArticleDetailes, ArticleSchema, ArticleView } from 'entities/Article';
 import { CommentList, CommentSchema } from 'entities/Comment';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import classes from './ArticleDetailesPage.module.scss';
@@ -22,10 +22,11 @@ import AddCommentForm from 'features/AddCommentForm/ui/AddCommentForm/AddComment
 import { useFetchCommentForArticle } from '../../model/services/fetchCommentForArticle/fetchCommentForArticle';
 import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { ArticleList } from 'entities/Article/ui/ArticleList/ArticleList';
-import { fetchRecommendationsForArticle } from 'pages/ArticleDetailesPage/model/services/fetchRecommendationsForArticle/fetchRecommendationsForArticle';
+import { fetchRecommendationsForArticle } from '../../model/services/fetchRecommendationsForArticle/fetchRecommendationsForArticle';
 import { articleDetailesPageReducer } from './../../model/slice';
 import { useLocation } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
 import { OptionalRecord } from 'shared/lib/url/queryParams/addQueryParams';
+import { VStack } from '../../../../shared/ui/Stack';
 
 export interface ArticleDetailesPageProps {
 	className?: string;
@@ -74,21 +75,23 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
 			<PageWrapper className={classNames(classes.articledetailespage, {}, [className])}>
-				<ArticleDetailesPageHeader />
-				<ArticleDetailes articleId={articleId} />
-				<Text size={TextSize.L} className={classes.title} title={t('recommendedForm', { ns: 'articles' })} />
-				{recomendations.length > 0 && (
-					<ArticleList
-						className={classes.recommendation}
-						articles={recomendations}
-						isLoading={recomendaionsIsLoading}
-						view={ArticleView.TILE}
-						hasMore={false}
-					/>
-				)}
-				<Text className={classes.title} title={t('commentForm')} />
-				<AddCommentForm onSendComment={sendCommentForArticle} />
-				<CommentList isLoading={isLoading} comments={comments} />
+				<VStack gap={16}>
+					<ArticleDetailesPageHeader />
+					<ArticleDetailes articleId={articleId} />
+					<Text size={TextSize.L} className={classes.title} title={t('recommendedForm', { ns: 'articles' })} />
+					{recomendations.length > 0 && (
+						<ArticleList
+							className={classes.recommendation}
+							articles={recomendations}
+							isLoading={recomendaionsIsLoading}
+							view={ArticleView.TILE}
+							hasMore={false}
+						/>
+					)}
+					<Text className={classes.title} title={t('commentForm')} />
+					<AddCommentForm onSendComment={sendCommentForArticle} />
+					<CommentList isLoading={isLoading} comments={comments} />
+				</VStack>
 			</PageWrapper>
 		</DynamicModuleLoader>
 	);
