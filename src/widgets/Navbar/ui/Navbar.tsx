@@ -1,7 +1,6 @@
-import { useCallback, useState, memo } from 'react';
+import { useCallback, useState, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import classes from './Navbar.module.scss';
 import { LoginModal } from 'features/AuthByUserName/ui/LoginModal/LoginModal';
 import { useSelector } from 'react-redux';
@@ -11,6 +10,8 @@ import { getUserData } from 'entities/User/model/selectors/getUser/getUser';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from '../../../shared/config/routeConfig/routeConfig';
+import { DropDown } from 'shared/ui/DropDown/DropDown';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
 
 export interface NavbarProps {
 	className?: string;
@@ -38,15 +39,24 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 		//setTimeout(() => navigate(AppRoutes.ABOUT), 0);
 	}, [dispatch]);
 
+	const menuItems = useMemo(
+		() => [
+			{ content: t('profileMenu'), href: `/${String(RoutePath.profile)}`, disabled: Boolean(userdata) },
+			{ content: t(userdata ? 'logout' : 'login'), onClick: userdata ? setLogOut : showAuthModal }
+		],
+		[t, userdata, showAuthModal, setLogOut]
+	);
+
 	return (
 		<header className={classNames(classes.navbar, {}, [className])}>
 			<Text className={classes.appName} theme={TextTheme.INVERTED} title={t('appName')} />
 			<AppLink className={classes.createLink} to={RoutePath.article_create} theme={AppLinkTheme.SECONDARY}>
 				{t('createArticle', { ns: 'articles' })}
 			</AppLink>
-			<Button theme={ButtonTheme.INVERTED} className={classes.links} onClick={userdata ? setLogOut : showAuthModal}>
+			<DropDown className={classes.links} items={menuItems} trigger={<Avatar size={30} src={userdata?.avatar} />} />
+			{/* <Button theme={ButtonTheme.INVERTED} className={classes.links} onClick={userdata ? setLogOut : showAuthModal}>
 				{t(userdata ? 'logout' : 'login')}
-			</Button>
+			</Button> */}
 			<LoginModal isOpen={isAuthModal} onClose={closeAuthModal} />
 		</header>
 	);

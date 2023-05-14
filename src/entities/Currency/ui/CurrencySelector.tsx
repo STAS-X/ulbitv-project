@@ -1,4 +1,5 @@
 import { FC, memo, ReactNode, useMemo } from 'react';
+import { DropDownDirectionType } from 'shared/types/dropdown/directions';
 import { ListBoxSelector } from 'shared/ui/ListBox/ListBoxSelector';
 import { Select } from 'shared/ui/Select/Select';
 import { Currency } from '../../Currency';
@@ -7,12 +8,13 @@ interface CurrencySelectorProps {
 	className?: string;
 	readonly?: boolean;
 	placeholder: string;
+	direction?: DropDownDirectionType;
 	value?: string;
 	onChange?: (value: string) => void;
 }
 
 export const CurrencySelector: FC<CurrencySelectorProps> = memo((props: CurrencySelectorProps) => {
-	const { className, readonly, value, placeholder, onChange } = props;
+	const { className, readonly, value, direction, placeholder, onChange } = props;
 
 	const options = useMemo(() => {
 		return Object.values(Currency).map((value, index) => {
@@ -25,6 +27,7 @@ export const CurrencySelector: FC<CurrencySelectorProps> = memo((props: Currency
 			className={className}
 			items={options}
 			readonly={readonly}
+			direction={direction}
 			value={value}
 			defaultValue={value}
 			placeholder={placeholder}

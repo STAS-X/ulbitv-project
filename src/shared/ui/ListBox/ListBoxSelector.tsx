@@ -2,10 +2,11 @@ import { FC, ReactNode, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import classes from './ListBoxSelector.module.scss';
-
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Listbox } from '@headlessui/react';
 import { HStack } from '../Stack';
+import { directionsToInlineStyle } from 'shared/lib/helpers/directionsToInlineStyle';
+import { DropDownDirectionType } from 'shared/types/dropdown/directions';
 
 type ListBoxSelectorItem = {
 	id: number;
@@ -21,12 +22,12 @@ export interface ListBoxSelectorProps {
 	defaultValue?: string;
 	placeholder: string;
 	readonly?: boolean;
-	horizontal?: boolean;
+	direction?: DropDownDirectionType;
 	onChange?: <T extends string>(value: T) => void;
 }
 
 export const ListBoxSelector: FC<ListBoxSelectorProps> = (props: ListBoxSelectorProps) => {
-	const { className, items, defaultValue, placeholder, horizontal, readonly, value, onChange } = props;
+	const { className, items, defaultValue, placeholder, direction, readonly, value, onChange } = props;
 
 	const [selectedValue, setSelectedValue] = useState(defaultValue);
 
@@ -35,13 +36,14 @@ export const ListBoxSelector: FC<ListBoxSelectorProps> = (props: ListBoxSelector
 		if (onChange) onChange(value);
 	};
 
+	const inlineStyle = directionsToInlineStyle(direction);
+
 	return (
 		<Listbox
 			as={'div'}
 			className={classNames(classes.ListBox, {}, [className])}
 			value={selectedValue}
 			disabled={readonly}
-			horizontal={horizontal}
 			onChange={handleChange}
 		>
 			{placeholder && <Listbox.Label className={classes.label}>{placeholder}</Listbox.Label>}
@@ -53,7 +55,7 @@ export const ListBoxSelector: FC<ListBoxSelectorProps> = (props: ListBoxSelector
 					</HStack>
 				)}
 			</Listbox.Button>
-			<Listbox.Options className={classes.options}>
+			<Listbox.Options className={classes.options} style={{ ...inlineStyle }}>
 				{items?.map((item) => (
 					<Listbox.Option
 						className={classes.listitem}

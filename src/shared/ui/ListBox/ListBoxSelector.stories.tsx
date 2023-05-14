@@ -17,23 +17,55 @@ export default {
 		],
 		value: 'Durward Reynolds',
 		defaultValue: 'Default value'
-	}
+	},
+	decorators: [
+		(Story) => (
+			<div style={inlineConteinerStyle}>
+				<Story />
+			</div>
+		)
+	]
 } as ComponentMeta<typeof ListBoxSelector>;
+
+const inlineConteinerStyle: React.CSSProperties = {
+	display: 'flex',
+	width: '100vw',
+	height: '100vh',
+	justifyContent: 'center',
+	alignItems: 'center'
+};
 
 const Template: ComponentStory<typeof ListBoxSelector> = (args: ListBoxSelectorProps) => <ListBoxSelector {...args} />;
 
-export const ListBoxPrimary = Template.bind({});
-ListBoxPrimary.args = {
-	children: 'Text primary'
+export const ListBoxBottomRight = Template.bind({});
+ListBoxBottomRight.args = {
+	direction: 'bottomRight'
 };
 
-export const ListBoxSecondary = Template.bind({});
-ListBoxSecondary.args = {
-	children: 'Text secondary'
+export const ListBoxBottomLeft = Template.bind({});
+ListBoxBottomLeft.args = {
+	direction: 'bottomLeft'
+};
+
+export const ListBoxTopRight = Template.bind({});
+ListBoxTopRight.args = {
+	direction: 'topRight'
+};
+
+export const ListBoxTopLeft = Template.bind({});
+ListBoxTopLeft.args = {
+	direction: 'topLeft'
 };
 
 export const ListBoxSecondaryDark = Template.bind({});
 ListBoxSecondaryDark.args = {
 	children: 'Text secondary'
 };
-ListBoxSecondaryDark.decorators = [ThemeDecorator(Theme.DARK)];
+ListBoxSecondaryDark.decorators = [
+	(Story) => (
+		<div style={inlineConteinerStyle}>
+			<Story />
+		</div>
+	),
+	ThemeDecorator(Theme.DARK)
+];

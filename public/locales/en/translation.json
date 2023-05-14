@@ -1,12 +1,13 @@
 {
-  "language": "English",
-  "short lng": "EN",
-  "title": "Welcome to react using react-i18next",
-  "toggle": "Toggle",
-  "login": "Login",
-  "logout": "Logout",
-  "authTitle": "Auth form",
-  "userName": "Enter user name",
-  "userPass": "Enter password",
-  "appName": "Articles PRJ App"
+	"language": "English",
+	"short lng": "EN",
+	"title": "Welcome to react using react-i18next",
+	"toggle": "Toggle",
+	"profileMenu": "Профиль",
+	"login": "Login",
+	"logout": "Logout",
+	"authTitle": "Auth form",
+	"userName": "Enter user name",
+	"userPass": "Enter password",
+	"appName": "Articles PRJ App"
 }

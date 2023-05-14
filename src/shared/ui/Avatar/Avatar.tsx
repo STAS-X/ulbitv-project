@@ -9,11 +9,12 @@ export interface AvatarProps {
 	className?: string;
 	src?: string;
 	size?: number;
+	border?: string | number;
 	alt?: string;
 }
 
 const LazyLoadAvatar: FC<AvatarProps> = (props) => {
-	const { src = PLACEHOLDER_AVATAR, size = 100, className = '', alt = '' } = props;
+	const { src = PLACEHOLDER_AVATAR, size = 100, className = '', border = '50%', alt = '' } = props;
 
 	const [loaded, setLoaded] = useState<boolean>(false);
 
@@ -23,14 +24,16 @@ const LazyLoadAvatar: FC<AvatarProps> = (props) => {
 	}, []);
 
 	return (
-		<Suspense fallback={<Skeleton width={size} height={size} border={'50%'} />}>
-			{loaded && <OriginAvatar src={src} size={size} alt={alt} className={classNames('', {}, [className])} />}
+		<Suspense fallback={<Skeleton width={size} height={size} border={border} />}>
+			{loaded && (
+				<OriginAvatar src={src} size={size} border={border} alt={alt} className={classNames('', {}, [className])} />
+			)}
 		</Suspense>
 	);
 };
 
 const OriginAvatar: FC<AvatarProps> = (props: AvatarProps) => {
-	const { src = PLACEHOLDER_AVATAR, size = 100, ...otherProps } = props;
+	const { src = PLACEHOLDER_AVATAR, size = 100, border = '50%', ...otherProps } = props;
 
 	let srcOut;
 
@@ -38,7 +41,7 @@ const OriginAvatar: FC<AvatarProps> = (props: AvatarProps) => {
 		srcOut = ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_AVATAR;
 	} else srcOut = 'avatar.jpg';
 
-	return <img src={srcOut} width={size} height={size} {...otherProps} />;
+	return <img src={srcOut} width={size} height={size} borderRadius={border} {...otherProps} />;
 };
 
 export { LazyLoadAvatar as Avatar };
