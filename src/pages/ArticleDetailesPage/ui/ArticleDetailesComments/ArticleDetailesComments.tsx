@@ -2,7 +2,6 @@ import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
-import classes from './ArticleDetailesComments.module.scss';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { useSelector } from 'react-redux';
 import { CommentList, CommentSchema } from 'entities/Comment';
@@ -10,7 +9,7 @@ import { useFetchCommentForArticle } from '../../model/services/fetchCommentForA
 import { getArticleComments, getArticleCommentsIsLoading } from '../..';
 import { Text } from 'shared/ui/Text/Text';
 import { AddCommentForm } from 'features/AddCommentForm';
-import { VStack } from '../../../../shared/ui/Stack';
+import { VStack } from 'shared/ui/Stack';
 
 export interface ArticleDetailesCommentsProps {
 	className?: string;
@@ -37,7 +36,7 @@ export const ArticleDetailesComments: FC<ArticleDetailesCommentsProps> = (props:
 
 	return (
 		<VStack gap={10} max className={classNames('', {}, [className])}>
-			<Text className={classes.title} title={t('commentForm')} />
+			<Text title={t('commentForm')} />
 			<AddCommentForm onSendComment={sendCommentForArticle} />
 			<CommentList isLoading={isLoading} comments={comments} />
 		</VStack>
