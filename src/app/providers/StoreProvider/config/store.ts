@@ -16,10 +16,12 @@ import { commonReducer } from 'entities/Common/model/slices/commonSlices';
 import { userReducer } from 'entities/User';
 import { createReducerManager } from './reducerManager';
 import { $apiAxios } from 'shared/api/api';
+import { rtkApi } from 'shared/api/rtkApi';
 
 export const rootReducer: ReducersMapObject<StateSchema> = {
 	common: commonReducer,
-	user: userReducer
+	user: userReducer,
+	[rtkApi.reducerPath]: rtkApi.reducer
 	//loginForm: loginReducer
 };
 
@@ -33,7 +35,7 @@ export function createReduxStore(
 	const store = configureStore<
 		StateSchema,
 		AnyAction,
-		MiddlewareArray<[ThunkMiddleware<StateSchema, AnyAction, ExtraThunkArgs>]>
+		MiddlewareArray<ThunkMiddleware<StateSchema, AnyAction, ExtraThunkArgs>[]>
 	>({
 		reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
 		devTools: _DEV_MODE_,
@@ -46,8 +48,8 @@ export function createReduxStore(
 						navigate: extra?.navigate
 					}
 				}
-			})
-	}) as AppStoreWithReducerManager;
+			}).concat(rtkApi.middleware)
+	}) as unknown as AppStoreWithReducerManager;
 
 	// Optional: Put the reducer manager on the store so it is easily accessible
 	store.reducerManager = reducerManager;

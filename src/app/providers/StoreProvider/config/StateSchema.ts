@@ -1,18 +1,20 @@
-import { ArticleDetailesPageSchema, ArticleDetailesCommentsSchema } from 'pages/ArticleDetailesPage';
+import { ArticleDetailesPageSchema } from 'pages/ArticleDetailesPage';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { AddCommentFormSchema } from 'features/AddCommentForm/model/types/addCommentForm';
 import { LoginSchema } from 'features/AuthByUserName';
 import { UserSchema } from 'entities/User';
 import { CommonSchema } from 'entities/Common';
-import { ProfileSchema } from 'entities/Profile';
+import { ProfileSchema } from 'features/EditableProfileCard';
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { NavigateFunction } from 'react-router-dom';
 import { ArticleDetailesSchema } from 'entities/Article';
+import { rtkApi } from 'shared/api/rtkApi';
 
 export interface StateSchema {
 	common: CommonSchema;
 	user: UserSchema;
+	[rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 	// Асинхронный редюссер
 	loginForm?: LoginSchema;
 	profile?: ProfileSchema;

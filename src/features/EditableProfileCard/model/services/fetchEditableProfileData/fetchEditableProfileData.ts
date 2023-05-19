@@ -1,4 +1,4 @@
-import { ProfileData } from './../../types/profileSchema';
+import { ProfileData } from 'features/EditableProfileCard';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
 
 // export interface ProfileDataProps {
@@ -11,8 +11,8 @@ export interface ProfileByIdProps {
 }
 
 // First, create the thunk
-export const fetchProfileData = createAppAsyncThunk<ProfileData, ProfileByIdProps>(
-	'profile/fetchProfileData',
+export const fetchEditableProfileData = createAppAsyncThunk<ProfileData, ProfileByIdProps>(
+	'profile/fetchEditableProfileData',
 	async (props, thunkApi) => {
 		const { profileId } = props;
 		const { extra, rejectWithValue } = thunkApi;

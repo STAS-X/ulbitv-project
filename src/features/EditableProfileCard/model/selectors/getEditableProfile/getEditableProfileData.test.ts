@@ -1,12 +1,12 @@
 import { Currency } from 'entities/Currency/model/types/currency';
 import { Country } from 'entities/Country/model/types/country';
 import {
-	getProfileData,
-	getProfileIsLoading,
-	getProfileError,
-	getProfileReadOnly,
-	getProfileFormData
-} from '../../../';
+	getEditableProfileData,
+	getEditableProfileIsLoading,
+	getEditableProfileError,
+	getEditableProfileReadOnly,
+	getEditableProfileFormData
+} from '../../..';
 import { StateSchema } from 'app/providers/StoreProvider';
 
 const profileData = {
@@ -31,33 +31,33 @@ describe('getProfileData', () => {
 		const state: DeepPartial<StateSchema> = {
 			profile: { data: profileData }
 		};
-		expect(getProfileData(state as StateSchema)).toEqual(profileData);
+		expect(getEditableProfileData(state as StateSchema)).toEqual(profileData);
 	});
 	test('should return profile form data', () => {
 		const state: DeepPartial<StateSchema> = {
 			profile: { formData: profileData }
 		};
-		expect(getProfileFormData(state as StateSchema)).toEqual(profileData);
+		expect(getEditableProfileFormData(state as StateSchema)).toEqual(profileData);
 	});
 
 	test('should return loading status', () => {
 		const state: DeepPartial<StateSchema> = {
 			profile: { ...profileOptions }
 		};
-		expect(getProfileIsLoading(state as StateSchema)).toEqual(true);
+		expect(getEditableProfileIsLoading(state as StateSchema)).toEqual(true);
 	});
 
 	test('should return readonly', () => {
 		const state: DeepPartial<StateSchema> = {
 			profile: { ...profileOptions }
 		};
-		expect(getProfileReadOnly(state as StateSchema)).toEqual(true);
+		expect(getEditableProfileReadOnly(state as StateSchema)).toEqual(true);
 	});
 
 	test('should return error message', () => {
 		const state: DeepPartial<StateSchema> = {
 			profile: { ...profileOptions }
 		};
-		expect(getProfileError(state as StateSchema)).toEqual(undefined);
+		expect(getEditableProfileError(state as StateSchema)).toEqual(undefined);
 	});
 });

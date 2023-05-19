@@ -13,9 +13,9 @@ export interface AvatarProps {
 	alt?: string;
 }
 
-const LazyLoadAvatar: FC<AvatarProps> = (props) => {
+const LazyLoadAvatar: FC<AvatarProps> = (props: AvatarProps) => {
 	const { src = PLACEHOLDER_AVATAR, size = 100, className = '', border = '50%', alt = '' } = props;
-
+	console.log(PLACEHOLDER_AVATAR, 'get src data');
 	const [loaded, setLoaded] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -38,10 +38,10 @@ const OriginAvatar: FC<AvatarProps> = (props: AvatarProps) => {
 	let srcOut;
 
 	if (_PROJECT_ === 'frontend') {
-		srcOut = ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_AVATAR;
+		srcOut = src ? (ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_AVATAR) : PLACEHOLDER_AVATAR;
 	} else srcOut = 'avatar.jpg';
 
-	return <img src={srcOut} width={size} height={size} borderRadius={border} {...otherProps} />;
+	return <img src={srcOut} width={size} height={size} style={{ borderRadius: border }} {...otherProps} />;
 };
 
 export { LazyLoadAvatar as Avatar };

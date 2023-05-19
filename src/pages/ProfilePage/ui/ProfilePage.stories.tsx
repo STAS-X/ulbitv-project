@@ -6,7 +6,7 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';
-import { StoreDecorator } from '../../../shared/config/storybook/StoreDecorator/StoreDecorator';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
 	title: 'pages/ProfilePage',
@@ -30,9 +30,7 @@ const formData = {
 };
 
 export const ProfilePagePrimary = Template.bind({});
-ProfilePagePrimary.args = {
-	children: 'Text primary'
-};
+
 ProfilePagePrimary.decorators = [
 	StoreDecorator({
 		profile: {
@@ -45,9 +43,7 @@ ProfilePagePrimary.decorators = [
 ];
 
 export const ProfilePageDark = Template.bind({});
-ProfilePageDark.args = {
-	children: 'Text secondary'
-};
+
 ProfilePageDark.decorators = [
 	StoreDecorator({
 		profile: {

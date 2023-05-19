@@ -15,7 +15,7 @@ export interface ImageProps {
 	alt?: string;
 }
 
-const LazyLoadImage: FC<ImageProps> = (props) => {
+const LazyLoadImage: FC<ImageProps> = (props: ImageProps) => {
 	const { src = PLACEHOLDER_IMAGE, border = '10%', className = '', alt = '', ...otherProps } = props;
 
 	const [loaded, setLoaded] = useState<boolean>(false);
@@ -33,14 +33,14 @@ const LazyLoadImage: FC<ImageProps> = (props) => {
 };
 
 const OriginImage: FC<ImageProps> = (props: ImageProps) => {
-	const { src = PLACEHOLDER_IMAGE, ...otherProps } = props;
+	const { src = PLACEHOLDER_IMAGE, border = '', ...otherProps } = props;
 	let srcOut;
 
 	if (_PROJECT_ === 'frontend') {
-		srcOut = ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_IMAGE;
+		srcOut = src ? (ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_IMAGE) : PLACEHOLDER_IMAGE;
 	} else srcOut = 'placeholder.jpg';
 
-	return <img src={srcOut} {...otherProps} />;
+	return <img src={srcOut} style={{ borderRadius: border }} {...otherProps} />;
 };
 
 export { LazyLoadImage as Image };

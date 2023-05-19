@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import { getProfileValidation, ProfileData } from '../../';
+import { ProfileData } from '../../';
 import classes from './ProfileCard.module.scss';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader/Loader';
@@ -12,8 +12,9 @@ import { CurrencySelector } from 'entities/Currency';
 import { useSelector } from 'react-redux';
 import { ValidateProfileError } from '../../model/types/profileSchema';
 import { useParams } from 'react-router-dom';
-import { VStack } from '../../../../shared/ui/Stack/VStack/VStack';
-import { HStack } from '../../../../shared/ui/Stack/HStack/HStack';
+import { VStack } from 'shared/ui/Stack/VStack/VStack';
+import { HStack } from 'shared/ui/Stack/HStack/HStack';
+import { getEditableProfileValidation } from 'features/EditableProfileCard';
 
 export enum ProfileFieldType {
 	FIRST = 'first',
@@ -42,14 +43,14 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 
 	console.log(data, userId, 'get input data');
 	const { t } = useTranslation(['profile', 'errors']);
-	const validateError = useSelector(getProfileValidation);
+	const validateError = useSelector(getEditableProfileValidation);
 
 	const mods: Mods = {
 		[classes.editing]: !readonly
 	};
 
 	return (
-		<VStack className={classNames(classes.profilecard, mods, [className])} max>
+		<HStack className={classNames(classes.profilecard, mods, [className])} max>
 			<VStack
 				className={classNames('', isLoading ? { [classes.loading]: true } : { [classes.error]: Boolean(error) })}
 				align={'center'}
@@ -151,6 +152,6 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 					</VStack>
 				)}
 			</VStack>
-		</VStack>
+		</HStack>
 	);
 };

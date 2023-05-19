@@ -14,29 +14,39 @@ import {
 } from 'shared/const/localstorage';
 import { useSelector } from 'react-redux';
 import {
+	fetchNextArticlesPage,
 	getArticlesPage,
 	getArticlesPageCategory,
 	getArticlesPageFilter,
+	getArticlesPageHasMore,
+	getArticlesPageIsLoading,
+	getArticlesPageLimit,
 	getArticlesPageSortField,
 	getArticlesPageSortOrder,
-	getArticlesPageTarget
+	getArticlesPageTarget,
+	getArticlesPageView
 } from 'pages/ArticlesPage';
 import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
 import { useNavigate } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
+import { Text, TextSize } from 'shared/ui/Text/Text';
+import { useTranslation } from 'react-i18next';
+import { classNames } from 'shared/lib/classNames/classNames';
 
 export interface ArticleInfiniteGridLoaderProps {
 	className?: string;
 	//inited: boolean;
-	view: ArticleView;
-	hasNextPage: boolean;
-	isNextPageLoading: boolean;
-	items?: ArticleSchema[];
-	limit: number;
-	emptyPlaceholder: JSX.Element | null;
-	fetchMore: () => Promise<void> | void;
+	// view: ArticleView;
+	// hasNextPage: boolean;
+	// isNextPageLoading: boolean;
+	// items?: ArticleSchema[];
+	// limit: number;
+	// emptyPlaceholder: JSX.Element | null;
+	// fetchMore: () => Promise<void> | void;
 }
 
 interface InfiniteScrollGridWrapperProps {
+	className?: string;
 	isItemLoaded: (index: number) => boolean;
 	itemCount: number;
 	loadMoreItems: (start: number, stop: number) => void;
@@ -54,6 +64,7 @@ interface InfiniteScrollGridWrapperProps {
 
 const InfiniteScrollGridWrapper: FC<InfiniteScrollGridWrapperProps> = memo((props: InfiniteScrollGridWrapperProps) => {
 	const {
+		className = '',
 		isItemLoaded,
 		itemCount,
 		loadMoreItems,
@@ -199,7 +210,7 @@ const InfiniteScrollGridWrapper: FC<InfiniteScrollGridWrapperProps> = memo((prop
 
 				return (
 					<Grid
-						className={classes.grid}
+						className={classNames(classes.grid, {}, [className])}
 						width={width}
 						height={height - 20}
 						style={{ ...style, overflowX: 'hidden' }}
@@ -226,32 +237,68 @@ const InfiniteScrollGridWrapper: FC<InfiniteScrollGridWrapperProps> = memo((prop
 export const ArticleInfiniteGridLoader: FC<ArticleInfiniteGridLoaderProps> = memo(
 	(props: ArticleInfiniteGridLoaderProps) => {
 		const {
-			// Are there more items to load?
-			// (This information comes from the most recent API request.)
-			hasNextPage,
+			className = ''
+			// 	// Are there more items to load?
+			// 	// (This information comes from the most recent API request.)
+			// 	hasNextPage,
 
-			// Are we currently loading a page of items?
-			// (This may be an in-flight flag in your Redux store for example.)
-			isNextPageLoading,
+			// 	// Are we currently loading a page of items?
+			// 	// (This may be an in-flight flag in your Redux store for example.)
+			// 	isNextPageLoading,
 
-			// Array of items loaded so far.
-			items = [],
+			// 	// Array of items loaded so far.
+			// 	items = [],
 
-			// Callback function responsible for loading the next page of items.
-			fetchMore,
+			// 	// Callback function responsible for loading the next page of items.
+			// 	fetchMore,
 
-			// Limit items to load on some page or count of sceletons when loading
-			limit,
+			// 	// Limit items to load on some page or count of sceletons when loading
+			// 	limit,
 
-			// Init load items when component onMount
-			//inited = false,
+			// 	// Init load items when component onMount
+			// 	//inited = false,
 
-			// Type view of ArticeList: LIST or TILE
-			view,
+			// 	// Type view of ArticeList: LIST or TILE
+			// 	view,
 
-			// Warning, if something wrong
-			emptyPlaceholder = null
+			// 	// Warning, if something wrong
+			// 	emptyPlaceholder = null
 		} = props;
+
+		const dispatch = useAppDispatch();
+		const isNextPageLoading = useSelector(getArticlesPageIsLoading);
+		const hasNextPage = useSelector(getArticlesPageHasMore);
+		const view = useSelector(getArticlesPageView);
+		const items = useSelector<StateSchema, ArticleSchema[]>(getArticlesPage.selectAll);
+		const limit = useSelector(getArticlesPageLimit);
+		const filter = useSelector(getArticlesPageFilter);
+		const category = useSelector(getArticlesPageCategory);
+
+		const { t } = useTranslation(['articles']);
+
+		const hasFilter = !!filter || category.length > 0;
+		let emptyPlaceholder: JSX.Element | null = null;
+
+		if (!hasNextPage && !hasFilter) {
+			emptyPlaceholder = <Text size={TextSize.L} content={t('noArticles')} />;
+		} else {
+			emptyPlaceholder =
+				hasNextPage || isNextPageLoading ? null : (
+					<Text
+						size={TextSize.L}
+						content={t('noFiltredArticles', {
+							filter,
+							category: Array.isArray(category) ? category.join(', ') : 'ALL'
+						})}
+					/>
+				);
+		}
+
+		// Подгрузка новых статей после завершения скрола текущей ленты
+		const fetchMore = useCallback(async () => {
+			//console.log(inited, isLoading, hasMore, 'get data from store');
+			if (_PROJECT_ !== 'storybook' && !isNextPageLoading && hasNextPage) await dispatch(fetchNextArticlesPage());
+		}, [dispatch, isNextPageLoading, hasNextPage]);
 
 		useEffect(() => {
 			if (items.length === 0) void fetchMore();
@@ -309,6 +356,7 @@ export const ArticleInfiniteGridLoader: FC<ArticleInfiniteGridLoaderProps> = mem
 				{({ width = 0, height = 0 }) => {
 					return (
 						<InfiniteScrollGridWrapper
+							className={className}
 							isItemLoaded={isItemLoaded}
 							itemCount={itemCount}
 							loadMoreItems={handleNextPage}

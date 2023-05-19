@@ -1,8 +1,8 @@
-import { fetchProfileData } from './../services/fetchProfileData/fetchProfileData';
+import { fetchEditableProfileData } from '../services/fetchEditableProfileData/fetchEditableProfileData';
 import { Country } from 'entities/Country/model/types/country';
 import { Currency } from 'entities/Currency/model/types/currency';
-import { profileActions, profileReducer } from './profileSlices';
-import { ProfileSchema } from '../types/profileSchema';
+import { editableProfileActions, editableProfileReducer } from './editableProfileSlices';
+import { ProfileSchema } from 'features/EditableProfileCard';
 describe('loginSlice.test', () => {
 	const initialState: DeepPartial<ProfileSchema> = {
 		data: {
@@ -21,27 +21,30 @@ describe('loginSlice.test', () => {
 		validateError: undefined
 	};
 	test('test set readonly', () => {
-		expect(profileReducer(initialState as ProfileSchema, profileActions.setProfileReadOnly(false)).readonly).toBe(
-			false
-		);
+		expect(
+			editableProfileReducer(initialState as ProfileSchema, editableProfileActions.setProfileReadOnly(false)).readonly
+		).toBe(false);
 	});
 	test('test save profile', () => {
 		expect(
-			profileReducer(
+			editableProfileReducer(
 				initialState as ProfileSchema,
-				profileActions.saveProfile({ ...initialState.data, first: '-XYZ-' })
+				editableProfileActions.saveProfile({ ...initialState.data, first: '-XYZ-' })
 			).data?.first
 		).toBe('-XYZ-');
 	});
 	test('test update profile', () => {
 		expect(
-			profileReducer(initialState as ProfileSchema, profileActions.updateProfile({ ...initialState.data })).formData
+			editableProfileReducer(
+				initialState as ProfileSchema,
+				editableProfileActions.updateProfile({ ...initialState.data })
+			).formData
 		).toEqual(initialState.data);
 	});
 
 	test('test for extrareducers pending', () => {
-		const pendingAction = { type: fetchProfileData.pending.type };
-		const state = profileReducer(initialState as ProfileSchema, pendingAction);
+		const pendingAction = { type: fetchEditableProfileData.pending.type };
+		const state = editableProfileReducer(initialState as ProfileSchema, pendingAction);
 		expect({ readonly: state.readonly, error: state.error, isLoading: state.isLoading }).toEqual({
 			error: undefined,
 			isLoading: true,
@@ -50,8 +53,8 @@ describe('loginSlice.test', () => {
 	});
 
 	test('test for extrareducers fulfilled', () => {
-		const fulfilledAction = { type: fetchProfileData.fulfilled.type, payload: initialState.data };
-		const state = profileReducer(initialState as ProfileSchema, fulfilledAction);
+		const fulfilledAction = { type: fetchEditableProfileData.fulfilled.type, payload: initialState.data };
+		const state = editableProfileReducer(initialState as ProfileSchema, fulfilledAction);
 		expect({ data: state.data, isLoading: state.isLoading, error: state.error }).toEqual({
 			data: initialState.data,
 			isLoading: false,
@@ -60,8 +63,8 @@ describe('loginSlice.test', () => {
 	});
 
 	test('test for extrareducers rejected', () => {
-		const rejectAction = { type: fetchProfileData.rejected.type, payload: 'error reject' };
-		const state = profileReducer(initialState as ProfileSchema, rejectAction);
+		const rejectAction = { type: fetchEditableProfileData.rejected.type, payload: 'error reject' };
+		const state = editableProfileReducer(initialState as ProfileSchema, rejectAction);
 		console.log(state, 'rejected');
 		expect(state.error).toEqual('error reject');
 	});

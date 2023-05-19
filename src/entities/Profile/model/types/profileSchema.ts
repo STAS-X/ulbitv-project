@@ -1,4 +1,3 @@
-import { UserData } from 'entities/User/model/types/userSchema';
 import { Currency } from 'entities/Currency/model/types/currency';
 import { Country } from 'entities/Country/model/types/country';
 

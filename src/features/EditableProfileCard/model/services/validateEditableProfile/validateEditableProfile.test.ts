@@ -1,7 +1,7 @@
-import { ValidateProfileError } from '../../../model/types/profileSchema';
+import { ValidateProfileError } from 'entities/Profile';
 import { Country } from 'entities/Country/model/types/country';
 import { Currency } from 'entities/Currency/model/types/currency';
-import { validateProfileData } from './validateProfile';
+import { validateEditableProfileData } from './validateEditableProfile';
 
 const profileValue = {
 	first: 'Станислав',
@@ -16,11 +16,11 @@ const profileValue = {
 
 describe('validateProfile.test', () => {
 	test('should return success', () => {
-		const result = validateProfileData(profileValue);
+		const result = validateEditableProfileData(profileValue);
 		expect(result).toEqual(undefined);
 	});
 	test('should return validate AGE and AVATAR error', () => {
-		const result = validateProfileData({ ...profileValue, age: 320, avatar: 'picture.png' });
+		const result = validateEditableProfileData({ ...profileValue, age: 320, avatar: 'picture.png' });
 		expect(result).toEqual({
 			[ValidateProfileError.INCORRECT_AGE]: 'validation.age',
 			[ValidateProfileError.INCORRECT_AVATAR]: 'validation.avatar'
@@ -29,7 +29,7 @@ describe('validateProfile.test', () => {
 
 	test('should return missing COUNTRY error', () => {
 		delete (profileValue as any).country;
-		const result = validateProfileData(profileValue);
+		const result = validateEditableProfileData(profileValue);
 		expect(result).toEqual({
 			[ValidateProfileError.INCORRECT_COUNTRY]: 'validation.country'
 		});

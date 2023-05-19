@@ -1,4 +1,3 @@
-import { getUserCanEditArticle } from './model/selectors/getArticleEditable';
 export { ArticleDetailesPageLazy as ArticleDetailesPage } from './ui/ArticleDetailesPage/ArticleDetailesPage.lazy';
 export { ArticleDetailesPageHeader } from './ui/ArticleDetailesPageHeader/ArticleDetailesPageHeader';
 export { ArticleDetailesPageSchema } from './model/types';
@@ -18,3 +17,6 @@ export {
 	getArticleRecommendedIsLoading,
 	getArticleRecommendedError
 } from './model/selectors/getArticleRecommendedData';
+export { fetchRecommendationsForArticle } from './model/services/fetchRecommendationsForArticle/fetchRecommendationsForArticle';
+export { fetchCommentsByArticleId } from './model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+export { useGetRecommendationByArticleQuery } from '../../features/ArticleRecommendationsList/api/useArticleRecommendations';

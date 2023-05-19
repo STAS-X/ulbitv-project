@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import AddCommentForm from './AddCommentForm';
-import { AddCommentFormProps } from './AddCommentForm';
+import AddCommentForm, { AddCommentFormProps } from './AddCommentForm';
+
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 
 export default {
-	title: 'feature/AddCommentForm',
+	title: 'features/AddCommentForm',
 	component: AddCommentForm,
 	argTypes: {
 		backgroundColor: { control: 'color' }

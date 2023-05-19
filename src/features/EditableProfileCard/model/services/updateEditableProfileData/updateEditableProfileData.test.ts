@@ -1,14 +1,14 @@
-import { ValidateProfileError } from './../../types/profileSchema';
+import { ValidateProfileError } from 'entities/Profile';
 import { Country } from 'entities/Country/model/types/country';
 import { Currency } from 'entities/Currency/model/types/currency';
 /* eslint-disable @typescript-eslint/unbound-method */
 import { TestAsyncThunk } from 'shared/lib/tests/testAsyncThunk/testAsyncThunk';
-import { updateProfileData } from './updateProfileData';
+import { updateEditableProfileData } from './updateEditableProfileData';
 
 //jest.mock('axios');
 //const mockedAxios = jest.mocked(axios, true);
 
-describe('updateProfileData thunk test', () => {
+describe('updateEditableProfileData thunk test', () => {
 	const profileData = {
 		id: '1',
 		first: 'Станислав',
@@ -25,7 +25,7 @@ describe('updateProfileData thunk test', () => {
 	// 	getState = jest.fn();
 	// });
 	test('should success', async () => {
-		const thunk = new TestAsyncThunk(updateProfileData, {
+		const thunk = new TestAsyncThunk(updateEditableProfileData, {
 			profile: {
 				formData: profileData
 			}
@@ -41,7 +41,7 @@ describe('updateProfileData thunk test', () => {
 	});
 
 	test('should error', async () => {
-		const thunk = new TestAsyncThunk(updateProfileData, {
+		const thunk = new TestAsyncThunk(updateEditableProfileData, {
 			profile: {
 				formData: profileData
 			}
@@ -55,7 +55,7 @@ describe('updateProfileData thunk test', () => {
 	});
 
 	test('should rejected', async () => {
-		const testThunk = new TestAsyncThunk(updateProfileData, {
+		const testThunk = new TestAsyncThunk(updateEditableProfileData, {
 			profile: { formData: { ...profileData, age: 3, lastname: '' } }
 		});
 		//testThunk.api.put.mockReturnValue(Promise.resolve({ status: 403 }));

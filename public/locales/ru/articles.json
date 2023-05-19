@@ -2,6 +2,7 @@
   "article": "Страница статей",
   "noArticles": "Статьи не найдены",
   "noFiltredArticles": "Статьи по фильтру `{{filter}}` и категориям `{{category}}` не найдены",
+  "recommendedError": "Возникла ошибка `{{message}}`",
   "readMore": "Читать далее",
   "backToList": "Назад к списку",
   "selectors": {

@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { userActions } from 'entities/User';
 import { TestAsyncThunk } from 'shared/lib/tests/testAsyncThunk/testAsyncThunk';
-import { fetchProfileData } from './fetchProfileData';
+import { fetchEditableProfileData } from './fetchEditableProfileData';
 
 //jest.mock('axios');
 //const mockedAxios = jest.mocked(axios, true);
 
 describe('loginByUsername selector test', () => {
-	const testThunk = new TestAsyncThunk(fetchProfileData);
+	const testThunk = new TestAsyncThunk(fetchEditableProfileData);
 	const profileValue = {
 		first: 'Станислав',
 		lastname: '-XXX-',

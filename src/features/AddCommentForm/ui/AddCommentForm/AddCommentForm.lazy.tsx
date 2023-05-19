@@ -1,5 +1,6 @@
 import { FC, lazy } from 'react';
+import { AddCommentFormProps } from './AddCommentForm';
 
-export const AddCommentFormLazy: FC = lazy(
-	() => new Promise<{ default: FC<Record<string, unknown>> }>((resolve) => resolve(import('./AddCommentForm')))
+export const AddCommentFormLazy: FC<AddCommentFormProps> = lazy(
+	() => new Promise<{ default: FC<AddCommentFormProps> }>((resolve) => resolve(import('./AddCommentForm')))
 );

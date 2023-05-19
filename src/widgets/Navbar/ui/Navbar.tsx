@@ -9,7 +9,7 @@ import { userActions, UserData } from 'entities/User';
 import { getUserData } from 'entities/User/model/selectors/getUser/getUser';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { RoutePath } from '../../../shared/config/routeConfig/routeConfig';
+import { AppRoutes, RoutePath } from '../../../shared/config/routeConfig/routeConfig';
 import { DropDown } from 'shared/ui/DropDown/DropDown';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 
@@ -41,7 +41,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
 	const menuItems = useMemo(
 		() => [
-			{ content: t('profileMenu'), href: `/${String(RoutePath.profile)}`, disabled: Boolean(userdata) },
+			{ content: t('profileMenu'), href: `/${AppRoutes.PROFILE}/${userdata?.id ?? ''}`, disabled: !Boolean(userdata) },
 			{ content: t(userdata ? 'logout' : 'login'), onClick: userdata ? setLogOut : showAuthModal }
 		],
 		[t, userdata, showAuthModal, setLogOut]
@@ -53,7 +53,11 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 			<AppLink className={classes.createLink} to={RoutePath.article_create} theme={AppLinkTheme.SECONDARY}>
 				{t('createArticle', { ns: 'articles' })}
 			</AppLink>
-			<DropDown className={classes.links} items={menuItems} trigger={<Avatar size={30} src={userdata?.avatar} />} />
+			<DropDown
+				className={classes.links}
+				items={menuItems}
+				trigger={<Avatar size={30} border={'50%'} src={userdata?.avatar || ''} />}
+			/>
 			{/* <Button theme={ButtonTheme.INVERTED} className={classes.links} onClick={userdata ? setLogOut : showAuthModal}>
 				{t(userdata ? 'logout' : 'login')}
 			</Button> */}

@@ -18,5 +18,17 @@
 	"testMatch": ["<rootDir>/src/**/*(*.)@(spec|test).[tj]s?(x)"],
 	"rootDir": "../../",
 	"setupFilesAfterEnv": ["<rootDir>/config/jest/setupTests.ts"],
-	"verbose": true
+	"verbose": true,
+	"reporters": [
+		"default",
+		[
+			"jest-html-reporters",
+			{
+				"publishPath": "<rootDir>/reports/unit",
+				"filename": "report.html",
+				"inlineSource": true,
+				"openReport": true
+			}
+		]
+	]
 }

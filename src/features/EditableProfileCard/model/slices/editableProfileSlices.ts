@@ -1,8 +1,8 @@
-import { validateProfileData } from './../services/validateProfile/validateProfile';
-import { fetchProfileData } from './../services/fetchProfileData/fetchProfileData';
-import { ProfileData, ProfileSchema } from '../../';
+import { updateEditableProfileData } from '../services/updateEditableProfileData/updateEditableProfileData';
+import { validateEditableProfileData } from '../services/validateEditableProfile/validateEditableProfile';
+import { fetchEditableProfileData } from '../services/fetchEditableProfileData/fetchEditableProfileData';
+import { ProfileData, ProfileSchema } from 'features/EditableProfileCard';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 
 const initialState: ProfileSchema = {
 	readonly: true,
@@ -12,7 +12,7 @@ const initialState: ProfileSchema = {
 	validateError: undefined
 };
 
-const profileSlice = createSlice({
+const editableProfileSlice = createSlice({
 	name: 'profile',
 	initialState,
 	reducers: {
@@ -31,41 +31,41 @@ const profileSlice = createSlice({
 			state.readonly = action.payload;
 		},
 		checkProfileValidation: (state, action: PayloadAction<ProfileData>) => {
-			if (action.payload) state.validateError = validateProfileData(action.payload);
+			if (action.payload) state.validateError = validateEditableProfileData(action.payload);
 		}
 	},
 	extraReducers: (builder) => {
 		// The `builder` callback form is used here because it provides correctly typed reducers from the action creators
-		builder.addCase(fetchProfileData.pending, (state) => {
+		builder.addCase(fetchEditableProfileData.pending, (state) => {
 			state.error = undefined;
 			state.isLoading = true;
 		});
-		builder.addCase(fetchProfileData.fulfilled, (state, action) => {
+		builder.addCase(fetchEditableProfileData.fulfilled, (state, action) => {
 			state.data = action.payload;
 			state.formData = action.payload;
 			state.isLoading = false;
 			state.error = undefined;
 		});
-		builder.addCase(fetchProfileData.rejected, (state, action) => {
+		builder.addCase(fetchEditableProfileData.rejected, (state, action) => {
 			state.isLoading = false;
 			state.error = action.payload || action.error?.message || 'Unknown error';
 		});
-		builder.addCase(updateProfileData.pending, (state) => {
+		builder.addCase(updateEditableProfileData.pending, (state) => {
 			state.error = undefined;
 			state.readonly = true;
 			state.isLoading = true;
 		});
-		builder.addCase(updateProfileData.fulfilled, (state, action) => {
+		builder.addCase(updateEditableProfileData.fulfilled, (state, action) => {
 			state.data = action.payload;
 			state.formData = action.payload;
 			state.isLoading = false;
 			state.error = undefined;
 		});
-		builder.addCase(updateProfileData.rejected, (state, action) => {
+		builder.addCase(updateEditableProfileData.rejected, (state, action) => {
 			state.isLoading = false;
 			state.error = action.payload || action.error?.message || 'Unknown error';
 		});
 	}
 });
 
-export const { actions: profileActions, reducer: profileReducer } = profileSlice;
+export const { actions: editableProfileActions, reducer: editableProfileReducer } = editableProfileSlice;

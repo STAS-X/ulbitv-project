@@ -1,32 +1,15 @@
-import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
-import { ArticleList } from 'entities/Article/ui/ArticleList/ArticleList';
-import { FC, memo, useEffect, useCallback, useState, useRef } from 'react';
+import { FC, memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
-import { articlesPageReducer, articlesPageActions, getArticlesPage } from '../../model/slices/articlePageSlice';
+import { useAppDispatch } from 'app/providers/StoreProvider';
+import { articlesPageReducer, articlesPageActions } from '../../model/slices/articlePageSlice';
 import classes from './ArticlesPage.module.scss';
-import {
-	getArticlesPageHasMore,
-	getArticlesPageInited,
-	getArticlesPageIsLoading,
-	getArticlesPageLimit,
-	getArticlesPageView,
-	getArticlesPageFilter,
-	getArticlesPageCategory,
-	getArticlesPageSortField,
-	getArticlesPageSortOrder,
-	getArticlesPageTarget
-} from '../..';
+import { getArticlesPageInited } from '../..';
 import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
-import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { ArticlesPageFilters } from 'entities/Article';
 import { useArticlesParams } from 'shared/lib/hooks/useArticlesQueryParams';
-import { ArticleInfiniteLoader } from 'entities/Article/ui/ArticleInfiniteLoader/ArticleInfiniteLoader';
 import { ArticleInfiniteGridLoader } from 'entities/Article/ui/ArticleInfiniteLoader/ArticleInfiniteGridLoader';
-import { Text, TextSize } from '../../../../shared/ui/Text/Text';
-import { useTranslation } from 'react-i18next';
 
 export interface ArticlesPageProps {
 	className?: string;
@@ -40,17 +23,9 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	const { className } = props;
 
 	const dispatch = useAppDispatch();
-	const isLoading = useSelector(getArticlesPageIsLoading);
-	const hasMore = useSelector(getArticlesPageHasMore);
-	const view = useSelector(getArticlesPageView);
-	const articles = useSelector<StateSchema, ArticleSchema[]>(getArticlesPage.selectAll);
-	const limit = useSelector(getArticlesPageLimit);
-	const filter = useSelector(getArticlesPageFilter);
-	const category = useSelector(getArticlesPageCategory);
 	const inited = useSelector(getArticlesPageInited) || false;
 	//const currentLimit = Math.min(limit, selectedTotal >= 0 && total > 0 ? total - selectedTotal : limit);
 
-	const { t } = useTranslation(['articles']);
 	const { queryParams } = useArticlesParams();
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -76,12 +51,6 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	// 	[dispatch, scrolledWrapper]
 	// );
 	// useScrollDebounce(scrollArticleId, DEBOUNCE_DELAY, handleScrollToState);
-
-	// Подгрузка новых статей после завершения скрола текущей ленты
-	const onLoadNextArticlesPage = useCallback(async () => {
-		//console.log(inited, isLoading, hasMore, 'get data from store');
-		if (_PROJECT_ !== 'storybook' && inited && !isLoading && hasMore) await dispatch(fetchNextArticlesPage());
-	}, [dispatch, isLoading, inited, hasMore]);
 
 	// const fetchArticlesPage = useCallback(async () => {
 	// 	if (page === 0 && hasMore) {
@@ -143,24 +112,6 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	// 	},
 	// 	[scrolledWrapper, scrollTo]
 	// );
-	const hasFilter = !!filter || category.length > 0;
-	let messageElement: JSX.Element | null = null;
-
-	if (!hasMore && !hasFilter) {
-		messageElement = <Text size={TextSize.L} content={t('noArticles')} />;
-	} else {
-		messageElement =
-			hasMore || isLoading ? null : (
-				<Text
-					size={TextSize.L}
-					content={t('noFiltredArticles', {
-						filter,
-						category: Array.isArray(category) ? category.join(', ') : 'ALL'
-					})}
-				/>
-			);
-	}
-
 	// Инициализация state.articlePages после загрузки query параметров
 	useEffect(() => {
 		const initWithFetch = () => {
@@ -178,17 +129,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 			{inited && <ArticlesPageFilters />}
 			<PageWrapper className={classNames(classes.articlespage, {}, [className])}>
 				<div className={classes.articlelist}>
-					{inited && (
-						<ArticleInfiniteGridLoader
-							view={view}
-							hasNextPage={hasMore}
-							isNextPageLoading={isLoading}
-							items={articles}
-							limit={limit}
-							emptyPlaceholder={messageElement}
-							fetchMore={onLoadNextArticlesPage}
-						/>
-					)}
+					{inited && <ArticleInfiniteGridLoader />}
 					{/* <ArticleList
 						view={view}
 						isLoading={isLoading}

@@ -6,7 +6,8 @@
 	top: var(--navbar-heigth);
 	padding: 10px 20px;
 	right: 35px;
-	z-index: var(--bars-z-index);
+
+	// z-index: var(--bars-z-index);
 
 	&:hover {
 		pointer-events: none;

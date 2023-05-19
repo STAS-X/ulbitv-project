@@ -40,7 +40,7 @@
 		"sourceMap": true
 	},
 	"include": ["*", "./config/**/*", "./src/**/*", "./scripts/*", "./json-server/*", ".eslintrc.cjs"],
-	"exclude": ["node_modules", ".templates", "storybook-static"],
+	"exclude": ["node_modules", ".templates/**/*", "storybook-static"],
 	"ts-node": {
 		"compilerOptions": {
 			"module": "commonjs"

@@ -22,10 +22,12 @@ export const createAppAsyncThunk =
 
 export function getErrorMessage(error: ThunkError) {
 	return (
-		error?.message ||
-		error?.response?.data?.message ||
-		error?.response?.data.error ||
-		error?.response?.data ||
-		error.toString()
+		(error?.message ||
+			error?.response?.data?.message ||
+			error?.response?.data?.error ||
+			error?.response?.data ||
+			error?.data ||
+			error?.toString()) ??
+		undefined
 	);
 }

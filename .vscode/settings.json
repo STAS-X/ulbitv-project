@@ -10,5 +10,11 @@
 	"prettier.printWidth": 120,
 	"prettier.endOfLine": "auto",
 	"files.autoSave": "onWindowChange",
-	"i18n-ally.keystyle": "nested"
+	"i18n-ally.keystyle": "nested",
+
+	"projectTemplates.templatesDirectory": "../.templates/FSDTemplate", // default directory containing project templates
+	"projectTemplates.usePlaceholders": true, // activate placeholder substitution
+	"projectTemplates.placeholders": {}, // dictionary of default placeholder key-value pairs
+	"projectTemplates.placeholderRegExp": "#{(\\w+?)}", // regular expression to use for detecting placeholders
+
 }

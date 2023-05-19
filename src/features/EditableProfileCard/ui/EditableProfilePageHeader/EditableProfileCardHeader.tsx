@@ -2,19 +2,19 @@ import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
-import {
-	getProfileError,
-	getProfileIsLoading,
-	getProfileReadOnly,
-	getProfileValidation,
-	profileActions,
-	updateProfileData
-} from 'entities/Profile';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Text } from 'shared/ui/Text/Text';
 import classes from './ProfilePageHeader.module.scss';
 import { useAppDispatch } from 'app/providers/StoreProvider';
-import { HStack } from '../../../../shared/ui/Stack/HStack/HStack';
+import { HStack } from 'shared/ui/Stack/HStack/HStack';
+import {
+	getEditableProfileReadOnly,
+	getEditableProfileIsLoading,
+	getEditableProfileError,
+	getEditableProfileValidation,
+	updateEditableProfileData,
+	editableProfileActions
+} from 'features/EditableProfileCard';
 
 enum ProfileEditType {
 	EDIT = 'edit',
@@ -28,21 +28,21 @@ interface ProfilePageHeaderProps {
 	isEdit?: boolean;
 }
 
-export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
+export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => {
 	const { isDirty = false, isEdit = false, className } = props;
 
 	const { t } = useTranslation(['pages', 'profile']);
-	const readonly = useSelector(getProfileReadOnly);
-	const isLoading = useSelector(getProfileIsLoading);
-	const error = useSelector(getProfileError);
-	const validationError = useSelector(getProfileValidation);
+	const readonly = useSelector(getEditableProfileReadOnly);
+	const isLoading = useSelector(getEditableProfileIsLoading);
+	const error = useSelector(getEditableProfileError);
+	const validationError = useSelector(getEditableProfileValidation);
 
 	const dispatch = useAppDispatch();
 
 	const updateProfileByForm = useCallback(async () => {
 		if (_PROJECT_ === 'storybook') return;
 
-		const profileData = await dispatch(updateProfileData());
+		const profileData = await dispatch(updateEditableProfileData());
 		if (profileData.meta.requestStatus === 'fulfilled') {
 			//dispatch(loginActions.setEmpty());
 			console.log(`Profile data is '${JSON.stringify(profileData.payload)}'`);
@@ -52,14 +52,14 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
 	const onChangeEdit = useCallback(
 		(type?: ProfileEditType) => async () => {
 			if (readonly) {
-				dispatch(profileActions.setProfileReadOnly(!readonly));
+				dispatch(editableProfileActions.setProfileReadOnly(!readonly));
 			} else {
 				if (type == ProfileEditType.SAVE) {
 					await updateProfileByForm();
 				} else {
-					dispatch(profileActions.cancelEditProfile());
+					dispatch(editableProfileActions.cancelEditProfile());
 				}
-				dispatch(profileActions.setProfileReadOnly(!readonly));
+				dispatch(editableProfileActions.setProfileReadOnly(!readonly));
 			}
 		},
 		[dispatch, readonly, updateProfileByForm]
