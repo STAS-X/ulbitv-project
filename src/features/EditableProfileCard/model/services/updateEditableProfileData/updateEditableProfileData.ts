@@ -31,6 +31,7 @@ export const updateEditableProfileData = createAppAsyncThunk<ProfileData>(
 			if (!response.data) {
 				throw new Error('error occured');
 			}
+
 			//throw new Error('network error occured');
 
 			return response.data;

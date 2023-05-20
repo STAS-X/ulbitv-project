@@ -18,14 +18,24 @@ export interface FlexProps extends DivProps {
 	direction?: FlexDirection;
 	gap?: number;
 	max?: boolean;
+	dataTestId?: string;
 }
 
 export const Flex: FC<FlexProps> = (props: FlexProps) => {
-	const { className, children, justify = 'start', align = 'center', direction = 'column', gap = 8 } = props;
+	const {
+		className,
+		children,
+		justify = 'start',
+		align = 'center',
+		direction = 'column',
+		gap = 8,
+		dataTestId = 'Stack'
+	} = props;
 	const { t } = useTranslation();
 
 	return (
 		<div
+			data-testid={dataTestId}
 			className={classNames(classes.Flex, {}, [className])}
 			style={{
 				justifyContent: convertToProperty(justify),

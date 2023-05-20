@@ -14,6 +14,7 @@ export interface InputProps extends HTMLInputProps {
 	validation?: string;
 	onChange?: (value: string) => void;
 	readonly?: boolean;
+	dataTestId?: string;
 }
 
 const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
@@ -25,6 +26,7 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 		value = '',
 		validation = '',
 		onChange,
+		dataTestId = 'TextError',
 		...otherProps
 	} = props;
 	const { t } = useTranslation();
@@ -34,7 +36,7 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 			target: { value }
 		} = event;
 		onChange?.(value);
-		console.log(`current value is ${value}`);
+		//console.log(`current value is ${value}`);
 	};
 
 	const mods: Mods = {
@@ -45,12 +47,18 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 		<div className={classNames(classes.inputwrapper, {}, [className])}>
 			{validation && (
 				<div className={classes.validation}>
-					<Text content={validation} theme={TextTheme.ERROR} align={TextAlign.LEFT} />
+					<Text
+						dataTestId={`${dataTestId}.Validation`}
+						content={validation}
+						theme={TextTheme.ERROR}
+						align={TextAlign.LEFT}
+					/>
 				</div>
 			)}
 			{placeholder && <span className={classes.placeholder}>{`${t(placeholder)}>`}</span>}
 			<div className={classes.caretwrapper}>
 				<input
+					data-testid={`${dataTestId}.Value`}
 					ref={ref || undefined}
 					className={classNames(classes.input, mods)}
 					value={value}
