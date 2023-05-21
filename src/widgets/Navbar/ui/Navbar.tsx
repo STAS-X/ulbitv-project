@@ -5,8 +5,7 @@ import classes from './Navbar.module.scss';
 import { LoginModal } from 'features/AuthByUserName/ui/LoginModal/LoginModal';
 import { useSelector } from 'react-redux';
 import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
-import { userActions, UserData } from 'entities/User';
-import { getUserData } from 'entities/User/model/selectors/getUser/getUser';
+import { userActions, UserData, getUserData, getUserIsAdmin } from 'entities/User';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { AppRoutes, RoutePath } from '../../../shared/config/routeConfig/routeConfig';
@@ -23,6 +22,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 	const dispatch = useAppDispatch();
 
 	const userdata = useSelector<StateSchema, UserData | undefined>(getUserData);
+	const isAdmin = useSelector<StateSchema, boolean>(getUserIsAdmin);
 
 	const [isAuthModal, setIsAuthModal] = useState(false);
 
@@ -40,11 +40,17 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 	}, [dispatch]);
 
 	const menuItems = useMemo(
-		() => [
-			{ content: t('profileMenu'), href: `/${AppRoutes.PROFILE}/${userdata?.id ?? ''}`, disabled: !Boolean(userdata) },
-			{ content: t(userdata ? 'logout' : 'login'), onClick: userdata ? setLogOut : showAuthModal }
-		],
-		[t, userdata, showAuthModal, setLogOut]
+		() =>
+			[
+				{ content: t('adminMenu'), href: `/${AppRoutes.ADMIN_PANEL}}`, disabled: !Boolean(isAdmin) },
+				{
+					content: t('profileMenu'),
+					href: `/${AppRoutes.PROFILE}/${userdata?.id ?? ''}`,
+					disabled: !Boolean(userdata)
+				},
+				{ content: t(userdata ? 'logout' : 'login'), onClick: userdata ? setLogOut : showAuthModal }
+			].filter(Boolean),
+		[t, userdata, isAdmin, showAuthModal, setLogOut]
 	);
 
 	return (

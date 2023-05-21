@@ -1,9 +1,11 @@
 {
-	"about": "About",
-	"main": "Main",
-	"profile": "Profile",
-	"articles": "Articles",
-	"articleDetailes": "Article Detailes",
-	"reloadPage": "Reload Page",
-	"Page not found": "Page '{{pageName}}' not found"
+  "about": "About",
+  "main": "Main",
+  "profile": "Profile",
+  "articles": "Articles",
+  "articleDetailes": "Article Detailes",
+  "reloadPage": "Reload Page",
+  "Page not found": "Page '{{pageName}}' not found",
+  "adminpanel": "Administrator panel",
+  "access_forbidden": "Dear {{userName}}, you don't have roles to access '{{pageName}}'"
 }
