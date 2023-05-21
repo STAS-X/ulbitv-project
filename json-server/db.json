@@ -799,7 +799,7 @@
 			"username": "admin",
 			"password": "12345",
 			"profileId": "1",
-			"role": ["admin", "manager"],
+			"roles": ["admin", "manager"],
 			"avatar": "https://bipbap.ru/wp-content/uploads/2021/07/Kartinki-na-avu-v-VK-dlya-parnej-i-muzhchin-samye-klassnye-i-krutye-3.jpg"
 		},
 		{
@@ -807,7 +807,7 @@
 			"username": "user",
 			"password": "123321",
 			"profileId": "2",
-			"role": ["user"],
+			"roles": ["user"],
 			"avatar": "https://bipbap.ru/wp-content/uploads/2021/07/unikal-nye-kartinki-na-avu-vk-i-odnoklassniki-samye-krasivye-2.jpg"
 		},
 		{
@@ -815,7 +815,7 @@
 			"username": "manager",
 			"password": "654321",
 			"profileId": "3",
-			"role": ["manager"],
+			"roles": ["manager"],
 			"avatar": "https://toptos.com.ua/content/images/43/614x1160l80nn0/kote-v-ochkakh-chekhol-dlya-iphone-x-51105468471844.jpg"
 		}
 	],

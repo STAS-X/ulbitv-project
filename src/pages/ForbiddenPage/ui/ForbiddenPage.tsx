@@ -3,6 +3,7 @@ import { getUserData } from 'entities/User';
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { Location } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import classes from './ForbiddenPage.module.scss';
@@ -12,7 +13,7 @@ interface ForbiddenPageProps {
 }
 
 interface StateToLocation {
-	from?: string;
+	from?: Location;
 }
 
 export const ForbiddenPage: FC<ForbiddenPageProps> = memo((props: ForbiddenPageProps) => {
@@ -22,10 +23,7 @@ export const ForbiddenPage: FC<ForbiddenPageProps> = memo((props: ForbiddenPageP
 	const userData = useSelector(getUserData);
 	const { pathname, state } = useLocation();
 
-	let pageName = '';
-	if (state) {
-		pageName = (state as StateToLocation).from || '';
-	} else pageName = pathname;
+	const pageName = (state as StateToLocation)?.from?.pathname ?? pathname;
 
 	return (
 		<PageWrapper className={classNames(classes.Forbiddenpage, {}, [className ?? ''])}>

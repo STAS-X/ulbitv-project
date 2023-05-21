@@ -7,7 +7,7 @@ import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 //import { getParamsForScreenShot } from 'shared/lib/storyShots/getParamsForShotStory';
 
 export default {
-	title: 'pages/NoFoundPage',
+	title: 'pages/ForbiddenPage',
 	component: ForbiddenPage,
 	argTypes: {
 		backgroundColor: { control: 'color' }

@@ -42,7 +42,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 	const menuItems = useMemo(
 		() =>
 			[
-				{ content: t('adminMenu'), href: `/${AppRoutes.ADMIN_PANEL}}`, disabled: !Boolean(isAdmin) },
+				{ content: t('adminMenu'), href: `/${AppRoutes.ADMIN_PANEL}`, disabled: !Boolean(isAdmin) },
 				{
 					content: t('profileMenu'),
 					href: `/${AppRoutes.PROFILE}/${userdata?.id ?? ''}`,
