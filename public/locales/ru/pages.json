@@ -1,9 +1,11 @@
 {
-	"about": "О сайте",
-	"main": "Главная",
-	"profile": "Профиль",
-	"articles": "Статьи",
-	"articleDetailes": "Сведения о статье",
-	"reloadPage": "Обновить страницу",
-	"Page not found": "Страница '{{pageName}}' не найдена"
+  "about": "О сайте",
+  "main": "Главная",
+  "profile": "Профиль",
+  "articles": "Статьи",
+  "articleDetailes": "Сведения о статье",
+  "reloadPage": "Обновить страницу",
+  "Page not found": "Страница '{{pageName}}' не найдена",
+  "adminpanel": "Панель администратора",
+  "access_forbidden": "Уважаемый {{userName}}, у вас нет прав для доступа на страницу '{{pageName}}'"
 }

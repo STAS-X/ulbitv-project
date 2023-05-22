@@ -72,6 +72,7 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 				{isEdit &&
 					(readonly ? (
 						<Button
+							dataTestId={'ProfileCard.EditBtn'}
 							className={classes.editbtn}
 							theme={ButtonTheme.OUTLINE}
 							onClick={onChangeEdit(ProfileEditType.EDIT)}
@@ -82,6 +83,7 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 					) : (
 						<HStack gap={10}>
 							<Button
+								dataTestId={'ProfileCard.SaveBtn'}
 								className={classes.editbtn}
 								theme={ButtonTheme.OUTLINE}
 								onClick={onChangeEdit(ProfileEditType.SAVE)}
@@ -90,6 +92,7 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 								{t('save', { ns: 'profile' })}
 							</Button>
 							<Button
+								dataTestId={'ProfileCard.CancelBtn'}
 								className={classes.editbtn}
 								theme={ButtonTheme.OUTLINE_RED}
 								onClick={onChangeEdit(ProfileEditType.CANCEL)}

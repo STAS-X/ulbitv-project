@@ -96,7 +96,7 @@ module.exports = {
 			'warn',
 			{
 				markupOnly: true,
-				ignoreAttribute: ['as', 'role', 'data-testid', 'to', 'target', 'justify', 'align', 'direction']
+				ignoreAttribute: ['as', 'role', 'data-testid', 'dataTestId', 'to', 'target', 'justify', 'align', 'direction']
 			}
 		]
 	},

@@ -7,6 +7,7 @@ import { RequireAuth } from './RequireAuth';
 
 export const AppRouter = () => {
 	//const isAuth = Boolean(useSelector(getUserData));
+
 	const renderWithAuthWrapper = useCallback((route: AuthRouteProps) => {
 		const element = (
 			<Suspense fallback={<PageLoader />}>

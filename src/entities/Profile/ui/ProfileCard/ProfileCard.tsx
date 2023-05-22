@@ -75,6 +75,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 						)}
 						<VStack gap={16}>
 							<Input
+								dataTestId={'ProfileCard.FirstName'}
 								className={classes.input}
 								value={data?.first}
 								readonly={readonly}
@@ -85,6 +86,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 								onChange={onChangeProfileFields(ProfileFieldType.FIRST)}
 							/>
 							<Input
+								dataTestId={'ProfileCard.LastName'}
 								className={classes.input}
 								value={data?.lastname}
 								readonly={readonly}
@@ -95,6 +97,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 								onChange={onChangeProfileFields(ProfileFieldType.LAST)}
 							/>
 							<Input
+								dataTestId={'ProfileCard.Age'}
 								className={classes.input}
 								value={data?.age}
 								readonly={readonly}

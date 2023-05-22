@@ -9,5 +9,6 @@
   "authTitle": "Форма авторизации",
   "userName": "Введите имя",
   "userPass": "Введите пароль",
-  "appName": "Articles PRJ App"
+  "appName": "Articles PRJ App",
+  "adminMenu": "Админка"
 }

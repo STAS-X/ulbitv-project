@@ -49,7 +49,7 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = memo((props: Ed
 	const isEdit = useMemo(() => userData?.profileId === profileId, [userData, profileId]);
 
 	const fetchProfileByUser = useCallback(async () => {
-		if (_PROJECT_ === 'storybook') return;
+		if (_PROJECT_ !== 'frontend') return;
 
 		if (profileId) {
 			const profileData = await dispatch(fetchEditableProfileData({ profileId }));
@@ -125,7 +125,7 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = memo((props: Ed
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<VStack className={classNames('', {}, [className])} gap={10} max={true}>
+			<VStack dataTestId={'ProfileCard'} className={classNames('', {}, [className])} gap={10} max={true}>
 				<EditableProfileCardHeader isDirty={isDirty} isEdit={isEdit} />
 				<ProfileCard
 					data={formData}
