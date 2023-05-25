@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { CardProps, Card } from './Card';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -11,9 +11,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof Card>;
+} as Meta<typeof Card>;
 
-const Template: ComponentStory<typeof Card> = (args: CardProps) => <Card {...args} />;
+const Template: StoryFn<typeof Card> = (args: CardProps) => <Card {...args} />;
 
 export const CardNormal = Template.bind({});
 CardNormal.args = {

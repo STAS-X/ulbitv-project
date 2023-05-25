@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { InputProps, Input } from './Input';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -11,9 +11,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof Input>;
+} as Meta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = (args: InputProps) => <Input {...args} />;
+const Template: StoryFn<typeof Input> = (args: InputProps) => <Input {...args} />;
 
 export const InputPrimary = Template.bind({});
 InputPrimary.args = {

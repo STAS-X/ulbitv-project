@@ -4,12 +4,16 @@ module.exports = {
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',
 		'@storybook/addon-interactions',
-		'@storybook/addon-contexts/register'
+		'storybook-addon-mock',
+		'@storybook/addon-contexts'
 		//'storycap',
 		//'zisui/register',
 	],
 	staticDirs: ['../../src/shared/assets/images'],
-	framework: '@storybook/react',
+	framework: {
+		name: '@storybook/react-webpack5',
+		options: { lazyCompilation: true }
+	},
 	core: {
 		builder: 'webpack5'
 	}

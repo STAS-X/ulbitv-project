@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { CodeProps, Code } from './Code';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -10,13 +10,13 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof Code>;
+} as Meta<typeof Code>;
 
-const Template: ComponentStory<typeof Code> = (args: CodeProps) => <Code {...args} />;
+const Template: StoryFn<typeof Code> = (args: CodeProps) => <Code {...args} />;
 
 export const CodePrimary = Template.bind({});
 CodePrimary.args = {
-	children: `export default {\n"title:'shared/Code',\n"component: Code,\nargTypes: {\n"	backgroundColor: { control: 'color' }\n"}\n} as ComponentMeta<typeof Code>;`
+	children: `export default {\n"title:'shared/Code',\n"component: Code,\nargTypes: {\n"	backgroundColor: { control: 'color' }\n"}\n} as Meta<typeof Code>;`
 };
 
 export const CodeSecondary = Template.bind({});

@@ -19,7 +19,7 @@ export interface NavbarProps {
 export const Navbar = memo(({ className }: NavbarProps) => {
 	const { t } = useTranslation(['translation', 'articles']);
 
-	const dispatch = useAppDispatch();
+	const dispatch = useAppDispatch();	
 
 	const userdata = useSelector<StateSchema, UserData | undefined>(getUserData);
 	const isAdmin = useSelector<StateSchema, boolean>(getUserIsAdmin);

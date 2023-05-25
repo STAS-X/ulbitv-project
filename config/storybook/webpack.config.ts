@@ -20,7 +20,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
 	config.plugins!.push(
 		new webpack.DefinePlugin({
 			_DEV_MODE_: JSON.stringify(true),
-			_BASE_URL_: JSON.stringify(''),
+			_BASE_URL_: JSON.stringify('http://localhost:8000'),
 			_PROJECT_: JSON.stringify('storybook')
 			// 		MODE: JSON.stringify(true),
 		})

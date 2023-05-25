@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import AdminPanelPage from './AdminPanelPage';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -12,9 +12,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof AdminPanelPage>;
+} as Meta<typeof AdminPanelPage>;
 
-const Template: ComponentStory<typeof AdminPanelPage> = (args: any) => <AdminPanelPage {...args} />;
+const Template: StoryFn<typeof AdminPanelPage> = (args: any) => <AdminPanelPage {...args} />;
 
 export const AdminPanelPageNormal = Template.bind({});
 AdminPanelPageNormal.args = {};

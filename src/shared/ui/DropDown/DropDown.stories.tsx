@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { DropDownProps, DropDown } from './DropDown';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -22,7 +22,7 @@ export default {
 			</div>
 		)
 	]
-} as ComponentMeta<typeof DropDown>;
+} as Meta<typeof DropDown>;
 
 const inlineConteinerStyle: React.CSSProperties = {
 	display: 'flex',
@@ -32,7 +32,7 @@ const inlineConteinerStyle: React.CSSProperties = {
 	alignItems: 'center'
 };
 
-const Template: ComponentStory<typeof DropDown> = (args: DropDownProps) => <DropDown {...args} />;
+const Template: StoryFn<typeof DropDown> = (args: DropDownProps) => <DropDown {...args} />;
 
 export const DropDownBottomRight = Template.bind({});
 DropDownBottomRight.args = {

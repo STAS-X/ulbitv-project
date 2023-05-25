@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { EditableProfileCardProps, EditableProfileCard } from './EditableProfileCard';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -35,9 +35,9 @@ export default {
 			}
 		})
 	]
-} as ComponentMeta<typeof EditableProfileCard>;
+} as Meta<typeof EditableProfileCard>;
 
-const Template: ComponentStory<typeof EditableProfileCard> = (args: EditableProfileCardProps) => (
+const Template: StoryFn<typeof EditableProfileCard> = (args: EditableProfileCardProps) => (
 	<EditableProfileCard {...args} />
 );
 

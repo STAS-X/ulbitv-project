@@ -2,10 +2,9 @@ import { FC, memo, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
-import { ArticleList, ArticleSchema, ArticleView, getArticleIsLoading } from 'entities/Article';
+import { ArticleList, ArticleView } from 'entities/Article';
 import { VStack } from 'shared/ui/Stack';
 import classes from './ArticleRecommendationsList.module.scss';
-import { rtkApi } from 'shared/api/rtkApi';
 import { getErrorMessage } from 'shared/types/thunk/thunkAction';
 import { useGetRecommendationByArticleQuery } from '../../api/useArticleRecommendations';
 
@@ -25,7 +24,7 @@ export const ArticleRecommendationsList: FC<ArticleRecommendationsListProps> = m
 			isLoading: recomendaionsIsLoading,
 			error: recomendaionsError
 		} = useGetRecommendationByArticleQuery(3);
-
+		console.log(recomendations, recomendaionsError, 'get recommendations articles data');
 		const errorMessage = getErrorMessage(recomendaionsError);
 
 		return (

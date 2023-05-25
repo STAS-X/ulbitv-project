@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { Navbar, NavbarProps } from './Navbar';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -11,9 +11,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof Navbar>;
+} as Meta<typeof Navbar>;
 
-const Template: ComponentStory<typeof Navbar> = (args: NavbarProps) => <Navbar {...args} />;
+const Template: StoryFn<typeof Navbar> = (args: NavbarProps) => <Navbar {...args} />;
 
 export const LightBar = Template.bind({});
 

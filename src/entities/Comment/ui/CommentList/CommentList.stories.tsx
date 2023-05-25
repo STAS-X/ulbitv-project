@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { CommentListProps, CommentList } from './CommentList';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -22,9 +22,9 @@ export default {
 			}
 		]
 	}
-} as ComponentMeta<typeof CommentList>;
+} as Meta<typeof CommentList>;
 
-const Template: ComponentStory<typeof CommentList> = (args: CommentListProps) => <CommentList {...args} />;
+const Template: StoryFn<typeof CommentList> = (args: CommentListProps) => <CommentList {...args} />;
 
 export const CommentListPrimary = Template.bind({});
 CommentListPrimary.args = {

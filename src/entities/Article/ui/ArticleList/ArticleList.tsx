@@ -1,5 +1,5 @@
 import { ArticleSchema, ArticleView } from '../../';
-import { FC, memo, useCallback } from 'react';
+import { FC, memo, ReactNode, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
@@ -12,6 +12,7 @@ import classes from './ArticleList.module.scss';
 
 export interface ArticleListProps {
 	className?: string;
+	children?: ReactNode;
 	articles: ArticleSchema[];
 	isLoading?: boolean;
 	hasMore?: boolean;

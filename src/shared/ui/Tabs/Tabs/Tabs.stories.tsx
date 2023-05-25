@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { TabsProps, Tabs } from './Tabs';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -23,9 +23,9 @@ export default {
 			}
 		]
 	}
-} as ComponentMeta<typeof Tabs>;
+} as Meta<typeof Tabs>;
 
-const Template: ComponentStory<typeof Tabs> = (args: TabsProps) => <Tabs {...args} />;
+const Template: StoryFn<typeof Tabs> = (args: TabsProps) => <Tabs {...args} />;
 
 export const TabsNormal = Template.bind({});
 TabsNormal.args = {};

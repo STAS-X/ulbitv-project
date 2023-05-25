@@ -1,4 +1,4 @@
-import { FC, memo, useEffect } from 'react';
+import { FC, memo, useEffect, ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -13,6 +13,7 @@ import { ArticleInfiniteGridLoader } from 'entities/Article/ui/ArticleInfiniteLo
 
 export interface ArticlesPageProps {
 	className?: string;
+	children?: ReactNode;
 }
 
 const reducers: ReducerList = {

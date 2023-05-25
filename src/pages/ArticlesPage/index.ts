@@ -1,4 +1,4 @@
-export { ArticlesPageSchema } from './model/types/ArticlesPageSchema';
+export type { ArticlesPageSchema } from './model/types/ArticlesPageSchema';
 export { ArticlesPageLazy as ArticlesPage } from './ui/ArticlesPage/ArticlesPage.lazy';
 export {
 	getArticlesPageIsLoading,

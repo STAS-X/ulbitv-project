@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, ReactNode, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
@@ -13,6 +13,7 @@ import { VStack } from 'shared/ui/Stack';
 
 export interface ArticleDetailesCommentsProps {
 	className?: string;
+	children?: ReactNode;
 	id?: string;
 }
 

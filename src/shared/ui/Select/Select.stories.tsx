@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { SelectProps, Select } from './Select';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -10,9 +10,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof Select>;
+} as Meta<typeof Select>;
 
-const Template: ComponentStory<typeof Select> = (args: SelectProps) => <Select {...args} />;
+const Template: StoryFn<typeof Select> = (args: SelectProps) => <Select {...args} />;
 
 export const SelectPrimary = Template.bind({});
 SelectPrimary.args = {

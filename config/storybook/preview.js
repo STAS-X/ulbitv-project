@@ -1,5 +1,3 @@
-import { addDecorator } from '@storybook/react';
-import { withContexts } from '@storybook/addon-contexts/react';
 import { StyleDecorator } from 'shared/config/storybook/StyleDecorator/StyleDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -7,6 +5,7 @@ import { RouterDecorator } from 'shared/config/storybook/RouterDecorator/RouterD
 import { createContext, useState } from 'react';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { NavigateDecorator } from 'shared/config/storybook/NavigateDecorator/NavigateDecorator';
+import { SuspenseDecorator } from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
 
 export const parameters = {
 	actions: { argTypesRegex: '^on[A-Z].*' },
@@ -41,7 +40,21 @@ export const parameters = {
 		},
 		delay: 500,
 		viewport: 'iPhone 7'
-	}
+	},
+	context: [defaultContext]
+	// mockAddonConfigs: {
+	// 	globalMockData: [
+	// 		{
+	// 			// An array of mock objects which will add in every story
+	// 			url: 'http://localhost:8000',
+	// 			method: 'GET',
+	// 			status: 200,
+	// 			response: { data: { message: 'test' } }
+	// 		}
+	// 	],
+	// 	refreshStoryOnUpdate: true, // This re-render the story if there's any data changes
+	// 	disable: true // This disables the panel from all the stories
+	// }
 };
 
 const ThemeContext = createContext({
@@ -58,37 +71,44 @@ const useStoryTheme = (defaultTheme) => {
 	};
 };
 
-const contexts = [
-	{
-		icon: 'globe',
-		title: 'Themes',
-		components: [ThemeContext.Provider],
-		params: [
-			// an array of params contains a set of predefined `props` for `components`
-			{
-				name: 'Light Theme',
-				props: { value: { theme: Theme.LIGHT, setTheme: useStoryTheme } },
-				default: true
-			},
-			{
-				name: 'Dark Theme',
-				props: { value: { theme: Theme.DARK, setTheme: useStoryTheme } }
-			}
-		],
-		options: {
-			deep: true, // pass the `props` deeply into all wrapping components
-			disable: false, // disable this contextual environment completely
-			cancelable: false // allow this contextual environment to be opt-out optionally in toolbar
-		}
-	}
-];
+// export const defaultView = () => <div />; // sample story in CSF format
+// defaultView.story = {
+// 	parameters: {
+// 		context: [{ ...defaultContext }]
+// 	}
+// };
 
-addDecorator(StyleDecorator);
-addDecorator(withContexts(contexts));
-addDecorator(ThemeDecorator(Theme.LIGHT));
-addDecorator(StoreDecorator({ loginForm: { username: 'test', password: '123' } }));
-addDecorator(NavigateDecorator);
-addDecorator(RouterDecorator);
+const defaultContext = {
+	icon: 'globe',
+	title: 'Themes',
+	components: [ThemeContext.Provider],
+	params: [
+		// an array of params contains a set of predefined `props` for `components`
+		{
+			name: 'Light Theme',
+			props: { value: { theme: Theme.LIGHT, setTheme: useStoryTheme } },
+			default: true
+		},
+		{
+			name: 'Dark Theme',
+			props: { value: { theme: Theme.DARK, setTheme: useStoryTheme } }
+		}
+	],
+	options: {
+		deep: true, // pass the `props` deeply into all wrapping components
+		disable: false, // disable this contextual environment completely
+		cancelable: false // allow this contextual environment to be opt-out optionally in toolbar
+	}
+};
+
+export const decorators = [
+	StyleDecorator,
+	ThemeDecorator(Theme.LIGHT),
+	SuspenseDecorator,
+	StoreDecorator({ loginForm: { username: 'test', password: '123' } }),
+	NavigateDecorator,
+	RouterDecorator
+];
 
 //addDecorator(withScreenshot);
 //addParameters({ screenshot: { ...parameters.screenshot } });

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { ArticleListProps, ArticleList } from './ArticleList';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -90,9 +90,9 @@ export default {
 			return { ...article, id: index + 1 } as ArticleSchema;
 		})
 	}
-} as ComponentMeta<typeof ArticleList>;
+} as Meta<typeof ArticleList>;
 
-const Template: ComponentStory<typeof ArticleList> = (args: ArticleListProps) => <ArticleList {...args} />;
+const Template: StoryFn<typeof ArticleList> = (args: ArticleListProps) => <ArticleList {...args} />;
 
 export const ArticleListEmpty = Template.bind({});
 ArticleListEmpty.args = {

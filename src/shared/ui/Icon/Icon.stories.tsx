@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { IconProps, Icon } from './Icon';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -12,9 +12,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof Icon>;
+} as Meta<typeof Icon>;
 
-const Template: ComponentStory<typeof Icon> = (args: IconProps) => <Icon {...args} />;
+const Template: StoryFn<typeof Icon> = (args: IconProps) => <Icon {...args} />;
 
 export const IconEye = Template.bind({});
 IconEye.args = {

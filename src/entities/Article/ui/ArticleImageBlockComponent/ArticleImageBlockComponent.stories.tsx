@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { ArticleImageBlockComponentProps, ArticleImageBlockComponent } from './ArticleImageBlockComponent';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -16,9 +16,9 @@ export default {
 			title: 'Рисунок 1 - скриншот сайта'
 		}
 	}
-} as ComponentMeta<typeof ArticleImageBlockComponent>;
+} as Meta<typeof ArticleImageBlockComponent>;
 
-const Template: ComponentStory<typeof ArticleImageBlockComponent> = (args: ArticleImageBlockComponentProps) => (
+const Template: StoryFn<typeof ArticleImageBlockComponent> = (args: ArticleImageBlockComponentProps) => (
 	<ArticleImageBlockComponent {...args} />
 );
 

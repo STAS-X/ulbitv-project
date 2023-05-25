@@ -1,11 +1,11 @@
 .navbar {
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	height: var(--navbar-heigth);
 	background: var(--inverted-bg-color);
 	left: 0;
 	top: 0;
-	z-index: var(--bars-z-index);
+	z-index: var(--bar-z-index);
 	display: flex;
 	align-items: center;
 	padding: 20px;
@@ -19,7 +19,7 @@
 .links {
 	margin-left: auto;
 
-	&:hover {
+	&:hover:not(:has(div[role='menu'])) {
 		opacity: 0.9;
 	}
 }

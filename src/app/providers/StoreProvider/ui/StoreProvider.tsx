@@ -12,7 +12,7 @@ export interface StoreProviderProps {
 	asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>;
 }
 
-export const StoreProvider: FC<StoreProviderProps> = (props) => {
+export const StoreProvider: FC<StoreProviderProps> = (props: StoreProviderProps) => {
 	const { children, initialState, asyncReducers } = props;
 	// useRef retains object reference between re-renders
 	const navigate = useNavigate();

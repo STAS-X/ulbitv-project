@@ -41,6 +41,7 @@ const initI18n = async () => {
 				},
 				//resources,
 				debug: false, //_DEV_MODE_,
+				returnNull: false,
 				// have a common namespace used around the full app
 				partialBundledLanguages: true,
 				ns: [],

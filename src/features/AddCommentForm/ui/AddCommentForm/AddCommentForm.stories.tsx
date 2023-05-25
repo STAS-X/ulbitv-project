@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import AddCommentForm, { AddCommentFormProps } from './AddCommentForm';
 
@@ -12,9 +12,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof AddCommentForm>;
+} as Meta<typeof AddCommentForm>;
 
-const Template: ComponentStory<typeof AddCommentForm> = (args: AddCommentFormProps) => <AddCommentForm {...args} />;
+const Template: StoryFn<typeof AddCommentForm> = (args: AddCommentFormProps) => <AddCommentForm {...args} />;
 
 export const AddCommentFormNormal = Template.bind({});
 AddCommentFormNormal.args = {

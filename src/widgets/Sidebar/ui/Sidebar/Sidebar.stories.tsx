@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { Sidebar, SidebarProps } from './Sidebar';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -12,9 +12,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof Sidebar>;
+} as Meta<typeof Sidebar>;
 
-const Template: ComponentStory<typeof Sidebar> = (args: SidebarProps) => <Sidebar {...args} />;
+const Template: StoryFn<typeof Sidebar> = (args: SidebarProps) => <Sidebar {...args} />;
 
 export const LightNoAuthBar = Template.bind({});
 

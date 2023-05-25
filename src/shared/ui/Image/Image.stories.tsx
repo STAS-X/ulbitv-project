@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { Image, ImageProps } from './Image';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -17,9 +17,9 @@ export default {
 		src: ImageImg,
 		alt: 'Аватарка'
 	}
-} as ComponentMeta<typeof Image>;
+} as Meta<typeof Image>;
 
-const Template: ComponentStory<typeof Image> = (args: ImageProps) => <Image {...args} />;
+const Template: StoryFn<typeof Image> = (args: ImageProps) => <Image {...args} />;
 
 export const ImagePrimary = Template.bind({});
 

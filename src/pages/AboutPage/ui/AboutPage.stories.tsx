@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import AboutPage from './AboutPage';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -9,12 +9,12 @@ import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 export default {
 	title: 'pages/AboutPage',
 	component: AboutPage,
-	argTypes: {
-		backgroundColor: { control: 'color' }
+	args: {
+		children: ''
 	}
-} as ComponentMeta<typeof AboutPage>;
+} as Meta<typeof AboutPage>;
 
-const Template: ComponentStory<typeof AboutPage> = (args: any) => <AboutPage {...args} />;
+const Template: StoryFn<typeof AboutPage> = (args: any) => <AboutPage {...args} />;
 
 export const AboutPageNormal = Template.bind({});
 AboutPageNormal.args = {};

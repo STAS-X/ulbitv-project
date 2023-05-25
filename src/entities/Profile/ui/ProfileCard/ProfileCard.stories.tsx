@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { ProfileCard, ProfileCardProps } from './ProfileCard';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -35,9 +35,9 @@ export default {
 			}
 		})
 	]
-} as ComponentMeta<typeof ProfileCard>;
+} as Meta<typeof ProfileCard>;
 
-const Template: ComponentStory<typeof ProfileCard> = (args: ProfileCardProps) => <ProfileCard {...args} />;
+const Template: StoryFn<typeof ProfileCard> = (args: ProfileCardProps) => <ProfileCard {...args} />;
 
 export const ProfileCardReadOnly = Template.bind({});
 ProfileCardReadOnly.args = {

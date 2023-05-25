@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { LoaderProps, Loader } from './Loader';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -11,9 +11,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof Loader>;
+} as Meta<typeof Loader>;
 
-const Template: ComponentStory<typeof Loader> = (args: LoaderProps) => <Loader {...args} />;
+const Template: StoryFn<typeof Loader> = (args: LoaderProps) => <Loader {...args} />;
 
 export const LoaderPrimary = Template.bind({});
 LoaderPrimary.args = {};

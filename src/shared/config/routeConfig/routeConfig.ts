@@ -3,7 +3,7 @@ import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
 import { AboutPage } from 'pages/AboutPage';
 import { MainPage } from 'pages/MainPage';
-import { RouteProps } from 'react-router-dom';
+import { PathRouteProps } from 'react-router-dom';
 import { ArticleDetailesPage } from 'pages/ArticleDetailesPage';
 import { ArticleEditPage } from 'pages/ArticleEditPage';
 import { UserRoleType } from 'entities/User/model/types/userSchema';
@@ -23,7 +23,7 @@ export enum AppRoutes {
 	FORBIDDEN = 'forbidden'
 }
 
-export interface AuthRouteProps extends RouteProps {
+export interface AuthRouteProps extends PathRouteProps {
 	isAuth?: boolean;
 	pathname: string;
 	roles?: UserRoleType[];

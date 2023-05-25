@@ -17,6 +17,7 @@ const initI18nTest = async () => {
 				lng: 'ru',
 				fallbackLng: 'ru',
 				debug: false,
+				returnNull: false,
 				react: {
 					useSuspense: false
 				},

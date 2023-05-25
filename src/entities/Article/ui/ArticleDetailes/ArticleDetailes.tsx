@@ -8,7 +8,7 @@ import {
 	getArticleData
 } from '../../';
 import { articleDetailsReducer } from '../../model/slices/articleSlice';
-import { FC, memo, useCallback, useEffect } from 'react';
+import { FC, memo, ReactNode, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
@@ -31,6 +31,7 @@ const redusers: ReducerList = {
 export interface ArticleDetailesProps {
 	className?: string;
 	articleId?: string;
+	children?: ReactNode;
 }
 
 export const ArticleDetailes: FC<ArticleDetailesProps> = memo((props: ArticleDetailesProps) => {

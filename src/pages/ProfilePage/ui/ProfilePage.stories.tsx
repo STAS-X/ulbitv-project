@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import ProfilePage, { ProfilePageProps } from './ProfilePage';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -14,9 +14,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof ProfilePage>;
+} as Meta<typeof ProfilePage>;
 
-const Template: ComponentStory<typeof ProfilePage> = (args: ProfilePageProps) => <ProfilePage {...args} />;
+const Template: StoryFn<typeof ProfilePage> = (args: ProfilePageProps) => <ProfilePage {...args} />;
 
 const formData = {
 	username: 'admin',

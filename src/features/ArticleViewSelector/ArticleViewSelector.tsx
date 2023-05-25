@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, ReactNode, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleView } from '../../entities/Article';
 import classes from './ArticleViewSelector.module.scss';
@@ -14,6 +14,7 @@ const viewTypes = [
 
 export interface ArticleViewSelectorProps {
 	className?: string;
+	children?: ReactNode;
 	view: ArticleView;
 	onViewClick?: (newView: ArticleView) => void;
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { PageError, PageErrorProps } from './PageError';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -11,9 +11,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof PageError>;
+} as Meta<typeof PageError>;
 
-const Template: ComponentStory<typeof PageError> = (args: PageErrorProps) => <PageError {...args} />;
+const Template: StoryFn<typeof PageError> = (args: PageErrorProps) => <PageError {...args} />;
 
 export const LightErrorPage = Template.bind({});
 

@@ -22,6 +22,8 @@ declare module '*.css' {
 	export default classes;
 }
 
+declare module 'storybook-addon-mock';
+
 declare const _DEV_MODE_: boolean;
 declare const _BASE_URL_: string;
 declare const _PROJECT_: string;

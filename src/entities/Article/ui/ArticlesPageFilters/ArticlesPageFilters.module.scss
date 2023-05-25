@@ -6,22 +6,21 @@
 	top: var(--navbar-heigth);
 	padding: 10px 20px;
 	right: 35px;
+	z-index: var(--header-z-index);
 
-	// z-index: var(--bars-z-index);
-
-	&:hover {
-		pointer-events: none;
-	}
+	// &:hover {
+	// 	pointer-events: none;
+	// }
 
 	& button,
 	select {
 		cursor: pointer;
-		pointer-events: auto;
+		//pointer-events: auto;
 	}
 
 	& input {
 		cursor: auto;
-		pointer-events: auto;
+		//pointer-events: auto;
 	}
 }
 
@@ -41,8 +40,11 @@
 }
 
 .headerviews {
-	margin-left: auto;
+	display: flex;
 	min-width: 80px;
+	min-height: var(--headers-heigth);
+	align-items: center;
+	margin-left: auto;
 }
 
 .inprogress {

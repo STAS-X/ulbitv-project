@@ -13,6 +13,7 @@ interface TabItem {
 
 export interface TabsProps {
 	className?: string;
+	children?: ReactNode;
 	tabs: TabItem[];
 	category: string[];
 	onTabClick?: (newCategory: string[]) => void;

@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, memo, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Text } from 'shared/ui/Text/Text';
@@ -10,6 +10,7 @@ import { HStack, VStack } from '../../../../shared/ui/Stack';
 
 export interface CommentCardProps {
 	className?: string;
+	children?: ReactNode;
 	comment: CommentSchema;
 }
 

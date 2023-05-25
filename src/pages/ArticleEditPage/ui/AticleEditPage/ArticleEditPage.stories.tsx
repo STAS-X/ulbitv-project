@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import ArticleEditPage, { AticleEditPageProps } from './ArticleEditPage';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -10,9 +10,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof ArticleEditPage>;
+} as Meta<typeof ArticleEditPage>;
 
-const Template: ComponentStory<typeof ArticleEditPage> = (args: AticleEditPageProps) => <ArticleEditPage {...args} />;
+const Template: StoryFn<typeof ArticleEditPage> = (args: AticleEditPageProps) => <ArticleEditPage {...args} />;
 
 export const AticleEditPagePrimary = Template.bind({});
 AticleEditPagePrimary.args = {

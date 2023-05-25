@@ -1,4 +1,4 @@
-import { FC, memo, useEffect } from 'react';
+import { FC, memo, ReactNode, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleDetailes } from 'entities/Article';
@@ -18,6 +18,7 @@ import { ArticleDetailesComments } from '../ArticleDetailesComments/ArticleDetai
 
 export interface ArticleDetailesPageProps {
 	className?: string;
+	children?: ReactNode;
 }
 
 const redusers: ReducerList = {

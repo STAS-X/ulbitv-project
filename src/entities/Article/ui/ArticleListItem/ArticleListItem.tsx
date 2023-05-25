@@ -1,5 +1,5 @@
 import { ArticleSchema, ArticleTextBlockComponent, ArticleBlockType, ArticleView } from '../../';
-import { FC, memo, useCallback, useEffect, useRef } from 'react';
+import { FC, memo, ReactNode, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './ArticleListItem.module.scss';
@@ -15,6 +15,7 @@ import { Image } from 'shared/ui/Image/Image';
 
 export interface ArticleListItemProps {
 	className?: string;
+	children?: ReactNode;
 	article: ArticleSchema;
 	view: ArticleView;
 	scrollingTo?: (article: HTMLDivElement, id: number) => void;

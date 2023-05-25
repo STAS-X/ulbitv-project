@@ -34,6 +34,7 @@
 		// можно писать такой
 		// import React from 'react';
 		"allowSyntheticDefaultImports": true,
+		"isolatedModules": true,
 		"resolveJsonModule": true,
 		"removeComments": true,
 		"preserveConstEnums": true,

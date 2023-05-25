@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { ForbiddenPage } from './ForbiddenPage';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -12,9 +12,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof ForbiddenPage>;
+} as Meta<typeof ForbiddenPage>;
 
-const Template: ComponentStory<typeof ForbiddenPage> = (args: any) => <ForbiddenPage {...args} />;
+const Template: StoryFn<typeof ForbiddenPage> = (args: any) => <ForbiddenPage {...args} />;
 
 export const NoFoundPageNormal = Template.bind({});
 NoFoundPageNormal.args = {};

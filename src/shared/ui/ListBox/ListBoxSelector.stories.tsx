@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { ListBoxSelectorProps, ListBoxSelector } from './ListBoxSelector';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -25,7 +25,7 @@ export default {
 			</div>
 		)
 	]
-} as ComponentMeta<typeof ListBoxSelector>;
+} as Meta<typeof ListBoxSelector>;
 
 const inlineConteinerStyle: React.CSSProperties = {
 	display: 'flex',
@@ -35,7 +35,7 @@ const inlineConteinerStyle: React.CSSProperties = {
 	alignItems: 'center'
 };
 
-const Template: ComponentStory<typeof ListBoxSelector> = (args: ListBoxSelectorProps) => <ListBoxSelector {...args} />;
+const Template: StoryFn<typeof ListBoxSelector> = (args: ListBoxSelectorProps) => <ListBoxSelector {...args} />;
 
 export const ListBoxBottomRight = Template.bind({});
 ListBoxBottomRight.args = {

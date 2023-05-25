@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { ArticleListItemProps, ArticleListItem } from './ArticleListItem';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -86,9 +86,9 @@ export default {
 			]
 		}
 	}
-} as ComponentMeta<typeof ArticleListItem>;
+} as Meta<typeof ArticleListItem>;
 
-const Template: ComponentStory<typeof ArticleListItem> = (args: ArticleListItemProps) => <ArticleListItem {...args} />;
+const Template: StoryFn<typeof ArticleListItem> = (args: ArticleListItemProps) => <ArticleListItem {...args} />;
 
 export const ArticleListItemList = Template.bind({});
 ArticleListItemList.args = {

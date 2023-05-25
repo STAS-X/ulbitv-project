@@ -1,7 +1,7 @@
 export { ArticleDetailesPageLazy as ArticleDetailesPage } from './ui/ArticleDetailesPage/ArticleDetailesPage.lazy';
 export { ArticleDetailesPageHeader } from './ui/ArticleDetailesPageHeader/ArticleDetailesPageHeader';
-export { ArticleDetailesPageSchema } from './model/types';
-export { ArticleDetailesCommentsSchema } from './model/types/ArticleDetailesCommentsSchema';
+export type { ArticleDetailesPageSchema } from './model/types';
+export type { ArticleDetailesCommentsSchema } from './model/types/ArticleDetailesCommentsSchema';
 export {
 	getArticleComments,
 	actionArticleComments,

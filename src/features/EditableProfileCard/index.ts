@@ -1,5 +1,6 @@
 export { editableProfileReducer, editableProfileActions } from './model/slices/editableProfileSlices';
-export { EditableProfileCardProps, EditableProfileCard } from './ui/EditableProfileCard/EditableProfileCard';
+export { EditableProfileCard } from './ui/EditableProfileCard/EditableProfileCard';
+export type { EditableProfileCardProps } from './ui/EditableProfileCard/EditableProfileCard';
 export {
 	getEditableProfileError,
 	getEditableProfileIsLoading,

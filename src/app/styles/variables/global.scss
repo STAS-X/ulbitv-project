@@ -23,7 +23,8 @@
 	--section-header-heigth: 80px;
 
 	/* z-Index компонентов */
-	--bars-z-index: 5;
+	--header-z-index: 1;
+	--bar-z-index: 5;
 	--modal-z-index: 10;
 
 	/* Цвета фона */
@@ -31,3 +32,4 @@
 	--red-light: rgb(246 50 50);
 	--red-dark: rgb(180 10 10);
 }
+

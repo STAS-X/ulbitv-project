@@ -1,5 +1,6 @@
-export { ArticleSchema, ArticleBlockType, ArticleView } from './model/types/articleSchema';
-export { ArticleDetailesSchema } from './model/types/articleDetailesSchema';
+export type { ArticleSchema } from './model/types/articleSchema';
+export type { ArticleDetailesSchema } from './model/types/articleDetailesSchema';
+export { ArticleBlockType, ArticleView } from './model/types/articleSchema';
 export { getArticleData, getArticleError, getArticleIsLoading } from './model/selectors/getArticleData';
 export { articleDetailsActions, articleDetailsReducer } from './model/slices/articleSlice';
 export { ArticleCodeBlockComponent } from './ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent';

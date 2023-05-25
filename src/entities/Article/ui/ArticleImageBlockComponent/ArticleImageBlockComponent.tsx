@@ -1,5 +1,5 @@
 import { ArticleImageBlock } from '../../model/types/articleSchema';
-import { FC, memo } from 'react';
+import { FC, memo, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text, TextAlign } from 'shared/ui/Text/Text';
 import classes from './ArticleImageBlockComponent.module.scss';
@@ -7,6 +7,7 @@ import classes from './ArticleImageBlockComponent.module.scss';
 export interface ArticleImageBlockComponentProps {
 	className?: string;
 	block: ArticleImageBlock;
+	children?: ReactNode;
 }
 
 export const ArticleImageBlockComponent: FC<ArticleImageBlockComponentProps> = memo(

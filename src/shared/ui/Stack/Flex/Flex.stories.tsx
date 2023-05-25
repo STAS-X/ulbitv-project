@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { FlexProps, Flex } from './Flex';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -21,9 +21,9 @@ export default {
 		align: 'center',
 		direction: 'row'
 	}
-} as ComponentMeta<typeof Flex>;
+} as Meta<typeof Flex>;
 
-const Template: ComponentStory<typeof Flex> = (args: FlexProps) => <Flex {...args} />;
+const Template: StoryFn<typeof Flex> = (args: FlexProps) => <Flex {...args} />;
 
 export const FlexRow = Template.bind({});
 

@@ -1,11 +1,12 @@
 import { ArticleTextBlock } from '../../model/types/articleSchema';
-import { FC, memo } from 'react';
+import { FC, memo, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text } from 'shared/ui/Text/Text';
 import classes from './ArticleTextBlockComponent.module.scss';
 
 export interface ArticleTextBlockComponentProps {
 	className?: string;
+	children?: ReactNode;
 	block: ArticleTextBlock;
 }
 

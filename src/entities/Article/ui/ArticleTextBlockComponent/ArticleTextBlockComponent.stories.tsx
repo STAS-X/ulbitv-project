@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { ArticleTextBlockComponentProps, ArticleTextBlockComponent } from './ArticleTextBlockComponent';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -19,9 +19,9 @@ export default {
 			]
 		}
 	}
-} as ComponentMeta<typeof ArticleTextBlockComponent>;
+} as Meta<typeof ArticleTextBlockComponent>;
 
-const Template: ComponentStory<typeof ArticleTextBlockComponent> = (args: ArticleTextBlockComponentProps) => (
+const Template: StoryFn<typeof ArticleTextBlockComponent> = (args: ArticleTextBlockComponentProps) => (
 	<ArticleTextBlockComponent {...args} />
 );
 

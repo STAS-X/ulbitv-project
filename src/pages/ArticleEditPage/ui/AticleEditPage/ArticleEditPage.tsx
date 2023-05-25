@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 
 export interface AticleEditPageProps {
 	className?: string;
+	children?: ReactNode;
 }
 
 const AticleEditPage: FC<AticleEditPageProps> = (props: AticleEditPageProps) => {

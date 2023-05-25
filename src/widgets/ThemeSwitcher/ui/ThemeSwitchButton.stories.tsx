@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { ThemeSwitchButtonProps, ThemeSwitchButton } from './ThemeSwitchButton';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -11,11 +11,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof ThemeSwitchButton>;
+} as Meta<typeof ThemeSwitchButton>;
 
-const Template: ComponentStory<typeof ThemeSwitchButton> = (args: ThemeSwitchButtonProps) => (
-	<ThemeSwitchButton {...args} />
-);
+const Template: StoryFn<typeof ThemeSwitchButton> = (args: ThemeSwitchButtonProps) => <ThemeSwitchButton {...args} />;
 
 export const ThemeSwitchButtonNormal = Template.bind({});
 ThemeSwitchButtonNormal.args = {};

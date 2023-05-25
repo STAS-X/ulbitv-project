@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, ReactNode, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
@@ -11,6 +11,7 @@ import { HStack } from '../../../../shared/ui/Stack';
 
 export interface ArticleDetailesPageHeaderProps {
 	className?: string;
+	children?: ReactNode;
 }
 
 export const ArticleDetailesPageHeader: FC<ArticleDetailesPageHeaderProps> = (

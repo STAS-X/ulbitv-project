@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { ArticleDetailesCommentsProps, ArticleDetailesComments } from './ArticleDetailesComments';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -10,9 +10,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof ArticleDetailesComments>;
+} as Meta<typeof ArticleDetailesComments>;
 
-const Template: ComponentStory<typeof ArticleDetailesComments> = (args: ArticleDetailesCommentsProps) => (
+const Template: StoryFn<typeof ArticleDetailesComments> = (args: ArticleDetailesCommentsProps) => (
 	<ArticleDetailesComments {...args} />
 );
 

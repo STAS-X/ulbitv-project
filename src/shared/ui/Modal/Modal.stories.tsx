@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -11,9 +11,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof Modal>;
+} as Meta<typeof Modal>;
 
-const Template: ComponentStory<typeof Modal> = (args: ModalProps) => <Modal {...args} />;
+const Template: StoryFn<typeof Modal> = (args: ModalProps) => <Modal {...args} />;
 
 export const NormalModal = Template.bind({});
 

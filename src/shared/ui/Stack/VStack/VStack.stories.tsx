@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { VStackProps, VStack } from './VStack';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -10,9 +10,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof VStack>;
+} as Meta<typeof VStack>;
 
-const Template: ComponentStory<typeof VStack> = (args: VStackProps) => <VStack {...args} />;
+const Template: StoryFn<typeof VStack> = (args: VStackProps) => <VStack {...args} />;
 
 export const VStackPrimary = Template.bind({});
 VStackPrimary.args = {

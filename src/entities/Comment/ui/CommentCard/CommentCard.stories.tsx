@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { CommentCardProps, CommentCard } from './CommentCard';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -10,9 +10,9 @@ export default {
 	args: {
 		comment: { id: '1', text: 'Some text for comment', user: { id: '1', username: 'UserName' } }
 	}
-} as ComponentMeta<typeof CommentCard>;
+} as Meta<typeof CommentCard>;
 
-const Template: ComponentStory<typeof CommentCard> = (args: CommentCardProps) => <CommentCard {...args} />;
+const Template: StoryFn<typeof CommentCard> = (args: CommentCardProps) => <CommentCard {...args} />;
 
 export const CommentCardPrimary = Template.bind({});
 CommentCardPrimary.args = {

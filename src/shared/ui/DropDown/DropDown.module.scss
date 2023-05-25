@@ -9,7 +9,6 @@
 	padding: 0;
 	border: none;
 	color: var(--primary-color);
-	z-index: var(--modal-z-index);
 	cursor: pointer;
 }
 
@@ -34,7 +33,7 @@
 .active {
 	background: var(--inverted-primary-color);
 	border-radius: 10px;
-	opacity: 0.9;
+	//opacity: 0.9;
 }
 
 .disabled {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { SkeletonProps, Skeleton } from './Skeleton';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -10,9 +10,9 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as ComponentMeta<typeof Skeleton>;
+} as Meta<typeof Skeleton>;
 
-const Template: ComponentStory<typeof Skeleton> = (args: SkeletonProps) => <Skeleton {...args} />;
+const Template: StoryFn<typeof Skeleton> = (args: SkeletonProps) => <Skeleton {...args} />;
 
 export const SkeletonPrimary = Template.bind({});
 SkeletonPrimary.args = { width: '100%', height: '200px' };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { Avatar, AvatarProps } from './Avatar';
 import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
@@ -17,9 +17,9 @@ export default {
 		src: AvatarImg,
 		alt: 'Аватарка'
 	}
-} as ComponentMeta<typeof Avatar>;
+} as Meta<typeof Avatar>;
 
-const Template: ComponentStory<typeof Avatar> = (args: AvatarProps) => <Avatar {...args} />;
+const Template: StoryFn<typeof Avatar> = (args: AvatarProps) => <Avatar {...args} />;
 
 export const AvatarPrimary = Template.bind({});
 

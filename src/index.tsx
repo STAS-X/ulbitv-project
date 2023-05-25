@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'app/providers/ThemeProvider';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ErrorBoundary } from 'app/providers/error';
 import App from 'app/App';
@@ -10,7 +10,15 @@ import 'shared/config/i18n/i18n';
 import { StoreProvider } from './app/providers/StoreProvider';
 import RouterUtils from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
 
-render(
+const container = document.getElementById('project-root');
+
+if (!container) {
+	throw new Error('Контейнер не найден. Не удалось вмонтировать приложение!');
+}
+
+const root = createRoot(container);
+
+root.render(
 	<BrowserRouter>
 		<RouterUtils>
 			<StoreProvider>
@@ -21,6 +29,5 @@ render(
 				</ThemeProvider>
 			</StoreProvider>
 		</RouterUtils>
-	</BrowserRouter>,
-	document.getElementById('story-root')
+	</BrowserRouter>
 );

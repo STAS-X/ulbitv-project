@@ -1,6 +1,5 @@
 import { FC, ReactNode, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './ListBoxSelector.module.scss';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Listbox } from '@headlessui/react';
@@ -18,6 +17,7 @@ type ListBoxSelectorItem = {
 export interface ListBoxSelectorProps {
 	items?: ListBoxSelectorItem[];
 	className?: string;
+	children?: ReactNode;
 	value?: string;
 	defaultValue?: string;
 	placeholder: string;

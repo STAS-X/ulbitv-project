@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo, useRef } from 'react';
+import { FC, memo, ReactNode, useCallback, useMemo, useRef } from 'react';
 import { ArticleSearchSelector } from 'features/ArticleSearchSelector/ArticleSearchSelector';
 import { ArticleSortSelector } from 'features/ArticleSortSelector/ArticleSortSelector';
 import { ArticleViewSelector } from 'features/ArticleViewSelector/ArticleViewSelector';
@@ -24,6 +24,7 @@ import { ArticleCategorySelector } from '../../../../features/ArticleCategorySel
 
 export interface ArticlesPageFiltersProps {
 	className?: string;
+	children?: ReactNode;
 }
 
 export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: ArticlesPageFiltersProps) => {
