@@ -1,34 +1,13 @@
+import { AppRoutes, AuthRouteProps } from '.';
 import { ArticlesPage } from 'pages/ArticlesPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
 import { AboutPage } from 'pages/AboutPage';
 import { MainPage } from 'pages/MainPage';
-import { PathRouteProps } from 'react-router-dom';
 import { ArticleDetailesPage } from 'pages/ArticleDetailesPage';
 import { ArticleEditPage } from 'pages/ArticleEditPage';
-import { UserRoleType } from 'entities/User/model/types/userSchema';
 import { AdminPanelPage } from 'pages/AdminPanelPage';
 import { ForbiddenPage } from 'pages/ForbiddenPage';
-
-export enum AppRoutes {
-	MAIN = 'main',
-	ABOUT = 'about',
-	PROFILE = 'profile',
-	ARTICLES = 'articles',
-	ARTICLE_DETAILES = 'article_detailes',
-	ARTICLE_CREATE = 'article_create',
-	ARTICLE_EDIT = 'article_edit',
-	ADMIN_PANEL = 'adminka',
-	NOT_FOUND = 'not_found',
-	FORBIDDEN = 'forbidden'
-}
-
-export interface AuthRouteProps extends PathRouteProps {
-	isAuth?: boolean;
-	pathname: string;
-	roles?: UserRoleType[];
-	Element: React.FC;
-}
 
 export const RoutePath: Record<AppRoutes, AuthRouteProps> = {
 	[AppRoutes.MAIN]: {

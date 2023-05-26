@@ -1,4 +1,4 @@
-import { ProfileSchema } from 'features/EditableProfileCard';
+import { ProfileSchema } from 'entities/Profile';
 import { createSelector } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 

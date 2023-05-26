@@ -1,8 +1,8 @@
-import { ArticleSchema, ArticleView } from '../../';
+import { ArticleSchema, ArticleView } from '../../model/types/articleSchema';
 import { FC, memo, ReactNode, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
+import { AppRoutes } from 'shared/config/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Observer } from 'shared/ui/Observer/Observer';

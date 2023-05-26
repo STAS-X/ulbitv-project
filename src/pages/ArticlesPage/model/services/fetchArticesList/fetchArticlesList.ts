@@ -7,7 +7,7 @@ import {
 	getArticlesPageFilter,
 	getArticlesPageNumber,
 	getArticlesPageCategory
-} from '../../..';
+} from '../../selectors/getArticlesPageData';
 import { addQueryParams } from 'shared/lib/url/queryParams/addQueryParams';
 
 interface ArticlesListProps {

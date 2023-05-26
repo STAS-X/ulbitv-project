@@ -6,7 +6,8 @@ import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByAr
 import { useSelector } from 'react-redux';
 import { CommentList, CommentSchema } from 'entities/Comment';
 import { useFetchCommentForArticle } from '../../model/services/fetchCommentForArticle/fetchCommentForArticle';
-import { getArticleComments, getArticleCommentsIsLoading } from '../..';
+import { getArticleComments } from '../../model/slice/articleDetailesCommentsSlice';
+import { getArticleCommentsIsLoading } from '../../model/selectors/getArticleCommentsData';
 import { Text } from 'shared/ui/Text/Text';
 import { AddCommentForm } from 'features/AddCommentForm';
 import { VStack } from 'shared/ui/Stack';

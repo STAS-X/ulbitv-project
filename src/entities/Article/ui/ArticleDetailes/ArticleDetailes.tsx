@@ -1,12 +1,8 @@
 import { useAppDispatch } from 'app/providers/StoreProvider';
-import {
-	ArticleCodeBlockComponent,
-	ArticleImageBlockComponent,
-	ArticleTextBlockComponent,
-	getArticleError,
-	getArticleIsLoading,
-	getArticleData
-} from '../../';
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { getArticleError, getArticleIsLoading, getArticleData } from '../../model/selectors/getArticleData';
 import { articleDetailsReducer } from '../../model/slices/articleSlice';
 import { FC, memo, ReactNode, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';

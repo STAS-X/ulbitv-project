@@ -16,12 +16,12 @@
 	margin-right: 15px;
 }
 
-.links {
+.actions {
 	margin-left: auto;
+}
 
-	&:hover:not(:has(div[role='menu'])) {
-		opacity: 0.9;
-	}
+.links:hover:not(:has(div[role='menu'])) {
+	opacity: 0.9;
 }
 
 .createLink {

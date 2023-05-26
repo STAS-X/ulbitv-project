@@ -1,4 +1,4 @@
-import { ArticleView } from '../../';
+import { ArticleView } from '../../model/types/articleSchema';
 import { FC, memo, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './ArticleListItem.module.scss';

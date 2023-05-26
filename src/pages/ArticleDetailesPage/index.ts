@@ -1,5 +1,4 @@
 export { ArticleDetailesPageLazy as ArticleDetailesPage } from './ui/ArticleDetailesPage/ArticleDetailesPage.lazy';
-export { ArticleDetailesPageHeader } from './ui/ArticleDetailesPageHeader/ArticleDetailesPageHeader';
 export type { ArticleDetailesPageSchema } from './model/types';
 export type { ArticleDetailesCommentsSchema } from './model/types/ArticleDetailesCommentsSchema';
 export {
@@ -19,4 +18,4 @@ export {
 } from './model/selectors/getArticleRecommendedData';
 export { fetchRecommendationsForArticle } from './model/services/fetchRecommendationsForArticle/fetchRecommendationsForArticle';
 export { fetchCommentsByArticleId } from './model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-export { useGetRecommendationByArticleQuery } from '../../features/ArticleRecommendationsList/api/useArticleRecommendations';
+export { useGetRecommendationByArticleQuery } from 'features/ArticleRecommendationsList/api/useArticleRecommendations';

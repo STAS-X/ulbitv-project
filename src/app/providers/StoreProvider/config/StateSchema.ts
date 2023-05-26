@@ -4,7 +4,7 @@ import { AddCommentFormSchema } from 'features/AddCommentForm/model/types/addCom
 import { LoginSchema } from 'features/AuthByUserName';
 import { UserSchema } from 'entities/User';
 import { CommonSchema } from 'entities/Common';
-import { ProfileSchema } from 'features/EditableProfileCard';
+import { ProfileSchema } from 'entities/Profile';
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { NavigateFunction } from 'react-router-dom';

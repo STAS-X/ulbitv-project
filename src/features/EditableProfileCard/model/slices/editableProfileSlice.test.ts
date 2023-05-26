@@ -1,8 +1,8 @@
+import { ProfileSchema } from 'entities/Profile/model/types/profileSchema';
 import { fetchEditableProfileData } from '../services/fetchEditableProfileData/fetchEditableProfileData';
 import { Country } from 'entities/Country/model/types/country';
 import { Currency } from 'entities/Currency/model/types/currency';
 import { editableProfileActions, editableProfileReducer } from './editableProfileSlices';
-import { ProfileSchema } from 'features/EditableProfileCard';
 describe('loginSlice.test', () => {
 	const initialState: DeepPartial<ProfileSchema> = {
 		data: {

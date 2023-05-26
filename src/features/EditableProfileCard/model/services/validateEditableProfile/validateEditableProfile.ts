@@ -1,4 +1,4 @@
-import { ProfileData, ValidateErrorType, ValidateProfileError } from 'features/EditableProfileCard';
+import { ProfileData, ValidateErrorType, ValidateProfileError } from 'entities/Profile/model/types/profileSchema';
 
 export const validateEditableProfileData = (profile: ProfileData) => {
 	const { first, lastname, age, city, country, currency, username, avatar } = profile;

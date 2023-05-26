@@ -5,8 +5,8 @@ import { Text } from 'shared/ui/Text/Text';
 import { CommentSchema } from '../../model/types/commentSchema';
 import classes from './CommentCard.module.scss';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
-import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
-import { HStack, VStack } from '../../../../shared/ui/Stack';
+import { AppRoutes } from 'shared/config/routeConfig';
+import { HStack, VStack } from 'shared/ui/Stack';
 
 export interface CommentCardProps {
 	className?: string;

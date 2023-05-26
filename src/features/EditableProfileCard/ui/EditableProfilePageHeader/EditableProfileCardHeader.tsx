@@ -11,10 +11,10 @@ import {
 	getEditableProfileReadOnly,
 	getEditableProfileIsLoading,
 	getEditableProfileError,
-	getEditableProfileValidation,
-	updateEditableProfileData,
-	editableProfileActions
-} from 'features/EditableProfileCard';
+	getEditableProfileValidation
+} from '../../model/selectors/getEditableProfile/getEditableProfileData';
+import { updateEditableProfileData } from '../../model/services/updateEditableProfileData/updateEditableProfileData';
+import { editableProfileActions } from '../../model/slices/editableProfileSlices';
 
 enum ProfileEditType {
 	EDIT = 'edit',

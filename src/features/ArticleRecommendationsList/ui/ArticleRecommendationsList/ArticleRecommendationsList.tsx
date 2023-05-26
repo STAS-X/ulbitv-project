@@ -24,7 +24,7 @@ export const ArticleRecommendationsList: FC<ArticleRecommendationsListProps> = m
 			isLoading: recomendaionsIsLoading,
 			error: recomendaionsError
 		} = useGetRecommendationByArticleQuery(3);
-		console.log(recomendations, recomendaionsError, 'get recommendations articles data');
+
 		const errorMessage = getErrorMessage(recomendaionsError);
 
 		return (

@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Modal } from 'shared/ui/Modal/Modal';
-import { LoginFormLazy } from '../LoginForm/LoginFormLazy';
+import { LoginFormLazy as LoginForm } from '../LoginForm/LoginFormLazy';
 
 export interface LoginModalProps {
 	className?: string;
@@ -24,7 +24,7 @@ export const LoginModal: FC<LoginModalProps> = ({ className, isOpen, onClose }) 
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} className={classNames('', {}, [className ?? ''])}>
-			{slowClose && <LoginFormLazy isOpen={isOpen} onSuccess={onAuth} />}
+			{slowClose && <LoginForm isOpen={isOpen} onSuccess={onAuth} />}
 		</Modal>
 	);
 };

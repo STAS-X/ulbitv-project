@@ -1,8 +1,7 @@
 import { FC, memo, ReactNode, useMemo } from 'react';
 import { DropDownDirectionType } from 'shared/types/dropdown/directions';
 import { ListBoxSelector } from 'shared/ui/ListBox/ListBoxSelector';
-import { Select } from 'shared/ui/Select/Select';
-import { Country } from '../../Country';
+import { Country } from '../model/types/country';
 
 interface CountrySelectorProps {
 	className?: string;

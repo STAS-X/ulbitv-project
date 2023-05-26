@@ -23,10 +23,10 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
 			clean: true,
 			publicPath: '/'
 		},
-		watchOptions: {
+		/* watchOptions: {
 			aggregateTimeout: 600,
 			ignored: /node_modules/
-		},
+		}, */
 		plugins: buildPlugins(options),
 		module: {
 			rules: buildLoaders(options)
@@ -36,6 +36,6 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
 		performance: {
 			hints: false
 		},
-		devServer: buildDevServer(options)
+		devServer: isDev ? buildDevServer(options) : undefined
 	};
 }

@@ -1,6 +1,5 @@
 import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { ProfileData } from 'features/EditableProfileCard';
 import { useSelector } from 'react-redux';
 import {
 	getEditableProfileData,
@@ -8,10 +7,11 @@ import {
 	getEditableProfileError,
 	getEditableProfileIsLoading,
 	getEditableProfileReadOnly
-} from '../../';
+} from '../../model/selectors/getEditableProfile/getEditableProfileData';
 import { ProfileCard, ProfileFieldType } from 'entities/Profile/ui/ProfileCard/ProfileCard';
-import { Currency } from 'entities/Currency/model/types/currency';
-import { Country } from 'entities/Country/model/types/country';
+import { ProfileData } from 'entities/Profile/model/types/profileSchema';
+import { Currency } from 'entities/Currency';
+import { Country } from 'entities/Country';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { fetchEditableProfileData } from '../../model/services/fetchEditableProfileData/fetchEditableProfileData';

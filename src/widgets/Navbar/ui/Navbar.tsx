@@ -8,9 +8,15 @@ import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
 import { userActions, UserData, getUserData, getUserIsAdmin } from 'entities/User';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { AppRoutes, RoutePath } from '../../../shared/config/routeConfig/routeConfig';
+import { AppRoutes } from 'shared/config/routeConfig';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { DropDown } from 'shared/ui/DropDown/DropDown';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { HStack } from 'shared/ui/Stack';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import NotificationIcon from 'shared/assets/icons/notification-20-20.svg';
+import { Icon, IconTheme } from 'shared/ui/Icon/Icon';
+import { PopOver } from '../../../shared/ui/PopOver/PopOver';
 
 export interface NavbarProps {
 	className?: string;
@@ -19,7 +25,7 @@ export interface NavbarProps {
 export const Navbar = memo(({ className }: NavbarProps) => {
 	const { t } = useTranslation(['translation', 'articles']);
 
-	const dispatch = useAppDispatch();	
+	const dispatch = useAppDispatch();
 
 	const userdata = useSelector<StateSchema, UserData | undefined>(getUserData);
 	const isAdmin = useSelector<StateSchema, boolean>(getUserIsAdmin);
@@ -59,11 +65,22 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 			<AppLink className={classes.createLink} to={RoutePath.article_create} theme={AppLinkTheme.SECONDARY}>
 				{t('createArticle', { ns: 'articles' })}
 			</AppLink>
-			<DropDown
-				className={classes.links}
-				items={menuItems}
-				trigger={<Avatar size={30} border={'50%'} src={userdata?.avatar || ''} />}
-			/>
+			<HStack gap={16} className={classes.actions}>
+				<PopOver
+					items={menuItems}
+					trigger={
+						<Button theme={ButtonTheme.CLEAR}>
+							<Icon Svg={NotificationIcon} theme={IconTheme.INVERTED} />
+						</Button>
+					}
+				/>
+
+				<DropDown
+					className={classes.links}
+					items={menuItems}
+					trigger={<Avatar size={30} border={'50%'} src={userdata?.avatar || ''} />}
+				/>
+			</HStack>
 			{/* <Button theme={ButtonTheme.INVERTED} className={classes.links} onClick={userdata ? setLogOut : showAuthModal}>
 				{t(userdata ? 'logout' : 'login')}
 			</Button> */}

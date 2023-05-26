@@ -14,7 +14,7 @@ import { ValidateProfileError } from '../../model/types/profileSchema';
 import { useParams } from 'react-router-dom';
 import { VStack } from 'shared/ui/Stack/VStack/VStack';
 import { HStack } from 'shared/ui/Stack/HStack/HStack';
-import { getEditableProfileValidation } from 'features/EditableProfileCard';
+import { getEditableProfileValidation } from 'features/EditableProfileCard/model/selectors/getEditableProfile/getEditableProfileData';
 
 export enum ProfileFieldType {
 	FIRST = 'first',

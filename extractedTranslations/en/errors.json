@@ -2,5 +2,7 @@
   "commentError": "",
   "errorApp": "",
   "errorTitle": "",
+  "errors:errorApp": "",
+  "pages:reloadPage": "",
   "reloadPage": ""
 }

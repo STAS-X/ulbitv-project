@@ -1,4 +1,5 @@
-import { ArticleSchema, ArticleTextBlockComponent, ArticleBlockType, ArticleView } from '../../';
+import { ArticleSchema, ArticleBlockType, ArticleView, ArticleTextBlock } from '../../model/types/articleSchema';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { FC, memo, ReactNode, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -9,7 +10,7 @@ import { Text } from 'shared/ui/Text/Text';
 import { Card } from 'shared/ui/Card/Card';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { ArticleTextBlock } from '../../model/types/articleSchema';
+
 import { DEBOUNCE_DELAY } from 'shared/const/localstorage';
 import { Image } from 'shared/ui/Image/Image';
 

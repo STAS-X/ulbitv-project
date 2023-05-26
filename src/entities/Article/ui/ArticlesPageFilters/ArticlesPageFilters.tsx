@@ -2,6 +2,7 @@ import { FC, memo, ReactNode, useCallback, useMemo, useRef } from 'react';
 import { ArticleSearchSelector } from 'features/ArticleSearchSelector/ArticleSearchSelector';
 import { ArticleSortSelector } from 'features/ArticleSortSelector/ArticleSortSelector';
 import { ArticleViewSelector } from 'features/ArticleViewSelector/ArticleViewSelector';
+import { ArticleCategorySelector } from 'features/ArticleCategorySelector/ArticleCategorySelector';
 import classes from './ArticlesPageFilters.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { articlesPageActions } from 'pages/ArticlesPage/model/slices/articlePageSlice';
@@ -14,13 +15,12 @@ import {
 	getArticlesPageSortOrder,
 	getArticlesPageView,
 	getArticlesPageIsLoading
-} from 'pages/ArticlesPage';
+} from 'pages/ArticlesPage/model/selectors/getArticlesPageData';
 import { ArticleView } from '../../model/types/articleSchema';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { ArticlesSearch, ArticlesSort } from 'pages/ArticlesPage/model/types/ArticlesPageSchema';
 import { useTranslation } from 'react-i18next';
 import type { OptionType } from 'shared/ui/Select/Select';
-import { ArticleCategorySelector } from '../../../../features/ArticleCategorySelector/ArticleCategorySelector';
 
 export interface ArticlesPageFiltersProps {
 	className?: string;

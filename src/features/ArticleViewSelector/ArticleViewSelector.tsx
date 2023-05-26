@@ -1,6 +1,6 @@
 import { FC, ReactNode, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ArticleView } from '../../entities/Article';
+import { ArticleView } from 'entities/Article/model/types/articleSchema';
 import classes from './ArticleViewSelector.module.scss';
 import ListIcon from 'shared/assets/icons/list-24-24.svg';
 import TileIcon from 'shared/assets/icons/tiled-24-24.svg';

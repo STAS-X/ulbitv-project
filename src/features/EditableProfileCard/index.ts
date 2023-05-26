@@ -12,5 +12,3 @@ export {
 export { fetchEditableProfileData } from './model/services/fetchEditableProfileData/fetchEditableProfileData';
 export { updateEditableProfileData } from './model/services/updateEditableProfileData/updateEditableProfileData';
 export { validateEditableProfileData } from './model/services/validateEditableProfile/validateEditableProfile';
-export type { ProfileData, ProfileSchema, ValidateErrorType } from 'entities/Profile';
-export { ValidateProfileError } from 'entities/Profile';

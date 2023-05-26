@@ -26,7 +26,7 @@ import {
 	getArticlesPageTarget,
 	getArticlesPageView
 } from 'pages/ArticlesPage';
-import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
+import { AppRoutes } from 'shared/config/routeConfig';
 import { useNavigate } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
 import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
 import { Text, TextSize } from 'shared/ui/Text/Text';

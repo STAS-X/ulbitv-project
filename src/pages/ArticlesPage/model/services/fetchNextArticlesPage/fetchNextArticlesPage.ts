@@ -6,8 +6,7 @@ import {
 	getArticlesPageNumber,
 	getArticlesPageHasMore,
 	getArticlesPageCategory
-} from '../../..';
-import { getArticlesPage } from './../../slices/articlePageSlice';
+} from '../../selectors/getArticlesPageData';
 import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
 import { addQueryParams } from 'shared/lib/url/queryParams/addQueryParams';

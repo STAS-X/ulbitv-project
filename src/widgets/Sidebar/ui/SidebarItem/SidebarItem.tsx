@@ -4,7 +4,7 @@ import classes from './SidebarItem.module.scss';
 import { useTranslation } from 'react-i18next';
 import { SidebarItemType } from '../../model/items';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
+import { AppRoutes } from 'shared/config/routeConfig';
 import { useNavigate } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
 
 interface SidebarItemProps {
