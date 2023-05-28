@@ -4,7 +4,8 @@ import classes from './Icon.module.scss';
 
 export enum IconTheme {
 	PRIMARY = 'primary',
-	INVERTED = 'inverted'
+	INVERTED = 'inverted',
+	ALERT = 'alert'
 }
 
 export interface IconProps {
@@ -16,5 +17,5 @@ export interface IconProps {
 export const Icon: FC<IconProps> = memo((props: IconProps) => {
 	const { className, Svg, theme = IconTheme.PRIMARY } = props;
 
-	return <Svg className={classNames('', { [classes[theme]]: true }, [className])}></Svg>;
+	return <Svg className={classNames(classes.icon, { [classes[theme]]: true }, [className])}></Svg>;
 });

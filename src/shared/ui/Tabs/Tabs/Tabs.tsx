@@ -30,7 +30,6 @@ export const Tabs: FC<TabsProps> = memo((props: TabsProps) => {
 	const handleCategoryClick = useCallback(
 		(tabValue: ArticleType) => {
 			const categoryTo = [...newCategory];
-			console.log(categoryTo, 'data category before update');
 			if (categoryTo.includes(tabValue)) {
 				categoryTo.splice(categoryTo.indexOf(tabValue), 1);
 			} else categoryTo.push(tabValue);
@@ -38,7 +37,6 @@ export const Tabs: FC<TabsProps> = memo((props: TabsProps) => {
 			//if (Object.keys(category).includes(tabValue)) {
 			//	delete category[tabValue];
 			//} else category[tabValue] = tabValue;
-			console.log(categoryTo, 'data category after update');
 
 			//if (onTabClick) onTabClick(newCategory);
 		},

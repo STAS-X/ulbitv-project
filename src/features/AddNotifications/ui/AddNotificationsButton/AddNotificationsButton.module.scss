@@ -1,0 +1,21 @@
+.NotificationList {
+	padding: 0;
+}
+
+.trigger {
+	
+}
+
+.notifications {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	border-radius: 50%;
+	min-width: 60%;
+	max-height: 50%;
+	top: 0;
+	right: 0;
+	transform: translate(15%, -25%);
+	background: var(--primary-color);
+}

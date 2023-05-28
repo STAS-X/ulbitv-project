@@ -36,7 +36,7 @@ const OriginAvatar: FC<AvatarProps> = (props: AvatarProps) => {
 	const { src = PLACEHOLDER_AVATAR, size = 100, border = '50%', ...otherProps } = props;
 
 	let srcOut;
-
+ 
 	if (_PROJECT_ === 'frontend') {
 		srcOut = src ? (ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_AVATAR) : PLACEHOLDER_AVATAR;
 	} else srcOut = 'avatar.jpg';

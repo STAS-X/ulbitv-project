@@ -21,6 +21,7 @@ import {
 	getArticlesPageHasMore,
 	getArticlesPageIsLoading,
 	getArticlesPageLimit,
+	getArticlesPageNumber,
 	getArticlesPageSortField,
 	getArticlesPageSortOrder,
 	getArticlesPageTarget,
@@ -270,8 +271,10 @@ export const ArticleInfiniteGridLoader: FC<ArticleInfiniteGridLoaderProps> = mem
 		const isNextPageLoading = useSelector(getArticlesPageIsLoading);
 		const hasNextPage = useSelector(getArticlesPageHasMore);
 		const view = useSelector(getArticlesPageView);
-		const items = useSelector<StateSchema, ArticleSchema[]>(getArticlesPage.selectAll);
+		const page = useSelector(getArticlesPageNumber);
 		const limit = useSelector(getArticlesPageLimit);
+		const items = useSelector<StateSchema, ArticleSchema[]>(getArticlesPage.selectAll);
+
 		const filter = useSelector(getArticlesPageFilter);
 		const category = useSelector(getArticlesPageCategory);
 
@@ -337,6 +340,11 @@ export const ArticleInfiniteGridLoader: FC<ArticleInfiniteGridLoaderProps> = mem
 			[hasNextPage, items]
 		);
 
+		// const infiniteItems = useMemo(
+		// 	() => (page > 0 || !hasNextPage ? items : Array.from({ length: limit }, (_, i) => i)),
+		// 	[items, limit, hasNextPage, page]
+		// );
+
 		const columnWidth = useCallback(
 			(width: number) => (column: number) => view === ArticleView.LIST ? width - 30 : TILE_ARTICLE_WIDTH + 10,
 			[view]
@@ -351,6 +359,8 @@ export const ArticleInfiniteGridLoader: FC<ArticleInfiniteGridLoaderProps> = mem
 					: TILE_ARTICLE_HEIGTH + 10,
 			[view, isItemLoaded]
 		);
+
+		//console.log(infiniteItems, 'items to infinite list');
 
 		return items.length > 0 ? (
 			<AutoSizer>

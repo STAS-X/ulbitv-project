@@ -20,7 +20,7 @@
 	margin-left: auto;
 }
 
-.links:hover:not(:has(div[role='menu'])) {
+.links:hover:not(:has(div[role='menu'])):not(:has(div[id^='headlessui-popover-panel'])) {
 	opacity: 0.9;
 }
 

@@ -1,6 +1,5 @@
 .PopOver {
 	position: relative;
-	margin-left: auto;
 }
 
 .button {
@@ -19,16 +18,27 @@
 	border-radius: 10px;
 	border: 1px solid var(--primary-color);
 	width: max-content;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .panelitem {
 	padding: 10px 25px;
-	border: none;
 	background: none;
-	outline: none;
+	border: 1px solid transparent;
 	color: var(--primary-color);
 	list-style-type: none;
+	transition: all 0.3s ease;
+	user-select: none;
 	cursor: pointer;
+}
+
+.selected {
+	&:hover {
+		background: var(--inverted-primary-color);
+		border-color: var(--primary-color);
+		opacity: 0.9;
+	}
 }
 
 .active {

@@ -1,22 +1,14 @@
-import { useCallback, useState, memo, useMemo } from 'react';
+import { useCallback, useState, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './Navbar.module.scss';
 import { LoginModal } from 'features/AuthByUserName/ui/LoginModal/LoginModal';
-import { useSelector } from 'react-redux';
-import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
-import { userActions, UserData, getUserData, getUserIsAdmin } from 'entities/User';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { AppRoutes } from 'shared/config/routeConfig';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { DropDown } from 'shared/ui/DropDown/DropDown';
-import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { HStack } from 'shared/ui/Stack';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import NotificationIcon from 'shared/assets/icons/notification-20-20.svg';
-import { Icon, IconTheme } from 'shared/ui/Icon/Icon';
-import { PopOver } from '../../../shared/ui/PopOver/PopOver';
+import { AddNotificationsButton } from 'features/AddNotifications';
+import { AddMenuButton } from 'features/AddMenuButton/ui/AddMenuButton';
 
 export interface NavbarProps {
 	className?: string;
@@ -25,39 +17,12 @@ export interface NavbarProps {
 export const Navbar = memo(({ className }: NavbarProps) => {
 	const { t } = useTranslation(['translation', 'articles']);
 
-	const dispatch = useAppDispatch();
-
-	const userdata = useSelector<StateSchema, UserData | undefined>(getUserData);
-	const isAdmin = useSelector<StateSchema, boolean>(getUserIsAdmin);
-
 	const [isAuthModal, setIsAuthModal] = useState(false);
 
 	const closeAuthModal = useCallback(() => {
 		//console.log('closed modal');
 		setIsAuthModal(false);
 	}, []);
-
-	const showAuthModal = useCallback(() => {
-		setIsAuthModal(true);
-	}, []);
-	const setLogOut = useCallback(() => {
-		dispatch(userActions.logOut());
-		//setTimeout(() => navigate(AppRoutes.ABOUT), 0);
-	}, [dispatch]);
-
-	const menuItems = useMemo(
-		() =>
-			[
-				{ content: t('adminMenu'), href: `/${AppRoutes.ADMIN_PANEL}`, disabled: !Boolean(isAdmin) },
-				{
-					content: t('profileMenu'),
-					href: `/${AppRoutes.PROFILE}/${userdata?.id ?? ''}`,
-					disabled: !Boolean(userdata)
-				},
-				{ content: t(userdata ? 'logout' : 'login'), onClick: userdata ? setLogOut : showAuthModal }
-			].filter(Boolean),
-		[t, userdata, isAdmin, showAuthModal, setLogOut]
-	);
 
 	return (
 		<header className={classNames(classes.navbar, {}, [className])}>
@@ -66,20 +31,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 				{t('createArticle', { ns: 'articles' })}
 			</AppLink>
 			<HStack gap={16} className={classes.actions}>
-				<PopOver
-					items={menuItems}
-					trigger={
-						<Button theme={ButtonTheme.CLEAR}>
-							<Icon Svg={NotificationIcon} theme={IconTheme.INVERTED} />
-						</Button>
-					}
-				/>
-
-				<DropDown
-					className={classes.links}
-					items={menuItems}
-					trigger={<Avatar size={30} border={'50%'} src={userdata?.avatar || ''} />}
-				/>
+				<AddNotificationsButton className={classes.links} />
+				<AddMenuButton className={classes.links} setIsAuth={setIsAuthModal} />
 			</HStack>
 			{/* <Button theme={ButtonTheme.INVERTED} className={classes.links} onClick={userdata ? setLogOut : showAuthModal}>
 				{t(userdata ? 'logout' : 'login')}

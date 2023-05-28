@@ -11,14 +11,13 @@ interface SerializedError {
 export type ThunkError = SerializedError | any;
 
 //Defining a Pre - Typed createAsyncThunk
-export const createAppAsyncThunk =
-	createAsyncThunk.withTypes<{
-		state: StateSchema;
-		dispatch: AppThunkDispatch;
-		extra: ExtraThunkArgs;
-		error: ThunkError;
-		rejectValue: string;
-	}>();
+export const createAppAsyncThunk = createAsyncThunk.withTypes<{
+	state: StateSchema;
+	dispatch: AppThunkDispatch;
+	extra: ExtraThunkArgs;
+	error: ThunkError;
+	rejectValue: string;
+}>();
 
 export function getErrorMessage(error: ThunkError) {
 	return (
@@ -27,6 +26,7 @@ export function getErrorMessage(error: ThunkError) {
 			error?.response?.data?.error ||
 			error?.response?.data ||
 			error?.data ||
+			error?.error ||
 			error?.toString()) ??
 		undefined
 	);
