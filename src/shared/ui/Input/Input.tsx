@@ -1,17 +1,17 @@
-import { FC, ForwardedRef, forwardRef, InputHTMLAttributes, memo } from 'react';
+import { ForwardedRef, forwardRef, InputHTMLAttributes, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { Text, TextAlign, TextTheme } from '../Text/Text';
 import classes from './Input.module.scss';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'readOnly' | 'onChange'>;
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'placeholder' | 'value' | 'readOnly' | 'onChange'>;
 
 export interface InputProps extends HTMLInputProps {
 	className?: string;
 	value?: string | number;
 	type?: string;
-	placeholder?: string;
-	validation?: string;
+	placeholder?: string | null;
+	validation?: string | null;
 	onChange?: (value: string) => void;
 	readonly?: boolean;
 	dataTestId?: string;

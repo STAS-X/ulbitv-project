@@ -6,6 +6,7 @@
 	left: 0;
 	opacity: 0;
 	pointer-events: none;
+	transition: var(--animation-delay) ease;
 	z-index: var(--hidden-z-index);
 	display: flex;
 	align-items: flex-end;
@@ -18,12 +19,13 @@
 	border-top-left-radius: 12px;
 	border-top-right-radius: 12px;
 	position: absolute;
-	width: 100%;
+	height: max-content;
 	min-height: 100px;
-	padding: 20px;
-	transition: 0.3s transform;
+	width: 100%;
+	padding: 10px 0;
+	transition: var(--animation-delay) ease;
 	transform: translateY(100%);
-	overflow-y: auto;
+	overflow: auto;
 	overflow-x: hidden;
 	z-index: var(--hidden-z-index);
 }
@@ -42,8 +44,8 @@
 
 .opened {
 	pointer-events: auto;
-	opacity: 1;
 	z-index: var(--modal-z-index);
+	opacity: 1;
 
 	.content {
 		transform: translateY(0%);
@@ -52,8 +54,8 @@
 
 .closed {
 	pointer-events: auto;
-	opacity: 0;
 	z-index: var(--hidden-z-index);
+	opacity: 0;
 
 	.content {
 		transform: translateY(100%);

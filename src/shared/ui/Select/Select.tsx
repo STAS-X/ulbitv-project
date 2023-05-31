@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import classes from './Select.module.scss';
 
-type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'onChange'>;
+type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'placeholder' | 'onChange'>;
 
 export type OptionType = {
 	value: string;
@@ -13,7 +13,7 @@ export type OptionType = {
 export interface SelectProps extends HTMLSelectProps {
 	className?: string;
 	readonly?: boolean;
-	placeholder?: string;
+	placeholder?: string | null;
 	value?: string;
 	options?: OptionType[];
 	onChange?: (value: string) => void;

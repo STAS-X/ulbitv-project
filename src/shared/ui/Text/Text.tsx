@@ -22,8 +22,8 @@ export enum TextSize {
 
 export interface TextProps {
 	className?: string;
-	title?: string;
-	content?: string;
+	title?: string | null;
+	content?: string | null;
 	theme?: TextTheme;
 	align?: TextAlign;
 	size?: TextSize;
@@ -41,9 +41,9 @@ const sizeToHeaderTag: Record<TextSize, HeaderTag> = {
 export const Text: FC<TextProps> = memo((props: TextProps) => {
 	const {
 		className,
-		title,
+		title = '',
 		size = TextSize.M,
-		content,
+		content = '',
 		align = TextAlign.LEFT,
 		theme = TextTheme.PRIMARY,
 		dataTestId = 'TextError'

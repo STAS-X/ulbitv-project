@@ -4,6 +4,7 @@ import { useTheme } from 'app/providers/ThemeProvider';
 import { Portal } from '../Portal/Portal';
 import classes from './Modal.module.scss';
 import { Overlay } from '../Overlay/Overlay';
+import { useModal } from '../../lib/hooks/useModal';
 
 export interface ModalProps {
 	className?: string;
@@ -15,6 +16,8 @@ export interface ModalProps {
 export const Modal: FC<ModalProps> = (props: ModalProps) => {
 	const { className, children, isOpen, onClose } = props;
 
+	const { closeHandler } = useModal({ onClose, animationDelay: 500 });
+
 	const { theme } = useTheme();
 
 	const mods: Mods = {
@@ -22,38 +25,11 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
 		[classes.closed]: !isOpen
 	};
 
-	const closeHandler = useCallback(() => {
-		if (onClose) onClose();
-	}, [onClose]);
-
-	const onKeyDown = useCallback(
-		(e: KeyboardEvent) => {
-			if (e.key === 'Escape') {
-				closeHandler();
-				if (document.activeElement instanceof HTMLButtonElement) document.activeElement.blur();
-			}
-		},
-		[closeHandler]
-	);
-
-	const contentClick = (e: React.MouseEvent) => e.stopPropagation();
-
-	useEffect(() => {
-		window.addEventListener('keydown', onKeyDown);
-
-		return () => {
-			window.removeEventListener('keydown', onKeyDown);
-		};
-	}, [onKeyDown]);
-
 	return (
 		<Portal>
 			<div className={classNames(classes.modal, mods, [className, theme, 'app_modal'])}>
-				<Overlay onClick={closeHandler}>
-					<div className={classNames(classes.content, {}, [])} onClick={contentClick}>
-						{children}
-					</div>
-				</Overlay>
+				<Overlay onClick={closeHandler} />
+				<div className={classNames(classes.content, {}, [])}>{children}</div>
 			</div>
 		</Portal>
 	);

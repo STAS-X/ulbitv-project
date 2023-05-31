@@ -62,7 +62,7 @@ export const AddNotificationsButton: FC<AddNotificationsButtonProps> = memo((pro
 		<PopOver
 			className={classNames(classes.AddNotificationsButton, {}, [className])}
 			items={notificationItems}
-			size={{ minWidth: notificationIsError && !notificationIsLoading ? 'max-content' : 300, maxHeight: 420 }}
+			size={{ minWidth: notificationIsError && !notificationIsLoading ? 'max-content' : 320, maxHeight: 420 }}
 			isLoading={notificationIsLoading}
 			trigger={triggerButton}
 		/>

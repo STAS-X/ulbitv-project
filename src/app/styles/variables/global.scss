@@ -22,10 +22,13 @@
 	--sidebar-width-collapsed: 80px;
 	--section-header-heigth: 80px;
 
+	/* Анимация */
+	--animation-delay: 0.3s;
+
 	/* z-Index компонентов */
 	--header-z-index: 1;
 	--bar-z-index: 5;
-	--modal-z-index: 10;
+	--modal-z-index: 100;
 	--hidden-z-index: -1;
 
 	/* Цвета фона */
