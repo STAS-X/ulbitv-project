@@ -28,7 +28,7 @@
 		"test:storycap:ui": "npx storycap --reactUri file:./storybook-static -o \"_storycap_srceenshots_\"",
 		"screen:ui": "npx storycap http://localhost:6006 -o \"_storycap_srceenshots_\"",
 		"storybook": "sb dev -p 6006 -c ./config/storybook",
-		"storybook:build": "sb dev -c ./config/storybook",
+		"storybook:build": "sb build -c ./config/storybook",
 		"prepare": "husky install",
 		"postinstall": "patch-package"
 	},
