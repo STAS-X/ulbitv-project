@@ -17,6 +17,7 @@ export interface NotificationItemSchema {
 export interface NotificationListSchema {
 	notes: NotificationItemSchema[];
 	isLoading: boolean;
+	isError: boolean;
 	hasNewNotes: boolean;
 	count: number;
 	cancelNotify: () => void;

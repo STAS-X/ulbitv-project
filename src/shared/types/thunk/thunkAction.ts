@@ -25,7 +25,7 @@ export function getErrorMessage(error: ThunkError) {
 			error?.response?.data?.message ||
 			error?.response?.data?.error ||
 			error?.response?.data ||
-			error?.data ||
+			error?.data?.message ||
 			error?.error ||
 			error?.toString()) ??
 		undefined

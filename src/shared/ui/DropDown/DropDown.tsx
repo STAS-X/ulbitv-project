@@ -1,6 +1,5 @@
 import { FC, memo, ReactNode } from 'react';
 import { Menu } from '@headlessui/react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './DropDown.module.scss';
 import { useNavigate } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
@@ -24,8 +23,6 @@ export interface DropDownProps {
 
 export const DropDown: FC<DropDownProps> = memo((props: DropDownProps) => {
 	const { className, items, direction, trigger } = props;
-
-	const { t } = useTranslation();
 
 	const navigate = useNavigate();
 

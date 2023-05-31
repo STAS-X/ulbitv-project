@@ -3,4 +3,4 @@ export type {
 	NotificationItemSchema,
 	NotificationListSchema
 } from './model/types/notificationSchema';
-export { useNotificationList } from './hook/useNotificationList';
+export { NotificationList } from './ui/NotificationList/NotificationList';

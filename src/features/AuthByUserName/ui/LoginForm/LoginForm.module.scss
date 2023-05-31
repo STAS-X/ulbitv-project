@@ -1,7 +1,8 @@
 .loginform {
 	display: flex;
-	width: 400px;
 	flex-direction: column;
+	flex-wrap: wrap;
+	min-width: 350px;
 }
 
 .input {
@@ -11,5 +12,5 @@
 
 .loginbtn {
 	margin-top: 15px;
-	margin-left: auto;
+	margin-left: calc(100% - 100px);
 }

@@ -1,29 +1,11 @@
-.PopOver {
-	position: relative;
-}
-
-.trigger {
-	background: none;
-	outline: none;
-	margin: 0;
-	padding: 0;
-	border: none;
-	color: var(--primary-color);
-	cursor: pointer;
-}
-
-.panel {
-	background: var(--card-bg);
-	position: absolute;
-	border-radius: 10px;
-	border: 1px solid var(--primary-color);
+.notificationlist {
 	overflow-y: auto;
 	overflow-x: hidden;
 }
 
-.panelitem {
+.notificationitem {
 	padding: 0px 10px;
-	width: 100%;
+	width: 100%;	
 	background: none;
 	border: 1px solid transparent;
 	color: var(--primary-color);

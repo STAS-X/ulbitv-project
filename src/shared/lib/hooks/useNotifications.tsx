@@ -1,13 +1,13 @@
-import { NotificationListSchema, NotificationItemSchema } from '../model/types/notificationSchema';
-import { useGetNotificationsQuery } from '../api/notificationApi';
+import { NotificationListSchema, NotificationItemSchema } from 'entities/Notification';
+import { useGetNotificationsQuery } from 'entities/Notification/api/notificationApi';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getErrorMessage } from 'shared/types/thunk/thunkAction';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
-import { NotificationListItem } from '../ui/NotifictionListItem/NotificationListItem';
-import { checkForNewNotify, writeNotifyToLS } from '../helpers/checkForNewTotifications';
+import { NotificationListItem } from 'entities/Notification/ui/NotifictionListItem/NotificationListItem';
+import { checkForNewNotify, writeNotifyToLS } from 'entities/Notification/helpers/checkForNewTotifications';
 
-export const useNotificationList = (): NotificationListSchema => {
+export const useNotifications = (): NotificationListSchema => {
 	const {
 		data: notifications = [],
 		isLoading: notificationIsLoading,
@@ -22,7 +22,7 @@ export const useNotificationList = (): NotificationListSchema => {
 	const notificationItems = useMemo<NotificationItemSchema[]>(() => {
 		if (notificationIsLoading) {
 			return Array.from({ length: 3 }, (_, i) => {
-				return { content: <Skeleton key={i} width={300} height={100} border={15} /> };
+				return { content: <Skeleton key={i} width={'100%'} height={100} border={15} /> };
 			});
 		}
 		if (errorMessage) {
@@ -48,6 +48,7 @@ export const useNotificationList = (): NotificationListSchema => {
 	return {
 		notes: notificationItems,
 		isLoading: notificationIsLoading,
+		isError: Boolean(errorMessage),
 		hasNewNotes,
 		count: notifyCount,
 		cancelNotify: cancelAlertNotifications

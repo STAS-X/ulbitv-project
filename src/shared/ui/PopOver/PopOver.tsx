@@ -1,6 +1,5 @@
 import { FC, memo, ReactNode, useCallback, useRef, ReactElement, isValidElement, cloneElement } from 'react';
 import { Popover } from '@headlessui/react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './PopOver.module.scss';
 import { useNavigate } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
@@ -10,7 +9,9 @@ import { DropDownDirectionType } from 'shared/types/dropdown/directions';
 
 export interface PopOverSize {
 	maxWidth?: string | number;
+	minWidth?: string | number;
 	maxHeight?: string | number;
+	minHeight?: string | number;
 }
 
 export interface PopOverItem {
@@ -48,16 +49,16 @@ export const PopOver: FC<PopOverProps> = memo((props: PopOverProps) => {
 
 	return (
 		<Popover as={'div'} className={classNames(classes.PopOver, {}, [className])}>
-			<Popover.Button ref={triggerRef} className={classes.button}>
+			<Popover.Button ref={triggerRef} className={classes.trigger}>
 				{trigger}
 			</Popover.Button>
 			<Popover.Panel className={classes.panel} style={{ ...inlineStyle, ...size }}>
-				<VStack align={'center'}>
+				<VStack align={'center'} max>
 					{items.map((item, index) => {
 						const panelItemWithClass = isValidElement(item.content)
 							? cloneElement(item.content as ReactElement, {
 									className: classNames(
-										classes.panelitem,
+										'',
 										{ [classes.disabled]: item.disabled || false, [classes.selected]: !isLoading },
 										[]
 									)
@@ -65,6 +66,7 @@ export const PopOver: FC<PopOverProps> = memo((props: PopOverProps) => {
 							: item.content;
 						return (
 							<li
+								className={classes.panelitem}
 								key={index}
 								onClick={() => {
 									if (!item.disabled) {
