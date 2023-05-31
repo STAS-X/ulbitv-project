@@ -26,6 +26,7 @@ export const AddMenuButton: FC<AddMenuButtonProps> = memo((props: AddMenuButtonP
 	const showAuthModal = useCallback(() => {
 		setIsAuth(true);
 	}, [setIsAuth]);
+
 	const setLogOut = useCallback(() => {
 		dispatch(userActions.logOut());
 	}, [dispatch]);

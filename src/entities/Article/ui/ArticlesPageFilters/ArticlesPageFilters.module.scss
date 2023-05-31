@@ -8,19 +8,13 @@
 	right: 35px;
 	z-index: var(--header-z-index);
 
-	// &:hover {
-	// 	pointer-events: none;
-	// }
-
 	& button,
 	select {
 		cursor: pointer;
-		//pointer-events: auto;
 	}
 
 	& input {
 		cursor: auto;
-		//pointer-events: auto;
 	}
 }
 
