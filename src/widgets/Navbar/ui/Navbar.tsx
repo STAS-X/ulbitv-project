@@ -9,6 +9,7 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { HStack } from 'shared/ui/Stack';
 import { AddNotificationsButton } from 'features/AddNotifications';
 import { AddMenuButton } from 'features/AddMenuButton/ui/AddMenuButton';
+import { useModal } from '../../../shared/lib/hooks/useModal';
 
 export interface NavbarProps {
 	className?: string;
@@ -17,12 +18,7 @@ export interface NavbarProps {
 export const Navbar = memo(({ className }: NavbarProps) => {
 	const { t } = useTranslation(['translation', 'articles']);
 
-	const [isAuthModal, setIsAuthModal] = useState(false);
-
-	const closeAuthModal = useCallback(() => {
-		//console.log('closed modal');
-		setIsAuthModal(false);
-	}, []);
+	const { isOpen, closeHandler } = useModal({ isOpen: false });
 
 	return (
 		<header className={classNames(classes.navbar, {}, [className])}>
@@ -32,12 +28,12 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 			</AppLink>
 			<HStack gap={16} className={classes.actions}>
 				<AddNotificationsButton className={classes.links} />
-				<AddMenuButton className={classes.links} setIsAuth={setIsAuthModal} />
+				<AddMenuButton className={classes.links} onAuthModal={closeHandler} />
 			</HStack>
 			{/* <Button theme={ButtonTheme.INVERTED} className={classes.links} onClick={userdata ? setLogOut : showAuthModal}>
 				{t(userdata ? 'logout' : 'login')}
 			</Button> */}
-			<LoginModal isOpen={isAuthModal} onClose={closeAuthModal} />
+			<LoginModal isOpen={isOpen} onClose={closeHandler} />
 		</header>
 	);
 });

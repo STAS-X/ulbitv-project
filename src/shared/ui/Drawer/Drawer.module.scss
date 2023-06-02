@@ -18,13 +18,16 @@
 	bottom: 0;
 	border-top-left-radius: 12px;
 	border-top-right-radius: 12px;
-	position: absolute;
+	position: fixed;
 	height: max-content;
 	min-height: 100px;
-	width: 100%;
+	left: 2vw;
+    height: calc(100vh + 100px);
+    width: 96vw;
 	padding: 10px 0;
 	transition: var(--animation-delay) ease;
 	transform: translateY(100%);
+	touch-action: none;
 	overflow: auto;
 	overflow-x: hidden;
 	z-index: var(--hidden-z-index);

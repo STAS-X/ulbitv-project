@@ -71,13 +71,6 @@ const useStoryTheme = (defaultTheme) => {
 	};
 };
 
-// export const defaultView = () => <div />; // sample story in CSF format
-// defaultView.story = {
-// 	parameters: {
-// 		context: [{ ...defaultContext }]
-// 	}
-// };
-
 const defaultContext = {
 	icon: 'globe',
 	title: 'Themes',

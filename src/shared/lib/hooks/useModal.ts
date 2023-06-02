@@ -1,20 +1,24 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface UseModalProps {
-	onClose: () => void;
+	onClose?: () => void;
+	isOpen: boolean;
 	animationDelay?: number;
 }
 
 interface UseModalReturn {
 	closeHandler: () => void;
+	isOpen: boolean;
 }
 
 export const useModal = (props: UseModalProps): UseModalReturn => {
-	const { onClose, animationDelay = 300 } = props;
+	const { onClose, animationDelay = 300, isOpen = false } = props;
+	const [opened, setOpened] = useState<boolean>(isOpen);
 
 	const closeHandler = useCallback(() => {
 		if (onClose) onClose();
-	}, [onClose]);
+		setOpened(!opened);
+	}, [onClose, opened]);
 
 	const onKeyDown = useCallback(
 		(e: KeyboardEvent) => {
@@ -40,6 +44,7 @@ export const useModal = (props: UseModalProps): UseModalReturn => {
 	}, [onKeyDown]);
 
 	return {
-		closeHandler
+		closeHandler,
+		isOpen: opened
 	};
 };

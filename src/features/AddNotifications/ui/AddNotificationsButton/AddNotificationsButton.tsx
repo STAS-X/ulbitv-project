@@ -8,7 +8,8 @@ import classes from './AddNotificationsButton.module.scss';
 import { useNotifications } from 'shared/lib/hooks/useNotifications';
 import { detectMobileDevice } from 'shared/lib/helpers/checkIsMobile';
 import { Drawer } from 'shared/ui/Drawer/Drawer';
-import { NotificationList } from '../../../../entities/Notification';
+import { NotificationList } from 'entities/Notification';
+import { useModal } from 'shared/lib/hooks/useModal';
 
 interface AddNotificationsButtonProps {
 	className?: string;
@@ -25,17 +26,16 @@ export const AddNotificationsButton: FC<AddNotificationsButtonProps> = memo((pro
 		cancelNotify: cancelAlertNotifications
 	} = useNotifications();
 
-	const [isOpen, setIsOpen] = useState(false);
-
 	const isMobile = detectMobileDevice();
 
-	const handleOpenNotifyList = useCallback(() => {
-		setIsOpen(!isOpen);
-		cancelAlertNotifications();
-	}, [isOpen, setIsOpen, cancelAlertNotifications]);
+	const { isOpen, closeHandler } = useModal({
+		isOpen: false,
+		onClose: cancelAlertNotifications,
+		animationDelay: isMobile ? 500 : 300
+	});
 
 	const triggerButton = (
-		<div onClick={handleOpenNotifyList}>
+		<div onClick={closeHandler}>
 			<Icon Svg={NotificationIcon} theme={IconTheme.INVERTED} />
 			<Text
 				className={classes.notifications}
@@ -50,7 +50,7 @@ export const AddNotificationsButton: FC<AddNotificationsButtonProps> = memo((pro
 	return isMobile ? (
 		<>
 			<div className={classes.trigger}>{triggerButton}</div>
-			<Drawer onClose={handleOpenNotifyList} isOpen={isOpen}>
+			<Drawer onClose={closeHandler} isOpen={isOpen}>
 				<NotificationList
 					items={notificationItems}
 					isLoading={notificationIsLoading}

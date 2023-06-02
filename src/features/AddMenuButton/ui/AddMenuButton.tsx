@@ -10,11 +10,11 @@ import { userActions, UserData, getUserData, getUserIsAdmin } from 'entities/Use
 
 interface AddMenuButtonProps {
 	className?: string;
-	setIsAuth: (isAuth: boolean) => void;
+	onAuthModal: () => void;
 }
 
 export const AddMenuButton: FC<AddMenuButtonProps> = memo((props: AddMenuButtonProps) => {
-	const { className, setIsAuth } = props;
+	const { className, onAuthModal } = props;
 
 	const { t } = useTranslation(['translation']);
 
@@ -24,8 +24,8 @@ export const AddMenuButton: FC<AddMenuButtonProps> = memo((props: AddMenuButtonP
 	const isAdmin = useSelector<StateSchema, boolean>(getUserIsAdmin);
 
 	const showAuthModal = useCallback(() => {
-		setIsAuth(true);
-	}, [setIsAuth]);
+		if (onAuthModal) onAuthModal();
+	}, [onAuthModal]);
 
 	const setLogOut = useCallback(() => {
 		dispatch(userActions.logOut());
