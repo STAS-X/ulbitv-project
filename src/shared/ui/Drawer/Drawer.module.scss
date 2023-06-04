@@ -1,5 +1,5 @@
 .Drawer {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	bottom: 0;
 	right: 0;
@@ -12,19 +12,22 @@
 	align-items: flex-end;
 }
 
+.overlay {
+	transition: var(--animation-delay) ease;
+}
+
 .content {
-	max-height: 70%;
+	height: 70%;
+	min-height: 100px;
 	background: var(--bg-color);
 	bottom: 0;
 	border-top-left-radius: 12px;
 	border-top-right-radius: 12px;
 	position: fixed;
-	height: max-content;
-	min-height: 100px;
+	//height: max-content;
 	left: 2vw;
-    height: calc(100vh + 100px);
-    width: 96vw;
-	padding: 10px 0;
+	width: 96vw;
+	padding: 25px 0;
 	transition: var(--animation-delay) ease;
 	transform: translateY(100%);
 	touch-action: none;
@@ -33,23 +36,22 @@
 	z-index: var(--hidden-z-index);
 }
 
-.content::before {
-	content: '';
-	position: relative;
-	display: block;
-	width: 100px;
-	height: 10px;
-	background: var(--bg-color);
-	margin: auto;
-	bottom: 40px;
-	border-radius: 12px;
-}
+// .content::before {
+// 	content: '';
+// 	position: relative;
+// 	display: block;
+// 	width: 100px;
+// 	height: 10px;
+// 	background: var(--bg-color);
+// 	margin: auto;
+// 	bottom: 40px;
+// 	border-radius: 12px;
+// }
 
 .opened {
 	pointer-events: auto;
 	z-index: var(--modal-z-index);
 	opacity: 1;
-
 	.content {
 		transform: translateY(0%);
 	}
@@ -59,7 +61,6 @@
 	pointer-events: auto;
 	z-index: var(--hidden-z-index);
 	opacity: 0;
-
 	.content {
 		transform: translateY(100%);
 	}

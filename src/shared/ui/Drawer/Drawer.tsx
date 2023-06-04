@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import React, { memo, ReactNode, useCallback, useEffect } from 'react';
+import React, { memo, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Overlay } from '../Overlay/Overlay';
 import classes from './Drawer.module.scss';
@@ -14,15 +14,20 @@ interface DrawerProps {
 	isOpen?: boolean;
 	onClose?: () => void;
 }
-
-const height = window.innerHeight + 300;
+//window.innerHeight + 100;
 
 export const Drawer = memo((props: DrawerProps) => {
-	Gesture;
+	//Gesture;
 	//const { Spring, Gesture } = useAnimationLibs();
-	const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
 
 	const { className, children, onClose = () => null, isOpen = false } = props;
+
+	const [dy, setDy] = useState(0);
+	const [height, setHeight] = useState(0);
+	const contentRef = useRef<HTMLDivElement>(null);
+
+	const [{ y }, api] = Spring.useSpring(() => ({ y: 0 }));
+
 	const { theme } = useTheme();
 
 	const mods: Mods = {
@@ -31,63 +36,89 @@ export const Drawer = memo((props: DrawerProps) => {
 	};
 
 	const openDrawer = useCallback(() => {
-		api.start({ y: 0, immediate: false });
+		setDy(0);
+		api.start({ y: 0, immediate: true });
 	}, [api]);
 
-	useEffect(() => {
-		if (isOpen) {
-			openDrawer();
-		}
-	}, [api, isOpen, openDrawer]);
+	const close = useCallback(
+		(velocity = 0) => {
+			api.start({
+				y: height,
+				immediate: true,
+				config: { ...Spring.config.stiff, velocity },
+				onResolve: onClose
+			});
+		},
+		[api, height, onClose]
+	);
 
-	const close = (velocity = 0) => {
-		api.start({
-			y: height,
-			immediate: false,
-			config: { ...Spring.config.stiff, velocity },
-			onResolve: onClose
-		});
-	};
+	useEffect(() => {
+		console.log(contentRef, 'current height');
+		if (contentRef?.current) {
+			console.log(contentRef.current.clientHeight, 'current height');
+			setHeight(contentRef.current.clientHeight);
+		}
+	}, [contentRef]);
 
 	const bind = Gesture.useDrag(
 		({ last, velocity: [, vy], direction: [, dy], movement: [, my], cancel }) => {
-			if (my < -70) cancel();
+			if (my < -100) {
+				console.log('open');
+				cancel();
+				//openDrawer();
+			}
+			if (my > height * 0.5 && dy > 0) {
+				console.log('closed');
+				close();
+				cancel();
+			}
 
 			if (last) {
-				if (my > height * 0.5 || (vy > 0.5 && dy > 0)) {
+				console.log('last');
+				if (my > height * 0.3 || (vy > 0.3 && dy > 0)) {
 					close();
 				} else {
 					openDrawer();
 				}
 			} else {
 				api.start({ y: my, immediate: true });
+				setDy(my);
 			}
 		},
 		{
-			from: () => [0, y.get()],
 			filterTaps: true,
-			bounds: { top: 0 },
+			bounds: { top: -50 },
 			rubberband: true
 		}
 	);
 
-	if (!isOpen) {
-		return null;
-	}
+	// const display = y.to((dy) => {
+	// 	return dy < height ? 'block' : 'none';
+	// });
 
-	const display = y.to((py) => (py < height ? 'block' : 'none'));
+	const rubberStyle = useMemo(() => {
+		return {
+			//display,
+			//bottom: `calc(-100vh + ${height - 100}px)`,
+			...(dy !== 0 ? { height: height - dy, overflow: 'hidden' } : { height: '70%', overflow: 'auto' })
+		};
+	}, [dy, height]);
 
+	useEffect(() => {
+		setDy(0);
+	}, [isOpen]);
+
+	// if (!isOpen) {
+	// 	setDy(0);
+	// 	//return null;
+	// }
 	//const contentClick = (e: React.MouseEvent) => e.stopPropagation();
 
 	return (
 		<Portal>
 			<div className={classNames(classes.Drawer, mods, [className, theme, 'app_drawer'])}>
 				<Overlay onClick={onClose} />
-				<Spring.a.div
-					className={classes.content}
-					style={{ display, bottom: `calc(-100vh + ${height - 100}px)`, y }}
-					{...bind()}
-				>
+				<Spring.a.div ref={contentRef} className={classNames(classes.content, {}, [])} style={rubberStyle} {...bind()}>
 					{children}
 				</Spring.a.div>
 			</div>

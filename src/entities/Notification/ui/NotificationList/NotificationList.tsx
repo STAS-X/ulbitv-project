@@ -14,7 +14,6 @@ export interface NotificationListSize {
 export interface NotificationListItem {
 	disabled?: boolean;
 	content?: ReactNode;
-	onClick?: () => void;
 	href?: string;
 }
 
@@ -22,11 +21,12 @@ export interface NotificationListProps {
 	className?: string;
 	size?: NotificationListSize;
 	isLoading?: boolean;
+	onClick?: () => void;
 	items: NotificationListItem[];
 }
 
 export const NotificationList: FC<NotificationListProps> = memo((props: NotificationListProps) => {
-	const { className = '', items, isLoading = false, size = {} } = props;
+	const { className = '', items, isLoading = false, onClick = () => null, size = {} } = props;
 
 	const navigate = useNavigate();
 
@@ -56,7 +56,7 @@ export const NotificationList: FC<NotificationListProps> = memo((props: Notifica
 						key={index}
 						onClick={() => {
 							if (!item.disabled) {
-								handleNotificationListClick(item.href, item.onClick);
+								handleNotificationListClick(item.href, onClick);
 							}
 						}}
 						style={{ ...size }}

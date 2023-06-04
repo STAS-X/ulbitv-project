@@ -5,6 +5,7 @@
 
 .notificationitem {
 	padding: 10px;
+	aria-haspopup: true;
 	width: 100%;
 	background: none;
 	border: 1px solid transparent;
@@ -19,7 +20,10 @@
 	&:hover {
 		background: var(--inverted-primary-color);
 		border-color: var(--primary-color);
-		opacity: 0.9;
+	}
+
+	&:focus {
+		background: green;
 	}
 }
 

@@ -54,6 +54,7 @@ export const AddNotificationsButton: FC<AddNotificationsButtonProps> = memo((pro
 				<NotificationList
 					items={notificationItems}
 					isLoading={notificationIsLoading}
+					onClick={() => setTimeout(() => closeHandler(), 100)}
 					size={{ minWidth: '100%', maxHeight: 420 }}
 				/>
 			</Drawer>

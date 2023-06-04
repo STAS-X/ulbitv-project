@@ -14,7 +14,7 @@ module.exports = {
 		name: '@storybook/react-webpack5',
 		options: { lazyCompilation: true }
 	},
-	features: { storyStoreV7: true },
+	features: { storyStoreV7: true, argTypeTargetsV7: false, legacyDecoratorFileOrder: true },
 	core: {
 		builder: 'webpack5'
 	}
