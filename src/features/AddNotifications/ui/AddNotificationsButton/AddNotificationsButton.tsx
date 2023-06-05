@@ -1,4 +1,4 @@
-import { FC, memo, useState, useCallback } from 'react';
+import { FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Icon, IconTheme } from 'shared/ui/Icon/Icon';
 import { PopOver } from 'shared/ui/PopOver/PopOver';
@@ -10,6 +10,7 @@ import { detectMobileDevice } from 'shared/lib/helpers/checkIsMobile';
 import { Drawer } from 'shared/ui/Drawer/Drawer';
 import { NotificationList } from 'entities/Notification';
 import { useModal } from 'shared/lib/hooks/useModal';
+import { AnimationProvider } from 'shared/lib/components/AnimationProvider';
 
 interface AddNotificationsButtonProps {
 	className?: string;
@@ -50,14 +51,16 @@ export const AddNotificationsButton: FC<AddNotificationsButtonProps> = memo((pro
 	return isMobile ? (
 		<>
 			<div className={classes.trigger}>{triggerButton}</div>
-			<Drawer onClose={closeHandler} isOpen={isOpen}>
-				<NotificationList
-					items={notificationItems}
-					isLoading={notificationIsLoading}
-					onClick={() => setTimeout(() => closeHandler(), 100)}
-					size={{ minWidth: '100%', maxHeight: 420 }}
-				/>
-			</Drawer>
+			<AnimationProvider>
+				<Drawer onClose={closeHandler} isOpen={isOpen}>
+					<NotificationList
+						items={notificationItems}
+						isLoading={notificationIsLoading}
+						onClick={() => setTimeout(() => closeHandler(), 100)}
+						size={{ minWidth: '100%', maxHeight: 420 }}
+					/>
+				</Drawer>
+			</AnimationProvider>
 		</>
 	) : (
 		<PopOver

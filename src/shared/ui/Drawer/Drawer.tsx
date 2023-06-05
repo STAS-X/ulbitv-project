@@ -5,8 +5,9 @@ import { useTheme } from 'app/providers/ThemeProvider';
 import { Overlay } from '../Overlay/Overlay';
 import classes from './Drawer.module.scss';
 import { Portal } from '../Portal/Portal';
-import * as Gesture from '@use-gesture/react';
-import * as Spring from '@react-spring/web';
+import { useAnimationLibrarys } from '../../lib/components/AnimationProvider';
+//import * as Gesture from '@use-gesture/react';
+//import * as Spring from '@react-spring/web';
 
 interface DrawerProps {
 	className?: string;
@@ -14,11 +15,9 @@ interface DrawerProps {
 	isOpen?: boolean;
 	onClose?: () => void;
 }
-//window.innerHeight + 100;
 
-export const Drawer = memo((props: DrawerProps) => {
-	//Gesture;
-	//const { Spring, Gesture } = useAnimationLibs();
+export const DrawerContent = memo((props: DrawerProps) => {
+	const { Spring, Gesture } = useAnimationLibrarys();
 
 	const { className, children, onClose = () => null, isOpen = false } = props;
 
@@ -49,33 +48,33 @@ export const Drawer = memo((props: DrawerProps) => {
 				onResolve: onClose
 			});
 		},
-		[api, height, onClose]
+		[Spring.config.stiff, api, height, onClose]
 	);
 
 	useEffect(() => {
-		console.log(contentRef, 'current height');
 		if (contentRef?.current) {
-			console.log(contentRef.current.clientHeight, 'current height');
+			//console.log(contentRef.current.clientHeight, 'current height');
 			setHeight(contentRef.current.clientHeight);
 		}
 	}, [contentRef]);
 
 	const bind = Gesture.useDrag(
 		({ last, velocity: [, vy], direction: [, dy], movement: [, my], cancel }) => {
-			if (my < -100) {
-				console.log('open');
+			if (my < -70) {
+				//console.log('open');
 				cancel();
 				//openDrawer();
 			}
-			if (my > height * 0.5 && dy > 0) {
-				console.log('closed');
-				close();
+			if (my > height * 0.8) {
+				//console.log('closed');
+				close(vy);
 				cancel();
 			}
 
 			if (last) {
-				console.log('last');
-				if (my > height * 0.3 || (vy > 0.3 && dy > 0)) {
+				//console.log('last');
+				if (my > height * 0.3 || (vy > 0.3 && dy > 0 && my > 0)) {
+					//console.log(my, height * 0.3, vy, dy, 'close');
 					close();
 				} else {
 					openDrawer();
@@ -108,12 +107,6 @@ export const Drawer = memo((props: DrawerProps) => {
 		setDy(0);
 	}, [isOpen]);
 
-	// if (!isOpen) {
-	// 	setDy(0);
-	// 	//return null;
-	// }
-	//const contentClick = (e: React.MouseEvent) => e.stopPropagation();
-
 	return (
 		<Portal>
 			<div className={classNames(classes.Drawer, mods, [className, theme, 'app_drawer'])}>
@@ -126,12 +119,12 @@ export const Drawer = memo((props: DrawerProps) => {
 	);
 });
 
-// export const Drawer = memo((props: DrawerProps) => {
-// 	const { isLoaded } = useAnimationLibs();
+export const Drawer = memo((props: DrawerProps) => {
+	const { isLoaded } = useAnimationLibrarys();
 
-// 	if (!isLoaded) {
-// 		return null;
-// 	}
+	if (!isLoaded) {
+		return null;
+	}
 
-// 	return <DrawerContent {...props} />;
-// });
+	return <DrawerContent {...props} />;
+});
