@@ -1,11 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import React, { memo, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useTheme } from 'app/providers/ThemeProvider';
+import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import React, { memo, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { useTheme } from '@/app/providers/ThemeProvider';
 import { Overlay } from '../Overlay/Overlay';
 import classes from './Drawer.module.scss';
 import { Portal } from '../Portal/Portal';
 import { useAnimationLibrarys } from '../../lib/components/AnimationProvider';
+import { AnimationProvider } from '@/shared/lib/components/AnimationProvider';
 //import * as Gesture from '@use-gesture/react';
 //import * as Spring from '@react-spring/web';
 
@@ -16,17 +17,17 @@ interface DrawerProps {
 	onClose?: () => void;
 }
 
-export const DrawerContent = memo((props: DrawerProps) => {
+const DrawerContent = (props: DrawerProps) => {
 	const { Spring, Gesture } = useAnimationLibrarys();
 
 	const { className, children, onClose = () => null, isOpen = false } = props;
 
-	const [dy, setDy] = useState(0);
-	const [height, setHeight] = useState(0);
+	const [deltaY, setDeltaY] = useState(0);
+	const [height, setHeight] = useState<number>(0);
 	const contentRef = useRef<HTMLDivElement>(null);
 
-	const [{ y }, api] = Spring.useSpring(() => ({ y: 0 }));
-
+	const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
+	console.log(isOpen, 'isopen status');
 	const { theme } = useTheme();
 
 	const mods: Mods = {
@@ -35,77 +36,88 @@ export const DrawerContent = memo((props: DrawerProps) => {
 	};
 
 	const openDrawer = useCallback(() => {
-		setDy(0);
+		setDeltaY(0);
 		api.start({ y: 0, immediate: true });
 	}, [api]);
 
 	const close = useCallback(
 		(velocity = 0) => {
+			setDeltaY(0);
 			api.start({
 				y: height,
 				immediate: true,
 				config: { ...Spring.config.stiff, velocity },
-				onResolve: onClose
+				onResolve: () => {
+					console.log('closing...');
+					api.start({ y: 0, immediate: false });
+					onClose();
+				}
 			});
 		},
 		[Spring.config.stiff, api, height, onClose]
 	);
 
 	useEffect(() => {
-		if (contentRef?.current) {
-			//console.log(contentRef.current.clientHeight, 'current height');
-			setHeight(contentRef.current.clientHeight);
+		if (isOpen) {
+			if (contentRef?.current) {
+				console.log(contentRef.current.clientHeight, 'current height');
+				setHeight(contentRef.current.clientHeight);
+			}
 		}
-	}, [contentRef]);
+	}, [contentRef, api, isOpen]);
 
 	const bind = Gesture.useDrag(
-		({ last, velocity: [, vy], direction: [, dy], movement: [, my], cancel }) => {
+		({ last, velocity: [, vy], direction: [, dy], offset: [, my], cancel }) => {
+			setDeltaY(my);
 			if (my < -70) {
-				//console.log('open');
+				console.log('open');
+				openDrawer();
 				cancel();
-				//openDrawer();
 			}
 			if (my > height * 0.8) {
-				//console.log('closed');
+				console.log('closed');
 				close(vy);
 				cancel();
 			}
 
 			if (last) {
 				//console.log('last');
-				if (my > height * 0.3 || (vy > 0.3 && dy > 0 && my > 0)) {
+				if (my > height * 0.6 || (vy > 0.3 && dy > 0 && my > 0)) {
 					//console.log(my, height * 0.3, vy, dy, 'close');
 					close();
 				} else {
 					openDrawer();
 				}
 			} else {
+				console.log(my, 'get offset my');
 				api.start({ y: my, immediate: true });
-				setDy(my);
+				//setDeltaY(my);
 			}
 		},
 		{
 			filterTaps: true,
-			bounds: { top: -50 },
-			rubberband: true
+			rubberband: true,
+			from: [0, 0],
+			axis: 'y',
+			bounds: { top: -70 }
 		}
 	);
 
 	// const display = y.to((dy) => {
 	// 	return dy < height ? 'block' : 'none';
 	// });
+	console.log(height, y, y.get(), 'get y data from spring');
 
-	const rubberStyle = useMemo(() => {
-		return {
-			//display,
-			//bottom: `calc(-100vh + ${height - 100}px)`,
-			...(dy !== 0 ? { height: height - dy, overflow: 'hidden' } : { height: '70%', overflow: 'auto' })
-		};
-	}, [dy, height]);
-
-	useEffect(() => {
-		setDy(0);
-	}, [isOpen]);
+	const rubberStyle = {
+		...(isOpen
+			? height > 0 && y.get() !== 0
+				? y.get() < 0
+					? { height: height - deltaY, overflow: 'hidden' }
+					: { y, height, overflow: 'hidden' }
+				: { height: '70%', overflow: 'auto' }
+			: {})
+	};
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 
 	return (
 		<Portal>
@@ -117,9 +129,9 @@ export const DrawerContent = memo((props: DrawerProps) => {
 			</div>
 		</Portal>
 	);
-});
+};
 
-export const Drawer = memo((props: DrawerProps) => {
+const DrawerLazy = (props: DrawerProps) => {
 	const { isLoaded } = useAnimationLibrarys();
 
 	if (!isLoaded) {
@@ -127,4 +139,12 @@ export const Drawer = memo((props: DrawerProps) => {
 	}
 
 	return <DrawerContent {...props} />;
+};
+
+export const Drawer = memo((props: DrawerProps) => {
+	return (
+		<AnimationProvider>
+			<DrawerLazy {...props} />
+		</AnimationProvider>
+	);
 });

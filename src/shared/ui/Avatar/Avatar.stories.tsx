@@ -2,9 +2,9 @@ import * as React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 
 import { Avatar, AvatarProps } from './Avatar';
-import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import AvatarImg from 'shared/assets/images/avatar.jpg';
+import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import AvatarImg from '@/shared/assets/images/avatar.jpg';
 
 export default {
 	title: 'shared/Avatar',

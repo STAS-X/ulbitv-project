@@ -2,17 +2,17 @@ import { ArticleSchema, ArticleBlockType, ArticleView, ArticleTextBlock } from '
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { FC, memo, ReactNode, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ArticleListItem.module.scss';
-import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
-import { Icon } from 'shared/ui/Icon/Icon';
-import { Text } from 'shared/ui/Text/Text';
-import { Card } from 'shared/ui/Card/Card';
-import { Avatar } from 'shared/ui/Avatar/Avatar';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
+import { Icon } from '@/shared/ui/Icon/Icon';
+import { Text } from '@/shared/ui/Text/Text';
+import { Card } from '@/shared/ui/Card/Card';
+import { Avatar } from '@/shared/ui/Avatar/Avatar';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 
-import { DEBOUNCE_DELAY } from 'shared/const/localstorage';
-import { Image } from 'shared/ui/Image/Image';
+import { DEBOUNCE_DELAY } from '@/shared/const/localstorage';
+import { Image } from '@/shared/ui/Image/Image';
 
 export interface ArticleListItemProps {
 	className?: string;

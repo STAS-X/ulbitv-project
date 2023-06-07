@@ -1,5 +1,5 @@
-import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
-import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
+import { ArticleSchema } from '@/entities/Article/model/types/articleSchema';
+import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
 
 interface RecommendationsForArticle {
 	articleId?: string;

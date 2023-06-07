@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 import { CardProps, Card } from './Card';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
 import { Text } from '../Text/Text';
 
 export default {

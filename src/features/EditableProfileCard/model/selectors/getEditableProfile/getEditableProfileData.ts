@@ -1,6 +1,6 @@
-import { ProfileSchema } from 'entities/Profile';
+import { ProfileSchema } from '@/entities/Profile';
 import { createSelector } from '@reduxjs/toolkit';
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 export const getEditableProfile = (state: StateSchema) => state?.profile;
 export const getEditableProfileData = createSelector(

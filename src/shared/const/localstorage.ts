@@ -1,6 +1,6 @@
-import * as IMAGE from 'shared/assets/images/placeholder.jpg';
+import * as IMAGE from '@/shared/assets/images/placeholder.jpg';
 export const PLACEHOLDER_IMAGE = IMAGE.default;
-import * as AVATAR from 'shared/assets/images/avatar.jpg';
+import * as AVATAR from '@/shared/assets/images/avatar.jpg';
 export const PLACEHOLDER_AVATAR = AVATAR.default;
 
 export const USER_LS_KEY = 'user';

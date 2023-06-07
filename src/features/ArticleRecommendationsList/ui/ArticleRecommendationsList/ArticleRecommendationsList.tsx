@@ -1,11 +1,11 @@
 import { FC, memo, ReactNode } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
-import { ArticleList, ArticleView } from 'entities/Article';
-import { VStack } from 'shared/ui/Stack';
+import { Text, TextSize, TextTheme } from '@/shared/ui/Text/Text';
+import { ArticleList, ArticleView } from '@/entities/Article';
+import { VStack } from '@/shared/ui/Stack';
 import classes from './ArticleRecommendationsList.module.scss';
-import { getErrorMessage } from 'shared/types/thunk/thunkAction';
+import { getErrorMessage } from '@/shared/types/thunk/thunkAction';
 import { useGetRecommendationByArticleQuery } from '../../api/useArticleRecommendations';
 
 export interface ArticleRecommendationsListProps {

@@ -1,4 +1,4 @@
-import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
+import { StateSchema } from '@/app/providers/StoreProvider/config/StateSchema';
 import { useDispatch } from 'react-redux';
 import {
 	configureStore,
@@ -12,11 +12,11 @@ import {
 	Reducer
 } from '@reduxjs/toolkit';
 import { ExtraThunkArgs, ReducerManager } from './StateSchema';
-import { commonReducer } from 'entities/Common/model/slices/commonSlices';
-import { userReducer } from 'entities/User';
+import { commonReducer } from '@/entities/Common/model/slices/commonSlices';
+import { userReducer } from '@/entities/User';
 import { createReducerManager } from './reducerManager';
-import { $apiAxios } from 'shared/api/api';
-import { rtkApi } from 'shared/api/rtkApi';
+import { $apiAxios } from '@/shared/api/api';
+import { rtkApi } from '@/shared/api/rtkApi';
 
 export const rootReducer: ReducersMapObject<StateSchema> = {
 	common: commonReducer,

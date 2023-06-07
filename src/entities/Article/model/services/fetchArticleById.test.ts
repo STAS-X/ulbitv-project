@@ -1,7 +1,7 @@
 import { ArticleSchema } from './../types/articleSchema';
 import { ArticleType, ArticleBlockType } from '../types/articleSchema';
 /* eslint-disable @typescript-eslint/unbound-method */
-import { TestAsyncThunk } from 'shared/lib/tests/testAsyncThunk/testAsyncThunk';
+import { TestAsyncThunk } from '@/shared/lib/tests/testAsyncThunk/testAsyncThunk';
 
 import { fetchArticleById } from './fetchArticleById';
 

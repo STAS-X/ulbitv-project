@@ -1,4 +1,4 @@
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 import { getLogin, getLoginName, getLoginPassword } from './getLoginData';
 
 describe('getLoginData selector test', () => {

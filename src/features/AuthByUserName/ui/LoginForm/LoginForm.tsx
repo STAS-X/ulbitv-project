@@ -1,17 +1,17 @@
-import { StateSchema } from 'app/providers/StoreProvider';
-import { useAppDispatch } from 'app/providers/StoreProvider/config/store';
-import { getLogin } from 'features/AuthByUserName/model/selectors/getUserData/getLoginData';
-import { loginByUsername } from 'features/AuthByUserName/model/services/loginByUsername/loginByUsername';
-import { loginActions, loginReducer } from 'features/AuthByUserName/model/slices/loginSlice';
-import { LoginSchema } from 'features/AuthByUserName/model/types/loginSchema';
+import { StateSchema } from '@/app/providers/StoreProvider';
+import { useAppDispatch } from '@/app/providers/StoreProvider/config/store';
+import { getLogin } from '@/features/AuthByUserName/model/selectors/getUserData/getLoginData';
+import { loginByUsername } from '@/features/AuthByUserName/model/services/loginByUsername/loginByUsername';
+import { loginActions, loginReducer } from '@/features/AuthByUserName/model/slices/loginSlice';
+import { LoginSchema } from '@/features/AuthByUserName/model/types/loginSchema';
 import { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { Input } from 'shared/ui/Input/Input';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Input } from '@/shared/ui/Input/Input';
+import { Text, TextTheme } from '@/shared/ui/Text/Text';
 import classes from './LoginForm.module.scss';
 
 export interface LoginFormProps {

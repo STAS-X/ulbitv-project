@@ -1,9 +1,9 @@
 import { ArticleView } from '../../model/types/articleSchema';
 import { FC, memo, ReactNode } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ArticleListItem.module.scss';
-import { Card } from 'shared/ui/Card/Card';
-import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { Card } from '@/shared/ui/Card/Card';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
 export interface ArticleListItemSkeletonProps {
 	className?: string;

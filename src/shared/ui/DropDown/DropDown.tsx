@@ -1,11 +1,11 @@
 import { FC, memo, ReactNode } from 'react';
 import { Menu } from '@headlessui/react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './DropDown.module.scss';
-import { useNavigate } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { useNavigate } from '@/app/providers/RouterUtilsProvider/RouterUtilsProvider';
 import { VStack } from '../Stack';
-import { directionsToInlineStyle } from 'shared/lib/helpers/directionsToInlineStyle';
-import { DropDownDirectionType } from 'shared/types/dropdown/directions';
+import { directionsToInlineStyle } from '@/shared/lib/helpers/directionsToInlineStyle';
+import { DropDownDirectionType } from '@/shared/types/dropdown/directions';
 
 export interface DropDownItem {
 	disabled?: boolean;

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { OptionalRecord } from './../url/queryParams/addQueryParams';
 import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getArticlesPageInited } from 'pages/ArticlesPage';
+import { getArticlesPageInited } from '@/pages/ArticlesPage';
 
 export const useArticlesParams = () => {
 	const [searchParams] = useSearchParams();

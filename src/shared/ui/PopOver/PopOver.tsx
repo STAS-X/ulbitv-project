@@ -1,11 +1,11 @@
 import { FC, memo, ReactNode, useCallback, useRef, ReactElement, isValidElement, cloneElement } from 'react';
 import { Popover } from '@headlessui/react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './PopOver.module.scss';
-import { useNavigate } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { useNavigate } from '@/app/providers/RouterUtilsProvider/RouterUtilsProvider';
 import { VStack } from '../Stack';
-import { directionsToInlineStyle } from 'shared/lib/helpers/directionsToInlineStyle';
-import { DropDownDirectionType } from 'shared/types/dropdown/directions';
+import { directionsToInlineStyle } from '@/shared/lib/helpers/directionsToInlineStyle';
+import { DropDownDirectionType } from '@/shared/types/dropdown/directions';
 
 export interface PopOverSize {
 	maxWidth?: string | number;

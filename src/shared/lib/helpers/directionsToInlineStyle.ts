@@ -1,4 +1,4 @@
-import { DropDownDirectionType } from 'shared/types/dropdown/directions';
+import { DropDownDirectionType } from '@/shared/types/dropdown/directions';
 
 export const directionsToInlineStyle = (direction: DropDownDirectionType | undefined) => {
 	switch (direction) {

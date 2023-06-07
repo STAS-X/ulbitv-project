@@ -1,16 +1,16 @@
 import { FC, ReactNode, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { useSelector } from 'react-redux';
-import { CommentList, CommentSchema } from 'entities/Comment';
+import { CommentList, CommentSchema } from '@/entities/Comment';
 import { useFetchCommentForArticle } from '../../model/services/fetchCommentForArticle/fetchCommentForArticle';
 import { getArticleComments } from '../../model/slice/articleDetailesCommentsSlice';
 import { getArticleCommentsIsLoading } from '../../model/selectors/getArticleCommentsData';
-import { Text } from 'shared/ui/Text/Text';
-import { AddCommentForm } from 'features/AddCommentForm';
-import { VStack } from 'shared/ui/Stack';
+import { Text } from '@/shared/ui/Text/Text';
+import { AddCommentForm } from '@/features/AddCommentForm';
+import { VStack } from '@/shared/ui/Stack';
 
 export interface ArticleDetailesCommentsProps {
 	className?: string;

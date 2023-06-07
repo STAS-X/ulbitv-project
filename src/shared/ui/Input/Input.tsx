@@ -1,6 +1,6 @@
 import { ForwardedRef, forwardRef, InputHTMLAttributes, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { Text, TextAlign, TextTheme } from '../Text/Text';
 import classes from './Input.module.scss';
 

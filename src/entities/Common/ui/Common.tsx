@@ -1,8 +1,8 @@
 /* eslint-disable i18next/no-literal-string */
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { commonActions } from '..';
 import { getCommonValue } from '../model/selectors/getCommon/getCommon';
 

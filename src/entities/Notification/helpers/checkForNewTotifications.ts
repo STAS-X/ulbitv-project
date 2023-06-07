@@ -1,4 +1,4 @@
-import { NOTIFY_LS_KEY } from 'shared/const/localstorage';
+import { NOTIFY_LS_KEY } from '@/shared/const/localstorage';
 import { NotificationSchema } from '../model/types/notificationSchema';
 
 export const checkForNewNotify = (newNotes: NotificationSchema[]) => {

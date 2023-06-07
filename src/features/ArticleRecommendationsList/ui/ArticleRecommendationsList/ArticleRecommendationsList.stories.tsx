@@ -2,8 +2,8 @@ import * as React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 import { ArticleRecommendationsListProps, ArticleRecommendationsList } from './ArticleRecommendationsList';
 
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
 
 const article = {
 	id: '1',

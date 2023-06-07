@@ -1,20 +1,20 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
+import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { Text, TextAlign, TextTheme } from '@/shared/ui/Text/Text';
 import { ProfileData } from '../../';
 import classes from './ProfileCard.module.scss';
-import { Input } from 'shared/ui/Input/Input';
-import { Loader } from 'shared/ui/Loader/Loader';
-import { Avatar } from 'shared/ui/Avatar/Avatar';
-import { CountrySelector } from 'entities/Country';
-import { CurrencySelector } from 'entities/Currency';
+import { Input } from '@/shared/ui/Input/Input';
+import { Loader } from '@/shared/ui/Loader/Loader';
+import { Avatar } from '@/shared/ui/Avatar/Avatar';
+import { CountrySelector } from '@/entities/Country';
+import { CurrencySelector } from '@/entities/Currency';
 import { useSelector } from 'react-redux';
 import { ValidateProfileError } from '../../model/types/profileSchema';
 import { useParams } from 'react-router-dom';
-import { VStack } from 'shared/ui/Stack/VStack/VStack';
-import { HStack } from 'shared/ui/Stack/HStack/HStack';
-import { getEditableProfileValidation } from 'features/EditableProfileCard/model/selectors/getEditableProfile/getEditableProfileData';
+import { VStack } from '@/shared/ui/Stack/VStack/VStack';
+import { HStack } from '@/shared/ui/Stack/HStack/HStack';
+import { getEditableProfileValidation } from '@/features/EditableProfileCard/model/selectors/getEditableProfile/getEditableProfileData';
 
 export enum ProfileFieldType {
 	FIRST = 'first',

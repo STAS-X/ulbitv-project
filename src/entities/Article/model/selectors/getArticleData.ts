@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 import { ArticleDetailesSchema } from '../types/articleDetailesSchema';
 
 export const getArticle = (state: StateSchema) => state?.articleDetailes;

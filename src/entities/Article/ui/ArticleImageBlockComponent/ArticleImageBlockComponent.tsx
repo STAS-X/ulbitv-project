@@ -1,7 +1,7 @@
 import { ArticleImageBlock } from '../../model/types/articleSchema';
 import { FC, memo, ReactNode } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Text, TextAlign } from '@/shared/ui/Text/Text';
 import classes from './ArticleImageBlockComponent.module.scss';
 
 export interface ArticleImageBlockComponentProps {

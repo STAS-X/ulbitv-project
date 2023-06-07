@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { convertToProperty } from '../../../lib/helpers/propertyToFlex';
 import classes from './Flex.module.scss';
 

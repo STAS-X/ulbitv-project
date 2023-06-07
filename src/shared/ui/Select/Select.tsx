@@ -1,6 +1,6 @@
 import { FC, SelectHTMLAttributes } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import classes from './Select.module.scss';
 
 type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'placeholder' | 'onChange'>;

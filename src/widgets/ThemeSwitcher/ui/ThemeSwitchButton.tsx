@@ -1,8 +1,8 @@
-import { useTheme } from 'app/providers/ThemeProvider';
+import { useTheme } from '@/app/providers/ThemeProvider';
 import { FC, memo, useEffect, useState } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import ThemeIcon from 'shared/assets/icons/theme-icon.svg';
-import { Button } from 'shared/ui/Button/Button';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import ThemeIcon from '@/shared/assets/icons/theme-icon.svg';
+import { Button } from '@/shared/ui/Button/Button';
 
 export interface ThemeSwitchButtonProps {
 	className?: string;

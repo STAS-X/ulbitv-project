@@ -1,5 +1,5 @@
-import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
-import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
+import { ArticleSchema } from '@/entities/Article/model/types/articleSchema';
+import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
 import {
 	getArticlesPageLimit,
 	getArticlesPageSortField,
@@ -8,7 +8,7 @@ import {
 	getArticlesPageNumber,
 	getArticlesPageCategory
 } from '../../selectors/getArticlesPageData';
-import { addQueryParams } from 'shared/lib/url/queryParams/addQueryParams';
+import { addQueryParams } from '@/shared/lib/url/queryParams/addQueryParams';
 
 interface ArticlesListProps {
 	page?: number;

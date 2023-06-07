@@ -1,8 +1,8 @@
-import { useLocation } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { useLocation } from '@/app/providers/RouterUtilsProvider/RouterUtilsProvider';
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
 import classes from './NotFoundPage.module.scss';
 
 interface NotFoundPageProps {

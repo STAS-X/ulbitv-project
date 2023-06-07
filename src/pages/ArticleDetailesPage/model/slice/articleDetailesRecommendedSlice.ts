@@ -1,4 +1,4 @@
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 import { fetchRecommendationsForArticle } from './../services/fetchRecommendationsForArticle/fetchRecommendationsForArticle';
 import { ArticleSchema } from './../../../../entities/Article/model/types/articleSchema';
 import { ArticleDetailesRecommendedSchema } from './../types/ArticleDetailesRecommendedSchema';

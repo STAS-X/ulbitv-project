@@ -1,5 +1,5 @@
-import { Currency } from 'entities/Currency/model/types/currency';
-import { Country } from 'entities/Country/model/types/country';
+import { Currency } from '@/entities/Currency/model/types/currency';
+import { Country } from '@/entities/Country/model/types/country';
 import {
 	getEditableProfileData,
 	getEditableProfileIsLoading,
@@ -7,7 +7,7 @@ import {
 	getEditableProfileReadOnly,
 	getEditableProfileFormData
 } from '../../..';
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 const profileData = {
 	username: 'admin',

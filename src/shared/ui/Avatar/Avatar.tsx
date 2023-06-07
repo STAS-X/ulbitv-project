@@ -1,6 +1,6 @@
 import { FC, Suspense, useEffect, useState } from 'react';
 
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { PLACEHOLDER_AVATAR } from '../../const/localstorage';
 import { ImageResource } from '../../lib/reactImageSource/imageSource';
 import { Skeleton } from '../Skeleton/Skeleton';

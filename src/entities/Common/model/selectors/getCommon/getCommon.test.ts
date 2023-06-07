@@ -1,5 +1,5 @@
 import { getCommon, getCommonValue } from './getCommon';
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 describe('getCounter', () => {
 	test('should return counter state', () => {

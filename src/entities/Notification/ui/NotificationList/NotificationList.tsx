@@ -1,8 +1,8 @@
 import { FC, memo, ReactNode, useCallback, ReactElement, isValidElement, cloneElement } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './NotificationList.module.scss';
-import { useNavigate } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
-import { VStack } from 'shared/ui/Stack';
+import { useNavigate } from '@/app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { VStack } from '@/shared/ui/Stack';
 
 export interface NotificationListSize {
 	maxWidth?: string | number;

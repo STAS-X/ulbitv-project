@@ -9,6 +9,8 @@ export function buildResolvers(options: BuildOptions): ResolveOptions {
 		extensions: ['.tsx', '.ts', '.js'],
 		preferAbsolute: true,
 		mainFiles: ['index'],
-		alias: {}
+		alias: {
+			'@': options.paths.src
+		}
 	};
 }

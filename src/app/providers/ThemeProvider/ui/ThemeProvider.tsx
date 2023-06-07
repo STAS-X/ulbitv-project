@@ -1,4 +1,4 @@
-import { ThemeContext, Theme, ThemeContextProps } from 'app/providers/ThemeProvider/lib/ThemeContext';
+import { ThemeContext, Theme, ThemeContextProps } from '@/app/providers/ThemeProvider/lib/ThemeContext';
 import React, { FC, useMemo, useState, ReactNode } from 'react';
 
 import { LOCAL_STORAGE_THEME_KEY } from '../lib/useTheme';

@@ -1,5 +1,5 @@
-import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
-import { CommentSchema } from 'entities/Comment';
+import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
+import { CommentSchema } from '@/entities/Comment';
 
 // export interface ProfileDataProps {
 // 	username: string;

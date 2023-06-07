@@ -1,19 +1,19 @@
 import { FC, memo, ReactNode, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { ArticleDetailes } from 'entities/Article';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { ArticleDetailes } from '@/entities/Article';
 import classes from './ArticleDetailesPage.module.scss';
-import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { ArticleDetailesPageHeader } from '../ArticleDetailesPageHeader/ArticleDetailesPageHeader';
-import { useAppDispatch } from 'app/providers/StoreProvider';
+import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
+import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
 import { fetchRecommendationsForArticle } from '../../model/services/fetchRecommendationsForArticle/fetchRecommendationsForArticle';
 import { articleDetailesPageReducer } from './../../model/slice';
-import { useLocation } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
-import { OptionalRecord } from 'shared/lib/url/queryParams/addQueryParams';
-import { VStack } from 'shared/ui/Stack';
-import { ArticleRecommendationsList } from 'features/ArticleRecommendationsList';
+import { useLocation } from '@/app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { OptionalRecord } from '@/shared/lib/url/queryParams/addQueryParams';
+import { VStack } from '@/shared/ui/Stack';
+import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 import { ArticleDetailesComments } from '../ArticleDetailesComments/ArticleDetailesComments';
 
 export interface ArticleDetailesPageProps {

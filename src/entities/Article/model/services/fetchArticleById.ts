@@ -1,5 +1,5 @@
 import { ArticleSchema } from './../types/articleSchema';
-import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
+import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
 
 // export interface ProfileDataProps {
 // 	username: string;

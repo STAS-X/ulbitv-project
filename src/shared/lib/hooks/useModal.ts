@@ -17,8 +17,8 @@ export const useModal = (props: UseModalProps): UseModalReturn => {
 
 	const closeHandler = useCallback(() => {
 		if (onClose) onClose();
-		setOpened(!opened);
-	}, [onClose, opened]);
+		setOpened((prev) => !prev);
+	}, [onClose]);
 
 	const onKeyDown = useCallback(
 		(e: KeyboardEvent) => {

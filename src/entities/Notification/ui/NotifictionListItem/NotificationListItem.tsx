@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Card } from 'shared/ui/Card/Card';
-import { Text, TextSize } from 'shared/ui/Text/Text';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Card } from '@/shared/ui/Card/Card';
+import { Text, TextSize } from '@/shared/ui/Text/Text';
 import classes from './NotificationListItem.module.scss';
 
 interface NotificationListItemProps {

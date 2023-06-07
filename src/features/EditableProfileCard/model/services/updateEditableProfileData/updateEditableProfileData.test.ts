@@ -1,8 +1,8 @@
-import { ValidateProfileError } from 'entities/Profile';
-import { Country } from 'entities/Country/model/types/country';
-import { Currency } from 'entities/Currency/model/types/currency';
+import { ValidateProfileError } from '@/entities/Profile';
+import { Country } from '@/entities/Country/model/types/country';
+import { Currency } from '@/entities/Currency/model/types/currency';
 /* eslint-disable @typescript-eslint/unbound-method */
-import { TestAsyncThunk } from 'shared/lib/tests/testAsyncThunk/testAsyncThunk';
+import { TestAsyncThunk } from '@/shared/lib/tests/testAsyncThunk/testAsyncThunk';
 import { updateEditableProfileData } from './updateEditableProfileData';
 
 //jest.mock('axios');

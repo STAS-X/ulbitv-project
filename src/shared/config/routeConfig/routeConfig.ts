@@ -1,13 +1,13 @@
 import { AppRoutes, AuthRouteProps } from '.';
-import { ArticlesPage } from 'pages/ArticlesPage';
-import { NotFoundPage } from 'pages/NotFoundPage';
-import { ProfilePage } from 'pages/ProfilePage';
-import { AboutPage } from 'pages/AboutPage';
-import { MainPage } from 'pages/MainPage';
-import { ArticleDetailesPage } from 'pages/ArticleDetailesPage';
-import { ArticleEditPage } from 'pages/ArticleEditPage';
-import { AdminPanelPage } from 'pages/AdminPanelPage';
-import { ForbiddenPage } from 'pages/ForbiddenPage';
+import { ArticlesPage } from '@/pages/ArticlesPage';
+import { NotFoundPage } from '@/pages/NotFoundPage';
+import { ProfilePage } from '@/pages/ProfilePage';
+import { AboutPage } from '@/pages/AboutPage';
+import { MainPage } from '@/pages/MainPage';
+import { ArticleDetailesPage } from '@/pages/ArticleDetailesPage';
+import { ArticleEditPage } from '@/pages/ArticleEditPage';
+import { AdminPanelPage } from '@/pages/AdminPanelPage';
+import { ForbiddenPage } from '@/pages/ForbiddenPage';
 
 export const RoutePath: Record<AppRoutes, AuthRouteProps> = {
 	[AppRoutes.MAIN]: {

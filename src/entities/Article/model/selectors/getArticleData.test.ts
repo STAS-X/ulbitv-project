@@ -1,4 +1,4 @@
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 import { ArticleBlockType, ArticleType, ArticleSchema } from './../types/articleSchema';
 import { getArticleData, getArticleError, getArticleIsLoading } from './getArticleData';
 import { DeepPartial } from '@reduxjs/toolkit';

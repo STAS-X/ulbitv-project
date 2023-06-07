@@ -1,11 +1,11 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { EditableProfileCard } from './EditableProfileCard';
-import componentRender from 'shared/lib/tests/componentRender/componentRender';
-import { Currency } from 'entities/Currency';
-import { Country } from 'entities/Country';
+import componentRender from '@/shared/lib/tests/componentRender/componentRender';
+import { Currency } from '@/entities/Currency';
+import { Country } from '@/entities/Country';
 import { editableProfileReducer } from '../../';
-import { $apiAxios } from 'shared/api/api';
+import { $apiAxios } from '@/shared/api/api';
 //import { act } from 'react-dom/test-utils';
 
 describe('features/EditableProfileCard', () => {

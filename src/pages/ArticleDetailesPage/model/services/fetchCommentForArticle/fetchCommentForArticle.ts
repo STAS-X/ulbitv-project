@@ -1,11 +1,11 @@
-import { getArticleData } from 'entities/Article/model/selectors/getArticleData';
+import { getArticleData } from '@/entities/Article/model/selectors/getArticleData';
 import { useSelector } from 'react-redux';
-import { CommentSchema } from 'entities/Comment/model/types/commentSchema';
+import { CommentSchema } from '@/entities/Comment/model/types/commentSchema';
 import { useState } from 'react';
-import { sendComment, ExtendedCommentData } from 'features/AddCommentForm/model/services/sendComment';
-import { useAppDispatch } from 'app/providers/StoreProvider/config/store';
+import { sendComment, ExtendedCommentData } from '@/features/AddCommentForm/model/services/sendComment';
+import { useAppDispatch } from '@/app/providers/StoreProvider/config/store';
 import { fetchCommentsByArticleId } from '../fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { addCommentFormActions } from 'features/AddCommentForm/model/slices/addCommentFormSlice';
+import { addCommentFormActions } from '@/features/AddCommentForm/model/slices/addCommentFormSlice';
 
 export const useFetchCommentForArticle = () => {
 	const [data, setData] = useState<CommentSchema | string>();

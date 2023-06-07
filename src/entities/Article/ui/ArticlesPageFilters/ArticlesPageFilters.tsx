@@ -1,13 +1,13 @@
 import { FC, memo, ReactNode, useCallback, useMemo, useRef } from 'react';
-import { ArticleSearchSelector } from 'features/ArticleSearchSelector/ArticleSearchSelector';
-import { ArticleSortSelector } from 'features/ArticleSortSelector/ArticleSortSelector';
-import { ArticleViewSelector } from 'features/ArticleViewSelector/ArticleViewSelector';
-import { ArticleCategorySelector } from 'features/ArticleCategorySelector/ArticleCategorySelector';
+import { ArticleSearchSelector } from '@/features/ArticleSearchSelector/ArticleSearchSelector';
+import { ArticleSortSelector } from '@/features/ArticleSortSelector/ArticleSortSelector';
+import { ArticleViewSelector } from '@/features/ArticleViewSelector/ArticleViewSelector';
+import { ArticleCategorySelector } from '@/features/ArticleCategorySelector/ArticleCategorySelector';
 import classes from './ArticlesPageFilters.module.scss';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { articlesPageActions } from 'pages/ArticlesPage/model/slices/articlePageSlice';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { articlesPageActions } from '@/pages/ArticlesPage/model/slices/articlePageSlice';
 import { useSelector } from 'react-redux';
-import { fieldsForSort, ordersForSort } from 'shared/lib/filters/sortTypes';
+import { fieldsForSort, ordersForSort } from '@/shared/lib/filters/sortTypes';
 import {
 	getArticlesPageFilter,
 	getArticlesPageCategory,
@@ -15,12 +15,12 @@ import {
 	getArticlesPageSortOrder,
 	getArticlesPageView,
 	getArticlesPageIsLoading
-} from 'pages/ArticlesPage/model/selectors/getArticlesPageData';
+} from '@/pages/ArticlesPage/model/selectors/getArticlesPageData';
 import { ArticleView } from '../../model/types/articleSchema';
-import { useAppDispatch } from 'app/providers/StoreProvider';
-import { ArticlesSearch, ArticlesSort } from 'pages/ArticlesPage/model/types/ArticlesPageSchema';
+import { useAppDispatch } from '@/app/providers/StoreProvider';
+import { ArticlesSearch, ArticlesSort } from '@/pages/ArticlesPage/model/types/ArticlesPageSchema';
 import { useTranslation } from 'react-i18next';
-import type { OptionType } from 'shared/ui/Select/Select';
+import type { OptionType } from '@/shared/ui/Select/Select';
 
 export interface ArticlesPageFiltersProps {
 	className?: string;

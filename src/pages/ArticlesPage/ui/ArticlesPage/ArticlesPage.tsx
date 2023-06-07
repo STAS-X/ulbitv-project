@@ -1,15 +1,15 @@
 import { FC, memo, useEffect, ReactNode } from 'react';
 import { useSelector } from 'react-redux';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useAppDispatch } from 'app/providers/StoreProvider';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { articlesPageReducer, articlesPageActions } from '../../model/slices/articlePageSlice';
 import classes from './ArticlesPage.module.scss';
 import { getArticlesPageInited } from '../..';
-import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
-import { ArticlesPageFilters } from 'entities/Article';
-import { useArticlesParams } from 'shared/lib/hooks/useArticlesQueryParams';
-import { ArticleInfiniteGridLoader } from 'entities/Article/ui/ArticleInfiniteLoader/ArticleInfiniteGridLoader';
+import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
+import { ArticlesPageFilters } from '@/entities/Article';
+import { useArticlesParams } from '@/shared/lib/hooks/useArticlesQueryParams';
+import { ArticleInfiniteGridLoader } from '@/entities/Article/ui/ArticleInfiniteLoader/ArticleInfiniteGridLoader';
 
 export interface ArticlesPageProps {
 	className?: string;

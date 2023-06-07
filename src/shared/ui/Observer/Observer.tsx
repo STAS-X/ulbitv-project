@@ -1,5 +1,5 @@
 import { FC, MutableRefObject, ReactNode, useRef } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { useObserverScroll } from '../../lib/hooks/useObserverScroll';
 import classes from './Observer.module.scss';
 

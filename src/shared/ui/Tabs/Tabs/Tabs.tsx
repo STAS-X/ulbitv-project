@@ -1,5 +1,5 @@
 import { FC, memo, ReactNode, useCallback, useState } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { ArticleType } from '../../../../entities/Article/model/types/articleSchema';
 import { DEBOUNCE_DELAY } from '../../../const/localstorage';
 import { useDebounce as useDebounceTab } from '../../../lib/hooks/useDebounce';

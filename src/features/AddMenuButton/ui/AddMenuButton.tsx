@@ -1,12 +1,12 @@
 import { FC, memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { AppRoutes } from 'shared/config/routeConfig';
-import { DropDown } from 'shared/ui/DropDown/DropDown';
-import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { AppRoutes } from '@/shared/config/routeConfig';
+import { DropDown } from '@/shared/ui/DropDown/DropDown';
+import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { useSelector } from 'react-redux';
-import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
-import { userActions, UserData, getUserData, getUserIsAdmin } from 'entities/User';
+import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
+import { userActions, UserData, getUserData, getUserIsAdmin } from '@/entities/User';
 
 interface AddMenuButtonProps {
 	className?: string;

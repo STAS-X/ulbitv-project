@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 import { ProfileCard, ProfileCardProps } from './ProfileCard';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
-import { Country } from 'entities/Country';
-import { Currency } from 'entities/Currency';
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
+import { Country } from '@/entities/Country';
+import { Currency } from '@/entities/Currency';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 const formData = {
 	id: '1',

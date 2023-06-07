@@ -11,7 +11,7 @@ import {
 	TILE_ARTICLE_HEIGTH,
 	LIST_SCELETON_HEIGTH,
 	TILE_ARTICLE_WIDTH
-} from 'shared/const/localstorage';
+} from '@/shared/const/localstorage';
 import { useSelector } from 'react-redux';
 import {
 	fetchNextArticlesPage,
@@ -26,13 +26,13 @@ import {
 	getArticlesPageSortOrder,
 	getArticlesPageTarget,
 	getArticlesPageView
-} from 'pages/ArticlesPage';
-import { AppRoutes } from 'shared/config/routeConfig';
-import { useNavigate } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
-import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
-import { Text, TextSize } from 'shared/ui/Text/Text';
+} from '@/pages/ArticlesPage';
+import { AppRoutes } from '@/shared/config/routeConfig';
+import { useNavigate } from '@/app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
+import { Text, TextSize } from '@/shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 export interface ArticleInfiniteGridLoaderProps {
 	className?: string;

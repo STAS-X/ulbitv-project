@@ -1,8 +1,8 @@
 import { ReducersMapObject } from '@reduxjs/toolkit';
-import { useNavigate } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { useNavigate } from '@/app/providers/RouterUtilsProvider/RouterUtilsProvider';
 import { FC, ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { $apiAxios } from 'shared/api/api';
+import { $apiAxios } from '@/shared/api/api';
 import { StateSchema } from '../config/StateSchema';
 import { createReduxStore } from '../config/store';
 

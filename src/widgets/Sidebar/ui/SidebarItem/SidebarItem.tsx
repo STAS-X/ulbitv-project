@@ -1,11 +1,11 @@
 import { FC, memo, MouseEventHandler } from 'react';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink/AppLink';
 import classes from './SidebarItem.module.scss';
 import { useTranslation } from 'react-i18next';
 import { SidebarItemType } from '../../model/items';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { AppRoutes } from 'shared/config/routeConfig';
-import { useNavigate } from 'app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { AppRoutes } from '@/shared/config/routeConfig';
+import { useNavigate } from '@/app/providers/RouterUtilsProvider/RouterUtilsProvider';
 
 interface SidebarItemProps {
 	item?: SidebarItemType;

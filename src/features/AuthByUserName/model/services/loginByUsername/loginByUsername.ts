@@ -1,6 +1,6 @@
-import { userActions, UserData } from 'entities/User';
-import { USER_LS_KEY } from 'shared/const/localstorage';
-import { createAppAsyncThunk, getErrorMessage, ThunkError } from 'shared/types/thunk/thunkAction';
+import { userActions, UserData } from '@/entities/User';
+import { USER_LS_KEY } from '@/shared/const/localstorage';
+import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
 
 export interface LoginByUsernameProps {
 	username: string;

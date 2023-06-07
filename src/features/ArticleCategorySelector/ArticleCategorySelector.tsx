@@ -1,10 +1,10 @@
 import { FC, memo, useCallback, useMemo, useState } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ArticleCategorySelector.module.scss';
 import { useTranslation } from 'react-i18next';
-import { useDebounce as useFilterDebounce } from 'shared/lib/hooks/useDebounce';
-import { DEBOUNCE_DELAY } from 'shared/const/localstorage';
-import { ArticleType } from 'entities/Article/model/types/articleSchema';
+import { useDebounce as useFilterDebounce } from '@/shared/lib/hooks/useDebounce';
+import { DEBOUNCE_DELAY } from '@/shared/const/localstorage';
+import { ArticleType } from '@/entities/Article/model/types/articleSchema';
 import { Tabs } from '../../shared/ui/Tabs/Tabs/Tabs';
 
 export interface ArticleCategorySelectorProps {

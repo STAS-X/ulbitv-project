@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ExtraThunkArgs, StateSchema } from 'app/providers/StoreProvider';
-import { AppThunkDispatch } from 'app/providers/StoreProvider/config/store';
+import { ExtraThunkArgs, StateSchema } from '@/app/providers/StoreProvider';
+import { AppThunkDispatch } from '@/app/providers/StoreProvider/config/store';
 
 interface SerializedError {
 	name?: string;

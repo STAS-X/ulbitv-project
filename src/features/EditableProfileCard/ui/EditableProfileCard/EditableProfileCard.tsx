@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useSelector } from 'react-redux';
 import {
 	getEditableProfileData,
@@ -8,18 +8,18 @@ import {
 	getEditableProfileIsLoading,
 	getEditableProfileReadOnly
 } from '../../model/selectors/getEditableProfile/getEditableProfileData';
-import { ProfileCard, ProfileFieldType } from 'entities/Profile/ui/ProfileCard/ProfileCard';
-import { ProfileData } from 'entities/Profile/model/types/profileSchema';
-import { Currency } from 'entities/Currency';
-import { Country } from 'entities/Country';
+import { ProfileCard, ProfileFieldType } from '@/entities/Profile/ui/ProfileCard/ProfileCard';
+import { ProfileData } from '@/entities/Profile/model/types/profileSchema';
+import { Currency } from '@/entities/Currency';
+import { Country } from '@/entities/Country';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from 'app/providers/StoreProvider';
+import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { fetchEditableProfileData } from '../../model/services/fetchEditableProfileData/fetchEditableProfileData';
 import { editableProfileActions, editableProfileReducer } from '../../model/slices/editableProfileSlices';
 import { EditableProfileCardHeader } from '../EditableProfilePageHeader/EditableProfileCardHeader';
-import { VStack } from 'shared/ui/Stack';
-import { getUserData } from 'entities/User';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { VStack } from '@/shared/ui/Stack';
+import { getUserData } from '@/entities/User';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 const redusers: ReducerList = {
 	profile: editableProfileReducer
