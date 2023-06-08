@@ -13,7 +13,8 @@
 	"moduleNameMapper": {
 		"\\.s?css$": "identity-obj-proxy",
 		"\\.jpe?g|png|tif?f|bmp$": "identity-obj-proxy",
-		"\\.svg$": "<rootDir>/config/jest/mock/mockEmptyJest.tsx"
+		"\\.svg$": "<rootDir>/config/jest/mock/mockEmptyJest.tsx",
+		"^@/(.*)$": "<rootDir>/src/$1"
 	},
 	"testMatch": ["<rootDir>/src/**/*(*.)@(spec|test).[tj]s?(x)"],
 	"rootDir": "../../",

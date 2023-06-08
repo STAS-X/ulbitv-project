@@ -7,6 +7,44 @@ import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDeco
 import { NavigateDecorator } from 'shared/config/storybook/NavigateDecorator/NavigateDecorator';
 import { SuspenseDecorator } from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
 
+
+const useStoryTheme = (defaultTheme) => {
+	const [theme, setTheme] = useState(defaultTheme);
+
+	return () => {
+		setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
+		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
+	};
+};
+
+const ThemeContext = createContext({
+	theme: Theme.LIGHT,
+	setTheme: useStoryTheme
+});
+
+const defaultContext = {
+	icon: 'globe',
+	title: 'Themes',
+	components: [ThemeContext.Provider],
+	params: [
+		// an array of params contains a set of predefined `props` for `components`
+		{
+			name: 'Light Theme',
+			props: { value: { theme: Theme.LIGHT, setTheme: useStoryTheme } },
+			default: true
+		},
+		{
+			name: 'Dark Theme',
+			props: { value: { theme: Theme.DARK, setTheme: useStoryTheme } }
+		}
+	],
+	options: {
+		deep: true, // pass the `props` deeply into all wrapping components
+		disable: false, // disable this contextual environment completely
+		cancelable: false // allow this contextual environment to be opt-out optionally in toolbar
+	}
+};
+
 export const parameters = {
 	actions: { argTypesRegex: '^on[A-Z].*' },
 	controls: {
@@ -55,43 +93,6 @@ export const parameters = {
 	// 	refreshStoryOnUpdate: true, // This re-render the story if there's any data changes
 	// 	disable: true // This disables the panel from all the stories
 	// }
-};
-
-const ThemeContext = createContext({
-	theme: Theme.LIGHT,
-	setTheme: useStoryTheme
-});
-
-const useStoryTheme = (defaultTheme) => {
-	const [theme, setTheme] = useState(defaultTheme);
-
-	return () => {
-		setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
-		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
-	};
-};
-
-const defaultContext = {
-	icon: 'globe',
-	title: 'Themes',
-	components: [ThemeContext.Provider],
-	params: [
-		// an array of params contains a set of predefined `props` for `components`
-		{
-			name: 'Light Theme',
-			props: { value: { theme: Theme.LIGHT, setTheme: useStoryTheme } },
-			default: true
-		},
-		{
-			name: 'Dark Theme',
-			props: { value: { theme: Theme.DARK, setTheme: useStoryTheme } }
-		}
-	],
-	options: {
-		deep: true, // pass the `props` deeply into all wrapping components
-		disable: false, // disable this contextual environment completely
-		cancelable: false // allow this contextual environment to be opt-out optionally in toolbar
-	}
 };
 
 export const decorators = [

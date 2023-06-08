@@ -24,7 +24,6 @@
 	border-top-left-radius: 12px;
 	border-top-right-radius: 12px;
 	position: fixed;
-	//height: max-content;
 	left: 2vw;
 	width: 96vw;
 	padding: 25px 0;
@@ -52,6 +51,7 @@
 	pointer-events: auto;
 	z-index: var(--modal-z-index);
 	opacity: 1;
+
 	.content {
 		transform: translateY(0%);
 	}
@@ -61,6 +61,7 @@
 	pointer-events: auto;
 	z-index: var(--hidden-z-index);
 	opacity: 0;
+
 	.content {
 		transform: translateY(100%);
 	}
