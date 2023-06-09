@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useCallback } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { useTheme } from '@/app/providers/ThemeProvider';
 import { Portal } from '../Portal/Portal';
@@ -9,7 +9,7 @@ export interface ModalProps {
 	className?: string;
 	children?: ReactNode;
 	isOpen: boolean;
-	onClose: () => void;
+	onClose?: () => void;
 }
 
 export const Modal: FC<ModalProps> = (props: ModalProps) => {
@@ -22,10 +22,14 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
 		[classes.closed]: !isOpen
 	};
 
+	const handleClose = useCallback(() => {
+		onClose?.();
+	}, [onClose]);
+
 	return (
 		<Portal>
 			<div className={classNames(classes.modal, mods, [className, theme, 'app_modal'])}>
-				<Overlay onClick={onClose} />
+				<Overlay onClick={handleClose} />
 				<div className={classNames(classes.content, {}, [])}>{children}</div>
 			</div>
 		</Portal>

@@ -1,0 +1,14 @@
+.feedbackform {
+	display: flex;
+	flex-direction: column;
+	min-width: 350px;
+}
+
+.input {
+	margin-top: 10px;
+	font: var(--font-m);
+}
+
+.feedbackbtn {
+	margin-top: 25px;
+}

@@ -1,4 +1,4 @@
-import { FC, memo, VFC, SVGProps } from 'react';
+import { FC, memo, VFC, SVGProps, HTMLAttributes } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Icon.module.scss';
 
@@ -8,14 +8,14 @@ export enum IconTheme {
 	ALERT = 'alert'
 }
 
-export interface IconProps {
+export interface IconProps extends SVGProps<SVGSVGElement> {
 	className?: string;
-	Svg: VFC<SVGProps<SVGSVGElement>>;
+	Svg: FC<SVGProps<SVGSVGElement>>;
 	theme?: IconTheme;
 }
 
-export const Icon: FC<IconProps> = memo((props: IconProps) => {
-	const { className, Svg, theme = IconTheme.PRIMARY } = props;
+export const Icon: FC<Omit<IconProps, 'ref'>> = memo((props: IconProps) => {
+	const { className, Svg, theme = IconTheme.PRIMARY, ...others } = props;
 
-	return <Svg className={classNames(classes.icon, { [classes[theme]]: true }, [className])}></Svg>;
+	return <Svg className={classNames(classes.icon, { [classes[theme]]: true }, [className])} {...others} />;
 });

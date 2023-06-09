@@ -1,0 +1,75 @@
+.StarRating {
+	margin-top: 15px;
+	padding: 5px;
+	border: 2px solid var(--primary-color);
+	display: flex;
+	justify-content: center;
+}
+
+.starIcon {
+	fill: none;
+	stroke-width: 1px;
+	stroke: var(--primary-color);
+}
+
+.isSelected {
+	fill: var(--primary-color);
+	cursor: pointer;
+
+	&:hover {
+		animation: onRatingStar 0.3s ease-in-out;
+	}
+}
+
+.hasRating {
+	cursor: grabbing;
+	fill: none;
+	stroke-width: 2px;
+	stroke: red;
+
+	&:hover {
+		animation: onCancelRatingStar 0.3s ease-in-out;
+	}
+}
+
+@keyframes onRatingStar {
+	0% {
+		transform: scale(1);
+		fill: none;
+	}
+	25% {
+		transform: scale(1.2);
+	}
+	50% {
+		transform: scale(1);
+	}
+	75% {
+		transform: scale(0.8);
+	}
+	100% {
+		transform: scale(1);
+		fill: var(--primary-color);
+	}
+}
+
+@keyframes onCancelRatingStar {
+	0% {
+		transform: scale(1);
+		stroke-width: 1px;
+		fill: var(--primary-color);
+	}
+	25% {
+		transform: scale(1.2);
+	}
+	50% {
+		transform: scale(1);
+	}
+	75% {
+		transform: scale(0.8);
+	}
+	100% {
+		transform: scale(1);
+		stroke-width: 2px;
+		fill: none;
+	}
+}

@@ -13,6 +13,7 @@ import { AnimationProvider } from '@/shared/lib/components/AnimationProvider';
 interface DrawerProps {
 	className?: string;
 	children: ReactNode;
+	maxHeight?: string;
 	isOpen?: boolean;
 	onClose?: () => void;
 }
@@ -20,7 +21,7 @@ interface DrawerProps {
 const DrawerContent = (props: DrawerProps) => {
 	const { Spring, Gesture } = useAnimationLibrarys();
 
-	const { className, children, onClose = () => null, isOpen = false } = props;
+	const { className, children, onClose = () => null, maxHeight = '70%', isOpen = false } = props;
 
 	const [deltaY, setDeltaY] = useState(0);
 	const [height, setHeight] = useState<number>(0);
@@ -59,12 +60,12 @@ const DrawerContent = (props: DrawerProps) => {
 
 	useEffect(() => {
 		if (isOpen) {
-			if (contentRef?.current) {
-				console.log(contentRef.current.clientHeight, 'current height');
-				setHeight(contentRef.current.clientHeight);
+			if (contentRef?.current && height === 0) {
+				console.log(contentRef.current.offsetHeight, 'current height');
+				setHeight(contentRef.current.offsetHeight);
 			}
 		}
-	}, [contentRef, api, isOpen]);
+	}, [contentRef, height, isOpen]);
 
 	const bind = Gesture.useDrag(
 		({ last, velocity: [, vy], direction: [, dy], offset: [, my], cancel }) => {
@@ -89,7 +90,7 @@ const DrawerContent = (props: DrawerProps) => {
 					openDrawer();
 				}
 			} else {
-				console.log(my, 'get offset my');
+				//console.log(my, 'get offset my');
 				api.start({ y: my, immediate: true });
 				//setDeltaY(my);
 			}
@@ -103,21 +104,15 @@ const DrawerContent = (props: DrawerProps) => {
 		}
 	);
 
-	// const display = y.to((dy) => {
-	// 	return dy < height ? 'block' : 'none';
-	// });
-	console.log(height, y, y.get(), 'get y data from spring');
-
 	const rubberStyle = {
 		...(isOpen
 			? height > 0 && y.get() !== 0
 				? y.get() < 0
 					? { height: height - deltaY, overflow: 'hidden' }
 					: { y, height, overflow: 'hidden' }
-				: { height: '70%', overflow: 'auto' }
+				: { height: maxHeight, overflow: 'auto' }
 			: {})
 	};
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 
 	return (
 		<Portal>

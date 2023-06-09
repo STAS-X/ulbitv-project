@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { convertToProperty } from '../../../lib/helpers/propertyToFlex';
@@ -31,7 +31,9 @@ export const Flex: FC<FlexProps> = (props: FlexProps) => {
 		gap = 8,
 		dataTestId = 'Stack'
 	} = props;
+
 	const { t } = useTranslation();
+	//console.log(convertToProperty(justify), convertToProperty(align), props, 'justify');
 
 	return (
 		<div
