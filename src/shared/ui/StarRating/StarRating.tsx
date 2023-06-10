@@ -19,7 +19,6 @@ export const StarRating: FC<StarRatingProps> = (props: StarRatingProps) => {
 
 	const [currentStar, setCurrentStar] = useState<number>(0);
 	const [currentRating, setCurrentRating] = useState<number>(rating);
-	const [isFrozen, setIsFrozen] = useState<boolean>(false);
 
 	const stars = Array.from({ length: count }, (_, i) => i);
 
@@ -74,7 +73,6 @@ export const StarRating: FC<StarRatingProps> = (props: StarRatingProps) => {
 							width={size}
 							height={size}
 							onMouseEnter={() => handleInOutHover(index + 1)}
-							onMouseLeave={() => setIsFrozen(false)}
 							onClick={() => handleSetRating(index + 1)}
 						/>
 					);

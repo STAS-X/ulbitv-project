@@ -20,14 +20,16 @@ export const createAppAsyncThunk = createAsyncThunk.withTypes<{
 }>();
 
 export function getErrorMessage(error: ThunkError) {
+	console.log(error, 'get error data');
 	return (
 		(error?.message ||
-			error?.response?.data?.message ||
-			error?.response?.data?.error ||
-			error?.response?.data ||
-			error?.data?.message ||
-			error?.error ||
-			error?.toString()) ??
-		undefined
+		error?.response?.data?.message ||
+		error?.response?.data?.error ||
+		error?.response?.data ||
+		error?.data?.message ||
+		error?.error ||
+		error
+			? 'query internal error'
+			: null) ?? undefined
 	);
 }

@@ -15,6 +15,7 @@ import { OptionalRecord } from '@/shared/lib/url/queryParams/addQueryParams';
 import { VStack } from '@/shared/ui/Stack';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 import { ArticleDetailesComments } from '../ArticleDetailesComments/ArticleDetailesComments';
+import AddArticleRating from '@/features/AddArticleRating/ui/AddArticleRating';
 
 export interface ArticleDetailesPageProps {
 	className?: string;
@@ -59,6 +60,7 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 				<VStack gap={16}>
 					<ArticleDetailesPageHeader />
 					<ArticleDetailes articleId={articleId} />
+					<AddArticleRating articleId={articleId} />
 					<ArticleRecommendationsList />
 					<ArticleDetailesComments id={articleId} />
 				</VStack>

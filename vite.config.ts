@@ -15,7 +15,7 @@ export default defineConfig({
 	},
 	define: {
 		_DEV_MODE_: JSON.stringify(true),
-		_BASE_URL_: JSON.stringify('http://localstorage:8000'),
+		_BASE_URL_: JSON.stringify('http://localhost:8000'),
 		_PROJECT_: JSON.stringify('frontend')
 	}
 });
