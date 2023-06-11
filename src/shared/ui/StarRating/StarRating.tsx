@@ -1,6 +1,5 @@
-import { FC, useCallback, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { FC, memo, useCallback, useState } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import StarIcon from '@/shared/assets/icons/star-24-24.svg';
 import classes from './StarRating.module.scss';
 import { Icon } from '../Icon/Icon';
@@ -14,7 +13,7 @@ export interface StarRatingProps {
 	rating?: number;
 }
 
-export const StarRating: FC<StarRatingProps> = (props: StarRatingProps) => {
+export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => {
 	const { className, size = 30, count = 5, rating = 0, onSelect } = props;
 
 	const [currentStar, setCurrentStar] = useState<number>(0);
@@ -80,4 +79,4 @@ export const StarRating: FC<StarRatingProps> = (props: StarRatingProps) => {
 			</HStack>
 		</div>
 	);
-};
+});

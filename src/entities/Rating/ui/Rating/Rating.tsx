@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useState } from 'react';
+import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Rating.module.scss';
@@ -21,7 +21,6 @@ export interface RatingProps {
 	articleRating?: number;
 	articleFeedBack?: string;
 	error: string;
-	isLoading: boolean;
 	max?: boolean;
 	onCancel: (stars: number) => void;
 	title: string;
@@ -37,7 +36,6 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 		articleRating = 0,
 		articleFeedBack = '',
 		max = false,
-		isLoading,
 		onCancel,
 		title
 	} = props;
@@ -70,41 +68,36 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 		} else onAccept(0, '');
 	};
 	const onFeedBack = (feedback: string) => {
-		setFeedBack(feedback);
+		//setFeedBack(feedback);
 	};
 
 	return (
 		<Card className={classNames(classes.Rating, { [classes.max]: max }, [className])}>
-			{isLoading && <Skeleton width={'100%'} height={140} />}
-			{!isLoading && (
-				<>
-					<VStack align={'center'} gap={8}>
-						<Text title={rating > 0 ? t('ratingTitle') : title} />
-						{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}
-						<StarRating rating={articleRating} size={40} onSelect={onSelectStarts} />
-						{articleFeedBack && <Text content={`${t('ratingPlaceholder')} ${articleFeedBack}`} size={TextSize.M} />}
-					</VStack>
-					{hasFeedBack &&
-						(isMobile ? (
-							<Drawer onClose={onModalHandler} isOpen={isOpen} maxHeight={'50%'}>
-								<FeedBackForm
-									title={feedBackTitle}
-									onClose={onCloseModal}
-									onFeedBack={onFeedBack}
-									onSuccess={handleSuccess}
-								/>
-							</Drawer>
-						) : (
-							<RatingModal
-								isOpen={isOpen}
-								title={feedBackTitle}
-								onFeedBack={onFeedBack}
-								onClose={onCloseModal}
-								onSuccess={handleSuccess}
-							/>
-						))}
-				</>
-			)}
+			<VStack align={'center'} gap={8}>
+				<Text title={rating ? t('ratingTitle') : title} />
+				{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}
+				<StarRating rating={rating} size={40} onSelect={onSelectStarts} />
+				{feedBack && <Text content={`${t('ratingPlaceholder')} ${feedBack}`} size={TextSize.M} />}
+			</VStack>
+			{hasFeedBack &&
+				(isMobile ? (
+					<Drawer onClose={onModalHandler} isOpen={isOpen} maxHeight={'50%'}>
+						<FeedBackForm
+							title={feedBackTitle}
+							onClose={onCloseModal}
+							onFeedBack={onFeedBack}
+							onSuccess={handleSuccess}
+						/>
+					</Drawer>
+				) : (
+					<RatingModal
+						isOpen={isOpen}
+						title={feedBackTitle}
+						onFeedBack={onFeedBack}
+						onClose={onCloseModal}
+						onSuccess={handleSuccess}
+					/>
+				))}
 		</Card>
 	);
 });

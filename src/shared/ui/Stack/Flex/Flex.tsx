@@ -29,9 +29,11 @@ export const Flex: FC<FlexProps> = (props: FlexProps) => {
 		align = 'center',
 		direction = 'column',
 		gap = 8,
-		dataTestId = 'Stack'
+		dataTestId = 'Stack',
+		style,
+		...others
 	} = props;
-
+	console.log(others, 'other props');
 	const { t } = useTranslation();
 	//console.log(convertToProperty(justify), convertToProperty(align), props, 'justify');
 
@@ -40,11 +42,13 @@ export const Flex: FC<FlexProps> = (props: FlexProps) => {
 			data-testid={dataTestId}
 			className={classNames(classes.Flex, {}, [className])}
 			style={{
+				...style,
 				justifyContent: convertToProperty(justify),
 				alignItems: convertToProperty(align),
 				flexDirection: direction,
 				gap
 			}}
+			{...others}
 		>
 			{children}
 		</div>

@@ -944,11 +944,11 @@
   ],
   "article-ratings": [
     {
-      "id": "1",
-      "rating": 4,
-      "feedback": "Хорошая статья",
+      "articleId": "2",
       "userId": "1",
-      "articleId": "1"
+      "rating": 2,
+      "feedback": "",
+      "id": "1"
     },
     {
       "articleId": "2",
