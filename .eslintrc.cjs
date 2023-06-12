@@ -54,7 +54,7 @@ module.exports = {
 			}
 		],
 		quotes: ['error', 'single', { allowTemplateLiterals: true }],
-		'stas-eslint-plugin/path-relative': 'error',
+		'stas-eslint-plugin/path-relative': ['error', {alias: '@'}],
 		'no-tabs': 0,
 		'linebreak-style': 0,
 		'import/no-unresolved': 'off',

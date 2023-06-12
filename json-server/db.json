@@ -998,6 +998,13 @@
       "rating": 4,
       "feedback": "Пойдет для СХ местности",
       "id": "C5z-mUP"
+    },
+    {
+      "articleId": "12",
+      "userId": "1",
+      "rating": 3,
+      "feedback": "Отлично, так держать",
+      "id": "pJzHcCG"
     }
   ]
 }

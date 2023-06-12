@@ -26,7 +26,7 @@ export const rootReducer: ReducersMapObject<StateSchema> = {
 };
 
 export function createReduxStore(
-	initialState?: StateSchema,
+	initialState?: Partial<StateSchema>,
 	asyncReducers?: ReducersMapObject<StateSchema>,
 	extra?: ExtraThunkArgs
 ) {

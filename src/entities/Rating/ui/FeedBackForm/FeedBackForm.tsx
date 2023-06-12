@@ -10,13 +10,12 @@ import { HStack } from '../../../../shared/ui/Stack';
 export interface FeedBackFormProps {
 	className?: string;
 	title?: string;
-	onSuccess?: () => void;
-	onFeedBack?: (feedback: string) => void;
+	onSuccess?: (feedback: string) => void;
 	onClose?: () => void;
 }
 
 const FeedBackForm: FC<FeedBackFormProps> = memo((props: FeedBackFormProps) => {
-	const { className, title, onFeedBack, onSuccess, onClose } = props;
+	const { className, title, onSuccess, onClose } = props;
 	const { t } = useTranslation(['translation', 'errors']);
 	//const dispatch = useAppDispatch();
 
@@ -26,9 +25,8 @@ const FeedBackForm: FC<FeedBackFormProps> = memo((props: FeedBackFormProps) => {
 	const onChangeFeedBack = useCallback(
 		(value: string) => {
 			setFeedBack(value);
-			onFeedBack?.(value);
 		},
-		[setFeedBack, onFeedBack]
+		[setFeedBack]
 	);
 	// const onChangePassword = useCallback(
 	// 	(value: string) => {
@@ -42,7 +40,9 @@ const FeedBackForm: FC<FeedBackFormProps> = memo((props: FeedBackFormProps) => {
 	}, [feedBack]);
 
 	const onFeedBackClose = useCallback(() => onClose?.(), [onClose]);
-	const onFeedBackSuccess = useCallback(() => onSuccess?.(), [onSuccess]);
+	const onFeedBackSuccess = useCallback(() => {
+		onSuccess?.(feedBack);
+	}, [onSuccess, feedBack]);
 
 	return (
 		<div className={classNames(classes.feedbackform, {}, [className])}>

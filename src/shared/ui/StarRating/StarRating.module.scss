@@ -1,5 +1,5 @@
 .StarRating {
-	margin-block: 15px;
+	margin-block: 5px;
 	padding: 5px;
 	border: 2px solid var(--primary-color);
 	display: flex;
@@ -17,7 +17,7 @@
 	cursor: pointer;
 
 	&:hover {
-		animation: onRatingStar 0.3s ease-in-out;
+		animation: onratingstar 0.3s ease-in-out;
 	}
 }
 
@@ -28,45 +28,53 @@
 	stroke: red;
 
 	&:hover {
-		animation: onCancelRatingStar 0.3s ease-in-out;
+		animation: oncancelratingstar 0.3s ease-in-out;
 	}
 }
 
-@keyframes onRatingStar {
+@keyframes onratingstar {
 	0% {
 		transform: scale(1);
 		fill: none;
 	}
+
 	25% {
 		transform: scale(1.2);
 	}
+
 	50% {
 		transform: scale(1);
 	}
+
 	75% {
 		transform: scale(0.8);
 	}
+
 	100% {
 		transform: scale(1);
 		fill: var(--primary-color);
 	}
 }
 
-@keyframes onCancelRatingStar {
+@keyframes oncancelratingstar {
 	0% {
 		transform: scale(1);
 		stroke-width: 1px;
 		fill: var(--primary-color);
 	}
+
 	25% {
 		transform: scale(1.2);
 	}
+
 	50% {
 		transform: scale(1);
 	}
+
 	75% {
 		transform: scale(0.8);
 	}
+
 	100% {
 		transform: scale(1);
 		stroke-width: 2px;

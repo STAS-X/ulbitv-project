@@ -22,10 +22,10 @@ export const ArticleRecommendationsList: FC<ArticleRecommendationsListProps> = m
 		const {
 			data: recomendations = [],
 			isLoading: recomendaionsIsLoading,
-			error: recomendaionsError
+			error: recomendationsError
 		} = useGetRecommendationByArticleQuery(3);
 
-		const errorMessage = getErrorMessage(recomendaionsError);
+		const errorMessage = recomendationsError? getErrorMessage(recomendationsError) : '';
 
 		return (
 			<VStack gap={10} max className={classNames('', {}, [className])}>

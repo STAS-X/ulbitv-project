@@ -1,29 +1,28 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import componentStore from '@/shared/lib/tests/componentStore/componentStore';
-import { StateSchema } from '@/app/providers/StoreProvider';
 import { Counter } from './Common';
 import { rtkApi } from '@/shared/api/rtkApi';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
-const initialState: StateSchema = {
+const initialState: Partial<StateSchema> = {
 	common: { value: 8, isLazyModal: false },
-	user: { _loaded: true },
-	[rtkApi.reducerPath]: rtkApi.reducer as unknown as ReturnType<typeof rtkApi.reducer>
+	user: { _loaded: true }
 };
 
 describe('Counter component test', () => {
-	test('Counter redux component render', () => {
-		componentStore(<Counter />, initialState);
+	test('Counter redux component render', async () => {
+		await waitFor(() => componentStore(<Counter />, initialState));
 		expect(screen.getByTestId('common')).toBeInTheDocument();
 	});
 
-	test('Counter with initial state', () => {
-		componentStore(<Counter />, initialState);
+	test('Counter with initial state', async () => {
+		await waitFor(() => componentStore(<Counter />, initialState));
 		const titleCounter = screen.getByTestId('common-value');
 		expect(titleCounter).toHaveTextContent('8');
 	});
 
-	test('Counter with change state', () => {
-		componentStore(<Counter />, initialState);
+	test('Counter with change state', async () => {
+		await waitFor(() => componentStore(<Counter />, initialState));
 		const incrementBtn = screen.getByTestId('increment-btn');
 		const decrementBtn = screen.getByTestId('decrement-btn');
 

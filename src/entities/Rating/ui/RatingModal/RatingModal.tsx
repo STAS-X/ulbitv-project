@@ -7,13 +7,12 @@ export interface RatingModalProps {
 	className?: string;
 	isOpen: boolean;
 	title?: string;
-	onFeedBack?: (feedback: string) => void;
-	onSuccess?: () => void;
+	onSuccess?: (feedback: string) => void;
 	onClose?: () => void;
 }
 
 export const RatingModal: FC<RatingModalProps> = (props: RatingModalProps) => {
-	const { className, isOpen, onFeedBack, onSuccess, onClose, title } = props;
+	const { className, isOpen, onSuccess, onClose, title } = props;
 	const [slowClose, setSlowClose] = useState(isOpen);
 
 	useEffect(() => {
@@ -24,7 +23,7 @@ export const RatingModal: FC<RatingModalProps> = (props: RatingModalProps) => {
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} className={classNames('', {}, [className])}>
-			{slowClose && <FeedBackForm title={title} onClose={onClose} onFeedBack={onFeedBack} onSuccess={onSuccess} />}
+			{slowClose && <FeedBackForm title={title} onClose={onClose} onSuccess={onSuccess} />}
 		</Modal>
 	);
 };

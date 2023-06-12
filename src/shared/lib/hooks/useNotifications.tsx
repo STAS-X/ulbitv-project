@@ -17,7 +17,7 @@ export const useNotifications = (): NotificationListSchema => {
 	const [notifyCount, setNotifyCount] = useState<number>(0);
 	const [hasNewNotes, setHasNewNotes] = useState<boolean>(false);
 
-	const errorMessage = getErrorMessage(notificationError);
+	const errorMessage = notificationError ? getErrorMessage(notificationError) : '';
 
 	const notificationItems = useMemo<NotificationItemSchema[]>(() => {
 		if (notificationIsLoading) {

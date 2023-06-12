@@ -42,9 +42,9 @@ const AddArticleRating: FC<AddArticleRatingProps> = memo((props: AddArticleRatin
 	const [updateArticleFeedBack, { error: postError, isError: postIsError }] = useUpdateArticleFeedBackMutation();
 
 	useEffect(() => {
-		if (getIsError) setFeedError(getErrorMessage(getError) || '');
-		if (putIsError) setFeedError(getErrorMessage(putError) || '');
-		if (postIsError) setFeedError(getErrorMessage(postError) || '');
+		if (getIsError) setFeedError(getErrorMessage(getError));
+		if (putIsError) setFeedError(getErrorMessage(putError));
+		if (postIsError) setFeedError(getErrorMessage(postError));
 	}, [getIsError, getError, putIsError, putError, postIsError, postError]);
 
 	useEffect(() => {

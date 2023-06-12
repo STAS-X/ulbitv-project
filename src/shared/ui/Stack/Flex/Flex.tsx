@@ -1,5 +1,4 @@
-import { FC, ReactNode, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { FC, ReactNode } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { convertToProperty } from '../../../lib/helpers/propertyToFlex';
 import classes from './Flex.module.scss';
@@ -34,7 +33,6 @@ export const Flex: FC<FlexProps> = (props: FlexProps) => {
 		...others
 	} = props;
 	console.log(others, 'other props');
-	const { t } = useTranslation();
 	//console.log(convertToProperty(justify), convertToProperty(align), props, 'justify');
 
 	return (

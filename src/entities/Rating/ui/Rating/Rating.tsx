@@ -41,7 +41,7 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 	} = props;
 
 	const [rating, setRating] = useState(articleRating);
-	const [feedBack, setFeedBack] = useState(articleFeedBack);
+	//const [feedBack, setFeedBack] = useState(articleFeedBack);
 	const { t } = useTranslation();
 
 	const isMobile = detectMobileDevice();
@@ -51,10 +51,13 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 		animationDelay: isMobile ? 350 : 300
 	});
 
-	const handleSuccess = useCallback(() => {
-		onModalHandler();
-		onAccept(rating, feedBack);
-	}, [onModalHandler, onAccept, rating, feedBack]);
+	const handleSuccess = useCallback(
+		(feedback: string) => {
+			onModalHandler();
+			onAccept(rating, feedback);
+		},
+		[onModalHandler, onAccept, rating]
+	);
 
 	const onCloseModal = useCallback(() => {
 		onModalHandler();
@@ -67,9 +70,9 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 			onModalHandler();
 		} else onAccept(0, '');
 	};
-	const onFeedBack = (feedback: string) => {
-		//setFeedBack(feedback);
-	};
+	// const onFeedBack = (feedback: string) => {
+	// 	setFeedBack(feedback);
+	// };
 
 	return (
 		<Card className={classNames(classes.Rating, { [classes.max]: max }, [className])}>
@@ -77,26 +80,15 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 				<Text title={rating ? t('ratingTitle') : title} />
 				{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}
 				<StarRating rating={rating} size={40} onSelect={onSelectStarts} />
-				{feedBack && <Text content={`${t('ratingPlaceholder')} ${feedBack}`} size={TextSize.M} />}
+				{articleFeedBack && <Text content={`${t('ratingPlaceholder')} ${articleFeedBack}`} size={TextSize.M} />}
 			</VStack>
 			{hasFeedBack &&
 				(isMobile ? (
 					<Drawer onClose={onModalHandler} isOpen={isOpen} maxHeight={'50%'}>
-						<FeedBackForm
-							title={feedBackTitle}
-							onClose={onCloseModal}
-							onFeedBack={onFeedBack}
-							onSuccess={handleSuccess}
-						/>
+						<FeedBackForm title={feedBackTitle} onClose={onCloseModal} onSuccess={handleSuccess} />
 					</Drawer>
 				) : (
-					<RatingModal
-						isOpen={isOpen}
-						title={feedBackTitle}
-						onFeedBack={onFeedBack}
-						onClose={onCloseModal}
-						onSuccess={handleSuccess}
-					/>
+					<RatingModal isOpen={isOpen} title={feedBackTitle} onClose={onCloseModal} onSuccess={handleSuccess} />
 				))}
 		</Card>
 	);

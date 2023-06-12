@@ -2,10 +2,15 @@ import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { StateSchema } from '@/app/providers/StoreProvider/config/StateSchema';
 import { createReduxStore } from '@/app/providers/StoreProvider/config/store';
-import { render } from '@testing-library/react';
+import { createRoot } from 'react-dom/client';
 
-export default function componentStore(Component: ReactNode, initialState: StateSchema) {
+const container = document.createElement('div');
+container.setAttribute('id', 'project-root');
+document.body.appendChild(container);
+const root = createRoot(container);
+
+export default function componentStore(Component: ReactNode, initialState: Partial<StateSchema>) {
 	const store = createReduxStore(initialState);
 
-	return render(<Provider store={store}>{Component}</Provider>);
+	return root.render(<Provider store={store}>{Component}</Provider>);
 }

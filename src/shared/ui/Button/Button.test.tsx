@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { waitFor, screen } from '@testing-library/react';
+import componentRender from '@/shared/lib/tests/componentRender/componentRender';
 import { Button } from './Button';
 
 describe('button test', () => {
@@ -16,9 +17,9 @@ describe('button test', () => {
 		//container = null;
 	});
 
-	test('first component test', () => {
+	test('first component test', async () => {
 		// Test first render and componentDidMount
-		render(<Button>{text}</Button>);
+		await waitFor(() => componentRender(<Button>{text}</Button>));
 		expect(screen.getByText('Test')).toBeInTheDocument();
 	});
 });
