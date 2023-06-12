@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useEffect, useState } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Rating.module.scss';
@@ -11,7 +11,6 @@ import { detectMobileDevice } from '@/shared/lib/helpers/checkIsMobile';
 import { useModal } from '@/shared/lib/hooks/useModal';
 import { Drawer } from '@/shared/ui/Drawer/Drawer';
 import FeedBackForm from '../FeedBackForm/FeedBackForm';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
 export interface RatingProps {
 	className?: string;

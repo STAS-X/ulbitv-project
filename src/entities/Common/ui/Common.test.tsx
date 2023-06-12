@@ -1,7 +1,6 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import componentStore from '@/shared/lib/tests/componentStore/componentStore';
 import { Counter } from './Common';
-import { rtkApi } from '@/shared/api/rtkApi';
 import { StateSchema } from '@/app/providers/StoreProvider';
 
 const initialState: Partial<StateSchema> = {
