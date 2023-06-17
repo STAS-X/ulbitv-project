@@ -7,9 +7,8 @@ import { articlesPageReducer, articlesPageActions } from '../../model/slices/art
 import classes from './ArticlesPage.module.scss';
 import { getArticlesPageInited } from '../..';
 import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
-import { ArticlesPageFilters } from '@/entities/Article';
+import { ArticlesPageFilters, ArticleInfiniteGridLoader } from '@/entities/Article';
 import { useArticlesParams } from '@/shared/lib/hooks/useArticlesQueryParams';
-import { ArticleInfiniteGridLoader } from '@/entities/Article/ui/ArticleInfiniteLoader/ArticleInfiniteGridLoader';
 
 export interface ArticlesPageProps {
 	className?: string;

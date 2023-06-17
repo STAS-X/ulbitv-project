@@ -10,22 +10,11 @@ import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { CountrySelector } from '@/entities/Country';
 import { CurrencySelector } from '@/entities/Currency';
 import { useSelector } from 'react-redux';
-import { ValidateProfileError } from '../../model/types/profileSchema';
+import { ProfileFieldType, ValidateProfileError } from '../../model/types/profileSchema';
 import { useParams } from 'react-router-dom';
 import { VStack } from '@/shared/ui/Stack/VStack/VStack';
 import { HStack } from '@/shared/ui/Stack/HStack/HStack';
 import { getEditableProfileValidation } from '@/features/EditableProfileCard/model/selectors/getEditableProfile/getEditableProfileData';
-
-export enum ProfileFieldType {
-	FIRST = 'first',
-	LAST = 'last',
-	AGE = 'age',
-	CITY = 'city',
-	USERNAME = 'username',
-	AVATAR = 'avatar',
-	COUNTRY = 'country',
-	CURRENCY = 'currency'
-}
 
 export interface ProfileCardProps {
 	className?: string;

@@ -12,10 +12,10 @@ import {
 } from '../../model/selectors/addCommentFormData';
 import { Text, TextTheme } from '@/shared/ui/Text/Text';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
-import { CommentSchema } from '@/entities/Comment/model/types/commentSchema';
+import { CommentSchema } from '@/entities/Comment';
 import { addCommentFormActions, addCommentFormReducer } from '../../model/slices/addCommentFormSlice';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { HStack, VStack } from '../../../../shared/ui/Stack';
+import { HStack, VStack } from '@/shared/ui/Stack';
 
 export interface AddCommentFormProps {
 	className?: string;

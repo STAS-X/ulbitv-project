@@ -1,4 +1,5 @@
 export type { ArticleSchema } from './model/types/articleSchema';
+export { ArticleType } from './model/types/articleSchema';
 export type { ArticleDetailesSchema } from './model/types/articleDetailesSchema';
 export { ArticleBlockType, ArticleView } from './model/types/articleSchema';
 export { getArticleData, getArticleError, getArticleIsLoading } from './model/selectors/getArticleData';
@@ -8,4 +9,5 @@ export { ArticleImageBlockComponent } from './ui/ArticleImageBlockComponent/Arti
 export { ArticleTextBlockComponent } from './ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
 export { ArticleDetailes } from './ui/ArticleDetailes/ArticleDetailes';
 export { ArticleList } from './ui/ArticleList/ArticleList';
+export { ArticleInfiniteGridLoader } from './ui/ArticleInfiniteLoader/ArticleInfiniteGridLoader';
 export { ArticlesPageFilters } from './ui/ArticlesPageFilters/ArticlesPageFilters';

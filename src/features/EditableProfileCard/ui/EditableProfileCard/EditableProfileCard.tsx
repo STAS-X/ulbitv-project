@@ -8,8 +8,7 @@ import {
 	getEditableProfileIsLoading,
 	getEditableProfileReadOnly
 } from '../../model/selectors/getEditableProfile/getEditableProfileData';
-import { ProfileCard, ProfileFieldType } from '@/entities/Profile/ui/ProfileCard/ProfileCard';
-import { ProfileData } from '@/entities/Profile/model/types/profileSchema';
+import { ProfileData, ProfileCard, ProfileFieldType } from '@/entities/Profile';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 import { useTranslation } from 'react-i18next';

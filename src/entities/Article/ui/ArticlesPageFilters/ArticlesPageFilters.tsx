@@ -5,20 +5,21 @@ import { ArticleViewSelector } from '@/features/ArticleViewSelector/ArticleViewS
 import { ArticleCategorySelector } from '@/features/ArticleCategorySelector/ArticleCategorySelector';
 import classes from './ArticlesPageFilters.module.scss';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { articlesPageActions } from '@/pages/ArticlesPage/model/slices/articlePageSlice';
 import { useSelector } from 'react-redux';
 import { fieldsForSort, ordersForSort } from '@/shared/lib/filters/sortTypes';
 import {
+	articlesPageActions,
 	getArticlesPageFilter,
 	getArticlesPageCategory,
 	getArticlesPageSortField,
 	getArticlesPageSortOrder,
 	getArticlesPageView,
-	getArticlesPageIsLoading
-} from '@/pages/ArticlesPage/model/selectors/getArticlesPageData';
+	getArticlesPageIsLoading,
+	ArticlesSearch,
+	ArticlesSort
+} from '@/pages/ArticlesPage';
 import { ArticleView } from '../../model/types/articleSchema';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
-import { ArticlesSearch, ArticlesSort } from '@/pages/ArticlesPage/model/types/ArticlesPageSchema';
 import { useTranslation } from 'react-i18next';
 import type { OptionType } from '@/shared/ui/Select/Select';
 

@@ -1,7 +1,7 @@
 import { updateEditableProfileData } from '../services/updateEditableProfileData/updateEditableProfileData';
 import { validateEditableProfileData } from '../services/validateEditableProfile/validateEditableProfile';
 import { fetchEditableProfileData } from '../services/fetchEditableProfileData/fetchEditableProfileData';
-import { ProfileData, ProfileSchema } from '@/entities/Profile/model/types/profileSchema';
+import { ProfileData, ProfileSchema } from '@/entities/Profile';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: ProfileSchema = {

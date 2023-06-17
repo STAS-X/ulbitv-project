@@ -1,11 +1,15 @@
-import { NotificationListSchema, NotificationItemSchema } from '@/entities/Notification';
-import { useGetNotificationsQuery } from '@/entities/Notification/api/notificationApi';
+import {
+	NotificationListSchema,
+	NotificationItemSchema,
+	useGetNotificationsQuery,
+	NotificationListItem,
+	checkForNewNotify,
+	writeNotifyToLS
+} from '@/entities/Notification';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getErrorMessage } from '@/shared/types/thunk/thunkAction';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import { Text, TextSize, TextTheme } from '@/shared/ui/Text/Text';
-import { NotificationListItem } from '@/entities/Notification/ui/NotifictionListItem/NotificationListItem';
-import { checkForNewNotify, writeNotifyToLS } from '@/entities/Notification/helpers/checkForNewTotifications';
 
 export const useNotifications = (): NotificationListSchema => {
 	const {

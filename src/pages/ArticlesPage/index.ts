@@ -1,4 +1,3 @@
-export type { ArticlesPageSchema } from './model/types/ArticlesPageSchema';
 export { ArticlesPageLazy as ArticlesPage } from './ui/ArticlesPage/ArticlesPage.lazy';
 export {
 	getArticlesPageIsLoading,
@@ -16,6 +15,7 @@ export {
 	getArticlesPageInited,
 	getArticlesPageTarget
 } from './model/selectors/getArticlesPageData';
-export { getArticlesPage, getFiltredArticles } from './model/slices/articlePageSlice';
+export type { ArticlesPageSchema, ArticlesSort, ArticlesSearch } from './model/types/ArticlesPageSchema';
+export { getArticlesPage, getFiltredArticles, articlesPageActions } from './model/slices/articlePageSlice';
 export { fetchArticlesList } from './model/services/fetchArticesList/fetchArticlesList';
 export { fetchNextArticlesPage } from './model/services/fetchNextArticlesPage/fetchNextArticlesPage';

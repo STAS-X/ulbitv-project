@@ -4,7 +4,7 @@ import ArticleDetailesPage, { ArticleDetailesPageProps } from './ArticleDetailes
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { ArticleBlockType, ArticleType } from '@/entities/Article/model/types/articleSchema';
+import { ArticleBlockType, ArticleType } from '@/entities/Article';
 
 export default {
 	title: 'pages/ArticleDetailesPage',

@@ -12,7 +12,7 @@ import {
 	Reducer
 } from '@reduxjs/toolkit';
 import { ExtraThunkArgs, ReducerManager } from './StateSchema';
-import { commonReducer } from '@/entities/Common/model/slices/commonSlices';
+import { commonReducer } from '@/entities/Common';
 import { userReducer } from '@/entities/User';
 import { createReducerManager } from './reducerManager';
 import { $apiAxios } from '@/shared/api/api';

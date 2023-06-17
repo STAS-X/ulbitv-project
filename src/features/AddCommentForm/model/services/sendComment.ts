@@ -1,8 +1,5 @@
-import { fetchCommentsByArticleId } from './../../../../pages/ArticleDetailesPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { getArticleData } from '@/entities/Article/model/selectors/getArticleData';
-import { getAddCommentContent } from './../selectors/addCommentFormData';
-import { getUserData } from '@/entities/User/model/selectors/getUser/getUser';
-import { CommentSchema } from '@/entities/Comment/model/types/commentSchema';
+import { getUserData } from '@/entities/User';
+import { CommentSchema } from '@/entities/Comment';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
 
 export interface ExtendedCommentData {

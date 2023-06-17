@@ -1,5 +1,5 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/testAsyncThunk/testAsyncThunk';
-import { ArticleSchema, ArticleBlockType, ArticleType } from '@/entities/Article/model/types/articleSchema';
+import { ArticleSchema, ArticleBlockType, ArticleType } from '@/entities/Article';
 import { fetchNextArticlesPage } from './fetchNextArticlesPage';
 
 //jest.mock('axios');

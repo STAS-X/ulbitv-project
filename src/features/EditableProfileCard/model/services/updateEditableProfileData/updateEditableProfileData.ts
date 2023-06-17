@@ -1,4 +1,4 @@
-import { ProfileData } from '@/entities/Profile/model/types/profileSchema';
+import { ProfileData } from '@/entities/Profile';
 import { validateEditableProfileData } from '../validateEditableProfile/validateEditableProfile';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
 import { getEditableProfileFormData } from '../../selectors/getEditableProfile/getEditableProfileData';

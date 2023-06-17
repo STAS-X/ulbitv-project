@@ -25,7 +25,7 @@ export const ArticleRecommendationsList: FC<ArticleRecommendationsListProps> = m
 			error: recomendationsError
 		} = useGetRecommendationByArticleQuery(3);
 
-		const errorMessage = recomendationsError? getErrorMessage(recomendationsError) : '';
+		const errorMessage = recomendationsError ? getErrorMessage(recomendationsError) : '';
 
 		return (
 			<VStack gap={10} max className={classNames('', {}, [className])}>

@@ -11,6 +11,7 @@ export {
 	articleDetailesRecommended,
 	reducerDetailesRecommended
 } from './model/slice/articleDetailesRecommendedSlice';
+export { articleDetailesPageReducer } from './model/slice';
 export { getArticleCommentsIsLoading, getArticleCommentsError } from './model/selectors/getArticleCommentsData';
 export {
 	getArticleRecommendedIsLoading,

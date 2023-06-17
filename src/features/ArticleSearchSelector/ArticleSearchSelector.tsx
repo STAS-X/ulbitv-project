@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/Input/Input';
 import { useDebounce as useFilterDebounce } from '@/shared/lib/hooks/useDebounce';
 import { DEBOUNCE_DELAY } from '@/shared/const/localstorage';
-import { ArticlesSearch } from '@/pages/ArticlesPage/model/types/ArticlesPageSchema';
+import { ArticlesSearch } from '@/pages/ArticlesPage';
 
 export interface ArticleSearchSelectorProps {
 	className?: string;

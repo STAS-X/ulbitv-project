@@ -1,4 +1,4 @@
-import { ArticleView } from '@/entities/Article/model/types/articleSchema';
+import { ArticleView } from '@/entities/Article';
 import { StateSchema } from '@/app/providers/StoreProvider/config/StateSchema';
 
 export const getArticlesPageIsLoading = (state: StateSchema) => state.articlesPage?.isLoading ?? false;

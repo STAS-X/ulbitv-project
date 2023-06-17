@@ -1,4 +1,4 @@
-import { UserRoleType } from '@/entities/User/model/types/userSchema';
+import { UserRoleType } from '@/entities/User';
 
 export const checkUserRoles = (userRoles: UserRoleType[] = [], pageRoles: UserRoleType[] = []) => {
 	return (

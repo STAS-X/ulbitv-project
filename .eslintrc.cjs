@@ -54,7 +54,11 @@ module.exports = {
 			}
 		],
 		quotes: ['error', 'single', { allowTemplateLiterals: true }],
-		'stas-eslint-plugin/path-relative': ['error', {alias: '@'}],
+		'stas-eslint-plugin/path-relative': ['error', { alias: '@' }],
+		'stas-eslint-plugin/import-public-api': [
+			'error',
+			{ alias: '@', testFilePattern: ['*.test.[ts|tsx]', '*StoreDecorator.[ts|tsx]'] }
+		],
 		'no-tabs': 0,
 		'linebreak-style': 0,
 		'import/no-unresolved': 'off',

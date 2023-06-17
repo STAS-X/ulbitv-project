@@ -1,5 +1,5 @@
-import { Currency } from '@/entities/Currency/model/types/currency';
-import { Country } from '@/entities/Country/model/types/country';
+import { Currency } from '@/entities/Currency';
+import { Country } from '@/entities/Country';
 
 export enum ValidateProfileError {
 	INCORRECT_USER_FIRST = 'INCORRECT_FIRST',
@@ -10,6 +10,17 @@ export enum ValidateProfileError {
 	INCORRECT_AVATAR = 'INCORRECT_AVATAR',
 	INCORRECT_COUNTRY = 'INCORRECT_COUNTRY',
 	INCORRECT_CURRENCY = 'INCORRECT_CURRENCY'
+}
+
+export enum ProfileFieldType {
+	FIRST = 'first',
+	LAST = 'last',
+	AGE = 'age',
+	CITY = 'city',
+	USERNAME = 'username',
+	AVATAR = 'avatar',
+	COUNTRY = 'country',
+	CURRENCY = 'currency'
 }
 
 export type ValidateErrorType = Partial<Record<ValidateProfileError, string>>;
