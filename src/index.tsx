@@ -8,7 +8,7 @@ import '@/app/styles/index.scss';
 // import i18n (needs to be bundled ;))
 import '@/shared/config/i18n/i18n';
 import { StoreProvider } from './app/providers/StoreProvider';
-import RouterUtils from '@/app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import RouterUtils from '@/shared/lib/hooks/useRouterUtils';
 
 const container = document.getElementById('project-root');
 

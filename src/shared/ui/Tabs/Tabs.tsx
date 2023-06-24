@@ -1,9 +1,10 @@
 import { FC, memo, ReactNode, useCallback, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ArticleType } from '../../../../entities/Article/model/types/articleSchema';
-import { DEBOUNCE_DELAY } from '../../../const/localstorage';
-import { useDebounce as useDebounceTab } from '../../../lib/hooks/useDebounce';
-import { Card } from '../../Card/Card';
+// eslint-disable-next-line stas-eslint-plugin/layer-imports
+import { ArticleType } from '@/entities/Article';
+import { DEBOUNCE_DELAY } from '../../const/localstorage';
+import { useDebounce as useDebounceTab } from '../../lib/hooks/useDebounce';
+import { Card } from '../Card/Card';
 import classes from './Tabs.module.scss';
 
 interface TabItem {

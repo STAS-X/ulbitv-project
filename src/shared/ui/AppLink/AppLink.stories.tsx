@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 
 import { AppLinkProps, AppLink, AppLinkTheme } from './AppLink';
-import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
+import { Theme } from '@/shared/const/theme';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 export default {

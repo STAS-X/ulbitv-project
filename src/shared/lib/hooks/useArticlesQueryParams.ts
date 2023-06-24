@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { OptionalRecord } from './../url/queryParams/addQueryParams';
 import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+// eslint-disable-next-line stas-eslint-plugin/layer-imports
 import { getArticlesPageInited } from '@/pages/ArticlesPage';
 
 export const useArticlesParams = () => {

@@ -3,7 +3,7 @@ import { StoryFn, Meta } from '@storybook/react';
 
 import { ButtonTheme, ButtonProps, Button, ButtonSize } from './Button';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
+import { Theme } from '@/shared/const/theme';
 
 export default {
 	title: 'shared/Button',

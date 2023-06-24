@@ -3,7 +3,7 @@ import { StoryFn, Meta } from '@storybook/react';
 
 import { PageError, PageErrorProps } from './PageError';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
+import { Theme } from '@/shared/const/theme';
 
 export default {
 	title: 'widget/PageError',

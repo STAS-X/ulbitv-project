@@ -1,3 +1,4 @@
+// eslint-disable-next-line stas-eslint-plugin/layer-imports
 import {
 	NotificationListSchema,
 	NotificationItemSchema,

@@ -1,7 +1,5 @@
 import { useState, memo, useEffect } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ThemeSwitchButton } from '@/widgets/ThemeSwitcher';
-import { LanguageSwitchButton } from '@/widgets/LanguageSwitcher';
 import classes from './Sidebar.module.scss';
 import { ButtonTheme, Button, ButtonSize } from '@/shared/ui/Button/Button';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
@@ -9,6 +7,8 @@ import { getUserData } from '@/entities/User';
 import { useSelector } from 'react-redux';
 import { configSideBarItem } from '../../model/items';
 import { VStack } from '@/shared/ui/Stack/VStack/VStack';
+import { LanguageSwitchButton } from '@/features/LanguageSwitcher';
+import { ThemeSwitchButton } from '@/features/ThemeSwitcher';
 
 export interface SidebarProps {
 	className?: string;

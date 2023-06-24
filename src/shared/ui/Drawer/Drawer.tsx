@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import React, { memo, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
-import { useTheme } from '@/app/providers/ThemeProvider';
 import { Overlay } from '../Overlay/Overlay';
 import classes from './Drawer.module.scss';
 import { Portal } from '../Portal/Portal';

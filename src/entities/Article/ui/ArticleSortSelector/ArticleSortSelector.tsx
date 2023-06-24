@@ -3,7 +3,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ArticleSortSelector.module.scss';
 import { OptionType, Select } from '@/shared/ui/Select/Select';
 import { useTranslation } from 'react-i18next';
-import { ArticlesSort } from '../../pages/ArticlesPage/model/types/ArticlesPageSchema';
+import { ArticlesSort } from '../../../../pages/ArticlesPage/model/types/ArticlesPageSchema';
 
 export type ArticleSortType = { field: string; order: string };
 

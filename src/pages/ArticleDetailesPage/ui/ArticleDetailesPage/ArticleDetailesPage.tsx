@@ -10,7 +10,7 @@ import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByAr
 import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
 import { fetchRecommendationsForArticle } from '../../model/services/fetchRecommendationsForArticle/fetchRecommendationsForArticle';
 import { articleDetailesPageReducer } from './../../model/slice';
-import { useLocation } from '@/app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { useLocation } from '@/shared/lib/hooks/useRouterUtils';
 import { OptionalRecord } from '@/shared/lib/url/queryParams/addQueryParams';
 import { VStack } from '@/shared/ui/Stack';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';

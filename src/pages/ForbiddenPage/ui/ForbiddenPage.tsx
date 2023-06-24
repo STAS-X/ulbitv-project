@@ -1,4 +1,4 @@
-import { useLocation } from '@/app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { useLocation } from '@/shared/lib/hooks/useRouterUtils';
 import { getUserData } from '@/entities/User';
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';

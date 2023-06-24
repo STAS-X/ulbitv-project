@@ -59,6 +59,13 @@ module.exports = {
 			'error',
 			{ alias: '@', testFilePattern: ['*.test.[ts|tsx]', '*StoreDecorator.[ts|tsx]'] }
 		],
+		'stas-eslint-plugin/layer-imports': [
+			'error',
+			{
+				alias: '@',
+				ignoreImportPatterns: ['.*\\/.*\\.test\\.tsx?', '.*\\/StoreProvider', '.*\\/testing']
+			}
+		],
 		'no-tabs': 0,
 		'linebreak-style': 0,
 		'import/no-unresolved': 'off',

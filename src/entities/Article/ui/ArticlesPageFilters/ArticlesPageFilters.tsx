@@ -1,12 +1,13 @@
 import { FC, memo, ReactNode, useCallback, useMemo, useRef } from 'react';
-import { ArticleSearchSelector } from '@/features/ArticleSearchSelector/ArticleSearchSelector';
-import { ArticleSortSelector } from '@/features/ArticleSortSelector/ArticleSortSelector';
-import { ArticleViewSelector } from '@/features/ArticleViewSelector/ArticleViewSelector';
-import { ArticleCategorySelector } from '@/features/ArticleCategorySelector/ArticleCategorySelector';
+import { ArticleSearchSelector } from '../ArticleSearchSelector/ArticleSearchSelector';
+import { ArticleSortSelector } from '../ArticleSortSelector/ArticleSortSelector';
+import { ArticleViewSelector } from '../ArticleViewSelector/ArticleViewSelector';
+import { ArticleCategorySelector } from '../ArticleCategorySelector/ArticleCategorySelector';
 import classes from './ArticlesPageFilters.module.scss';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
 import { fieldsForSort, ordersForSort } from '@/shared/lib/filters/sortTypes';
+// eslint-disable-next-line stas-eslint-plugin/layer-imports
 import {
 	articlesPageActions,
 	getArticlesPageFilter,

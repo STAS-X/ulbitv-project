@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/Input/Input';
 import { useDebounce as useFilterDebounce } from '@/shared/lib/hooks/useDebounce';
 import { DEBOUNCE_DELAY } from '@/shared/const/localstorage';
+// eslint-disable-next-line stas-eslint-plugin/layer-imports
 import { ArticlesSearch } from '@/pages/ArticlesPage';
 
 export interface ArticleSearchSelectorProps {

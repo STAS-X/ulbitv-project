@@ -1,4 +1,5 @@
 import { PathRouteProps } from 'react-router-dom';
+// eslint-disable-next-line stas-eslint-plugin/layer-imports
 import { UserRoleType } from '@/entities/User';
 
 export enum AppRoutes {

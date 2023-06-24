@@ -1,4 +1,4 @@
-import { useTheme } from '@/app/providers/ThemeProvider';
+import { useTheme } from '@/shared/lib/hooks/useTheme';
 import { FC, memo, useEffect, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import ThemeIcon from '@/shared/assets/icons/theme-icon.svg';

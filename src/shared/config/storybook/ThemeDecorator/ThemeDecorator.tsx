@@ -1,8 +1,9 @@
 import { Story } from '@storybook/react';
 import { Children, cloneElement, FC, isValidElement, ReactNode, useState } from 'react';
-import { Theme, ThemeContext } from '@/app/providers/ThemeProvider/lib/ThemeContext';
+import { ThemeContext } from '@/shared/lib/context/ThemeContext';
+import { Theme } from '@/shared/const/theme';
+// eslint-disable-next-line stas-eslint-plugin/layer-imports
 import '@/app/styles/index.scss';
-import { LOCAL_STORAGE_THEME_KEY } from '@/app/providers/ThemeProvider/lib/useTheme';
 
 export interface StoryContextProps {
 	theme?: Theme;

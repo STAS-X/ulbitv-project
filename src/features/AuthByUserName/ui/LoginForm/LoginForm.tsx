@@ -1,9 +1,9 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { useAppDispatch } from '@/app/providers/StoreProvider/config/store';
-import { getLogin } from '@/features/AuthByUserName/model/selectors/getUserData/getLoginData';
-import { loginByUsername } from '@/features/AuthByUserName/model/services/loginByUsername/loginByUsername';
-import { loginActions, loginReducer } from '@/features/AuthByUserName/model/slices/loginSlice';
-import { LoginSchema } from '@/features/AuthByUserName/model/types/loginSchema';
+import { getLogin } from '../../model/selectors/getUserData/getLoginData';
+import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
+import { loginActions, loginReducer } from '../../model/slices/loginSlice';
+import { LoginSchema } from '../../model/types/loginSchema';
 import { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';

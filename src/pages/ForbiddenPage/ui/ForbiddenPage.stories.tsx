@@ -3,7 +3,7 @@ import { StoryFn, Meta } from '@storybook/react';
 
 import { ForbiddenPage } from './ForbiddenPage';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
+import { Theme } from '@/shared/const/theme';
 //import { getParamsForScreenShot } from 'shared/lib/storyShots/getParamsForShotStory';
 
 export default {

@@ -3,7 +3,7 @@ import { StoryFn, Meta } from '@storybook/react';
 import { ArticleRecommendationsListProps, ArticleRecommendationsList } from './ArticleRecommendationsList';
 
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
+import { Theme } from '@/shared/const/theme';
 
 const article = {
 	id: '1',

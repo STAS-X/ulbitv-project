@@ -1,10 +1,5 @@
 import React, { createContext } from 'react';
-
-export enum Theme {
-	LIGHT = 'light_theme',
-	DARK = 'dark_theme',
-	ORANGE = 'orange_theme'
-}
+import { Theme } from '@/shared/const/theme';
 
 export interface ThemeContextProps {
 	theme?: Theme;

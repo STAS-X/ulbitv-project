@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import AddCommentForm, { AddCommentFormProps } from './AddCommentForm';
 
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
+import { Theme } from '@/shared/const/theme';
 
 export default {
 	title: 'features/AddCommentForm',

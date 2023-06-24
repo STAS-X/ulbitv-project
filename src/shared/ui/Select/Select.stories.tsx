@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 import { SelectProps, Select } from './Select';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
+import { Theme } from '@/shared/const/theme';
 
 export default {
 	title: 'shared/Select',

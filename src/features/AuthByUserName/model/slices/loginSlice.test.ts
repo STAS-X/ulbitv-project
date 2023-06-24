@@ -1,5 +1,5 @@
-import { loginByUsername } from '@/features/AuthByUserName/model/services/loginByUsername/loginByUsername';
-import { loginActions, loginReducer } from '@/features/AuthByUserName/model/slices/loginSlice';
+import { loginByUsername } from '../services/loginByUsername/loginByUsername';
+import { loginActions, loginReducer } from './loginSlice';
 import { LoginSchema } from '../types/loginSchema';
 describe('loginSlice.test', () => {
 	const initialState: DeepPartial<LoginSchema> = { username: 'user', password: '123', error: '', isLoading: true };

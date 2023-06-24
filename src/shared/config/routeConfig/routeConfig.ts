@@ -1,3 +1,4 @@
+/* eslint-disable stas-eslint-plugin/layer-imports */
 import { AppRoutes, AuthRouteProps } from '.';
 import { ArticlesPage } from '@/pages/ArticlesPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';

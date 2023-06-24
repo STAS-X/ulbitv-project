@@ -13,6 +13,7 @@ import {
 	TILE_ARTICLE_WIDTH
 } from '@/shared/const/localstorage';
 import { useSelector } from 'react-redux';
+// eslint-disable-next-line stas-eslint-plugin/layer-imports
 import {
 	fetchNextArticlesPage,
 	getArticlesPage,
@@ -28,7 +29,7 @@ import {
 	getArticlesPageView
 } from '@/pages/ArticlesPage';
 import { AppRoutes } from '@/shared/config/routeConfig';
-import { useNavigate } from '@/app/providers/RouterUtilsProvider/RouterUtilsProvider';
+import { useNavigate } from '@/shared/lib/hooks/useRouterUtils';
 import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
 import { Text, TextSize } from '@/shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
