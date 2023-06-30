@@ -15,7 +15,7 @@ import { OptionalRecord } from '@/shared/lib/url/queryParams/addQueryParams';
 import { VStack } from '@/shared/ui/Stack';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 import { ArticleDetailesComments } from '../ArticleDetailesComments/ArticleDetailesComments';
-import AddArticleRating from '@/features/AddArticleRating/ui/AddArticleRating';
+import { AddArticleRating } from '@/features/AddArticleRating';
 
 export interface ArticleDetailesPageProps {
 	className?: string;

@@ -1,6 +1,6 @@
 import { CommonSchema } from '../../';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { buildSlice } from '../../../../shared/lib/store';
+import { buildSlice } from '@/shared/lib/store';
 
 const initialState: CommonSchema = { value: 0, isLazyModal: false };
 

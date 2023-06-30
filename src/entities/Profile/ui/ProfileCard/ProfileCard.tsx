@@ -15,7 +15,7 @@ import { useParams } from 'react-router-dom';
 import { VStack } from '@/shared/ui/Stack/VStack/VStack';
 import { HStack } from '@/shared/ui/Stack/HStack/HStack';
 // eslint-disable-next-line stas-eslint-plugin/layer-imports
-import { getEditableProfileValidation } from '@/features/EditableProfileCard/model/selectors/getEditableProfile/getEditableProfileData';
+import { getEditableProfileValidation } from '@/features/EditableProfileCard';
 
 export interface ProfileCardProps {
 	className?: string;

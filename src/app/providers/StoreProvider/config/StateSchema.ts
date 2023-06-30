@@ -1,6 +1,6 @@
 import { ArticleDetailesPageSchema } from '@/pages/ArticleDetailesPage';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
-import { AddCommentFormSchema } from '@/features/AddCommentForm/model/types/addCommentForm';
+import { AddCommentFormSchema } from '@/features/AddCommentForm';
 import { LoginSchema } from '@/features/AuthByUserName';
 import { UserSchema } from '@/entities/User';
 import { CommonSchema } from '@/entities/Common';
