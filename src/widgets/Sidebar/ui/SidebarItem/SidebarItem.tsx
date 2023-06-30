@@ -6,6 +6,7 @@ import { SidebarItemType } from '../../model/items';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { AppRoutes } from '@/shared/config/routeConfig';
 import { useNavigate } from '@/shared/lib/hooks/useRouterUtils';
+import { getRouteProfile } from '@/shared/config/routeConfig/routeConfig';
 
 interface SidebarItemProps {
 	item?: SidebarItemType;
@@ -21,14 +22,11 @@ export const SidebarItem: FC<SidebarItemProps> = memo((props: SidebarItemProps) 
 	//const location = useLocation();
 
 	const refreshPage: MouseEventHandler<HTMLAnchorElement> = (e) => {
-		if (
-			//location.pathname.replace('/', '').indexOf(AppRoutes.PROFILE) === 0 &&
-			item?.path.indexOf(AppRoutes.PROFILE) === 0
-		) {
+		if (item?.path.indexOf(AppRoutes.PROFILE) === 0) {
 			e.preventDefault();
 			setTimeout(() => {
 				//navigate('/');
-				if (userId) navigate(`${AppRoutes.PROFILE}/${userId}`, { replace: true });
+				if (userId) navigate(getRouteProfile(`${userId}`), { replace: true });
 			}, 0);
 			//return false;
 		}

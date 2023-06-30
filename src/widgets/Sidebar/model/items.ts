@@ -13,7 +13,7 @@ export interface SidebarItemType {
 
 export const SidebarItemsList: SidebarItemType[] = [
 	{
-		path: '/',
+		path: AppRoutes.MAIN,
 		Icon: MainIcon,
 		isAuth: false,
 		text: 'main'

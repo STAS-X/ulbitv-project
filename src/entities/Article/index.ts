@@ -1,4 +1,4 @@
-export type { ArticleSchema } from './model/types/articleSchema';
+export type { ArticleSchema, ArticlesSort, ArticlesSearch } from './model/types/articleSchema';
 export { ArticleType } from './model/types/articleSchema';
 export type { ArticleDetailesSchema } from './model/types/articleDetailesSchema';
 export { ArticleBlockType, ArticleView } from './model/types/articleSchema';

@@ -1,12 +1,12 @@
 import { FC, memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { AppRoutes } from '@/shared/config/routeConfig';
 import { DropDown } from '@/shared/ui/DropDown/DropDown';
 import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { useSelector } from 'react-redux';
 import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
 import { userActions, UserData, getUserData, getUserIsAdmin } from '@/entities/User';
+import { getRouteAdminPanel, getRouteProfile } from '@/shared/config/routeConfig/routeConfig';
 
 interface AddMenuButtonProps {
 	className?: string;
@@ -34,10 +34,10 @@ export const AddMenuButton: FC<AddMenuButtonProps> = memo((props: AddMenuButtonP
 	const menuItems = useMemo(
 		() =>
 			[
-				{ content: t('adminMenu'), href: `/${AppRoutes.ADMIN_PANEL}`, disabled: !Boolean(isAdmin) },
+				{ content: t('adminMenu'), href: getRouteAdminPanel(), disabled: !Boolean(isAdmin) },
 				{
 					content: t('profileMenu'),
-					href: `/${AppRoutes.PROFILE}/${userdata?.id ?? ''}`,
+					href: getRouteProfile(`${userdata?.id ?? ''}`),
 					disabled: !Boolean(userdata)
 				},
 				{ content: t(userdata ? 'logout' : 'login'), onClick: userdata ? setLogOut : showAuthModal }

@@ -3,3 +3,4 @@
 .eslintrc.cjs
 .stylelintrc.cjs
 /.templates/**
+**/*.md

@@ -1,25 +1,25 @@
-import { FC, SelectHTMLAttributes } from 'react';
+import { ReactElement, SelectHTMLAttributes } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import classes from './Select.module.scss';
 
 type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'placeholder' | 'onChange'>;
 
-export type OptionType = {
-	value: string;
+export type OptionType<T extends string> = {
+	value: T;
 	description: string;
 };
 
-export interface SelectProps extends HTMLSelectProps {
+export interface SelectProps<T extends string> extends HTMLSelectProps {
 	className?: string;
 	readonly?: boolean;
 	placeholder?: string | null;
-	value?: string;
-	options?: OptionType[];
-	onChange?: (value: string) => void;
+	value?: T;
+	options?: OptionType<T>[];
+	onChange?: (value: T) => void;
 }
 
-export const Select: FC<SelectProps> = (props) => {
+export const Select = <T extends string>(props: SelectProps<T>): ReactElement<SelectProps<T>> => {
 	const { placeholder, onChange, options, value, readonly = true, className, ...otherProps } = props;
 	//console.log(`init select value is ${value || ''}`);
 	const { t } = useTranslation();
@@ -29,7 +29,7 @@ export const Select: FC<SelectProps> = (props) => {
 			target: { value }
 		} = event;
 		//event.target.options[0].
-		onChange?.(value);
+		onChange?.(value as T);
 		console.log(`current value is ${value}`);
 	};
 

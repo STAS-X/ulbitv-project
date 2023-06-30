@@ -28,12 +28,12 @@ import {
 	getArticlesPageTarget,
 	getArticlesPageView
 } from '@/pages/ArticlesPage';
-import { AppRoutes } from '@/shared/config/routeConfig';
 import { useNavigate } from '@/shared/lib/hooks/useRouterUtils';
 import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
 import { Text, TextSize } from '@/shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { getRouteArticleDetailes } from '@/shared/config/routeConfig/routeConfig';
 
 export interface ArticleInfiniteGridLoaderProps {
 	className?: string;
@@ -133,9 +133,9 @@ const InfiniteScrollGridWrapper: FC<InfiniteScrollGridWrapperProps> = memo((prop
 	const onOpenArticle = useCallback(
 		(articleId: number) => {
 			if (target) {
-				window.open(`/${AppRoutes.ARTICLES}/${articleId}`, target);
+				window.open(getRouteArticleDetailes(`${articleId}`), target);
 			} else {
-				if (articleId) navigate(`/${AppRoutes.ARTICLES}/${articleId}`);
+				if (articleId) navigate(getRouteArticleDetailes(`${articleId}`));
 			}
 		},
 		[navigate, target]

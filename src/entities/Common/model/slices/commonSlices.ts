@@ -1,10 +1,10 @@
 import { CommonSchema } from '../../';
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { buildSlice } from '../../../../shared/lib/store';
 
 const initialState: CommonSchema = { value: 0, isLazyModal: false };
 
-const commonSlice = createSlice({
+const commonSlice = buildSlice({
 	name: 'common',
 	initialState,
 	reducers: {
@@ -26,4 +26,4 @@ const commonSlice = createSlice({
 	}
 });
 
-export const { actions: commonActions, reducer: commonReducer } = commonSlice;
+export const { actions: commonActions, reducer: commonReducer, useActions: useCounterActions } = commonSlice;

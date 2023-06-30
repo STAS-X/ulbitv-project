@@ -1,11 +1,11 @@
 import { FC, ReactNode, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ArticleView } from '../../model/types/articleSchema';
 import classes from './ArticleViewSelector.module.scss';
 import ListIcon from '@/shared/assets/icons/list-24-24.svg';
 import TileIcon from '@/shared/assets/icons/tiled-24-24.svg';
 import { Icon } from '@/shared/ui/Icon/Icon';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { ArticleView } from '@/entities/Article';
 
 const viewTypes = [
 	{ view: ArticleView.LIST, icon: ListIcon },

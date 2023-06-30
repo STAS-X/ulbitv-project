@@ -1,19 +1,33 @@
 import { StyleDecorator } from 'shared/config/storybook/StyleDecorator/StyleDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider/lib/ThemeContext';
+import { Theme } from 'shared/const/theme';
 import { RouterDecorator } from 'shared/config/storybook/RouterDecorator/RouterDecorator';
 import { createContext, useState } from 'react';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { NavigateDecorator } from 'shared/config/storybook/NavigateDecorator/NavigateDecorator';
 import { SuspenseDecorator } from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
 
-
 const useStoryTheme = (defaultTheme) => {
 	const [theme, setTheme] = useState(defaultTheme);
 
+	let newTheme;
+	switch (theme || defaultTheme) {
+		case Theme.LIGHT:
+			newTheme = Theme.DARK;
+			break;
+		case Theme.DARK:
+			newTheme = Theme.ORANGE;
+			break;
+		case Theme.ORANGE:
+			newTheme = Theme.LIGHT;
+			break;
+		default:
+			newTheme = Theme.LIGHT;
+	}
+
 	return () => {
-		setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
-		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
+		setTheme(newTheme);
+		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
 	};
 };
 
@@ -36,6 +50,10 @@ const defaultContext = {
 		{
 			name: 'Dark Theme',
 			props: { value: { theme: Theme.DARK, setTheme: useStoryTheme } }
+		},
+		{
+			name: 'Orange Theme',
+			props: { value: { theme: Theme.ORANGE, setTheme: useStoryTheme } }
 		}
 	],
 	options: {
@@ -52,6 +70,16 @@ export const parameters = {
 			color: /(background|color)$/i,
 			date: /Date$/
 		}
+	},
+	layout: 'fullscreen',
+	// Global parameter for Themes.
+	themes: {
+		default: 'Dark',
+		list: [
+			{ name: 'Dark', class: Theme.DARK, color: '#041c65' },
+			{ name: 'Ligth', class: Theme.LIGHT, color: '#dedeeb' },
+			{ name: 'Orange', class: Theme.ORANGE, color: '#eb4e40' }
+		]
 	},
 	// Global parameter is optional.
 	screenshot: {

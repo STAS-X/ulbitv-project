@@ -2,13 +2,13 @@ import { ArticleSchema, ArticleView } from '../../model/types/articleSchema';
 import { FC, memo, ReactNode, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { AppRoutes } from '@/shared/config/routeConfig';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text, TextSize } from '@/shared/ui/Text/Text';
 import { Observer } from '@/shared/ui/Observer/Observer';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import classes from './ArticleList.module.scss';
+import { getRouteArticleDetailes } from '@/shared/config/routeConfig/routeConfig';
 
 export interface ArticleListProps {
 	className?: string;
@@ -61,9 +61,9 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 	const onOpenArticle = useCallback(
 		(articleId: number) => {
 			if (target) {
-				window.open(`/${AppRoutes.ARTICLES}/${articleId}`, target);
+				window.open(getRouteArticleDetailes(`${articleId}`), target);
 			} else {
-				if (articleId) navigate(`/${AppRoutes.ARTICLES}/${articleId}`);
+				if (articleId) navigate(getRouteArticleDetailes(`${articleId}`));
 			}
 		},
 		[navigate, target]

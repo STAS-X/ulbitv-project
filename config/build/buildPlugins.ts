@@ -25,16 +25,7 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
 				NODE_PORT: JSON.stringify(port)
 			}
 		}),
-		new MiniCssExtractPlugin({
-			filename: 'css/[name].[contenthash:8].css',
-			chunkFilename: 'css/[name].[chunkhash:8].css'
-		}),
-		new CopyPlugin({
-			patterns: [
-				{ from: paths.locales, to: paths.buildLocales },
-				{ from: paths.assets, to: paths.buildAssets }
-			]
-		}),
+
 		new CircularDependencyPlugin({
 			exclude: /node-modules/,
 			failOnError: true
@@ -53,6 +44,19 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
 	];
 	if (isDev)
 		plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false }), new ReactRefreshWebpackPlugin({ overlay: false }));
+	else
+		plugins.push(
+			new MiniCssExtractPlugin({
+				filename: 'css/[name].[contenthash:8].css',
+				chunkFilename: 'css/[name].[chunkhash:8].css'
+			}),
+			new CopyPlugin({
+				patterns: [
+					{ from: paths.locales, to: paths.buildLocales },
+					{ from: paths.assets, to: paths.buildAssets }
+				]
+			})
+		);
 
 	return plugins;
 }

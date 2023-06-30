@@ -1,12 +1,7 @@
 import { FC, memo, ReactNode, useCallback, useMemo, useRef } from 'react';
-import { ArticleSearchSelector } from '../ArticleSearchSelector/ArticleSearchSelector';
-import { ArticleSortSelector } from '../ArticleSortSelector/ArticleSortSelector';
-import { ArticleViewSelector } from '../ArticleViewSelector/ArticleViewSelector';
-import { ArticleCategorySelector } from '../ArticleCategorySelector/ArticleCategorySelector';
 import classes from './ArticlesPageFilters.module.scss';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
-import { fieldsForSort, ordersForSort } from '@/shared/lib/filters/sortTypes';
 // eslint-disable-next-line stas-eslint-plugin/layer-imports
 import {
 	articlesPageActions,
@@ -15,14 +10,20 @@ import {
 	getArticlesPageSortField,
 	getArticlesPageSortOrder,
 	getArticlesPageView,
-	getArticlesPageIsLoading,
-	ArticlesSearch,
-	ArticlesSort
+	getArticlesPageIsLoading
 } from '@/pages/ArticlesPage';
-import { ArticleView } from '../../model/types/articleSchema';
+// eslint-disable-next-line stas-eslint-plugin/layer-imports
+import {
+	ArticleSearchSelector,
+	ArticleSortSelector,
+	ArticleViewSelector,
+	ArticleCategorySelector
+} from '@/features/ArticleSelectors';
+import { ArticlesSearch, ArticlesSort, ArticleView } from '../../model/types/articleSchema';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { useTranslation } from 'react-i18next';
-import type { OptionType } from '@/shared/ui/Select/Select';
+import { OptionType } from '@/shared/ui/Select/Select';
+import { SortFields, SortOrder, fieldsForSort, ordersForSort } from '@/shared/lib/filters/sortTypes';
 
 export interface ArticlesPageFiltersProps {
 	className?: string;
@@ -94,12 +95,12 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: Ar
 		return { field, order };
 	}, [field, order]);
 
-	const fields: OptionType[] = useMemo(() => {
+	const fields: OptionType<SortFields>[] = useMemo(() => {
 		return fieldsForSort.map((field) => {
 			return { value: field, description: t(`selectors.${field}`) };
 		});
 	}, [t]);
-	const orders: OptionType[] = useMemo(() => {
+	const orders: OptionType<SortOrder>[] = useMemo(() => {
 		return ordersForSort.map((order) => {
 			return { value: order, description: t(`selectors.${order}`) };
 		});
