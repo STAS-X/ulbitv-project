@@ -8,22 +8,24 @@ import { useLocation } from '@/shared/lib/hooks/useRouterUtils';
 interface RequireAuthProps {
 	children: React.ReactElement;
 	roles?: UserRoleType[];
+	isAuth?: boolean;
 }
 
 export const RequireAuth = (props: RequireAuthProps) => {
-	const { children, roles = [] } = props;
+	const { children, roles = [], isAuth = false } = props;
 
-	const isAuth = useSelector(getUserData); // Your hook to get login status
+	const hasAuth = useSelector(getUserData); // Your hook to get login status
 	const userRoles = useSelector(getUserRoles); // Get user roles to check access
 	const location = useLocation(); // Your hook to get login status
 
+	//console.log(userRoles, roles, 'get roles to check access');
 	const hasAccess = checkUserRoles(userRoles, roles);
 
-	if (!hasAccess) {
+	if (!hasAccess || (isAuth && !hasAuth)) {
 		return <Navigate to={RoutePath.forbidden} state={{ from: location }} replace />;
 	}
 
-	if (!isAuth) {
+	if (!hasAuth) {
 		return <Navigate to={RoutePath.main} state={{ from: location }} replace />;
 	}
 	return children;

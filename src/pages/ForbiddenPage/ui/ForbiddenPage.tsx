@@ -26,7 +26,7 @@ export const ForbiddenPage: FC<ForbiddenPageProps> = memo((props: ForbiddenPageP
 	const pageName = (state as StateToLocation)?.from?.pathname ?? pathname;
 
 	return (
-		<PageWrapper className={classNames(classes.Forbiddenpage, {}, [className ?? ''])}>
+		<PageWrapper data-testid={'ForbiddenPage'} className={classNames(classes.Forbiddenpage, {}, [className ?? ''])}>
 			{t('access_forbidden', { userName: userData?.username, pageName })}
 		</PageWrapper>
 	);

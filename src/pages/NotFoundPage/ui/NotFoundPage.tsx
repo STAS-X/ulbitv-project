@@ -14,7 +14,7 @@ export const NotFoundPage: FC<NotFoundPageProps> = memo<NotFoundPageProps>(({ cl
 	const { pathname: pageName } = useLocation();
 
 	return (
-		<PageWrapper className={classNames(classes.notfoundpage, {}, [className ?? ''])}>
+		<PageWrapper data-testid={'NotFoundPage'} className={classNames(classes.notfoundpage, {}, [className ?? ''])}>
 			{t('Page not found', { pageName: pageName.replace('/', '') })}
 		</PageWrapper>
 	);

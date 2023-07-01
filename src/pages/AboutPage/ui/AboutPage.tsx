@@ -5,7 +5,7 @@ import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
 const AboutPage: FC = memo(() => {
 	const { t } = useTranslation(['pages']);
 
-	return <PageWrapper>{t('about')}</PageWrapper>;
+	return <PageWrapper data-testid={'AboutPage'}>{t('about')}</PageWrapper>;
 });
 
 export default AboutPage;

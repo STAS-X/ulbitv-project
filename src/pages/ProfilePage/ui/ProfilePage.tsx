@@ -20,7 +20,7 @@ const ProfilePage: FC<ProfilePageProps> = memo<ProfilePageProps>((props: Profile
 	const { t } = useTranslation(['pages']);
 
 	return (
-		<PageWrapper className={classes.profilepage}>
+		<PageWrapper data-testid={'ProfilePage'} className={classes.profilepage}>
 			<EditableProfileCard id={profileId} />
 		</PageWrapper>
 	);

@@ -1,10 +1,8 @@
 // eslint-disable-next-line stas-eslint-plugin/layer-imports
 import { UserRoleType } from '@/entities/User';
 
-export const checkUserRoles = (userRoles: UserRoleType[] = [], pageRoles: UserRoleType[] = []) => {
-	return (
-		userRoles?.some((role) => {
-			return pageRoles.length > 0 ? pageRoles.includes(role) : true;
-		}) || false
-	);
+export const checkUserRoles = (userRoles: UserRoleType[] = ['user'], pageRoles: UserRoleType[] = ['user']) => {
+	return userRoles.some((role) => {
+		return pageRoles.length > 0 ? pageRoles.includes(role) : true;
+	});
 };

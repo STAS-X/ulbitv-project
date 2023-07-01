@@ -1,11 +1,11 @@
-import { Suspense, useCallback } from 'react';
+import { FC, Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { PageLoader } from '@/widgets/PageLoader';
 import { AuthRouteProps } from '@/shared/config/routeConfig';
 import { routeConfig } from '../path/Routes';
 import { RequireAuth } from './RequireAuth';
 
-export const AppRouter = () => {
+export const AppRouter: FC = () => {
 	//const isAuth = Boolean(useSelector(getUserData));
 
 	const renderWithAuthWrapper = useCallback((route: AuthRouteProps) => {
@@ -20,7 +20,15 @@ export const AppRouter = () => {
 				key={route.pathname}
 				index={!!route.index}
 				path={route.pathname}
-				element={!!route.isAuth ? <RequireAuth>{element}</RequireAuth> : element}
+				element={
+					!!route.isAuth ? (
+						<RequireAuth roles={route.roles} isAuth={!!route.isAuth}>
+							{element}
+						</RequireAuth>
+					) : (
+						element
+					)
+				}
 			/>
 		);
 	}, []);

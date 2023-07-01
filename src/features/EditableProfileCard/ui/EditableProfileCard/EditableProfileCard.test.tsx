@@ -1,5 +1,4 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
 import { EditableProfileCard } from './EditableProfileCard';
 import componentRender from '@/shared/lib/tests/componentRender/componentRender';
 import { Currency } from '@/entities/Currency';

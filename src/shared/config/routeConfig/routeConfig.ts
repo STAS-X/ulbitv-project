@@ -58,6 +58,7 @@ export const RoutePath: Record<AppRoutes, AuthRouteProps> = {
 	[AppRoutes.ADMIN_PANEL]: {
 		pathname: getRouteAdminPanel(),
 		roles: ['admin', 'manager'],
+		isAuth: true,
 		Element: AdminPanelPage
 	},
 	[AppRoutes.NOT_FOUND]: {

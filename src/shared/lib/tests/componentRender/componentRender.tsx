@@ -13,13 +13,15 @@ export interface componentRenderOptions {
 	asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>;
 }
 
-const container = document.createElement('div');
-container.setAttribute('id', 'project-root');
-document.body.appendChild(container);
-const root = createRoot(container);
-
 export default async function componentRender(Component: ReactNode, options: componentRenderOptions = {}) {
 	const { route = '/', initialState, asyncReducers = {} } = options;
+
+	const container = document.createElement('div');
+	container.setAttribute('id', 'project-root');
+	document.getElementById('project-root')?.remove();
+	document.body.appendChild(container);
+
+	const root = createRoot(container);
 
 	return root.render(
 		<MemoryRouter initialEntries={[route]}>

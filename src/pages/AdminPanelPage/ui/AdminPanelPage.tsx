@@ -5,7 +5,7 @@ import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
 const AdminPanelPage: FC = memo(() => {
 	const { t } = useTranslation(['pages']);
 
-	return <PageWrapper>{t('adminpanel')}</PageWrapper>;
+	return <PageWrapper data-testid={'AdminPage'}>{t('adminpanel')}</PageWrapper>;
 });
 
 export default AdminPanelPage;

@@ -31,7 +31,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 
 	const { id: userId = '' } = useParams<{ id: string }>();
 
-	console.log(data, userId, 'get input data');
+	//console.log(data, userId, 'get input data');
 	const { t } = useTranslation(['profile', 'errors']);
 	const validateError = useSelector(getEditableProfileValidation);
 

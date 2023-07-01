@@ -10,8 +10,6 @@ export const HStack: FC<HStackProps> = (props: HStackProps) => {
 	const { className, children, max = false, ...otherProps } = props;
 	const { t } = useTranslation();
 
-	console.log(otherProps, 'get justify');
-
 	return (
 		<Flex className={classNames(classes.HStack, { [classes.max]: max }, [className])} direction={'row'} {...otherProps}>
 			{children}

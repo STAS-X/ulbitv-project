@@ -32,7 +32,6 @@ export const Flex: FC<FlexProps> = (props: FlexProps) => {
 		style,
 		...others
 	} = props;
-	console.log(others, 'other props');
 	//console.log(convertToProperty(justify), convertToProperty(align), props, 'justify');
 
 	return (
