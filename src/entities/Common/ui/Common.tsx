@@ -2,9 +2,8 @@
 import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { commonActions } from '..';
 import { useCounterValue } from '../model/selectors/getCommon/getCommon';
-import { useCounterActions } from '../model/slices/commonSlices';
+import { commonActions, useCounterActions } from '../model/slices/commonSlices';
 
 interface commonProps {
 	commonValue?: number;

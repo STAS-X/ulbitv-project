@@ -3,7 +3,8 @@ import { StoryFn, Meta } from '@storybook/react';
 import { ArticleListItemProps, ArticleListItem } from './ArticleListItem';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
-import { ArticleBlockType, ArticleType, ArticleView } from '../../model/types/articleSchema';
+import { ArticleBlockType, ArticleType } from '../../model/types/articleSchema';
+import { ArticleView } from '@/shared/lib/filters/sortTypes';
 
 export default {
 	title: 'entities/Article/ArticleListItem',

@@ -12,7 +12,7 @@ export default {
 	}
 } as Meta<typeof Select>;
 
-const Template: StoryFn<typeof Select> = (args: SelectProps) => <Select {...args} />;
+const Template: StoryFn<typeof Select> = (args: SelectProps<string>) => <Select {...args} />;
 
 export const SelectPrimary = Template.bind({});
 SelectPrimary.args = {

@@ -5,7 +5,7 @@ import { RouterDecorator } from 'shared/config/storybook/RouterDecorator/RouterD
 import { createContext, useState } from 'react';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { NavigateDecorator } from 'shared/config/storybook/NavigateDecorator/NavigateDecorator';
-import { SuspenseDecorator } from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
+import { SuspenseDecorator } from 'shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
 
 const useStoryTheme = (defaultTheme) => {
 	const [theme, setTheme] = useState(defaultTheme);

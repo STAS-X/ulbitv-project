@@ -6,7 +6,7 @@ import { SidebarItemType } from '../../model/items';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { AppRoutes } from '@/shared/config/routeConfig';
 import { useNavigate } from '@/shared/lib/hooks/useRouterUtils';
-import { getRouteProfile } from '@/shared/config/routeConfig/routeConfig';
+import { getRouteProfile } from '@/shared/config/routeConfig';
 
 interface SidebarItemProps {
 	item?: SidebarItemType;

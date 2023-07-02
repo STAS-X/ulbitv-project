@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useAppDispatch } from '@/app/providers/StoreProvider/config/store';
+import { useDispatch } from 'react-redux';
 import {
 	ActionCreatorsMapObject,
 	bindActionCreators,
@@ -14,7 +14,7 @@ export function buildSlice<State, CaseReducers extends SliceCaseReducers<State>,
 	const slice = createSlice(options);
 
 	const useActions = () => {
-		const dispatch = useAppDispatch();
+		const dispatch = useDispatch();
 		return useMemo(
 			() => bindActionCreators(slice.actions as unknown as ActionCreatorsMapObject<any>, dispatch),
 			[dispatch]

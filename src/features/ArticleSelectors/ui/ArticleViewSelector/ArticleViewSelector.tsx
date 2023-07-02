@@ -5,7 +5,7 @@ import ListIcon from '@/shared/assets/icons/list-24-24.svg';
 import TileIcon from '@/shared/assets/icons/tiled-24-24.svg';
 import { Icon } from '@/shared/ui/Icon/Icon';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { ArticleView } from '@/entities/Article';
+import { ArticleView } from '@/shared/lib/filters/sortTypes';
 
 const viewTypes = [
 	{ view: ArticleView.LIST, icon: ListIcon },

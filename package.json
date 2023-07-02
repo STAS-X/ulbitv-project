@@ -27,13 +27,16 @@
 		"testV7:ui:ci": "concurrently --kill-others --raw --success first \"npm run storybook\" \"npm run test:ui\" \"cross-env PORT=6006 deelay\"",
 		"test:ui:report": "npm run test:ui:json && npm run test:ui:html",
 		"test:ui:json": "node scripts/generate-visual-json-report.js",
-		"test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
+		"test:ui:html": "reg-cli --from ./.loki/report.json --report ./.loki/report.html",
 		"test:storycap:ui": "npx storycap --reactUri file:./storybook-static -o \"_storycap_srceenshots_\"",
 		"screen:ui": "npx storycap http://localhost:6006 -o \"_storycap_srceenshots_\"",
 		"storybook": "sb dev -p 6006 -c ./config/storybook",
 		"storybook:build": "sb build -c ./config/storybook",
 		"prepare": "husky install",
 		"postinstall": "patch-package && node scripts/clearCache ./node_modules/.cache"
+	},
+	"lint-stage": {
+		"**/*.{ts?}": "eslint"
 	},
 	"keywords": [],
 	"author": "",

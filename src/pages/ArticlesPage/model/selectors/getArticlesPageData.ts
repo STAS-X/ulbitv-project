@@ -1,5 +1,6 @@
-import { ArticleView } from '@/entities/Article';
-import { StateSchema } from '@/app/providers/StoreProvider/config/StateSchema';
+// eslint-disable-next-line stas-eslint-plugin/import-public-api
+import { ArticleView } from '@/shared/lib/filters/sortTypes';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 export const getArticlesPageIsLoading = (state: StateSchema) => state.articlesPage?.isLoading ?? false;
 export const getArticlesPageError = (state: StateSchema) => state.articlesPage?.error;

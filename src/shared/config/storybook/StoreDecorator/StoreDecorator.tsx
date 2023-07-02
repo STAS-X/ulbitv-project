@@ -1,9 +1,9 @@
 import { DeepPartial } from '@reduxjs/toolkit';
 import { StoryFn } from '@storybook/react';
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
+import { ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articleDetailsReducer } from '@/entities/Article/testing';
 import { loginReducer } from '@/features/AuthByUserName/testing';
-import { ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { addCommentFormReducer } from '@/features/AddCommentForm/testing';
 import { articleDetailesPageReducer } from '@/pages/ArticleDetailesPage/testing';
 import { editableProfileReducer } from '@/features/EditableProfileCard/testing';

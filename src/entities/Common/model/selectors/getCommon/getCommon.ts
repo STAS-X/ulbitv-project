@@ -1,7 +1,7 @@
 import { buildSelector } from '@/shared/lib/store';
-import { CommonSchema } from '../../../';
+import { CommonSchema } from '../../types/commonSchema';
 import { createSelector } from '@reduxjs/toolkit';
-import { StateSchema } from '@/app/providers/StoreProvider/config/StateSchema';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 export const getCommon = (state: StateSchema) => state.common;
 export const getCommonValue = createSelector(getCommon, (common: CommonSchema) => common.value);

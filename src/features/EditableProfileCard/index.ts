@@ -1,4 +1,4 @@
-export { editableProfileReducer, editableProfileActions } from './model/slices/editableProfileSlices';
+export { editableProfileActions } from './model/slices/editableProfileSlices';
 export { EditableProfileCard } from './ui/EditableProfileCard/EditableProfileCard';
 export type { EditableProfileCardProps } from './ui/EditableProfileCard/EditableProfileCard';
 export {

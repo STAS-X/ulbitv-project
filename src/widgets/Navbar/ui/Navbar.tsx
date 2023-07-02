@@ -5,7 +5,7 @@ import classes from './Navbar.module.scss';
 import { LoginModal } from '@/features/AuthByUserName';
 import { Text, TextTheme } from '@/shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink/AppLink';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/config/routeConfig';
 import { HStack } from '@/shared/ui/Stack';
 import { AddNotificationsButton } from '@/features/AddNotifications';
 import { AddMenuButton } from '@/features/AddMenuButton';

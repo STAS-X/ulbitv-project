@@ -1,12 +1,7 @@
 import { AppRouter } from './AppRouter';
 import { screen, waitFor } from '@testing-library/react';
 import componentRender from '@/shared/lib/tests/componentRender/componentRender';
-import {
-	getRouteAbout,
-	getRouteAdminPanel,
-	getRouteMain,
-	getRouteProfile
-} from '@/shared/config/routeConfig/routeConfig';
+import { getRouteAbout, getRouteAdminPanel, getRouteMain, getRouteProfile } from '@/shared/config/routeConfig';
 
 const initialState = {
 	user: {

@@ -5,7 +5,7 @@ import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/Dynami
 import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { articlesPageReducer, articlesPageActions } from '../../model/slices/articlePageSlice';
 import classes from './ArticlesPage.module.scss';
-import { getArticlesPageInited } from '../..';
+import { getArticlesPageInited } from '../../model/selectors/getArticlesPageData';
 import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
 import { ArticlesPageFilters, ArticleInfiniteGridLoader } from '@/entities/Article';
 import { useArticlesParams } from '@/shared/lib/hooks/useArticlesQueryParams';

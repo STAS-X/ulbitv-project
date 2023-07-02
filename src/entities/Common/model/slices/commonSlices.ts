@@ -1,4 +1,4 @@
-import { CommonSchema } from '../../';
+import { CommonSchema } from '../types/commonSchema';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { buildSlice } from '@/shared/lib/store';
 

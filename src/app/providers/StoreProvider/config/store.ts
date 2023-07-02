@@ -1,4 +1,5 @@
-import { StateSchema } from '@/app/providers/StoreProvider/config/StateSchema';
+/* eslint-disable stas-eslint-plugin/import-public-api */
+import { StateSchema } from '@/app/providers/StoreProvider';
 import { useDispatch } from 'react-redux';
 import {
 	configureStore,
@@ -12,11 +13,11 @@ import {
 	Reducer
 } from '@reduxjs/toolkit';
 import { ExtraThunkArgs, ReducerManager } from './StateSchema';
-import { commonReducer } from '@/entities/Common';
-import { userReducer } from '@/entities/User';
 import { createReducerManager } from './reducerManager';
 import { $apiAxios } from '@/shared/api/api';
 import { rtkApi } from '@/shared/api/rtkApi';
+import { commonReducer } from '@/entities/Common/model/slices/commonSlices';
+import { userReducer } from '@/entities/User/model/slices/userSlices';
 
 export const rootReducer: ReducersMapObject<StateSchema> = {
 	common: commonReducer,

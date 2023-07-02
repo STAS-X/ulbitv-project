@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { Text, TextAlign, TextTheme } from '@/shared/ui/Text/Text';
-import { ProfileData } from '../../';
 import classes from './ProfileCard.module.scss';
 import { Input } from '@/shared/ui/Input/Input';
 import { Loader } from '@/shared/ui/Loader/Loader';
@@ -10,12 +9,12 @@ import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { CountrySelector } from '@/entities/Country';
 import { CurrencySelector } from '@/entities/Currency';
 import { useSelector } from 'react-redux';
-import { ProfileFieldType, ValidateProfileError } from '../../model/types/profileSchema';
+import { ProfileData, ProfileFieldType, ValidateProfileError } from '../../model/types/profileSchema';
 import { useParams } from 'react-router-dom';
 import { VStack } from '@/shared/ui/Stack/VStack/VStack';
 import { HStack } from '@/shared/ui/Stack/HStack/HStack';
-// eslint-disable-next-line stas-eslint-plugin/layer-imports
-import { getEditableProfileValidation } from '@/features/EditableProfileCard';
+// eslint-disable-next-line stas-eslint-plugin/layer-imports, stas-eslint-plugin/import-public-api
+import { getEditableProfileValidation } from '@/features/EditableProfileCard/model/selectors/getEditableProfile/getEditableProfileData';
 
 export interface ProfileCardProps {
 	className?: string;

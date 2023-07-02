@@ -6,6 +6,7 @@ import classes from './Drawer.module.scss';
 import { Portal } from '../Portal/Portal';
 import { useAnimationLibrarys } from '../../lib/components/AnimationProvider';
 import { AnimationProvider } from '@/shared/lib/components/AnimationProvider';
+import { useTheme } from '@/shared/lib/hooks/useTheme';
 //import * as Gesture from '@use-gesture/react';
 //import * as Spring from '@react-spring/web';
 
@@ -27,7 +28,7 @@ const DrawerContent = (props: DrawerProps) => {
 	const contentRef = useRef<HTMLDivElement>(null);
 
 	const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
-	console.log(isOpen, 'isopen status');
+	//console.log(isOpen, 'isopen status');
 	const { theme } = useTheme();
 
 	const mods: Mods = {

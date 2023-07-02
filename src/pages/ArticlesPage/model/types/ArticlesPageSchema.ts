@@ -1,6 +1,7 @@
 import { EntityState } from '@reduxjs/toolkit';
-import { ArticleView, ArticleSchema } from '@/entities/Article';
-import { SortOrder, SortFields } from '@/shared/lib/filters/sortTypes';
+// eslint-disable-next-line stas-eslint-plugin/import-public-api
+import { ArticleSchema } from '@/entities/Article/model/types/articleSchema';
+import { SortOrder, SortFields, ArticleView } from '@/shared/lib/filters/sortTypes';
 
 export interface ArticlesPageSchema extends EntityState<ArticleSchema> {
 	isLoading?: boolean;

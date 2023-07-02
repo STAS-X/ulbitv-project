@@ -19,11 +19,18 @@ import {
 	ArticleViewSelector,
 	ArticleCategorySelector
 } from '@/features/ArticleSelectors';
-import { ArticlesSearch, ArticlesSort, ArticleView } from '../../model/types/articleSchema';
+import { ArticleView } from '@/shared/lib/filters/sortTypes';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { useTranslation } from 'react-i18next';
 import { OptionType } from '@/shared/ui/Select/Select';
-import { SortFields, SortOrder, fieldsForSort, ordersForSort } from '@/shared/lib/filters/sortTypes';
+import {
+	SortFields,
+	SortOrder,
+	fieldsForSort,
+	ordersForSort,
+	ArticlesSearch,
+	ArticlesSort
+} from '@/shared/lib/filters/sortTypes';
 
 export interface ArticlesPageFiltersProps {
 	className?: string;

@@ -1,4 +1,4 @@
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/config/routeConfig';
 
 export const routeConfig = (/* isAuth: boolean */) => {
 	return (

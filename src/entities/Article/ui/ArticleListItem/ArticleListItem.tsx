@@ -1,4 +1,5 @@
-import { ArticleSchema, ArticleBlockType, ArticleView, ArticleTextBlock } from '../../model/types/articleSchema';
+import { ArticleSchema, ArticleBlockType, ArticleTextBlock } from '../../model/types/articleSchema';
+import { ArticleView } from '@/shared/lib/filters/sortTypes';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { FC, memo, ReactNode, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';

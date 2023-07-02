@@ -1,4 +1,5 @@
-import { ArticleSchema } from '@/entities/Article';
+// eslint-disable-next-line stas-eslint-plugin/import-public-api
+import { ArticleSchema } from '@/entities/Article/model/types/articleSchema';
 import { rtkApi } from '@/shared/api/rtkApi';
 
 const recommendationsApi = rtkApi.injectEndpoints({

@@ -1,6 +1,6 @@
-import { AddCommentFormSchema } from '../..';
+import { AddCommentFormSchema } from '../types/addCommentForm';
 import { createSelector } from '@reduxjs/toolkit';
-import { StateSchema } from '@/app/providers/StoreProvider/config/StateSchema';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 export const getAddComment = (state?: StateSchema) => state?.addCommentForm;
 export const getAddCommentError = createSelector(

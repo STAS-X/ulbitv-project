@@ -4,7 +4,8 @@ import classes from './ArticleCategorySelector.module.scss';
 import { useTranslation } from 'react-i18next';
 import { useDebounce as useFilterDebounce } from '@/shared/lib/hooks/useDebounce';
 import { DEBOUNCE_DELAY } from '@/shared/const/localstorage';
-import { ArticleType } from '@/entities/Article';
+// eslint-disable-next-line stas-eslint-plugin/import-public-api
+import { ArticleType } from '@/entities/Article/model/types/articleSchema';
 import { Tabs } from '@/shared/ui/Tabs/Tabs';
 
 export interface ArticleCategorySelectorProps {

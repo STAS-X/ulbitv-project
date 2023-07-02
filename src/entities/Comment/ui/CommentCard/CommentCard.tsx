@@ -6,7 +6,7 @@ import { CommentSchema } from '../../model/types/commentSchema';
 import classes from './CommentCard.module.scss';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { HStack, VStack } from '@/shared/ui/Stack';
-import { getRouteProfile } from '@/shared/config/routeConfig/routeConfig';
+import { getRouteProfile } from '@/shared/config/routeConfig';
 
 export interface CommentCardProps {
 	className?: string;

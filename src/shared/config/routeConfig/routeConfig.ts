@@ -1,5 +1,5 @@
+/* eslint-disable stas-eslint-plugin/import-public-api */
 /* eslint-disable stas-eslint-plugin/layer-imports */
-import { AppRoutes, AuthRouteProps } from '.';
 import { ArticlesPage } from '@/pages/ArticlesPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
@@ -9,6 +9,9 @@ import { ArticleDetailesPage } from '@/pages/ArticleDetailesPage';
 import { ArticleEditPage } from '@/pages/ArticleEditPage';
 import { AdminPanelPage } from '@/pages/AdminPanelPage';
 import { ForbiddenPage } from '@/pages/ForbiddenPage';
+import { UserRoleType } from '@/entities/User/model/types/userSchema';
+
+import { PathRouteProps } from 'react-router-dom';
 
 export const getRouteMain = () => '/';
 export const getRouteAbout = () => '/about';
@@ -20,6 +23,26 @@ export const getRouteArticleEdit = (id: string) => `/articles/${id}/edit`;
 export const getRouteAdminPanel = () => '/adminka';
 export const getRouteForbidden = () => '/forbidden';
 export const getRouteNotFound = () => '*';
+
+export enum AppRoutes {
+	MAIN = 'main',
+	ABOUT = 'about',
+	PROFILE = 'profile',
+	ARTICLES = 'articles',
+	ARTICLE_DETAILES = 'article_detailes',
+	ARTICLE_CREATE = 'article_create',
+	ARTICLE_EDIT = 'article_edit',
+	ADMIN_PANEL = 'adminka',
+	NOT_FOUND = 'not_found',
+	FORBIDDEN = 'forbidden'
+}
+
+export interface AuthRouteProps extends PathRouteProps {
+	isAuth?: boolean;
+	pathname: string;
+	roles?: UserRoleType[];
+	Element: React.FC;
+}
 
 export const RoutePath: Record<AppRoutes, AuthRouteProps> = {
 	[AppRoutes.MAIN]: {

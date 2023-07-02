@@ -1,9 +1,9 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { editableProfileReducer } from '../../testing';
 import { EditableProfileCard } from './EditableProfileCard';
 import componentRender from '@/shared/lib/tests/componentRender/componentRender';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
-import { editableProfileReducer } from '../../';
 import { $apiAxios } from '@/shared/api/api';
 //import { act } from 'react-dom/test-utils';
 

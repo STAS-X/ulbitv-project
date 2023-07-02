@@ -1,4 +1,5 @@
-import { ProfileData } from '@/entities/Profile';
+// eslint-disable-next-line stas-eslint-plugin/import-public-api
+import { ProfileData } from '@/entities/Profile/model/types/profileSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
 
 // export interface ProfileDataProps {

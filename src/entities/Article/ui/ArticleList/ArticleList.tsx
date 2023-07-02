@@ -1,4 +1,5 @@
-import { ArticleSchema, ArticleView } from '../../model/types/articleSchema';
+import { ArticleSchema } from '../../model/types/articleSchema';
+import { ArticleView } from '@/shared/lib/filters/sortTypes';
 import { FC, memo, ReactNode, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +9,7 @@ import { Observer } from '@/shared/ui/Observer/Observer';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import classes from './ArticleList.module.scss';
-import { getRouteArticleDetailes } from '@/shared/config/routeConfig/routeConfig';
+import { getRouteArticleDetailes } from '@/shared/config/routeConfig';
 
 export interface ArticleListProps {
 	className?: string;

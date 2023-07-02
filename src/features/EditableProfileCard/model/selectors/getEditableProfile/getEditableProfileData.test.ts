@@ -6,7 +6,7 @@ import {
 	getEditableProfileError,
 	getEditableProfileReadOnly,
 	getEditableProfileFormData
-} from '../../..';
+} from '../../selectors/getEditableProfile/getEditableProfileData';
 import { StateSchema } from '@/app/providers/StoreProvider';
 
 const profileData = {

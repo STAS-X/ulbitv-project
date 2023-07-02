@@ -1,5 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
-import { useAppDispatch } from '@/app/providers/StoreProvider/config/store';
+import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
 import { getLogin } from '../../model/selectors/getUserData/getLoginData';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { loginActions, loginReducer } from '../../model/slices/loginSlice';

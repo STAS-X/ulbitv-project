@@ -1,5 +1,5 @@
 import { CommonSchema } from '../types/commonSchema';
-import { commonReducer, commonActions } from '../../';
+import { commonReducer, commonActions } from '../slices/commonSlices';
 
 const state: CommonSchema = {
 	value: 20,

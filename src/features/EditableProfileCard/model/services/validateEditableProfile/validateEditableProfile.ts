@@ -1,4 +1,11 @@
-import { ProfileData, ValidateErrorType, ValidateProfileError } from '@/entities/Profile';
+// eslint-disable-next-line stas-eslint-plugin/import-public-api
+import { ProfileData, ValidateErrorType, ValidateProfileError } from '@/entities/Profile/model/types/profileSchema';
+
+const checkAvatarUrl = (avatar: string) => {
+	const urlPattern = /^https?:\/\/.*\/.*.(png|gif|webp|jpeg|jpg)??.*$/gim;
+	const regex = new RegExp(urlPattern);
+	return regex.test(avatar);
+};
 
 export const validateEditableProfileData = (profile: ProfileData) => {
 	const { first, lastname, age, city, country, currency, username, avatar } = profile;
@@ -42,10 +49,4 @@ export const validateEditableProfileData = (profile: ProfileData) => {
 	}
 
 	return Object.keys(errors).length ? errors : undefined;
-};
-
-const checkAvatarUrl = (avatar: string) => {
-	const urlPattern = /^https?:\/\/.*\/.*.(png|gif|webp|jpeg|jpg)??.*$/gim;
-	const regex = new RegExp(urlPattern);
-	return regex.test(avatar);
 };

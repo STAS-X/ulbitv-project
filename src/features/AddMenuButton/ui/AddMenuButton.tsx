@@ -6,7 +6,7 @@ import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { useSelector } from 'react-redux';
 import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
 import { userActions, UserData, getUserData, getUserIsAdmin } from '@/entities/User';
-import { getRouteAdminPanel, getRouteProfile } from '@/shared/config/routeConfig/routeConfig';
+import { getRouteAdminPanel, getRouteProfile } from '@/shared/config/routeConfig';
 
 interface AddMenuButtonProps {
 	className?: string;

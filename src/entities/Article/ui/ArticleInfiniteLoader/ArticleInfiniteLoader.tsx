@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { CSSProperties, FC, useCallback, useEffect, useMemo, useRef } from 'react';
-import { ArticleSchema, ArticleView } from '../../model/types/articleSchema';
+import { ArticleSchema } from '../../model/types/articleSchema';
+import { ArticleView } from '@/shared/lib/filters/sortTypes';
 import { FixedSizeList as List } from 'react-window';
 import InfiniteLoader from 'react-window-infinite-loader';
 import classes from './ArticleInfiniteLoader.module.scss';

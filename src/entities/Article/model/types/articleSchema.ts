@@ -1,5 +1,4 @@
 import { UserData } from './../../../User/model/types/userSchema';
-import { SortOrder, SortFields } from '@/shared/lib/filters/sortTypes';
 
 export interface ArticleBaseCodeBlock {
 	id: string;
@@ -34,14 +33,6 @@ export enum ArticleType {
 	SCIENCE = 'SCIENCE',
 	ECONOMICS = 'ECONOMICS'
 }
-
-export enum ArticleView {
-	LIST = 'LIST',
-	TILE = 'TILE'
-}
-
-export type ArticlesSort = { field: SortFields; order: SortOrder };
-export type ArticlesSearch = string;
 
 export interface ArticleSchema {
 	id: number;

@@ -57,7 +57,7 @@ module.exports = {
 		'stas-eslint-plugin/path-relative': ['error', { alias: '@' }],
 		'stas-eslint-plugin/import-public-api': [
 			'error',
-			{ alias: '@', testFilePattern: ['*.test.[ts|tsx]', '*StoreDecorator.[ts|tsx]'] }
+			{ alias: '@', testFilePattern: ['*.test.[ts|tsx]', '.*store.[ts]', '*StoreDecorator.[ts|tsx]'] }
 		],
 		'stas-eslint-plugin/layer-imports': [
 			'error',

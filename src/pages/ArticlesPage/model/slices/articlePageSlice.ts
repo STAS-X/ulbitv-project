@@ -6,12 +6,20 @@ import {
 	ARTICLE_SORT,
 	ARTICLE_VIEW
 } from '@/shared/const/localstorage';
-import { SortFields, SortOrder, fieldsForSort, ordersForSort } from '@/shared/lib/filters/sortTypes';
+import {
+	SortFields,
+	SortOrder,
+	fieldsForSort,
+	ordersForSort,
+	ArticlesSort,
+	ArticleView
+} from '@/shared/lib/filters/sortTypes';
 import { OptionalRecord } from '@/shared/lib/url/queryParams/addQueryParams';
-import { StateSchema } from '@/app/providers/StoreProvider/config/StateSchema';
-import { ArticlesPageSchema, ArticlesSort } from '../types/ArticlesPageSchema';
+import { StateSchema } from '@/app/providers/StoreProvider';
+import { ArticlesPageSchema } from '../types/ArticlesPageSchema';
 import { fetchNextArticlesPage } from '../services/fetchNextArticlesPage/fetchNextArticlesPage';
-import { ArticleSchema, ArticleView, ArticleType } from '@/entities/Article';
+// eslint-disable-next-line stas-eslint-plugin/import-public-api
+import { ArticleSchema, ArticleType } from '@/entities/Article/model/types/articleSchema';
 import { createEntityAdapter, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getArticlesPageCategory, getArticlesPageFilter } from '../selectors/getArticlesPageData';

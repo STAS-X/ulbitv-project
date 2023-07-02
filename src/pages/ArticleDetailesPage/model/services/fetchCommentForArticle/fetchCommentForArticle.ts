@@ -2,10 +2,9 @@ import { getArticleData } from '@/entities/Article';
 import { useSelector } from 'react-redux';
 import { CommentSchema } from '@/entities/Comment';
 import { useState } from 'react';
-import { sendComment, ExtendedCommentData } from '@/features/AddCommentForm';
-import { useAppDispatch } from '@/app/providers/StoreProvider/config/store';
+import { sendComment, ExtendedCommentData, addCommentFormActions } from '@/features/AddCommentForm';
+import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { fetchCommentsByArticleId } from '../fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { addCommentFormActions } from '@/features/AddCommentForm';
 
 export const useFetchCommentForArticle = () => {
 	const [data, setData] = useState<CommentSchema | string>();

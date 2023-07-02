@@ -2,7 +2,8 @@ import InfiniteLoader from 'react-window-infinite-loader';
 import { VariableSizeGrid as Grid, areEqual } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { FC, memo, ReactNode, useCallback, useEffect, useMemo, useRef } from 'react';
-import { ArticleSchema, ArticleView } from '../../model/types/articleSchema';
+import { ArticleSchema } from '../../model/types/articleSchema';
+import { ArticleView } from '@/shared/lib/filters/sortTypes';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import classes from './ArticleInfiniteLoader.module.scss';
@@ -33,7 +34,7 @@ import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
 import { Text, TextSize } from '@/shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { getRouteArticleDetailes } from '@/shared/config/routeConfig/routeConfig';
+import { getRouteArticleDetailes } from '@/shared/config/routeConfig';
 
 export interface ArticleInfiniteGridLoaderProps {
 	className?: string;

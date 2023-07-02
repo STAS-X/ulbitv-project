@@ -1,6 +1,12 @@
 import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from '@/app/providers/StoreProvider';
+import { getUserData } from '@/entities/User';
+import { fetchEditableProfileData } from '../../model/services/fetchEditableProfileData/fetchEditableProfileData';
+import { EditableProfileCardHeader } from '../EditableProfilePageHeader/EditableProfileCardHeader';
+import { editableProfileActions, editableProfileReducer } from '../../model/slices/editableProfileSlices';
+import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
 	getEditableProfileData,
 	getEditableProfileFormData,
@@ -11,23 +17,17 @@ import {
 import { ProfileData, ProfileCard, ProfileFieldType } from '@/entities/Profile';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
-import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from '@/app/providers/StoreProvider';
-import { fetchEditableProfileData } from '../../model/services/fetchEditableProfileData/fetchEditableProfileData';
-import { editableProfileActions, editableProfileReducer } from '../../model/slices/editableProfileSlices';
-import { EditableProfileCardHeader } from '../EditableProfilePageHeader/EditableProfileCardHeader';
 import { VStack } from '@/shared/ui/Stack';
-import { getUserData } from '@/entities/User';
 import { classNames } from '@/shared/lib/classNames/classNames';
-
-const redusers: ReducerList = {
-	profile: editableProfileReducer
-};
 
 export interface EditableProfileCardProps {
 	className?: string;
 	id?: string;
 }
+
+const redusers: ReducerList = {
+	profile: editableProfileReducer
+};
 
 export const EditableProfileCard: FC<EditableProfileCardProps> = memo((props: EditableProfileCardProps) => {
 	const { className, id: profileId = '' } = props;

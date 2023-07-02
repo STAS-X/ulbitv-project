@@ -1,5 +1,6 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/testAsyncThunk/testAsyncThunk';
-import { ArticleSchema, ArticleBlockType, ArticleType } from '@/entities/Article';
+// eslint-disable-next-line stas-eslint-plugin/import-public-api
+import { ArticleSchema, ArticleBlockType, ArticleType } from '@/entities/Article/model/types/articleSchema';
 import { fetchNextArticlesPage } from './fetchNextArticlesPage';
 
 //jest.mock('axios');
@@ -87,6 +88,7 @@ describe('fetchNextArticlesPage test', () => {
 				hasMore: false
 			}
 		});
+		//testThunk.api.get.mockReturnValue(Promise.resolve({ data: articleData }));
 		const result = await testThunk.callThunk();
 
 		console.log(result, 'result data from action');
