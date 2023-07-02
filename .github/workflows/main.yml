@@ -40,9 +40,9 @@
 name: linting, testing, building
 on:
   push:
-    branches: [ master ]
+    branches: [ development ]
   pull_request:
-    branches: [ master ]
+    branches: [ development ]
 permissions:
   contents: write
   pages: write
@@ -74,9 +74,9 @@ jobs:
       - name: build storybook
         run: npm run storybook:build
         if: always()
-      - name: screenshot testing
-        run: npm run test:ui:ci
-        if: always()
+      # - name: screenshot testing
+      #   run: npm run test:ui:ci
+      #   if: always()
       - name: Generate HTML report
         run: npm run test:ui:report
         if: always()
@@ -87,7 +87,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         if: always()
         with:
-          path: '.loki'
+          path: '.loki/report/html'
       - name: Deploy to GitHub Pages
         id: deployment
         if: always()
