@@ -9,7 +9,7 @@
 	"testEnvironment": "jsdom",
 	"coveragePathIgnorePatterns": ["\\\\node_modules\\\\"],
 	"moduleDirectories": ["node_modules"],
-	"modulePaths": ["<rootDir>src"],
+	"modulePaths": ["<rootDir>/src"],
 	"moduleFileExtensions": ["js", "jsx", "ts", "tsx", "json", "node"],
 	"moduleNameMapper": {
 		"\\.s?css$": "identity-obj-proxy",
@@ -26,10 +26,10 @@
 		[
 			"jest-html-reporters",
 			{
-				"publishPath": "<rootDir>/reports/unit",
+				"publicPath": "<rootDir>/reports/unit",
 				"filename": "report.html",
-				"inlineSource": true,
-				"openReport": false
+				"inlineSource": true
+				//"openReport": true
 			}
 		]
 	]
