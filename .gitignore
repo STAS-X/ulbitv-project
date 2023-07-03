@@ -8,4 +8,4 @@ idea
 !.loki/reference
 .loki/report.*
 /.templates
-/reports
+/reports/unit
