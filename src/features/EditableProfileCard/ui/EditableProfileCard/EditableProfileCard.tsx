@@ -60,9 +60,9 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = memo((props: Ed
 	}, [dispatch, profileId]);
 
 	useEffect(() => {
-		fetchProfileByUser();
+		void fetchProfileByUser();
 		//if (formData) dispatch(profileActions.checkProfileValidation(formData));
-		console.log('profile validated');
+		//console.log('profile validated');
 		return () => {
 			console.log('profile unmount');
 		};

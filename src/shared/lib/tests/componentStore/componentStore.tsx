@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { StateSchema } from '@/app/providers/StoreProvider';
-import { createReduxStore } from '@/app/providers/StoreProvider/config/store';
+import { createReduxStore, StateSchema } from '@/app/providers/StoreProvider';
 import { createRoot } from 'react-dom/client';
 
 // const container = document.createElement('div');

@@ -57,13 +57,14 @@ module.exports = {
 		'stas-eslint-plugin/path-relative': ['error', { alias: '@' }],
 		'stas-eslint-plugin/import-public-api': [
 			'error',
-			{ alias: '@', testFilePattern: ['*.test.[ts|tsx]', '.*store.[ts]', '*StoreDecorator.[ts|tsx]'] }
+			{ alias: '@', testFilePattern: ['*.test.{ts,tsx}', '**/StoreDecorator.tsx'] }
 		],
 		'stas-eslint-plugin/layer-imports': [
 			'error',
 			{
 				alias: '@',
-				ignoreImportPatterns: ['.*\\/.*\\.test\\.tsx?', '.*\\/StoreProvider', '.*\\/testing']
+				ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+				ignoreFilePatterns: ['**/*.test.{ts,tsx}']
 			}
 		],
 		'no-tabs': 0,
@@ -94,7 +95,7 @@ module.exports = {
 		'@typescript-eslint/no-unused-vars': 'warn',
 		'@typescript-eslint/no-floating-promises': 'warn',
 		'@typescript-eslint/no-unsafe-assignment': 'off',
-		'ngeslint(i18next/no-literal-string': 'off',
+		'eslint-i18next/no-literal-string': 'off',
 		'comma-dangle': ['error', 'only-multiline'],
 		'no-shadow': 'off',
 		'import/no-extraneous-dependencies': [

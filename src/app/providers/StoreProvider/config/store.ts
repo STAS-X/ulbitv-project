@@ -1,5 +1,4 @@
 /* eslint-disable stas-eslint-plugin/import-public-api */
-import { StateSchema } from '@/app/providers/StoreProvider';
 import { useDispatch } from 'react-redux';
 import {
 	configureStore,
@@ -12,7 +11,7 @@ import {
 	CombinedState,
 	Reducer
 } from '@reduxjs/toolkit';
-import { ExtraThunkArgs, ReducerManager } from './StateSchema';
+import { ExtraThunkArgs, StateSchema, ReducerManager } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 import { $apiAxios } from '@/shared/api/api';
 import { rtkApi } from '@/shared/api/rtkApi';
