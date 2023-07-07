@@ -1,4 +1,4 @@
-import { AppRoutes } from '@/shared/config/routeConfig';
+import { getRouteAbout, getRouteMain, getRouteProfile, getRouteArticles, AppRoutes } from '@/shared/config/routeConfig';
 import AboutIcon from '@/shared/assets/icons/about-20-20.svg';
 import MainIcon from '@/shared/assets/icons/main-20-20.svg';
 import ProfileIcon from '@/shared/assets/icons/profile-20-20.svg';
@@ -13,13 +13,13 @@ export interface SidebarItemType {
 
 export const SidebarItemsList: SidebarItemType[] = [
 	{
-		path: AppRoutes.MAIN,
+		path: getRouteMain(),
 		Icon: MainIcon,
 		isAuth: false,
 		text: 'main'
 	},
 	{
-		path: AppRoutes.ABOUT,
+		path: getRouteAbout(),
 		Icon: AboutIcon,
 		isAuth: false,
 		text: 'about'
@@ -31,7 +31,7 @@ export const SidebarItemsList: SidebarItemType[] = [
 		text: 'profile'
 	},
 	{
-		path: AppRoutes.ARTICLES,
+		path: getRouteArticles(),
 		Icon: ArticleIcon,
 		isAuth: true,
 		text: 'articles'

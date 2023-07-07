@@ -56,7 +56,10 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<PageWrapper className={classNames(classes.articledetailespage, {}, [className])}>
+			<PageWrapper
+				data-testid={'ArticleDetailesPage'}
+				className={classNames(classes.articledetailespage, {}, [className])}
+			>
 				<VStack gap={16}>
 					<ArticleDetailesPageHeader />
 					<ArticleDetailes articleId={articleId} />
