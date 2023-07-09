@@ -7,5 +7,6 @@
 		"isolatedModules": false
 	},
 	/*"extends": "../tsconfig.json",*/
-	"include": ["**/*.ts"]
+	"include": ["cypress/**/*.ts", "../cypress.config.ts"],
+	"exclude": []
 }

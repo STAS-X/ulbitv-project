@@ -14,13 +14,23 @@ export interface SelectProps<T extends string> extends HTMLSelectProps {
 	className?: string;
 	readonly?: boolean;
 	placeholder?: string | null;
+	dataTestId?: string;
 	value?: T;
 	options?: OptionType<T>[];
 	onChange?: (value: T) => void;
 }
 
 export const Select = <T extends string>(props: SelectProps<T>): ReactElement<SelectProps<T>> => {
-	const { placeholder, onChange, options, value, readonly = true, className, ...otherProps } = props;
+	const {
+		placeholder,
+		onChange,
+		options,
+		value,
+		readonly = true,
+		className,
+		dataTestId = 'Selector',
+		...otherProps
+	} = props;
 	//console.log(`init select value is ${value || ''}`);
 	const { t } = useTranslation();
 
@@ -40,6 +50,7 @@ export const Select = <T extends string>(props: SelectProps<T>): ReactElement<Se
 		<div className={classNames(classes.wrapper, {}, [className])}>
 			{placeholder && <span className={classes.placeholder}>{`${t(placeholder)}>`}</span>}
 			<select
+				data-testid={`${dataTestId}.Value`}
 				onChange={onChangeValue}
 				value={value}
 				disabled={readonly}

@@ -8,12 +8,13 @@ interface CurrencySelectorProps {
 	readonly?: boolean;
 	placeholder: string;
 	direction?: DropDownDirectionType;
+	dataTestId?: string;
 	value?: string;
 	onChange?: (value: string) => void;
 }
 
 export const CurrencySelector: FC<CurrencySelectorProps> = memo((props: CurrencySelectorProps) => {
-	const { className, readonly, value, direction, placeholder, onChange } = props;
+	const { className, readonly, value, direction, placeholder, dataTestId = 'CurrencySelector', onChange } = props;
 
 	const options = useMemo(() => {
 		return Object.values(Currency).map((value, index) => {
@@ -23,6 +24,7 @@ export const CurrencySelector: FC<CurrencySelectorProps> = memo((props: Currency
 
 	return (
 		<ListBoxSelector
+			dataTestId={dataTestId}
 			className={className}
 			items={options}
 			readonly={readonly}

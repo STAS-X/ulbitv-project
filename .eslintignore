@@ -2,5 +2,6 @@
 /storybook-static
 .eslintrc.cjs
 .stylelintrc.cjs
-/.templates/**
+.templates/**
+*.ts
 **/*.md

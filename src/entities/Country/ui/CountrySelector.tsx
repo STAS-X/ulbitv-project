@@ -8,12 +8,13 @@ interface CountrySelectorProps {
 	readonly?: boolean;
 	placeholder: string;
 	direction?: DropDownDirectionType;
+	dataTestId?: string;
 	value?: string;
 	onChange?: (value: string) => void;
 }
 
 export const CountrySelector: FC<CountrySelectorProps> = memo((props: CountrySelectorProps) => {
-	const { className, readonly, value, direction, placeholder, onChange } = props;
+	const { className, readonly, value, direction, placeholder, dataTestId = 'CountrySelector', onChange } = props;
 
 	const options = useMemo(() => {
 		return Object.values(Country).map((value, index) => {
@@ -23,6 +24,7 @@ export const CountrySelector: FC<CountrySelectorProps> = memo((props: CountrySel
 
 	return (
 		<ListBoxSelector
+			dataTestId={dataTestId}
 			className={className}
 			items={options}
 			readonly={readonly}

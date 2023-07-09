@@ -35,15 +35,21 @@
 // });
 //
 
-declare global {
-	namespace Cypress {
-		interface Chainable {
-			login(email: string, password: string): Chainable<void>;
-			drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>;
-			dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>;
-			visit(originalFn: CommandOriginalFn<any>, url: string, options: Partial<VisitOptions>): Chainable<Element>;
-		}
-	}
-}
+// declare global {
+// 	namespace Cypress {
+// 		interface Chainable {
+// 			login(email: string, password: string): Chainable<void>;
+// 			drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>;
+// 			dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>;
+// 			visit(originalFn: CommandOriginalFn<any>, url: string, options: Partial<VisitOptions>): Chainable<Element>;
+// 		}
+// 	}
+// }
+
+import * as helpers from './common/helpers';
+import * as login from './common/login';
+
+Cypress.Commands.addAll(helpers);
+Cypress.Commands.addAll(login);
 
 export {};

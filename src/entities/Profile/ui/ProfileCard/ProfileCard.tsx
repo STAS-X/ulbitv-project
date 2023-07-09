@@ -56,13 +56,13 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 				) : isLoading ? (
 					<Loader />
 				) : (
-					<VStack gap={10} max>
+					<VStack data-testid={'ProfileCard'} gap={10} max>
 						{data?.avatar && (
 							<HStack justify={'center'} max>
 								<Avatar className={classes.avatar} size={100} src={data?.avatar} />
 							</HStack>
 						)}
-						<VStack gap={16}>
+						<VStack data-testid={'ProfileForm'} gap={16}>
 							<Input
 								dataTestId={'ProfileCard.FirstName'}
 								className={classes.input}
@@ -97,6 +97,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 								onChange={onChangeProfileFields(ProfileFieldType.AGE)}
 							/>
 							<Input
+								dataTestId={'ProfileCard.UserName'}
 								className={classes.input}
 								value={data?.username}
 								readonly={readonly}
@@ -127,6 +128,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 								onChange={onChangeProfileFields(ProfileFieldType.CITY)}
 							/>
 							<CountrySelector
+								dataTestId={'ProfileCard.Country'}
 								className={classes.input}
 								value={data?.country}
 								readonly={readonly}
@@ -134,6 +136,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 								onChange={onChangeProfileFields(ProfileFieldType.COUNTRY)}
 							/>
 							<CurrencySelector
+								dataTestId={'ProfileCard.Currency'}
 								className={classes.input}
 								value={data?.currency}
 								readonly={readonly}

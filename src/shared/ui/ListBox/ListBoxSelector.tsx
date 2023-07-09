@@ -18,6 +18,7 @@ export interface ListBoxSelectorProps {
 	items?: ListBoxSelectorItem[];
 	className?: string;
 	children?: ReactNode;
+	dataTestId?: string;
 	value?: string;
 	defaultValue?: string;
 	placeholder: string;
@@ -27,7 +28,17 @@ export interface ListBoxSelectorProps {
 }
 
 export const ListBoxSelector: FC<ListBoxSelectorProps> = (props: ListBoxSelectorProps) => {
-	const { className, items, defaultValue, placeholder, direction, readonly, value, onChange } = props;
+	const {
+		className,
+		items,
+		defaultValue,
+		placeholder,
+		direction,
+		readonly,
+		value,
+		dataTestId = 'ListBox',
+		onChange
+	} = props;
 
 	const [selectedValue, setSelectedValue] = useState(defaultValue);
 
@@ -40,6 +51,7 @@ export const ListBoxSelector: FC<ListBoxSelectorProps> = (props: ListBoxSelector
 
 	return (
 		<Listbox
+			data-testid={`${dataTestId}.ListBox`}
 			as={'div'}
 			className={classNames(classes.ListBox, {}, [className])}
 			value={selectedValue}
@@ -47,15 +59,15 @@ export const ListBoxSelector: FC<ListBoxSelectorProps> = (props: ListBoxSelector
 			onChange={handleChange}
 		>
 			{placeholder && <Listbox.Label className={classes.label}>{placeholder}</Listbox.Label>}
-			<Listbox.Button className={classes.trigger}>
+			<Listbox.Button data-testid={`${dataTestId}.Trigger`} className={classes.trigger}>
 				{({ open }) => (
-					<HStack justify={'between'} max>
+					<HStack dataTestId={`${dataTestId}.Value`} justify={'between'} max>
 						{value ?? defaultValue}
 						{open ? '	▼' : '	▲'}
 					</HStack>
 				)}
 			</Listbox.Button>
-			<Listbox.Options className={classes.options} style={{ ...inlineStyle }}>
+			<Listbox.Options data-testid={`${dataTestId}.Options`} className={classes.options} style={{ ...inlineStyle }}>
 				{items?.map((item) => (
 					<Listbox.Option
 						className={classes.listitem}

@@ -66,7 +66,12 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 	);
 
 	return (
-		<HStack className={classNames(classes.profilepageheader, {}, [className])} justify={'between'} max={true}>
+		<HStack
+			dataTestId={'ProfileCard.Header'}
+			className={classNames(classes.profilepageheader, {}, [className])}
+			justify={'between'}
+			max={true}
+		>
 			<Text title={t('profile', { ns: 'pages' })} />
 			<div className={classes.btns}>
 				{isEdit &&

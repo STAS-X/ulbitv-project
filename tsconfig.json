@@ -40,8 +40,8 @@
 		"preserveConstEnums": true,
 		"sourceMap": true
 	},
-	"include": ["*", "./config/**/*", "./src/**/*", "./cypress/**/*", "scripts/*", "./json-server/*", ".eslintrc.cjs"],
-	"exclude": ["node_modules", ".templates/**/*", "storybook-static"],
+	"include": ["config/**/*", "src/**/*", "scripts/*", "json-server/*", ".eslintrc.cjs"],
+	"exclude": ["node_modules", ".templates", "cypress", "storybook-static"],
 	"ts-node": {
 		"compilerOptions": {
 			"module": "commonjs"

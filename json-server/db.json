@@ -898,8 +898,8 @@
     },
     {
       "id": "3",
-      "username": "manager",
-      "password": "654321",
+      "username": "testuser",
+      "password": "123",
       "profileId": "3",
       "roles": [
         "manager"
