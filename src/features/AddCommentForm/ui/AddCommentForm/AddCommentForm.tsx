@@ -51,7 +51,12 @@ const AddCommentForm: FC<AddCommentFormProps> = (props: AddCommentFormProps) => 
 
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-			<VStack gap={10} className={classNames(classes.addCommentform, {}, [className])} max>
+			<VStack
+				dataTestId={'Article.CommentForm'}
+				gap={10}
+				className={classNames(classes.addCommentform, {}, [className])}
+				max
+			>
 				{error ? (
 					<HStack justify={'between'} max>
 						<Text
@@ -66,12 +71,14 @@ const AddCommentForm: FC<AddCommentFormProps> = (props: AddCommentFormProps) => 
 				) : (
 					<HStack justify={'between'} max>
 						<Input
+							dataTestId={'Article.Comment'}
 							className={classes.input}
 							placeholder={t('commentPlaceholder')}
 							value={content || ''}
 							onChange={onCommentFormChange}
 						/>
 						<Button
+							dataTestId={'ArticleComment.Add'}
 							theme={ButtonTheme.OUTLINE}
 							onClick={handleSendComment}
 							disabled={!content || content.length === 0 || isLoading}

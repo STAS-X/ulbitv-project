@@ -37,8 +37,9 @@ export const ArticleSearchSelector: FC<ArticleSearchSelectorProps> = memo((props
 			{/*<div className={classes.title}>
 				<Text title={t('search.formTitle')} align={TextAlign.CENTER} />
 	</div>*/}
-			<div className={classes.filters}>
+			<div data-testid={'ArtricleSearch'} className={classes.filters}>
 				<Input
+					dataTestId={'Article.Filter'}
 					ref={refInput as ForwardedRef<HTMLInputElement>}
 					className={classes.input}
 					value={filter ?? searchBy}

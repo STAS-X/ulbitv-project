@@ -52,6 +52,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 		const textBlock = article.blocks.find((block) => block.type === ArticleBlockType.TEXT) as ArticleTextBlock;
 		return (
 			<div
+				data-testid={'ArticleItem'}
 				ref={articleParent}
 				className={classNames('article_list_item', {}, [className, classes[view]])}
 				id={String(article.id)}
@@ -62,7 +63,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 						<Text content={article.user.username} className={classes.username} />
 						<Text content={article.createdAt} className={classes.date} />
 					</div>
-					<Text title={article.title} className={classes.title} />
+					<Text dataTestId={'Article.Title'} title={article.title} className={classes.title} />
 					{types}
 
 					<Image
@@ -92,6 +93,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 
 	return (
 		<div
+			data-testid={'ArticleItem'}
 			ref={articleParent}
 			className={classNames('article_list_item', {}, [className, classes[view]])}
 			id={String(article.id)}
@@ -110,7 +112,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 					{types}
 					{views}
 				</div>
-				<Text content={article.title} className={classes.title} />
+				<Text dataTestId={'Article.Title'} content={article.title} className={classes.title} />
 			</Card>
 		</div>
 	);

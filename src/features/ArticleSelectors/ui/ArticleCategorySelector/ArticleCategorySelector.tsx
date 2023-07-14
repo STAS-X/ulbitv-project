@@ -42,7 +42,7 @@ export const ArticleCategorySelector: FC<ArticleCategorySelectorProps> = memo((p
 	);
 
 	return (
-		<div className={classNames(classes.category, {}, [className])}>
+		<div data-testid={'ArticleCategorySelector'} className={classNames(classes.category, {}, [className])}>
 			<Tabs tabs={tabs} category={category} onTabClick={handleChangeCategory} />
 		</div>
 	);

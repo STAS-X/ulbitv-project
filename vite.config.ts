@@ -12,6 +12,9 @@ export default defineConfig({
 			}
 		]
 	},
+	server: {
+		host: '127.0.0.1'
+	},
 	define: {
 		_DEV_MODE_: JSON.stringify(true),
 		_BASE_URL_: JSON.stringify('http://localhost:8000'),

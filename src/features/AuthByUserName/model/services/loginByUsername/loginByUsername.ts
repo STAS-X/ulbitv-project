@@ -22,7 +22,7 @@ export const loginByUsername = createAppAsyncThunk<UserData, LoginByUsernameProp
 			}
 			localStorage.setItem(USER_LS_KEY, JSON.stringify(response.data));
 			dispatch(userActions.setAuthData(response.data));
-			extra.navigate('/about');
+			extra.navigate('/');
 			return response.data;
 		} catch (e: ThunkError) {
 			console.log(e.message, 'Внимание, во время запроса возникла ошибка');

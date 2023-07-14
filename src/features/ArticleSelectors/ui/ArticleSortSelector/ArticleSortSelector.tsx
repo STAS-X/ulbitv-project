@@ -46,8 +46,9 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = memo<ArticleSor
 				{/*<div className={classes.title}>
 				<Text title={t('selectors.formTitle')} />
 	</div>*/}
-				<div className={classes.selectors}>
+				<div data-testid={'ArticleSortSelector'} className={classes.selectors}>
 					<Select
+						dataTestId={'Article.Sort.Field'}
 						placeholder={t('selectors.fieldHolder')}
 						readonly={false}
 						value={field ?? sortBy.field}
@@ -55,6 +56,7 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = memo<ArticleSor
 						onChange={setField}
 					/>
 					<Select
+						dataTestId={'Article.Sort.Order'}
 						placeholder={t('selectors.orderHolder')}
 						readonly={false}
 						value={order ?? sortBy.order}

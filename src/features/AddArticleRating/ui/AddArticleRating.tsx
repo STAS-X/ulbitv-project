@@ -73,10 +73,10 @@ const AddArticleRating: FC<AddArticleRatingProps> = memo((props: AddArticleRatin
 					await updateArticleFeedBack({ id: feedbackId, articleId, userId: authData?.id || '', rating, feedback: '' });
 				} else await addArticleFeedBack({ articleId, userId: authData?.id || '', rating, feedback: '' });
 				await refetch();
-				console.log(feedbackData?.[0], 'start refetch data');
+				//console.log(feedbackData?.[0], 'start refetch data');
 			} catch (e) {}
 		},
-		[feedbackId, refetch, addArticleFeedBack, feedbackData, articleId, authData?.id, updateArticleFeedBack]
+		[feedbackId, refetch, addArticleFeedBack, articleId, authData?.id, updateArticleFeedBack]
 	);
 
 	useEffect(() => {
@@ -84,7 +84,7 @@ const AddArticleRating: FC<AddArticleRatingProps> = memo((props: AddArticleRatin
 	}, [feedbackData]);
 
 	return (
-		<div className={classNames(classes.AddArticleRating, {}, [className])}>
+		<div data-testid={'Article.Rating'} className={classNames(classes.AddArticleRating, {}, [className])}>
 			{isLoading || isFetching ? (
 				<Skeleton width={'100%'} height={140} />
 			) : (

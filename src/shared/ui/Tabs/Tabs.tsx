@@ -48,6 +48,7 @@ export const Tabs: FC<TabsProps> = memo((props: TabsProps) => {
 		<div className={classNames(classes.tabs, {}, [className])}>
 			{tabs.map((tab) => (
 				<Card
+					dataTestId={`Article.Category.${tab.value}`}
 					className={classNames(classes.cardtab, { [classes.selected]: newCategory.includes(tab.value as string) })}
 					key={tab.value}
 					onClick={() => handleCategoryClick(tab.value)}

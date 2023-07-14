@@ -25,7 +25,7 @@
 //
 //
 // -- This will overwrite an existing command --
-//ypress.Commands.overwrite('visit', (originalFn, url, options) => { });
+//Cypress.Commands.overwrite('visit', (originalFn, url, options) => { });
 
 // -- Replace visit by window nativ relocation
 // Cypress.Commands.add('winLocation', (url: string) => {
@@ -48,8 +48,12 @@
 
 import * as helpers from './common/helpers';
 import * as login from './common/login';
+import * as profile from './common/profile';
+import * as requests from './common/requests';
 
 Cypress.Commands.addAll(helpers);
 Cypress.Commands.addAll(login);
+Cypress.Commands.addAll(profile);
+Cypress.Commands.addAll(requests);
 
 export {};

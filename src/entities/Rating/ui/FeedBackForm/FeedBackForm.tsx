@@ -45,10 +45,11 @@ const FeedBackForm: FC<FeedBackFormProps> = memo((props: FeedBackFormProps) => {
 	}, [onSuccess, feedBack]);
 
 	return (
-		<div className={classNames(classes.feedbackform, {}, [className])}>
+		<div data-testid={'Rating.FeedBack.Form'} className={classNames(classes.feedbackform, {}, [className])}>
 			<Text title={title ?? t('feedbackTitle')} />
 			{/*error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />*/}
 			<Input
+				dataTestId={'Rating.FeedBack'}
 				type="text"
 				placeholder={t('feedbackSign')}
 				className={classes.input}
@@ -57,10 +58,15 @@ const FeedBackForm: FC<FeedBackFormProps> = memo((props: FeedBackFormProps) => {
 			/>
 
 			<HStack className={classes.feedbackbtn} justify={'end'} gap={16} max>
-				<Button theme={ButtonTheme.OUTLINE_RED} onClick={onFeedBackClose}>
+				<Button dataTestId={'Rating.FeedBack.Cancel'} theme={ButtonTheme.OUTLINE_RED} onClick={onFeedBackClose}>
 					{t('cancel')}
 				</Button>
-				<Button theme={ButtonTheme.OUTLINE} disabled={!isEdited} onClick={onFeedBackSuccess}>
+				<Button
+					dataTestId={'Rating.FeedBack.Submit'}
+					theme={ButtonTheme.OUTLINE}
+					disabled={!isEdited}
+					onClick={onFeedBackSuccess}
+				>
 					{t('feedbackIn')}
 				</Button>
 			</HStack>

@@ -30,9 +30,10 @@ export const ArticleViewSelector: FC<ArticleViewSelectorProps> = (props: Article
 	);
 
 	return (
-		<div className={classNames(classes.view, {}, [className])}>
+		<div data-testid={'ArticleSortSelector'} className={classNames(classes.view, {}, [className])}>
 			{viewTypes.map((viewItem) => (
 				<Button
+					dataTestId={`Button.${viewItem.view}`}
 					key={viewItem.view}
 					theme={ButtonTheme.CLEAR}
 					onClick={handleChangeView(viewItem.view)}

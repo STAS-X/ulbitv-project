@@ -50,7 +50,7 @@ const logOut = () => {
 
 declare global {
 	namespace Cypress {
-		interface Chainable {
+		export interface Chainable {
 			logIn(username?: string, password?: string): Chainable<UserData>;
 			logOut(): void;
 			toConsole(message?: any, ...optionalParams: any[]): void;

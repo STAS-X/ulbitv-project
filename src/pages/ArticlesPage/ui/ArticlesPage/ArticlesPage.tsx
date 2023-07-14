@@ -128,7 +128,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
 			{inited && <ArticlesPageFilters />}
 			<PageWrapper data-testid={'ArticlesPage'} className={classNames(classes.articlespage, {}, [className])}>
-				<div className={classes.articlelist}>
+				<div data-testid={'ArticleList'} className={classes.articlelist}>
 					{inited && <ArticleInfiniteGridLoader />}
 					{/* <ArticleList
 						view={view}

@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
 import { userActions, UserData, getUserData, getUserIsAdmin } from '@/entities/User';
 import { getRouteAdminPanel, getRouteProfile } from '@/shared/config/routeConfig';
+import { useLocation, useNavigate } from '@/shared/lib/hooks/useRouterUtils';
 
 interface AddMenuButtonProps {
 	className?: string;
@@ -22,6 +23,8 @@ export const AddMenuButton: FC<AddMenuButtonProps> = memo((props: AddMenuButtonP
 
 	const userdata = useSelector<StateSchema, UserData | undefined>(getUserData);
 	const isAdmin = useSelector<StateSchema, boolean>(getUserIsAdmin);
+	const location = useLocation(); // Your hook to get login status
+	const navigate = useNavigate();
 
 	const showAuthModal = useCallback(() => {
 		if (onAuthModal) onAuthModal();
@@ -29,7 +32,8 @@ export const AddMenuButton: FC<AddMenuButtonProps> = memo((props: AddMenuButtonP
 
 	const setLogOut = useCallback(() => {
 		dispatch(userActions.logOut());
-	}, [dispatch]);
+		navigate('/', { state: location, replace: true });
+	}, [dispatch, navigate, location]);
 
 	const menuItems = useMemo(
 		() =>

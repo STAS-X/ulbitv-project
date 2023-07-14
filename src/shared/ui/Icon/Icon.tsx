@@ -12,10 +12,17 @@ export interface IconProps extends SVGProps<SVGSVGElement> {
 	className?: string;
 	Svg: FC<SVGProps<SVGSVGElement>>;
 	theme?: IconTheme;
+	dataTestId?: string;
 }
 
 export const Icon: FC<Omit<IconProps, 'ref'>> = memo((props: IconProps) => {
-	const { className, Svg, theme = IconTheme.PRIMARY, ...others } = props;
+	const { className, Svg, theme = IconTheme.PRIMARY, dataTestId = '', ...others } = props;
 
-	return <Svg className={classNames(classes.icon, { [classes[theme]]: true }, [className])} {...others} />;
+	return (
+		<Svg
+			data-testid={dataTestId}
+			className={classNames(classes.icon, { [classes[theme]]: true }, [className])}
+			{...others}
+		/>
+	);
 });

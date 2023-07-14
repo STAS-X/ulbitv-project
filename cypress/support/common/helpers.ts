@@ -1,7 +1,5 @@
-/// <reference types="cypress" />
-
 const getByTestId = (testId: string) => {
-	return cy.get(`[data-testid="${testId}"]`, { timeout: 100000 });
+	return cy.get(`[data-testid="${testId}"]`, { timeout: 10000 });
 };
 
 const checkClassList = (expectedClasses: string[]) => {

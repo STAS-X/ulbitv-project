@@ -11,10 +11,11 @@ export interface StarRatingProps {
 	size?: number;
 	count?: number;
 	rating?: number;
+	dataTestId?: string;
 }
 
 export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => {
-	const { className, size = 30, count = 5, rating = 0, onSelect } = props;
+	const { className, size = 30, count = 5, rating = 0, dataTestId = 'Article.Rating.Stars', onSelect } = props;
 
 	const [currentStar, setCurrentStar] = useState<number>(0);
 	const [currentRating, setCurrentRating] = useState<number>(rating);
@@ -57,6 +58,7 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
 				{stars.map((_, index) => {
 					return (
 						<Icon
+							dataTestId={`${dataTestId}.${index}`}
 							key={index}
 							className={classNames(
 								classes.starIcon,

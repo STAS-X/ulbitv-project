@@ -65,7 +65,7 @@ export const ArticleDetailes: FC<ArticleDetailesProps> = memo((props: ArticleDet
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<VStack gap={16} className={classNames('', mods, [className])}>
+			<VStack dataTestId={'ArticleDetailesData'} gap={16} className={classNames('', mods, [className])}>
 				{error ? (
 					<Text
 						title={t('errorTitle', { ns: 'errors' })}
@@ -90,6 +90,7 @@ export const ArticleDetailes: FC<ArticleDetailesProps> = memo((props: ArticleDet
 							</HStack>
 							<VStack gap={4}>
 								<Text
+									dataTestId={'Article.Title'}
 									className={classes.title}
 									title={articleData.title}
 									content={articleData.subtitle}
