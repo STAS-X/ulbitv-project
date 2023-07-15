@@ -17,14 +17,14 @@ export interface CommentCardProps {
 export const CommentCard: FC<CommentCardProps> = memo((props: CommentCardProps) => {
 	const { className, comment } = props;
 	return (
-		<VStack gap={8} className={classNames(classes.commentcard, {}, [className])} max>
+		<VStack dataTestId={'Article.CommentItem'} gap={8} className={classNames(classes.commentcard, {}, [className])} max>
 			<AppLink to={getRouteProfile(`${comment.user.profileId}`)}>
 				<HStack gap={4}>
 					<Avatar src={comment.user.avatar} size={32} />
 					<Text className={classes.username} title={comment.user.username} />
 				</HStack>
 			</AppLink>
-			<Text content={comment.text} />
+			<Text dataTestId={'Comment.Content'} content={comment.text} />
 		</VStack>
 	);
 });

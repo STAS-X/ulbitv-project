@@ -19,7 +19,7 @@ export const fetchCommentsByArticleId = createAppAsyncThunk<CommentSchema[], Com
 		if (!articleId) return rejectWithValue('articleIdNotFound');
 
 		try {
-			const response = await extra.api.get<CommentSchema[]>(`/comments/${articleId}`);
+			const response = await extra.api.get<CommentSchema[]>(`/comments?${articleId}`);
 
 			if (!response.data) {
 				throw new Error('error');

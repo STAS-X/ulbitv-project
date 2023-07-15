@@ -58,7 +58,7 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
 				{stars.map((_, index) => {
 					return (
 						<Icon
-							dataTestId={`${dataTestId}.${index}`}
+							dataTestId={`${dataTestId}.${index + 1}`}
 							key={index}
 							className={classNames(
 								classes.starIcon,

@@ -1,5 +1,9 @@
 import { addNewArticle, deleteArticleById } from '../../support/common/requests';
-import { ArticleSchema, ArticleType, ArticleBlockType } from './../../../src/entities/Article/model/types/articleSchema';
+import {
+	ArticleSchema,
+	ArticleType,
+	ArticleBlockType
+} from './../../../src/entities/Article/model/types/articleSchema';
 
 const articleData = {
 	title: 'Javascript news',
@@ -71,37 +75,46 @@ const articleData = {
 	]
 };
 
-
 describe('Тесты на создание статьи и визуализации ее на странице ArticleDetailesPage', () => {
 	beforeEach(function () {
-		// Авторизуемся под тестовым пользователем
-		cy.logIn().then((userData) => {
-			expect(userData).to.have.property('username', 'testuser');
-			cy.visit(`/articles`);
-			// Should be contain ArtickesPage text element
-			cy.getByTestId('ArticlesPage').should('exist', true);
-		});
 		// Обнуляем переменные cypress storage перед каждым тестом
 		Cypress.env('articles', []);
 		Cypress.env('comments', []);
+		Cypress.env('user', {});
+
+		// Добавляем перехватчик запросов добавленя комментария
+		cy.catchPostComment();
+		// Авторизуемся под тестовым пользователем
+		cy.logIn().then((userData) => {
+			expect(userData).to.have.property('username', 'testuser');
+			Cypress.env('user', { id: userData.id, username: userData.username });
+			cy.intercept('/articles').as('PageLoader');
+			cy.visit(`/articles`);
+			cy.wait('@PageLoader');
+			// Should be contain ArtickesPage text element
+			cy.getByTestId('ArticlesPage').should('exist', true);
+		});
 		// Добавляем новую статью для тестирования
 		cy.addNewArticle(articleData);
 		// run these tests as if in a desktop
 		// browser with a 960p monitor
-		cy.viewport(1536, 960)
+		cy.viewport(1536, 960);
 	});
 
 	afterEach(() => {
-		// Удаляем все ранее добавленные статьи
+		cy.toConsole(Cypress.env(), 'get all data from Cypress ENV');
+		// Удаляем все ранее добавленные комменты и статьи
+		Cypress.env('comments').forEach(({ id: commentId }) => cy.deleteCommentById(commentId));
 		Cypress.env('articles').forEach(({ articleId }) => cy.deleteArticleById(articleId));
 		// Обнуляем переменный cypress storage после теста
 		Cypress.env('articles', []);
 		Cypress.env('comments', []);
+		Cypress.env('user', {});
 		// Выходим из профиля и переходим на главную страницу
 		cy.logOut();
 	});
 
-	it(('Создание новой статьи на базе шаблона'), () => {
+	it('Создание новой статьи на базе шаблона', () => {
 		// Добавляем новую статью по шаблону
 		const articleId = Cypress.env('articles')?.[0].articleId;
 		//cy.toConsole(`${article.articleId}`, 'get env data');
@@ -109,31 +122,72 @@ describe('Тесты на создание статьи и визуализац�
 		// console.log(article[1].articleId, 'get article by request');
 		cy.wrap({ articleId }).its('articleId').should('eq', articleId);
 		// Переходим на страницу со статьей
+		cy.intercept(`/articles/${articleId}`).as('ArticleDetailesAlias');
 		cy.visit(`/articles/${articleId}`);
+		cy.wait('@ArticleDetailesAlias');
 		cy.getByTestId('ArticleDetailesPage').should('exist');
 		// Находим заголовок добавленной статьи
 		cy.getByTestId('ArticleDetailesData').getByTestId('Article.Title.Header').should('contain.text', 'Javascript news');
 		// По завершению проверок переходим на главную станицу
 		cy.visit('/');
-
 	});
 
-	it(('Оценка новой статьи'), () => {
+	it('Оценка новой статьи', () => {
 		// Добавляем новую статью по шаблону
 		const articleId = Cypress.env('articles')?.[0].articleId;
 		cy.wrap({ articleId }).its('articleId').should('eq', articleId);
 		// Переходим на страницу со статьей
+		cy.intercept(`/articles/${articleId}`).as('ArticleDetailesAlias');
 		cy.visit(`/articles/${articleId}`);
-		cy.getByTestId('Article.Rating').should('exist').getByTestId('Article.Rating.Stars.4').click();
-		
+		cy.wait('@ArticleDetailesAlias');
 		// Находим заголовок добавленной статьи
 		cy.getByTestId('ArticleDetailesData').getByTestId('Article.Title.Header').should('contain.text', 'Javascript news');
+
+		// Ставим оценку 4 и проверяем наличие класса isSelected на звезде
+		cy.getByTestId('Article.Rating').should('exist').getByTestId('Article.Rating.Stars.4').as('RatingStar').click();
+		cy.get('@RatingStar')
+			.invoke('attr', 'class')
+			.should('match', / _isSelected_/);
+		// Пишем комментарий в форму обратной связи и проверяем наличие нового отзыва
+		cy.getByTestId('Rating.FeedBack.Form').getByTestId('Rating.FeedBack.Value').type('Супер отзыв!');
+		cy.getByTestId('Rating.FeedBack.Submit.Button').should('be.enabled').click();
+		cy.getByTestId('Article.Rating.Frame').getByTestId('Rating.FeedBack.Message').contains('Супер отзыв!');
+
+		// Снимаем оценку и проверяем отсутствие класса isSelected на звезде
+		cy.getByTestId('Article.Rating').should('exist').getByTestId('Article.Rating.Stars.4').as('RatingStar').click();
+		cy.get('@RatingStar')
+			.invoke('attr', 'class')
+			.should('not.match', / _isSelected_/);
+
 		// По завершению проверок переходим на главную станицу
 		cy.visit('/');
-
 	});
 
+	it('Добавление нового комментария к статье', () => {
+		// Добавляем новую статью по шаблону
+		const articleId = Cypress.env('articles')?.[0].articleId;
+		cy.wrap({ articleId }).its('articleId').should('eq', articleId);
+		// Задаем интерцептор для перехвата запроса на переход на страницу со статьей и возвращаем алиас на ожидание завершения загрузки страницы
+		cy.intercept(`/articles/+(*)`).as('ArticleDetailesAlias');
+		cy.visit(`/articles/${articleId}`);
+		cy.wait('@ArticleDetailesAlias', { timeout: 10000 });
+		// Проверяем, что количество статей, рекомендованных к просмотру, больше 2
+		cy.getByTestId('Article.Recommendation').getByTestId('ArticleItem').its('length').should('be.greaterThan', 2);
+		// Проверяем, что к новой статье отсутствуют комментарии
+		cy.getByTestId('Article.Comments.Frame').getByTestId('Article.CommentItem').should('not.exist');
+		// Вводим новый комментарий
+		cy.getByTestId('Article.CommentForm').getByTestId('Article.Comment.Value').type('Новый коммент!');
+		cy.getByTestId('Article.CommentForm').getByTestId('Article.Comment.Add.Button').as('AddButton').should('be.enabled')
+		cy.get('@AddButton').click();
+		// Дожидаемся завершения запроса на добавление коммента
+		cy.wait('@PostComment');
+		cy.getByTestId('Article.CommentForm').getByTestId('Article.Comment.Add.Button').should('be.disabled');
+		// Проверяем, что коммент появился и содержит соответствующий контекст
+		cy.getByTestId('Article.Comments.Frame')
+			.getByTestId('Article.CommentItem')
+			.as('Comment')
+			.its('length')
+			.should('be.eq', 1);
+		cy.get('@Comment').getByTestId('Comment.Content.Message').contains('Новый коммент!');
+	});
 });
-
-
-

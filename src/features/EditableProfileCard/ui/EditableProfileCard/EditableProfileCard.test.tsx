@@ -57,12 +57,12 @@ describe('features/EditableProfileCard', () => {
 
 		const editableProfileCard = screen.getByTestId('ProfileCard');
 		expect(editableProfileCard).toBeInTheDocument();
-		const editBtn = screen.getByTestId('ProfileCard.EditBtn');
+		const editBtn = screen.getByTestId('ProfileCard.EditBtn.Button');
 		expect(editBtn).toBeInTheDocument();
 
 		fireEvent.click(editBtn);
 
-		const cancelBtn = screen.getByTestId('ProfileCard.CancelBtn');
+		const cancelBtn = screen.getByTestId('ProfileCard.CancelBtn.Button');
 		expect(cancelBtn).toBeInTheDocument();
 		const inputFirst = screen.getByTestId('ProfileCard.FirstName.Value');
 
@@ -85,12 +85,12 @@ describe('features/EditableProfileCard', () => {
 
 		const editableProfileCard = screen.getByTestId('ProfileCard');
 		expect(editableProfileCard).toBeInTheDocument();
-		const editBtn = screen.getByTestId('ProfileCard.EditBtn');
+		const editBtn = screen.getByTestId('ProfileCard.EditBtn.Button');
 		expect(editBtn).toBeInTheDocument();
 
 		fireEvent.click(editBtn);
 
-		const cancelBtn = screen.getByTestId('ProfileCard.CancelBtn');
+		const cancelBtn = screen.getByTestId('ProfileCard.CancelBtn.Button');
 		expect(cancelBtn).toBeInTheDocument();
 		const inputAge = screen.getByTestId('ProfileCard.Age.Value');
 		expect(inputAge).toBeInTheDocument();
@@ -107,7 +107,7 @@ describe('features/EditableProfileCard', () => {
 
 		fireEvent.click(cancelBtn);
 
-		expect(screen.getByTestId('ProfileCard.EditBtn')).toBeInTheDocument();
+		expect(screen.getByTestId('ProfileCard.EditBtn.Button')).toBeInTheDocument();
 		expect(cancelBtn).not.toBeInTheDocument();
 	});
 
@@ -117,14 +117,14 @@ describe('features/EditableProfileCard', () => {
 
 		const editableProfileCard = screen.getByTestId('ProfileCard');
 		expect(editableProfileCard).toBeInTheDocument();
-		const editBtn = screen.getByTestId('ProfileCard.EditBtn');
+		const editBtn = screen.getByTestId('ProfileCard.EditBtn.Button');
 		expect(editBtn).toBeInTheDocument();
 
 		fireEvent.click(editBtn);
 
-		const cancelBtn = screen.getByTestId('ProfileCard.CancelBtn');
+		const cancelBtn = screen.getByTestId('ProfileCard.CancelBtn.Button');
 		expect(cancelBtn).toBeInTheDocument();
-		const saveBtn = screen.getByTestId('ProfileCard.SaveBtn');
+		const saveBtn = screen.getByTestId('ProfileCard.SaveBtn.Button');
 		expect(saveBtn).toBeInTheDocument();
 		const inputFirst = screen.getByTestId('ProfileCard.FirstName.Value');
 		const inputLast = screen.getByTestId('ProfileCard.LastName.Value');
@@ -153,7 +153,7 @@ describe('features/EditableProfileCard', () => {
 
 		expect(cancelBtn).not.toBeInTheDocument();
 		expect(cancelBtn).not.toBeInTheDocument();
-		expect(screen.getByTestId('ProfileCard.EditBtn')).toBeInTheDocument();
+		expect(screen.getByTestId('ProfileCard.EditBtn.Button')).toBeInTheDocument();
 		expect(mockApi).toHaveBeenCalled();
 		expect(mockApi).toHaveBeenCalledWith(`/profiles/${formData.id}`, {
 			...formData,

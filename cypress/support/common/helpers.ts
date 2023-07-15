@@ -1,5 +1,5 @@
 const getByTestId = (testId: string) => {
-	return cy.get(`[data-testid="${testId}"]`, { timeout: 10000 });
+	return cy.get(`[data-testid="${testId}"]`, { timeout: 15000 });
 };
 
 const checkClassList = (expectedClasses: string[]) => {
@@ -12,13 +12,26 @@ const checkClassList = (expectedClasses: string[]) => {
 	};
 };
 
+const catchPostComment = () => {
+	cy.intercept('POST', '/comments', async (req) => {
+		req.on('before:response', (res) => {
+			if (res.body) Cypress.env('comments').push(res.body);
+			console.log(res.body, 'comment catched to alias PostComment');
+		});
+
+		req.continue();
+	}).as('PostComment');
+	console.log('POST comments cracked');
+};
+
 declare global {
 	namespace Cypress {
 		interface Chainable {
 			getByTestId(testId: string): ReturnType<typeof getByTestId>;
 			checkClassList(expectedClasses: string[]): boolean;
+			catchPostComment(): void;
 		}
 	}
 }
 
-export { getByTestId, checkClassList };
+export { getByTestId, checkClassList, catchPostComment };

@@ -11,9 +11,8 @@ declare global {
 
 interface EnvKeys {
 	['articles']: Array<{ articleId: string | number }>,
-	['articleId']: { articleId: string },
-	['comments']: Array<{ commentId: string | number }>,
-	['users']: Array<{ userId: string | number, username?: string }>,
+	['comments']: Array<{ id: string | number, text: string|number, articleId: string|number, userId: string|number }>,
+	['user']:{ userId: string | number, username?: string },
 }
 
 export { };

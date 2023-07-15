@@ -75,11 +75,17 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 
 	return (
 		<Card className={classNames(classes.Rating, { [classes.max]: max }, [className])}>
-			<VStack align={'center'} gap={8}>
+			<VStack dataTestId={'Article.Rating.Frame'} align={'center'} gap={8}>
 				<Text title={rating ? t('ratingTitle') : title} />
 				{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}
 				<StarRating rating={rating} size={40} onSelect={onSelectStarts} />
-				{articleFeedBack && <Text content={`${t('ratingPlaceholder')} ${articleFeedBack}`} size={TextSize.M} />}
+				{articleFeedBack && (
+					<Text
+						dataTestId={'Rating.FeedBack'}
+						content={`${t('ratingPlaceholder')} ${articleFeedBack}`}
+						size={TextSize.M}
+					/>
+				)}
 			</VStack>
 			{hasFeedBack &&
 				(isMobile ? (

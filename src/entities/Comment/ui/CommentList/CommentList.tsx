@@ -20,7 +20,12 @@ export const CommentList: FC<CommentListProps> = memo((props: CommentListProps) 
 	const { t } = useTranslation(['comments']);
 
 	return (
-		<VStack gap={10} className={classNames(classes.commentlist, {}, [className])} max>
+		<VStack
+			dataTestId={'Article.Comments.Frame'}
+			gap={10}
+			className={classNames(classes.commentlist, {}, [className])}
+			max
+		>
 			{isLoading ? (
 				comments?.length ? (
 					<>

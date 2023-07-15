@@ -56,7 +56,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 				) : isLoading ? (
 					<Loader />
 				) : (
-					<VStack data-testid={'ProfileCard'} gap={10} max>
+					<VStack gap={10} max>
 						{data?.avatar && (
 							<HStack justify={'center'} max>
 								<Avatar className={classes.avatar} size={100} src={data?.avatar} />

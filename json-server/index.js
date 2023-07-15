@@ -12,7 +12,7 @@ const router = jsonServer.router(path.resolve(__dirname, 'db.json'), { foreignKe
 server.use(jsonServer.defaults({}));
 server.use(
 	jsonServer.rewriter({
-		'/comments/:id': '/comments?articleId=:id&_expand=user&_sort=id&_order=asc'
+		'/comments?:id': '/comments?articleId=:id&_expand=user&_sort=id&_order=asc'
 	})
 );
 server.use(jsonServer.bodyParser);

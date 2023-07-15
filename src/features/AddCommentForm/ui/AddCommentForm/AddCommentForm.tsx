@@ -78,7 +78,7 @@ const AddCommentForm: FC<AddCommentFormProps> = (props: AddCommentFormProps) => 
 							onChange={onCommentFormChange}
 						/>
 						<Button
-							dataTestId={'ArticleComment.Add'}
+							dataTestId={'Article.Comment.Add'}
 							theme={ButtonTheme.OUTLINE}
 							onClick={handleSendComment}
 							disabled={!content || content.length === 0 || isLoading}

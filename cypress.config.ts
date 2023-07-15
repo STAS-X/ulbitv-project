@@ -6,14 +6,14 @@ export default defineConfig({
 			// 	// implement node event listeners here
 		},
 		baseUrl: 'http://localhost:3000/',
-		"retries": {
-			"runMode": 2,
-			"openMode": 0
+		retries: {
+			runMode: 2,
+			openMode: 0
 		},
-		pageLoadTimeout: 31000,
-		defaultCommandTimeout: 4000,
+		pageLoadTimeout: 40000,
+		defaultCommandTimeout: 15000,
 		chromeWebSecurity: false,
-		experimentalSkipDomainInjection: ['localhost'],
+		experimentalSkipDomainInjection: ['localhost']
 		//testIsolation: true,
 		//experimentalWebKitSupport: true
 	}

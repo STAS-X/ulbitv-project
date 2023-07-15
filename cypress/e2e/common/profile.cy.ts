@@ -18,15 +18,15 @@ describe('Тесты на компонент формы профиля поль�
 
 	const makeProfileEditable = () => {
 		// Переводим форму в редактируемый вид и убеждаемся в наличии кнопки отмены
-		changeStatusProfile('ProfileCard.EditBtn');
+		changeStatusProfile('ProfileCard.EditBtn.Button');
 	};
 	const cancelProfileEditable = () => {
 		// Отменяем редактирование формы и убеждаемся в налиии кнопки редактирования
-		changeStatusProfile('ProfileCard.CancelBtn');
+		changeStatusProfile('ProfileCard.CancelBtn.Button');
 	};
 	const saveProfileEditable = () => {
 		// Сохрняем изменения в форме профиля
-		changeStatusProfile('ProfileCard.SaveBtn');
+		changeStatusProfile('ProfileCard.SaveBtn.Button');
 	};
 
 	beforeEach(function () {
