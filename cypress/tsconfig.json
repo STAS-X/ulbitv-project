@@ -6,7 +6,7 @@
 		"allowJs": true,
 		"isolatedModules": false
 	},
-	/*"extends": "../tsconfig.json",*/
-	"include": ["cypress/**/*.cy.{ts}", "../cypress.config.ts"],
+	"extends": "../tsconfig.json",
+	"include": ["cypress/**/*.cy.{ts?}", "../cypress.config.ts"],
 	"exclude": []
 }

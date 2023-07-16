@@ -1,6 +1,4 @@
-import { addNewArticle, deleteArticleById } from '../../support/common/requests';
 import {
-	ArticleSchema,
 	ArticleType,
 	ArticleBlockType
 } from './../../../src/entities/Article/model/types/articleSchema';
@@ -102,7 +100,7 @@ describe('Тесты на создание статьи и визуализац�
 	});
 
 	afterEach(() => {
-		cy.toConsole(Cypress.env(), 'get all data from Cypress ENV');
+		//cy.toConsole(Cypress.env(), 'get all data from Cypress ENV');
 		// Удаляем все ранее добавленные комменты и статьи
 		Cypress.env('comments').forEach(({ id: commentId }) => cy.deleteCommentById(commentId));
 		Cypress.env('articles').forEach(({ articleId }) => cy.deleteArticleById(articleId));
@@ -144,7 +142,12 @@ describe('Тесты на создание статьи и визуализац�
 		cy.getByTestId('ArticleDetailesData').getByTestId('Article.Title.Header').should('contain.text', 'Javascript news');
 
 		// Ставим оценку 4 и проверяем наличие класса isSelected на звезде
-		cy.getByTestId('Article.Rating').should('exist').getByTestId('Article.Rating.Stars.4').as('RatingStar').click();
+		cy.getByTestId('Article.Rating')
+			.should('exist')
+			.scrollIntoView({ easing: 'linear' })
+			.getByTestId('Article.Rating.Stars.4')
+			.as('RatingStar')
+			.click();
 		cy.get('@RatingStar')
 			.invoke('attr', 'class')
 			.should('match', / _isSelected_/);
@@ -172,7 +175,11 @@ describe('Тесты на создание статьи и визуализац�
 		cy.visit(`/articles/${articleId}`);
 		cy.wait('@ArticleDetailesAlias', { timeout: 10000 });
 		// Проверяем, что количество статей, рекомендованных к просмотру, больше 2
-		cy.getByTestId('Article.Recommendation').getByTestId('ArticleItem').its('length').should('be.greaterThan', 2);
+		cy.getByTestId('Article.Recommendation')
+			.scrollIntoView({ easing: 'linear' })
+			.getByTestId('ArticleItem')
+			.its('length')
+			.should('be.greaterThan', 2);
 		// Проверяем, что к новой статье отсутствуют комментарии
 		cy.getByTestId('Article.Comments.Frame').getByTestId('Article.CommentItem').should('not.exist');
 		// Вводим новый комментарий

@@ -2,6 +2,10 @@ const getByTestId = (testId: string) => {
 	return cy.get(`[data-testid="${testId}"]`, { timeout: 15000 });
 };
 
+const getByCy = (testCy: string) => {
+	return cy.get(`[data-cy="${testCy}"]`, { timeout: 15000 });
+};
+
 const checkClassList = (expectedClasses: string[]) => {
 	return ($el: ArrayLike<any>) => {
 		//cy.window().then((win) => win.console.warn($el[0].classList, 'get classes from element'));
@@ -28,10 +32,11 @@ declare global {
 	namespace Cypress {
 		interface Chainable {
 			getByTestId(testId: string): ReturnType<typeof getByTestId>;
+			getByCy(testCy: string): ReturnType<typeof getByCy>;
 			checkClassList(expectedClasses: string[]): boolean;
 			catchPostComment(): void;
 		}
 	}
 }
 
-export { getByTestId, checkClassList, catchPostComment };
+export { getByTestId, getByCy, checkClassList, catchPostComment };

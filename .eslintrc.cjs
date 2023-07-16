@@ -63,7 +63,7 @@ module.exports = {
 			'error',
 			{
 				alias: '@',
-				ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+				ignoreImportPatterns: ['**/StoreProvider', '**/ThemeProvider', '**/testing'],
 				ignoreFilePatterns: ['**/*.test.{ts,tsx}']
 			}
 		],
