@@ -18,8 +18,7 @@ describe('loginByUsername selector test', () => {
 		user: {
 			id: '1',
 			username: 'admin',
-			avatar:
-				'https://bipbap.ru/wp-content/uploads/2021/07/Kartinki-na-avu-v-VK-dlya-parnej-i-muzhchin-samye-klassnye-i-krutye-3.jpg'
+			avatar: 'https://bipbap.ru/wp-content/uploads/2021/07/Kartinki-na-avu-v-VK-dlya-parnej-i-muzhchin-samye-klassnye-i-krutye-3.jpg'
 		}
 	};
 	// beforeEach(() => {

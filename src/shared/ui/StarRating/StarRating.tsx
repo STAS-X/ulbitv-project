@@ -66,7 +66,9 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
 									[classes.isSelected]: Boolean(
 										index + 1 <= currentStar || (index + 1 <= currentRating && currentStar === 0)
 									),
-									[classes.hasRating]: Boolean(index + 1 <= currentStar && currentStar === currentRating)
+									[classes.hasRating]: Boolean(
+										index + 1 <= currentStar && currentStar === currentRating
+									)
 								},
 								[]
 							)}

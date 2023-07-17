@@ -20,7 +20,9 @@ export const fetchArticlesList = createAppAsyncThunk<ArticleSchema[], ArticlesLi
 	async (props, thunkApi) => {
 		const { extra, rejectWithValue, getState } = thunkApi;
 		const pagesNums =
-			getArticlesPageNumber(getState()) > 0 ? getArticlesPageNumber(getState()) : getArticlesPageNumber(getState()) + 1;
+			getArticlesPageNumber(getState()) > 0
+				? getArticlesPageNumber(getState())
+				: getArticlesPageNumber(getState()) + 1;
 		const { page = pagesNums, pageExpanded = true } = props ? props : { page: pagesNums, pageExpanded: true };
 		const limit = getArticlesPageLimit(getState());
 		const field = getArticlesPageSortField(getState());

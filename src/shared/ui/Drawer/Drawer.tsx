@@ -118,7 +118,12 @@ const DrawerContent = (props: DrawerProps) => {
 		<Portal>
 			<div className={classNames(classes.Drawer, mods, [className, theme, 'app_drawer'])}>
 				<Overlay onClick={onClose} />
-				<Spring.a.div ref={contentRef} className={classNames(classes.content, {}, [])} style={rubberStyle} {...bind()}>
+				<Spring.a.div
+					ref={contentRef}
+					className={classNames(classes.content, {}, [])}
+					style={rubberStyle}
+					{...bind()}
+				>
 					{children}
 				</Spring.a.div>
 			</div>

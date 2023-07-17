@@ -44,7 +44,10 @@ export const DropDown: FC<DropDownProps> = memo((props: DropDownProps) => {
 								<li
 									className={classNames(
 										classes.menuitem,
-										{ [classes.active]: active || false, [classes.disabled]: item.disabled || false },
+										{
+											[classes.active]: active || false,
+											[classes.disabled]: item.disabled || false
+										},
 										[]
 									)}
 									onClick={() => {

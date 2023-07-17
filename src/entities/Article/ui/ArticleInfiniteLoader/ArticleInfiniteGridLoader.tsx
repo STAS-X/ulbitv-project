@@ -323,7 +323,10 @@ export const ArticleInfiniteGridLoader: FC<ArticleInfiniteGridLoaderProps> = mem
 			[isNextPageLoading, items, fetchMore]
 		);
 
-		const itemCount = useMemo(() => (hasNextPage ? items.length + limit : items.length), [hasNextPage, limit, items]);
+		const itemCount = useMemo(
+			() => (hasNextPage ? items.length + limit : items.length),
+			[hasNextPage, limit, items]
+		);
 
 		const columnCount = useCallback(
 			(width: number) => (view === ArticleView.LIST ? 1 : Math.floor(width / (TILE_ARTICLE_WIDTH + 10))),

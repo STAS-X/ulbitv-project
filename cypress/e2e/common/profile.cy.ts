@@ -35,7 +35,6 @@ describe('Тесты на компонент формы профиля поль�
 			expect(userData).to.have.property('username', 'testuser');
 			cy.visit(`/profile/${userData?.profileId}`);
 
-			
 			// Should be contain ProfilePage text element
 			cy.getByTestId('ProfilePage').contains('Профиль');
 			makeProfileEditable();
@@ -125,7 +124,5 @@ describe('Тесты на компонент формы профиля поль�
 		cy.checkOptionFromSelect('ProfileCard.Currency', 'USD').should('contain.text', 'USD');
 		cy.checkOptionFromSelect('ProfileCard.Currency', 'EUR').should('contain.text', 'EUR');
 		cy.checkOptionFromSelect('ProfileCard.Currency', 'TUGRIK', false).should('not.contain.text', 'TUGRIK');
-
-
-	})
+	});
 });

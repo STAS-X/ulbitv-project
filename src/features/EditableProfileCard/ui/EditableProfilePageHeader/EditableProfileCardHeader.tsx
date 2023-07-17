@@ -92,7 +92,9 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 								className={classes.editbtn}
 								theme={ButtonTheme.OUTLINE}
 								onClick={onChangeEdit(ProfileEditType.SAVE)}
-								disabled={!isDirty || (isDirty && validationError && Object.keys(validationError).length > 0)}
+								disabled={
+									!isDirty || (isDirty && validationError && Object.keys(validationError).length > 0)
+								}
 							>
 								{t('save', { ns: 'profile' })}
 							</Button>

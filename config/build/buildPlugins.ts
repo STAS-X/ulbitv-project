@@ -43,7 +43,10 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
 		new webpack.HotModuleReplacementPlugin()
 	];
 	if (isDev)
-		plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false }), new ReactRefreshWebpackPlugin({ overlay: false }));
+		plugins.push(
+			new BundleAnalyzerPlugin({ openAnalyzer: false }),
+			new ReactRefreshWebpackPlugin({ overlay: false })
+		);
 	else
 		plugins.push(
 			new MiniCssExtractPlugin({

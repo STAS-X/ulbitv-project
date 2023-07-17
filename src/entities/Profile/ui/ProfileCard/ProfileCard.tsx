@@ -41,7 +41,10 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 	return (
 		<HStack className={classNames(classes.profilecard, mods, [className])} max>
 			<VStack
-				className={classNames('', isLoading ? { [classes.loading]: true } : { [classes.error]: Boolean(error) })}
+				className={classNames(
+					'',
+					isLoading ? { [classes.loading]: true } : { [classes.error]: Boolean(error) }
+				)}
 				align={'center'}
 				justify={'center'}
 				max

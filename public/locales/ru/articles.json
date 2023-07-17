@@ -1,32 +1,32 @@
 {
-  "article": "Страница статей",
-  "noArticles": "Статьи не найдены",
-  "noFiltredArticles": "Статьи по фильтру `{{filter}}` и категориям `{{category}}` не найдены",
-  "recommendedError": "Возникла ошибка `{{message}}`",
-  "readMore": "Читать далее",
-  "backToList": "Назад к списку",
-  "selectors": {
-    "views": "Просмотры",
-    "title": "Наименование",
-    "createdAt": "Создано",
-    "asc": "возрастание",
-    "desc": "убывание",
-    "formTitle": "Параметры сортировки",
-    "fieldHolder": "Сортировать по",
-    "orderHolder": "Порядок по"
-  },
-  "search": {
-    "formTitle": "Поиск статей",
-    "filterHolder": "Искать по названию"
-  },
-  "category": {
-    "IT": "ИТ",
-    "SCIENCE": "Наука",
-    "ECONOMICS": "Экономика"
-  },
-  "recommendedForm": "Рекомендуем к просмотру",
-  "editArticle": "Редактировать",
-  "editArticleId": "Редактирование статьи ID = {{id}}",
-  "newArticle": "Создание новой статьи",
-  "createArticle": "Создать статью"
+	"article": "Страница статей",
+	"noArticles": "Статьи не найдены",
+	"noFiltredArticles": "Статьи по фильтру `{{filter}}` и категориям `{{category}}` не найдены",
+	"recommendedError": "Возникла ошибка `{{message}}`",
+	"readMore": "Читать далее",
+	"backToList": "Назад к списку",
+	"selectors": {
+		"views": "Просмотры",
+		"title": "Наименование",
+		"createdAt": "Создано",
+		"asc": "возрастание",
+		"desc": "убывание",
+		"formTitle": "Параметры сортировки",
+		"fieldHolder": "Сортировать по",
+		"orderHolder": "Порядок по"
+	},
+	"search": {
+		"formTitle": "Поиск статей",
+		"filterHolder": "Искать по названию"
+	},
+	"category": {
+		"IT": "ИТ",
+		"SCIENCE": "Наука",
+		"ECONOMICS": "Экономика"
+	},
+	"recommendedForm": "Рекомендуем к просмотру",
+	"editArticle": "Редактировать",
+	"editArticleId": "Редактирование статьи ID = {{id}}",
+	"newArticle": "Создание новой статьи",
+	"createArticle": "Создать статью"
 }

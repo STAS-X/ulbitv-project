@@ -15,7 +15,9 @@ export default {
 	args: {
 		articleId: '2'
 	},
-	decorators: [StoreDecorator({ user: { authData: { id: '1', username: 'STAS-XXX', profileId: '1' }, _loaded: true } })]
+	decorators: [
+		StoreDecorator({ user: { authData: { id: '1', username: 'STAS-XXX', profileId: '1' }, _loaded: true } })
+	]
 } as Meta<typeof AddNotificationsButton>;
 
 interface AddNotificationsButtonProps {

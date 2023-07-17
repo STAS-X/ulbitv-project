@@ -11,10 +11,11 @@
 		"build:prod": "webpack --env mode=production --env apiURL=https://backend-sigma-beryl.vercel.app",
 		"build:dev": "webpack --env mode=development",
 		"start:json:server": "node ./json-server/index.js",
-		"lint:ts": "eslint \"**/*.{ts,tsx}\"",
-		"lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
-		"lint:scss": "npx stylelint \"**/*.scss\"",
-		"lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
+		"prettier": "npx prettier --write \"**/*.{ts,tsx,json}\"",
+		"lint:ts": "eslint \"src/**/*.{ts,tsx}\"",
+		"lint:ts:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
+		"lint:scss": "npx stylelint \"src/**/*.scss\"",
+		"lint:scss:fix": "npx stylelint \"src/**/*.scss\" --fix",
 		"prettier-ts-format": "prettier --config .prettierrc \"**/*.{ts,tsx}\" --write",
 		"prettier-css-format": "prettier --config .prettierrc \"**/*.{css,scss}\" --write",
 		"lint:prets:fix": "npm run prettier-ts-format & npm run lint:ts:fix",
@@ -37,7 +38,10 @@
 		"postinstall": "patch-package && node scripts/clearCache ./node_modules/.cache"
 	},
 	"lint-stage": {
-		"**/*.{ts?}": "eslint"
+		"**/*.{ts?}": [
+			"prettier --list-different",
+			"eslint"
+		]
 	},
 	"keywords": [],
 	"author": "",
@@ -88,7 +92,7 @@
 		"deelay": "^2.0.0",
 		"eslint": "^8.10.0",
 		"eslint-config-airbnb": "^19.0.4",
-		"eslint-config-prettier": "^8.6.0",
+		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-i18next": "^5.1.2",
 		"eslint-plugin-import": "^2.25.4",
 		"eslint-plugin-jsx-a11y": "^6.5.1",

@@ -57,7 +57,13 @@ const AddArticleRating: FC<AddArticleRatingProps> = memo((props: AddArticleRatin
 		async (rating: number, feedback: string) => {
 			try {
 				if (feedbackId) {
-					await updateArticleFeedBack({ id: feedbackId, articleId, userId: authData?.id || '', rating, feedback });
+					await updateArticleFeedBack({
+						id: feedbackId,
+						articleId,
+						userId: authData?.id || '',
+						rating,
+						feedback
+					});
 				} else await addArticleFeedBack({ articleId, userId: authData?.id || '', rating, feedback });
 				await refetch();
 				console.log(feedbackData?.[0], 'start refetch data');
@@ -70,7 +76,13 @@ const AddArticleRating: FC<AddArticleRatingProps> = memo((props: AddArticleRatin
 		async (rating: number) => {
 			try {
 				if (feedbackId) {
-					await updateArticleFeedBack({ id: feedbackId, articleId, userId: authData?.id || '', rating, feedback: '' });
+					await updateArticleFeedBack({
+						id: feedbackId,
+						articleId,
+						userId: authData?.id || '',
+						rating,
+						feedback: ''
+					});
 				} else await addArticleFeedBack({ articleId, userId: authData?.id || '', rating, feedback: '' });
 				await refetch();
 				//console.log(feedbackData?.[0], 'start refetch data');

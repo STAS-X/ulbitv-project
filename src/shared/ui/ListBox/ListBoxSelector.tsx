@@ -67,7 +67,11 @@ export const ListBoxSelector: FC<ListBoxSelectorProps> = (props: ListBoxSelector
 					</HStack>
 				)}
 			</Listbox.Button>
-			<Listbox.Options data-testid={`${dataTestId}.Options`} className={classes.options} style={{ ...inlineStyle }}>
+			<Listbox.Options
+				data-testid={`${dataTestId}.Options`}
+				className={classes.options}
+				style={{ ...inlineStyle }}
+			>
 				{items?.map((item) => (
 					<Listbox.Option
 						className={classes.listitem}
@@ -77,7 +81,13 @@ export const ListBoxSelector: FC<ListBoxSelectorProps> = (props: ListBoxSelector
 						disabled={item.disabled}
 					>
 						{({ active, selected }) => (
-							<li className={classNames('', { [classes.active]: active, [classes.selected]: selected }, [])}>
+							<li
+								className={classNames(
+									'',
+									{ [classes.active]: active, [classes.selected]: selected },
+									[]
+								)}
+							>
 								{item.content}
 							</li>
 						)}

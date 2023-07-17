@@ -24,7 +24,8 @@ describe('loginSlice.test', () => {
 	};
 	test('test set readonly', () => {
 		expect(
-			editableProfileReducer(initialState as ProfileSchema, editableProfileActions.setProfileReadOnly(false)).readonly
+			editableProfileReducer(initialState as ProfileSchema, editableProfileActions.setProfileReadOnly(false))
+				.readonly
 		).toBe(false);
 	});
 	test('test save profile', () => {

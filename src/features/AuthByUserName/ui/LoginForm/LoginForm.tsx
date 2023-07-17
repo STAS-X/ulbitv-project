@@ -100,9 +100,20 @@ const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
 			<div className={classNames(classes.loginform, {}, [className])}>
 				<Text title={t('authTitle')} />
 				{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}
-				<Input ref={userNameRef} type="text" className={classes.input} onChange={onChangeUsername} value={login} />
+				<Input
+					ref={userNameRef}
+					type="text"
+					className={classes.input}
+					onChange={onChangeUsername}
+					value={login}
+				/>
 				<Input type="text" className={classes.input} onChange={onChangePassword} value={password} />
-				<Button theme={ButtonTheme.OUTLINE} className={classes.loginbtn} disabled={isLoading} onClick={onLoginClick}>
+				<Button
+					theme={ButtonTheme.OUTLINE}
+					className={classes.loginbtn}
+					disabled={isLoading}
+					onClick={onLoginClick}
+				>
 					{t('login')}
 				</Button>
 			</div>

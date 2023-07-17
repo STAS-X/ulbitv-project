@@ -116,7 +116,12 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: Ar
 	return (
 		<div className={classNames(classes.articlesheader, {}, [className, 'articles-header'])}>
 			<div className={classes.headerfilters}>
-				<ArticleSortSelector sortBy={sortBy} fields={fields} orders={orders} onSortArticle={handleSortArticles} />
+				<ArticleSortSelector
+					sortBy={sortBy}
+					fields={fields}
+					orders={orders}
+					onSortArticle={handleSortArticles}
+				/>
 				<ArticleSearchSelector refInput={refSearch} searchBy={filter} onFilterArticle={handleSearchArticles} />
 			</div>
 			<div className={classes.headercategory}>

@@ -11,11 +11,12 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'plugin:@typescript-eslint/recommended-requiring-type-checking',
 		'plugin:react-hooks/recommended',
-		'plugin:prettier/recommended'
+		'plugin:prettier/recommended',
+		'prettier'
 	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
-		project: ['tsconfig.json'],
+		project: ['./tsconfig.json'],
 		requireConfigFile: false,
 		tsconfigRootDir: __dirname,
 		sourceType: 'module',
@@ -23,29 +24,29 @@ module.exports = {
 	},
 	root: true,
 	rules: {
-		'prettier/prettier': [
-			'error', // Means error
-			{
-				indent: [
-					2,
-					'tab',
-					{
-						SwitchCase: 1,
-						VariableDeclarator: 1
-					}
-				],
-				singleQuote: true
-			}
-		],
-		'react/jsx-indent': [
-			2,
-			'tab',
-			{
-				checkAttributes: false,
-				indentLogicalExpressions: true
-			}
-		],
-		'react/jsx-indent-props': [2, 'tab'],
+		// 'prettier/prettier': [
+		// 	'error', // Means error
+		// 	{
+		// 		indent: [
+		// 			2,
+		// 			'tab',
+		// 			{
+		// 				SwitchCase: 1,
+		// 				VariableDeclarator: 1
+		// 			}
+		// 		],
+		// 		singleQuote: true
+		// 	}
+		// ],
+		// 'react/jsx-indent': [
+		// 	2,
+		// 	'tab',
+		// 	{
+		// 		checkAttributes: false,
+		// 		indentLogicalExpressions: true
+		// 	}
+		// ],
+		// 'react/jsx-indent-props': [2, 'tab'],
 		'@typescript-eslint/dot-notation': 'warn',
 		'react/jsx-filename-extension': [
 			'error',
@@ -82,6 +83,7 @@ module.exports = {
 		'react/display-name': 'off',
 		'react/prop-types': 'warn',
 		'react/jsx-props-no-spreading': 'off',
+		'react/jsx-max-props-per-line': ['warn', { maximum: 3 }],
 		'react/no-array-index-key': 'off',
 		'react/function-component-definition': 'off',
 		'react-hooks/rules-of-hooks': 'error',

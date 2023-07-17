@@ -93,7 +93,12 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 						<FeedBackForm title={feedBackTitle} onClose={onCloseModal} onSuccess={handleSuccess} />
 					</Drawer>
 				) : (
-					<RatingModal isOpen={isOpen} title={feedBackTitle} onClose={onCloseModal} onSuccess={handleSuccess} />
+					<RatingModal
+						isOpen={isOpen}
+						title={feedBackTitle}
+						onClose={onCloseModal}
+						onSuccess={handleSuccess}
+					/>
 				))}
 		</Card>
 	);

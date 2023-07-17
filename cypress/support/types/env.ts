@@ -10,9 +10,14 @@ declare global {
 }
 
 interface EnvKeys {
-	['articles']: Array<{ articleId: string | number }>,
-	['comments']: Array<{ id: string | number, text: string|number, articleId: string|number, userId: string|number }>,
-	['user']:{ userId: string | number, username?: string },
+	['articles']: Array<{ articleId: string | number }>;
+	['comments']: Array<{
+		id: string | number;
+		text: string | number;
+		articleId: string | number;
+		userId: string | number;
+	}>;
+	['user']: { userId: string | number; username?: string };
 }
 
-export { };
+export {};

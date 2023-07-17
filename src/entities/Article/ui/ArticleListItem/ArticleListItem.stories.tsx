@@ -20,8 +20,7 @@ export default {
 			user: {
 				id: '1',
 				username: '-XXX-',
-				avatar:
-					'https://bipbap.ru/wp-content/uploads/2021/07/unikal-nye-kartinki-na-avu-vk-i-odnoklassniki-samye-krasivye-2.jpg',
+				avatar: 'https://bipbap.ru/wp-content/uploads/2021/07/unikal-nye-kartinki-na-avu-vk-i-odnoklassniki-samye-krasivye-2.jpg',
 				profileId: '1'
 			},
 			type: [ArticleType.IT],

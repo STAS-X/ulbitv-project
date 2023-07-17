@@ -1,7 +1,4 @@
-import {
-	ArticleType,
-	ArticleBlockType
-} from './../../../src/entities/Article/model/types/articleSchema';
+import { ArticleType, ArticleBlockType } from './../../../src/entities/Article/model/types/articleSchema';
 
 const articleData = {
 	title: 'Javascript news',
@@ -125,7 +122,9 @@ describe('Тесты на создание статьи и визуализац�
 		cy.wait('@ArticleDetailesAlias');
 		cy.getByTestId('ArticleDetailesPage').should('exist');
 		// Находим заголовок добавленной статьи
-		cy.getByTestId('ArticleDetailesData').getByTestId('Article.Title.Header').should('contain.text', 'Javascript news');
+		cy.getByTestId('ArticleDetailesData')
+			.getByTestId('Article.Title.Header')
+			.should('contain.text', 'Javascript news');
 		// По завершению проверок переходим на главную станицу
 		cy.visit('/');
 	});
@@ -139,7 +138,9 @@ describe('Тесты на создание статьи и визуализац�
 		cy.visit(`/articles/${articleId}`);
 		cy.wait('@ArticleDetailesAlias');
 		// Находим заголовок добавленной статьи
-		cy.getByTestId('ArticleDetailesData').getByTestId('Article.Title.Header').should('contain.text', 'Javascript news');
+		cy.getByTestId('ArticleDetailesData')
+			.getByTestId('Article.Title.Header')
+			.should('contain.text', 'Javascript news');
 
 		// Ставим оценку 4 и проверяем наличие класса isSelected на звезде
 		cy.getByTestId('Article.Rating')
@@ -184,7 +185,10 @@ describe('Тесты на создание статьи и визуализац�
 		cy.getByTestId('Article.Comments.Frame').getByTestId('Article.CommentItem').should('not.exist');
 		// Вводим новый комментарий
 		cy.getByTestId('Article.CommentForm').getByTestId('Article.Comment.Value').type('Новый коммент!');
-		cy.getByTestId('Article.CommentForm').getByTestId('Article.Comment.Add.Button').as('AddButton').should('be.enabled')
+		cy.getByTestId('Article.CommentForm')
+			.getByTestId('Article.Comment.Add.Button')
+			.as('AddButton')
+			.should('be.enabled');
 		cy.get('@AddButton').click();
 		// Дожидаемся завершения запроса на добавление коммента
 		cy.wait('@PostComment');

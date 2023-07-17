@@ -26,7 +26,13 @@ const LazyLoadAvatar: FC<AvatarProps> = (props: AvatarProps) => {
 	return (
 		<Suspense fallback={<Skeleton width={size} height={size} border={border} />}>
 			{loaded && (
-				<OriginAvatar src={src} size={size} border={border} alt={alt} className={classNames('', {}, [className])} />
+				<OriginAvatar
+					src={src}
+					size={size}
+					border={border}
+					alt={alt}
+					className={classNames('', {}, [className])}
+				/>
 			)}
 		</Suspense>
 	);

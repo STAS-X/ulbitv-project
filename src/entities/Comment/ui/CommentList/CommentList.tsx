@@ -49,7 +49,9 @@ export const CommentList: FC<CommentListProps> = memo((props: CommentListProps) 
 					</VStack>
 				)
 			) : comments?.length ? (
-				comments.map((comment) => <CommentCard className={classes.comment} key={comment.id} comment={comment} />)
+				comments.map((comment) => (
+					<CommentCard className={classes.comment} key={comment.id} comment={comment} />
+				))
 			) : (
 				<Text content={t('noComments')} />
 			)}
