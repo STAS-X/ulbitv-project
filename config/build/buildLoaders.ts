@@ -4,16 +4,17 @@ import { buildCssLoader } from './loaders/buildCssLoader';
 import { BuildOptions } from './types/config';
 
 export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
-	const { isDev } = options;
+	const { isDev, project } = options;
 	const svgLoader = {
 		test: /\.svg$/,
 		use: ['@svgr/webpack']
 	};
+	const isTest = project !== 'frontend';
 
 	const cssLoaders = buildCssLoader(isDev);
 
-	const codeBabelLoaders = buildBabelLoader({ ...options, isTSX: false });
-	const tsxBabelLoaders = buildBabelLoader({ ...options, isTSX: true });
+	const codeBabelLoaders = buildBabelLoader({ ...options, isTSX: false, isTest });
+	const tsxBabelLoaders = buildBabelLoader({ ...options, isTSX: true, isTest });
 
 	// const typescriptLoaders = {
 	// 	test: /\.tsx?$/,

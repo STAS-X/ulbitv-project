@@ -1,5 +1,5 @@
 export type BuildMode = 'production' | 'development';
-export type ProjectMode = 'storybook' | 'frontend' | 'jest';
+export type ProjectMode = 'storybook' | 'frontend' | 'jest' | 'cypress';
 
 export interface BuildPaths {
 	entry: string;
@@ -16,6 +16,7 @@ export interface BuildEnv {
 	mode: BuildMode;
 	port: number;
 	apiURL: string;
+	isTest: boolean;
 }
 
 export interface BuildOptions extends BuildEnv {

@@ -5,7 +5,7 @@ import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/Dynami
 import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { articlesPageReducer, articlesPageActions } from '../../model/slices/articlePageSlice';
 import classes from './ArticlesPage.module.scss';
-import { getArticlesPageInited } from '../../model/selectors/getArticlesPageData';
+import { /*useArticleById,*/ getArticlesPageInited } from '../../model/selectors/getArticlesPageData';
 import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
 import { ArticlesPageFilters, ArticleInfiniteGridLoader } from '@/entities/Article';
 import { useArticlesParams } from '@/shared/lib/hooks/useArticlesQueryParams';
@@ -25,6 +25,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	const dispatch = useAppDispatch();
 	const inited = useSelector(getArticlesPageInited) || false;
 	//const currentLimit = Math.min(limit, selectedTotal >= 0 && total > 0 ? total - selectedTotal : limit);
+	//const articleFromSelector = useArticleById(5);
 
 	const { queryParams } = useArticlesParams();
 

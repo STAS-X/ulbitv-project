@@ -49,7 +49,6 @@ export const Button: FC<ButtonProps> = memo((props: ButtonProps) => {
 	return (
 		<button
 			data-testid={`${dataTestId}.Button`}
-			data-cy={`${dataTestId}.Button`}
 			type="button"
 			className={classNames(classes.button, mods, [className])}
 			disabled={disabled}

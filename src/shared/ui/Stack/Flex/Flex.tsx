@@ -37,7 +37,6 @@ export const Flex: FC<FlexProps> = (props: FlexProps) => {
 	return (
 		<div
 			data-testid={dataTestId}
-			data-cy={dataTestId}
 			className={classNames(classes.Flex, {}, [className])}
 			style={{
 				...style,

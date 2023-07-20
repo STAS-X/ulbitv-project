@@ -20,9 +20,7 @@ import { ArticlesPageSchema } from '../types/ArticlesPageSchema';
 import { fetchNextArticlesPage } from '../services/fetchNextArticlesPage/fetchNextArticlesPage';
 // eslint-disable-next-line stas-eslint-plugin/import-public-api
 import { ArticleSchema, ArticleType } from '@/entities/Article/model/types/articleSchema';
-import { createEntityAdapter, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-import { getArticlesPageCategory, getArticlesPageFilter } from '../selectors/getArticlesPageData';
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const articlesAdapter = createEntityAdapter<ArticleSchema>({
 	// Assume IDs are stored in a field other than `comment.id`
@@ -33,23 +31,6 @@ const articlesAdapter = createEntityAdapter<ArticleSchema>({
 
 export const getArticlesPage = articlesAdapter.getSelectors<StateSchema>(
 	(state) => state.articlesPage || articlesAdapter.getInitialState()
-);
-
-// Селектор для фильтрации статей на клиенте - пока не используем
-export const getFiltredArticles = createSelector(
-	[getArticlesPage.selectAll, getArticlesPageCategory, getArticlesPageFilter],
-	(articles, categoryBy = [], filterBy = '') => {
-		try {
-			const regex = new RegExp(filterBy);
-			const categoryArticles =
-				categoryBy.length > 0
-					? articles.filter((article) => article.type.some((category) => categoryBy.includes(category)))
-					: articles;
-			return categoryArticles.filter((article) => regex.test(article.title));
-		} catch (error) {
-			return [];
-		}
-	}
 );
 
 export const getSliceSelectors = articlesAdapter.getSelectors<StateSchema>(

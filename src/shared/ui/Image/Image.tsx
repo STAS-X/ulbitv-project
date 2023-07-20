@@ -34,11 +34,8 @@ const LazyLoadImage: FC<ImageProps> = (props: ImageProps) => {
 
 const OriginImage: FC<ImageProps> = (props: ImageProps) => {
 	const { src = PLACEHOLDER_IMAGE, border = '', ...otherProps } = props;
-	let srcOut;
 
-	if (_PROJECT_ === 'frontend') {
-		srcOut = src ? (ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_IMAGE) : PLACEHOLDER_IMAGE;
-	} else srcOut = 'placeholder.jpg';
+	const srcOut = src ? (ImageResource.read(src) instanceof Event ? src : PLACEHOLDER_IMAGE) : PLACEHOLDER_IMAGE;
 
 	return <img src={srcOut} style={{ borderRadius: border }} {...otherProps} />;
 };

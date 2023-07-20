@@ -22,10 +22,10 @@ describe('EditableProfileCard.cy.tsx', () => {
 			</TestComponentRender>
 		);
 		// Проверяем наличие кнопки редактирования и нажимаем ее
-		cy.getByCy('ProfileCard.Header').getByCy('ProfileCard.EditBtn.Button').should('exist').click();
+		cy.getByTestId('ProfileCard.Header').getByTestId('ProfileCard.EditBtn.Button').should('exist').click();
 		// Проверяем наличие кнопки отмены и нажимем ее
-		cy.getByCy('ProfileCard.Header').getByCy('ProfileCard.CancelBtn.Button').should('exist').click();
+		cy.getByTestId('ProfileCard.Header').getByTestId('ProfileCard.CancelBtn.Button').should('exist').click();
 		// Проверяем возвращение кнопки редактирования
-		cy.getByCy('ProfileCard.Header').getByCy('ProfileCard.EditBtn.Button').should('exist');
+		cy.getByTestId('ProfileCard.Header').getByTestId('ProfileCard.EditBtn.Button').should('exist');
 	});
 });

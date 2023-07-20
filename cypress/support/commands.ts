@@ -1,3 +1,4 @@
+import setup from 'cypress-cy-select';
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable @typescript-eslint/no-empty-function */
 /// <reference types="cypress" />
@@ -45,6 +46,12 @@
 // 		}
 // 	}
 // }
+
+const config = {
+	name: 'cy',
+	separator: ':'
+}
+setup(config);
 
 import * as helpers from './common/helpers';
 import * as login from './common/login';

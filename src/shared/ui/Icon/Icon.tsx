@@ -1,4 +1,4 @@
-import { FC, memo, VFC, SVGProps, HTMLAttributes } from 'react';
+import { FC, memo, SVGProps } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Icon.module.scss';
 

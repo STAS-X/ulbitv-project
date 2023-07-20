@@ -13,9 +13,11 @@ export {
 	getArticlesPageFilter,
 	getArticlesPageCategory,
 	getArticlesPageInited,
-	getArticlesPageTarget
+	getArticlesPageTarget,
+	getFiltredArticles,
+	useArticleById
 } from './model/selectors/getArticlesPageData';
 export type { ArticlesPageSchema } from './model/types/ArticlesPageSchema';
-export { getArticlesPage, getFiltredArticles, articlesPageActions } from './model/slices/articlePageSlice';
+export { getArticlesPage, articlesPageActions } from './model/slices/articlePageSlice';
 export { fetchArticlesList } from './model/services/fetchArticesList/fetchArticlesList';
 export { fetchNextArticlesPage } from './model/services/fetchNextArticlesPage/fetchNextArticlesPage';

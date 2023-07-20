@@ -6,7 +6,7 @@ interface BuildBabalLoaderProps extends BuildOptions {
 }
 
 export function buildBabelLoader(options: BuildBabalLoaderProps) {
-	const { isDev, isTSX } = options;
+	const { isDev, isTSX, isTest } = options;
 
 	return {
 		test: isTSX ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
@@ -27,7 +27,7 @@ export function buildBabelLoader(options: BuildBabalLoaderProps) {
 					],
 					['@babel/plugin-transform-typescript', { isTSX }],
 					'@babel/plugin-transform-runtime',
-					isTSX && [babelRemoveTestPropsPlugin, { props: removeProps }],
+					!isTest && isTSX && [babelRemoveTestPropsPlugin, { props: removeProps }],
 					isDev && require.resolve('react-refresh/babel')
 				].filter(Boolean)
 			}

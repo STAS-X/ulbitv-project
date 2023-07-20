@@ -1,16 +1,28 @@
 //import { fileURLToPath } from 'url';
 import path from 'path';
-import { BuildEnv, BuildOptions } from './config/build/types/config';
+import { BuildEnv, BuildMode, BuildOptions } from './config/build/types/config';
 
 //const __filename = fileURLToPath(import.meta.url);
 //export const __dirname = path.dirname(__filename);
+const getApiURL = (mode: BuildMode, apiURL?: string): string => {
+	if (apiURL) return apiURL;
+	switch (mode) {
+		case 'production':
+			return '/api';
+		default:
+			return 'http://localhost:8000';
+	}
+}
 
 export default (env: BuildEnv) => {
 	const mode = env?.mode || 'development';
 	const isDev = mode === 'development';
-	const apiURL = env?.apiURL || 'http://localhost:8000';
+	const isTest = env?.isTest || Boolean(process.env?.isTest);
+	const apiURL = getApiURL(mode, env?.apiURL);
 	const PORT = env?.port || 3000;
-	const PROJECT = 'frontend';
+	const PROJECT = isTest ? 'cypress' : 'frontend';
+
+	console.log(env, process.env, 'get envariable data');
 
 	const options: BuildOptions = {
 		mode,
@@ -25,6 +37,7 @@ export default (env: BuildEnv) => {
 			buildAssets: path.resolve(__dirname, 'build', 'assets')
 		},
 		isDev,
+		isTest,
 		apiURL,
 		port: PORT,
 		project: PROJECT

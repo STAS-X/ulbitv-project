@@ -4,7 +4,7 @@ module.exports = {
 		es2021: true,
 		jest: true
 	},
-	plugins: ['react', '@typescript-eslint', 'prettier', 'i18next', 'stas-eslint-plugin'],
+	plugins: ['react', '@typescript-eslint', 'i18next', 'stas-eslint-plugin'],
 	extends: [
 		'plugin:react/recommended',
 		'plugin:import/recommended',
@@ -24,20 +24,12 @@ module.exports = {
 	},
 	root: true,
 	rules: {
-		// 'prettier/prettier': [
-		// 	'error', // Means error
-		// 	{
-		// 		indent: [
-		// 			2,
-		// 			'tab',
-		// 			{
-		// 				SwitchCase: 1,
-		// 				VariableDeclarator: 1
-		// 			}
-		// 		],
-		// 		singleQuote: true
-		// 	}
-		// ],
+		'prettier/prettier': [
+			'off', // Means error
+			{
+				usePrettierrc: false
+			}
+		],
 		// 'react/jsx-indent': [
 		// 	2,
 		// 	'tab',
@@ -54,7 +46,7 @@ module.exports = {
 				extensions: ['.js', '.jsx', '.tsx']
 			}
 		],
-		quotes: ['error', 'single', { allowTemplateLiterals: true }],
+		//quotes: ['error', 'single', { allowTemplateLiterals: true }],
 		'stas-eslint-plugin/path-relative': ['error', { alias: '@' }],
 		'stas-eslint-plugin/import-public-api': [
 			'error',
@@ -68,8 +60,8 @@ module.exports = {
 				ignoreFilePatterns: ['**/*.test.{ts,tsx}']
 			}
 		],
-		'no-tabs': 0,
-		'linebreak-style': 0,
+		//'no-tabs': 0,
+		//'linebreak-style': 0,
 		'import/no-unresolved': 'off',
 		'import/extensions': 'off',
 		'import/named': 'off',
@@ -110,7 +102,18 @@ module.exports = {
 			'warn',
 			{
 				markupOnly: true,
-				ignoreAttribute: ['as', 'role', 'data-testid', 'dataTestId', 'to', 'target', 'justify', 'align', 'direction']
+				ignoreAttribute: [
+					'as',
+					'role',
+					'data-testid',
+					'data-cy',
+					'dataTestId',
+					'to',
+					'target',
+					'justify',
+					'align',
+					'direction'
+				]
 			}
 		]
 	},

@@ -1,9 +1,5 @@
-const getByTestId = (testId: string) => {
-	return cy.get(`[data-testid="${testId}"]`, { timeout: 15000 });
-};
-
-const getByCy = (testCy: string) => {
-	return cy.get(`[data-cy="${testCy}"]`, { timeout: 15000 });
+const getByTestId = (selector: string) => {
+	return cy.get(`[data-testid*="${selector}"]`, { timeout: 15000 });
 };
 
 const checkClassList = (expectedClasses: string[]) => {
@@ -32,11 +28,10 @@ declare global {
 	namespace Cypress {
 		interface Chainable {
 			getByTestId(testId: string): ReturnType<typeof getByTestId>;
-			getByCy(testCy: string): ReturnType<typeof getByCy>;
 			checkClassList(expectedClasses: string[]): boolean;
 			catchPostComment(): void;
 		}
 	}
 }
 
-export { getByTestId, getByCy, checkClassList, catchPostComment };
+export { getByTestId, checkClassList, catchPostComment };
