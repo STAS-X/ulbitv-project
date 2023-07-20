@@ -16,6 +16,8 @@ import { VStack } from '@/shared/ui/Stack';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 import { ArticleDetailesComments } from '../ArticleDetailesComments/ArticleDetailesComments';
 import { AddArticleRating } from '@/features/AddArticleRating';
+import { getFeatureFlag } from '@/shared/lib/features/featureFlag';
+import { Counter } from '@/entities/Common';
 
 export interface ArticleDetailesPageProps {
 	className?: string;
@@ -30,6 +32,10 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 	const { className } = props;
 	const location = useLocation();
 	const { id: articleId = '' } = useParams<{ id: string }>();
+
+	const isFeatureRecommendation: boolean = getFeatureFlag('isFeatureRecommendation');
+	const isFeatureRating: boolean = getFeatureFlag('isFeatureRating');
+	const isFeatureCounter: boolean = getFeatureFlag('isFeatureCounter');
 
 	const dispatch = useAppDispatch();
 
@@ -63,8 +69,12 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 				<VStack gap={16}>
 					<ArticleDetailesPageHeader />
 					<ArticleDetailes articleId={articleId} />
-					<AddArticleRating articleId={articleId} />
-					<ArticleRecommendationsList />
+					{/* Feature flag для компонента счетчика */}
+					{isFeatureCounter && <Counter />}
+					{/* Feature flag для фичи рейтинг статьи */}
+					{isFeatureRating && <AddArticleRating articleId={articleId} />}
+					{/* Feature flag для фичи рекомендации для статьи */}
+					{isFeatureRecommendation && <ArticleRecommendationsList />}
 					<ArticleDetailesComments id={articleId} />
 				</VStack>
 			</PageWrapper>

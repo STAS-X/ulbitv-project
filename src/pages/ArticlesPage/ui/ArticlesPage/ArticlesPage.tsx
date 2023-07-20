@@ -26,7 +26,6 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	const inited = useSelector(getArticlesPageInited) || false;
 	//const currentLimit = Math.min(limit, selectedTotal >= 0 && total > 0 ? total - selectedTotal : limit);
 	//const articleFromSelector = useArticleById(5);
-
 	const { queryParams } = useArticlesParams();
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps

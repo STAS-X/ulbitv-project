@@ -840,6 +840,11 @@
 			"password": "12345",
 			"profileId": "1",
 			"roles": ["admin", "manager"],
+			"features": {
+				"isFeatureRecommendation": true,
+				"isFeatureRating": true,
+				"isFeatureCounter": false
+			},
 			"avatar": "https://bipbap.ru/wp-content/uploads/2021/07/Kartinki-na-avu-v-VK-dlya-parnej-i-muzhchin-samye-klassnye-i-krutye-3.jpg"
 		},
 		{
@@ -848,6 +853,11 @@
 			"password": "123321",
 			"profileId": "2",
 			"roles": ["user"],
+			"features": {
+				"isFeatureRecommendation": false,
+				"isFeatureRating": false,
+				"isFeatureCounter": true
+			},
 			"avatar": "https://bipbap.ru/wp-content/uploads/2021/07/unikal-nye-kartinki-na-avu-vk-i-odnoklassniki-samye-krasivye-2.jpg"
 		},
 		{
@@ -856,6 +866,11 @@
 			"password": "123",
 			"profileId": "3",
 			"roles": ["manager"],
+			"features": {
+				"isFeatureRecommendation": true,
+				"isFeatureRating": true,
+				"isFeatureCounter": true
+			},
 			"avatar": "https://toptos.com.ua/content/images/43/614x1160l80nn0/kote-v-ochkakh-chekhol-dlya-iphone-x-51105468471844.jpg"
 		}
 	],
