@@ -30,11 +30,11 @@ export default (env: BuildEnv) => {
 			entry: path.resolve(__dirname, 'src', 'index.tsx'),
 			build: path.resolve(__dirname, 'build'),
 			html: path.resolve(__dirname, 'public', 'index.html'),
-			src: path.resolve(__dirname, 'src'),
+			src: path.resolve(__dirname, mode !== 'production' ? 'src' : 'build'),
 			locales: path.resolve(__dirname, 'public', 'locales'),
 			buildLocales: path.resolve(__dirname, 'build', 'locales'),
 			assets: path.resolve(__dirname, 'src', 'shared', 'assets'),
-			buildAssets: path.resolve(__dirname, 'build', 'assets')
+			buildAssets: path.resolve(__dirname, 'build', 'shared', 'assets')
 		},
 		isDev,
 		isTest,

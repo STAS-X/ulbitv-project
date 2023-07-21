@@ -55,38 +55,30 @@ describe('features/EditableProfileCard', () => {
 	test('EditableProfileCard set editable and cancel to input values test', () => {
 		const inputStub = 'QWERTY';
 
-		console.log('check profilecadr and edit button');
 		const editableProfileCard = screen.getByTestId('ProfileCard');
 		expect(editableProfileCard).toBeInTheDocument();
 		const editBtn = screen.getByTestId('ProfileCard.EditBtn.Button');
 		expect(editBtn).toBeInTheDocument();
 
-		console.log('before click');
 		fireEvent.click(editBtn);
-		console.log('after click');
 
 		const cancelBtn = screen.getByTestId('ProfileCard.CancelBtn.Button');
 		expect(cancelBtn).toBeInTheDocument();
 		const inputFirst = screen.getByTestId('ProfileCard.FirstName.Value');
 		expect(inputFirst).toBeInTheDocument();
-		console.log('get field input');
 
-		console.log('FireEvent first value changing');
 		fireEvent.change(inputFirst, {
 			target: {
 				value: inputStub
 			}
 		});
-		console.log('FireEvent first value changed');
+
 		expect(inputFirst).toHaveValue(inputStub);
 
-		console.log('Check for reverse value first name');
 		fireEvent.click(cancelBtn);
-		console.log('Click on restore button', formData);
 
 		expect(inputFirst).toHaveValue(formData.first);
 		expect(cancelBtn).not.toBeInTheDocument();
-		console.log('Check for destroy cancel button');
 	});
 
 	test('EditableProfileCard set error age value', () => {

@@ -1,7 +1,7 @@
-export { default as PLACEHOLDER_IMAGE } from '@/shared/assets/images/placeholder.jpg';
-//export const PLACEHOLDER_IMAGE = IMAGE.default;
-export { default as PLACEHOLDER_AVATAR } from '@/shared/assets/images/avatar.jpg';
-//export const PLACEHOLDER_AVATAR = AVATAR.default;
+import PLACEHOLDER_IMAGE from '@/shared/assets/images/placeholder.jpg';
+export { PLACEHOLDER_IMAGE };
+import PLACEHOLDER_AVATAR from '@/shared/assets/images/avatar.jpg';
+export { PLACEHOLDER_AVATAR };
 
 export const USER_LS_KEY = 'user';
 export const FEATURES_LS_KEY = 'features';

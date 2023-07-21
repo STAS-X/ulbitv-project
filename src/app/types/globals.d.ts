@@ -1,9 +1,12 @@
 // declaration.d.ts
 
-declare module '*.jpg' {
-	const value: string;
-	export default value;
-}
+ declare module '*.jpg';
+//  {
+// 	const obj: { name: string };
+// 	export default obj.name;
+// }
+
+// declare module '*.png';
 
 declare module '*.svg' {
 	import React from 'react';
