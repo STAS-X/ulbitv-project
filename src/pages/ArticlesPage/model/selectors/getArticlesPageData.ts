@@ -1,9 +1,7 @@
-import { buildSelector } from '@/shared/lib/store';
 // eslint-disable-next-line stas-eslint-plugin/import-public-api
 import { ArticleView } from '@/shared/lib/filters/sortTypes';
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { getArticlesPage } from '../slices/articlePageSlice';
-import { EntityId, createSelector } from '@reduxjs/toolkit';
+import { EntityId } from '@reduxjs/toolkit';
 
 export const getArticlesPageIsLoading = (state: StateSchema) => state.articlesPage?.isLoading ?? false;
 export const getArticlesPageError = (state: StateSchema) => state.articlesPage?.error;
@@ -19,22 +17,3 @@ export const getArticlesPageCategory = (state: StateSchema) => state.articlesPag
 export const getArticlesPageHasMore = (state: StateSchema) => state.articlesPage?.hasMore ?? true;
 export const getArticlesPageInited = (state: StateSchema) => state.articlesPage?._inited;
 export const getArticlesPageTarget = (state: StateSchema) => state.articlesPage?._target;
-
-// Селектор для фильтрации статей на клиенте - пока не используем
-export const getFiltredArticles = createSelector(
-	[getArticlesPage.selectAll, getArticlesPageCategory, getArticlesPageFilter],
-	(articles, categoryBy = [], filterBy = '') => {
-		try {
-			const regex = new RegExp(filterBy);
-			const categoryArticles =
-				categoryBy.length > 0
-					? articles.filter((article) => article.type.some((category) => categoryBy.includes(category)))
-					: articles;
-			return categoryArticles.filter((article) => regex.test(article.title));
-		} catch (error) {
-			return [];
-		}
-	}
-);
-
-export const [useArticleById] = buildSelector((state: StateSchema, articleId: EntityId) => getArticlesPage.selectById(state, articleId));

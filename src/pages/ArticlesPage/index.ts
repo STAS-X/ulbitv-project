@@ -13,10 +13,9 @@ export {
 	getArticlesPageFilter,
 	getArticlesPageCategory,
 	getArticlesPageInited,
-	getArticlesPageTarget,
-	getFiltredArticles,
-	useArticleById
+	getArticlesPageTarget
 } from './model/selectors/getArticlesPageData';
+export { useArticleById, getFiltredArticles } from './model/selectors/getArticlesFiltred';
 export type { ArticlesPageSchema } from './model/types/ArticlesPageSchema';
 export { getArticlesPage, articlesPageActions } from './model/slices/articlePageSlice';
 export { fetchArticlesList } from './model/services/fetchArticesList/fetchArticlesList';

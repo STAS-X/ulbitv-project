@@ -12,7 +12,7 @@ import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types
 import { addQueryParams } from '@/shared/lib/url/queryParams/addQueryParams';
 
 export const fetchNextArticlesPage = createAppAsyncThunk('articles/fetchNextArticlesPage', async (_, thunkApi) => {
-	const { extra, rejectWithValue, dispatch, getState } = thunkApi;
+	const { extra, rejectWithValue, getState } = thunkApi;
 
 	const limit = getArticlesPageLimit(getState());
 	const page = getArticlesPageNumber(getState()) + 1;

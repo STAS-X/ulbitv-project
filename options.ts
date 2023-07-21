@@ -22,7 +22,7 @@ export default (env: BuildEnv) => {
 	const PORT = env?.port || 3000;
 	const PROJECT = isTest ? 'cypress' : 'frontend';
 
-	console.log(env, process.env, 'get envariable data');
+	//console.log(env, process.env, 'get envariable data');
 
 	const options: BuildOptions = {
 		mode,
