@@ -13,7 +13,7 @@
 	"moduleFileExtensions": ["js", "jsx", "ts", "tsx", "json", "node"],
 	"moduleNameMapper": {
 		"\\.s?css$": "identity-obj-proxy",
-		"\\.jpe?g|png|tif?f|bmp$": "identity-obj-proxy",
+		"\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2)$": "<rootDir>/config/jest/mock/fileMock.ts",
 		"\\.svg$": "<rootDir>/config/jest/mock/mockEmptyJest.tsx",
 		"^@/(.*)$": "<rootDir>/src/$1"
 	},

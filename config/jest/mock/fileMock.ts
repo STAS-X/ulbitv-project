@@ -1,0 +1,1 @@
+export default 'src/shared/assets/images/avatar.jpg';
