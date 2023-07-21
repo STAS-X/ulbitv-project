@@ -47,8 +47,6 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = memo((props: Ed
 	const userData = useSelector(getUserData);
 	const isEdit = useMemo(() => userData?.profileId === profileId, [userData, profileId]);
 
-	console.log(process.env, 'get global variable data');
-
 	const fetchProfileByUser = useCallback(async () => {
 		if (_PROJECT_ === 'jest') return;
 
@@ -94,26 +92,35 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = memo((props: Ed
 		(fieldType?: ProfileFieldType) => {
 			switch (fieldType) {
 				case ProfileFieldType.FIRST:
-					return (value?: any) => dispatch(editableProfileActions.updateProfile({ first: (value as string) || '' }));
+					return (value?: any) =>
+						dispatch(editableProfileActions.updateProfile({ first: (value as string) || '' }));
 				case ProfileFieldType.LAST:
-					return (value?: any) => dispatch(editableProfileActions.updateProfile({ lastname: (value as string) || '' }));
+					return (value?: any) =>
+						dispatch(editableProfileActions.updateProfile({ lastname: (value as string) || '' }));
 				case ProfileFieldType.AGE:
 					return (value?: any) => dispatch(editableProfileActions.updateProfile({ age: value }));
 
 				case ProfileFieldType.CITY:
-					return (value?: any) => dispatch(editableProfileActions.updateProfile({ city: (value as string) || '' }));
+					return (value?: any) =>
+						dispatch(editableProfileActions.updateProfile({ city: (value as string) || '' }));
 
 				case ProfileFieldType.COUNTRY:
 					return (value?: any) =>
-						dispatch(editableProfileActions.updateProfile({ country: (value as Country) || Country.Russia }));
+						dispatch(
+							editableProfileActions.updateProfile({ country: (value as Country) || Country.Russia })
+						);
 
 				case ProfileFieldType.CURRENCY:
 					return (value?: any) =>
-						dispatch(editableProfileActions.updateProfile({ currency: (value as Currency) || Currency.RUB }));
+						dispatch(
+							editableProfileActions.updateProfile({ currency: (value as Currency) || Currency.RUB })
+						);
 				case ProfileFieldType.USERNAME:
-					return (value?: any) => dispatch(editableProfileActions.updateProfile({ username: (value as string) || '' }));
+					return (value?: any) =>
+						dispatch(editableProfileActions.updateProfile({ username: (value as string) || '' }));
 				case ProfileFieldType.AVATAR:
-					return (value?: any) => dispatch(editableProfileActions.updateProfile({ avatar: (value as string) || '' }));
+					return (value?: any) =>
+						dispatch(editableProfileActions.updateProfile({ avatar: (value as string) || '' }));
 
 				default:
 					return (value?: any) => {
@@ -126,8 +133,7 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = memo((props: Ed
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<VStack dataTestId={'ProfileCard'} className={classNames('', {}, [className])} gap={10}
-max={true}>
+			<VStack dataTestId={'ProfileCard'} className={classNames('', {}, [className])} gap={10} max={true}>
 				<EditableProfileCardHeader isDirty={isDirty} isEdit={isEdit} />
 				<ProfileCard
 					data={formData}
