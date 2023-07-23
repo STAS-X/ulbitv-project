@@ -3,7 +3,7 @@ import { ThemeContext } from '../context/ThemeContext';
 import { Theme } from '../../const/theme';
 
 interface UseThemeResult {
-	toggleTheme: () => void;
+	toggleTheme: (saveAction: (theme: Theme) => void) => void;
 	theme: Theme;
 }
 
@@ -11,9 +11,10 @@ export const LOCAL_STORAGE_THEME_KEY = 'theme';
 
 export function useTheme(): UseThemeResult {
 	const { theme = Theme.LIGHT, setTheme } = useContext(ThemeContext);
-	document.body.className = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) ?? Theme.LIGHT;
+	//const defaultTheme = (useSettingsByKey('theme') as Theme) || Theme.LIGHT;
+	document.body.className = theme;
 
-	const toggleTheme = () => {
+	const toggleTheme = (saveAction: (theme: Theme) => void) => {
 		let newTheme: Theme;
 		switch (theme) {
 			case Theme.LIGHT:
@@ -28,8 +29,9 @@ export function useTheme(): UseThemeResult {
 			default:
 				newTheme = Theme.LIGHT;
 		}
-		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
+		//localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
 		setTheme?.(newTheme);
+		saveAction?.(newTheme);
 	};
 
 	const resultTheme: UseThemeResult = { theme: theme || Theme.LIGHT, toggleTheme };

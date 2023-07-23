@@ -1,3 +1,6 @@
+import { getJSONSettingByKey } from '../services/getJSONSettingByKey';
+import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
+import { saveJSONSettingsByUser } from '../services/saveJSONSettings';
 import { USER_LS_KEY } from '@/shared/const/localstorage';
 import { UserData, UserSchema } from '../types/userSchema';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
@@ -26,6 +29,23 @@ const userSlice = createSlice({
 			localStorage.removeItem(USER_LS_KEY);
 			state.authData = undefined;
 		}
+	},
+	extraReducers: (builder) => {
+		// The `builder` callback form is used here because it provides correctly typed reducers from the action creators
+		// builder.addCase(saveJSONSettingsByUserId.pending, (state) => {
+		// 	state.error = undefined;
+		// 	state.isLoading = true;
+		// });
+		builder.addCase(saveJSONSettingsByUser.fulfilled, (state, { payload }: PayloadAction<JSONSettings>) => {
+			if (state.authData) state.authData.jsonSettings = payload;
+		});
+		// builder.addCase(saveJSONSettingsByUserId.rejected, (state, action) => {
+		// 	state.isLoading = false;
+		// 	state.error = action.payload || action.error?.message || 'Unknown error';
+		// });
+		builder.addCase(getJSONSettingByKey.fulfilled, (state, { payload }: PayloadAction<Partial<JSONSettings>>) => {
+			if (state.authData) state.authData.jsonSettings = { ...state.authData.jsonSettings, ...payload };
+		});
 	}
 });
 
