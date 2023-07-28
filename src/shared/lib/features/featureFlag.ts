@@ -9,7 +9,7 @@ export interface FeatureFlags {
 
 export const setInitFeatureFlags = (flags?: FeatureFlags): void => {
 	if (flags) {
-		console.log(flags, 'get flags');
+		//console.log(flags, 'get flags');
 		//const prevValue = JSON.parse(localStorage.getItem(FEATURES_LS_KEY) ?? '{}');
 		localStorage.setItem(FEATURES_LS_KEY, JSON.stringify({ /*...prevValue,*/ ...flags }));
 	}
@@ -18,7 +18,7 @@ export const setInitFeatureFlags = (flags?: FeatureFlags): void => {
 export const getFeatureFlag = (flag: keyof FeatureFlags): boolean => {
 	const featureFlags = localStorage.getItem(FEATURES_LS_KEY);
 	if (featureFlags && JSON.parse(featureFlags)) {
-		console.log(JSON.parse(featureFlags)[flag], 'get flags data');
+		//console.log(JSON.parse(featureFlags)[flag], 'get flags data');
 		return Boolean(JSON.parse(featureFlags)[flag]);
 	}
 	return false

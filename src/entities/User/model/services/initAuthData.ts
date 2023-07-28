@@ -7,7 +7,7 @@ import { getUserDataById } from '../../api/userApi';
 export const initAuthData = createAppAsyncThunk<UserData, void>(
 	'user/initAuthData',
 	async (_, thunkApi) => {
-		const { dispatch, rejectWithValue } = thunkApi;
+		const { extra, dispatch, rejectWithValue } = thunkApi;
 
 		const userId = JSON.parse(localStorage.getItem(USER_LS_KEY) ?? '{}')?.id ?? '';
 

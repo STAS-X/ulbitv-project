@@ -40,10 +40,10 @@ const App = () => {
 
 	useEffect(() => {
 		const initUser = async () => await dispatch(initAuthData());
-		if (userId && !isRouterLoaded) void initUser();
-	}, [dispatch, userId, isRouterLoaded]);
+		if (!userId) void initUser();
+	}, [dispatch, userId]);
 
-	console.log(isRouterLoaded, 'isInited value is');
+	//console.log(isRouterLoaded, 'isInited value is');
 
 	return (
 		<ToggleFeatures
