@@ -2,7 +2,7 @@ import { initAuthData } from './../services/initAuthData';
 import { getJSONSettingByKey } from '../services/getJSONSettingByKey';
 import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
 import { saveJSONSettingsByUser } from '../services/saveJSONSettings';
-import { USER_LS_KEY } from '@/shared/const/localstorage';
+import { FEATURES_LS_KEY, USER_LS_KEY } from '@/shared/const/localstorage';
 import { UserData, UserSchema } from '../types/userSchema';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { setInitFeatureFlags } from '@/shared/lib/features/featureFlag';
@@ -20,7 +20,9 @@ const userSlice = createSlice({
 		logOut: (state) => {
 			//const emptyUser = { id: '', username: '', password: '' };
 			localStorage.removeItem(USER_LS_KEY);
+			localStorage.removeItem(FEATURES_LS_KEY);
 			state.authData = undefined;
+			state._loaded = false;
 		}
 	},
 	extraReducers: (builder) => {
@@ -37,7 +39,7 @@ const userSlice = createSlice({
 		// 	state.error = action.payload || action.error?.message || 'Unknown error';
 		// });
 		builder.addCase(getJSONSettingByKey.fulfilled, (state, { payload }: PayloadAction<Partial<JSONSettings>>) => {
-			if (state.authData) state.authData.jsonSettings = { ...state.authData.jsonSettings, ...payload };
+			if (state.authData) state.authData.jsonSettings = { /*...state.authData.jsonSettings,*/ ...payload };
 		});
 		builder.addCase(initAuthData.fulfilled, (state, { payload }: PayloadAction<UserData>) => {
 			if (payload) {

@@ -1,14 +1,13 @@
 import { USER_LS_KEY } from './../../../../shared/const/localstorage';
 import { UserData } from '../types/userSchema';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
-import { getUserId } from '../selectors/getUser/getUser';
 import { getUserDataById } from '../../api/userApi';
 
 // First, create the thunk
 export const initAuthData = createAppAsyncThunk<UserData, void>(
 	'user/initAuthData',
 	async (_, thunkApi) => {
-		const { extra, getState, dispatch, rejectWithValue } = thunkApi;
+		const { dispatch, rejectWithValue } = thunkApi;
 
 		const userId = JSON.parse(localStorage.getItem(USER_LS_KEY) ?? '{}')?.id ?? '';
 

@@ -2,9 +2,8 @@ import { ThemeContext, ThemeContextProps } from '@/shared/lib/context/ThemeConte
 import { Theme } from '@/shared/const/theme';
 import React, { FC, useMemo, useState, ReactNode, useEffect } from 'react';
 //import { USER_LS_KEY } from '@/shared/const/localstorage';
-import { getUserId, useSettingsByKey } from '@/entities/User';
+import { getUserId, useSettingsByKey, getJSONSettingByKey } from '@/entities/User';
 import { useAppDispatch } from '../../StoreProvider';
-import { getJSONSettingByKey, getUserData } from '@/entities/User';
 import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
 import { useSelector } from 'react-redux';
 

@@ -1,35 +1,57 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Navbar } from '@/widgets/Navbar';
-import { Suspense, useEffect } from 'react';
+import { FC, memo, Suspense, useEffect, useMemo } from 'react';
 import { AppRouter } from './providers/router';
 import { Sidebar } from '@/widgets/Sidebar';
-import { getUserStatus, initAuthData } from '@/entities/User';
+import { getUserId, getUserStatus, initAuthData } from '@/entities/User';
 import { useAppDispatch } from './providers/StoreProvider';
 import { useSelector } from 'react-redux';
 import { useTheme } from '@/shared/lib/hooks/useTheme';
 import { PageLoader } from '@/widgets/PageLoader';
+import { ToggleFeatures } from '../shared/lib/features/ToggleFeatures';
 
-const App = () => {
+interface AppComponentProps {
+	className?: string;
+	isInited: boolean;
+}
+
+const AppComponent: FC<AppComponentProps> = memo((props: AppComponentProps) => {
+	const { className = 'app', isInited = false } = props;
 	const { theme } = useTheme();
-	const dispatch = useAppDispatch();
-	const isRouterLoaded = Boolean(useSelector(getUserStatus));
-
-	useEffect(() => {
-		const initUser = async () => await dispatch(initAuthData());
-		void initUser();
-	}, [dispatch]);
-
 
 	return (
-		<div className={classNames('app', {}, [theme])}>
+		<div className={classNames(className, {}, [theme])}>
 			<Suspense fallback={<PageLoader />}>
 				<Navbar />
 				<div className="content-page">
 					<Sidebar />
-					{isRouterLoaded && <AppRouter />}
+					{isInited && <AppRouter />}
 				</div>
 			</Suspense>
 		</div>
 	);
+});
+
+const App = () => {
+	const userId = useSelector(getUserId);
+	const isRouterLoaded = Boolean(useSelector(getUserStatus));
+
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		const initUser = async () => await dispatch(initAuthData());
+		if (userId && !isRouterLoaded) void initUser();
+	}, [dispatch, userId, isRouterLoaded]);
+
+	console.log(isRouterLoaded, 'isInited value is');
+
+	return (
+		<ToggleFeatures
+			feature={'isAppRedesined'}
+			off={<AppComponent isInited={isRouterLoaded} />}
+			on={<AppComponent isInited={isRouterLoaded} className={'app_redesigned'} />}
+		/>
+	);
 };
+
 export default App;
