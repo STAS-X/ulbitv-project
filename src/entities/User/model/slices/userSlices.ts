@@ -1,3 +1,4 @@
+import { initAuthData } from './../services/initAuthData';
 import { getJSONSettingByKey } from '../services/getJSONSettingByKey';
 import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
 import { saveJSONSettingsByUser } from '../services/saveJSONSettings';
@@ -15,14 +16,6 @@ const userSlice = createSlice({
 		setAuthData: (state, action: PayloadAction<UserData>) => {
 			state.authData = action.payload;
 			setInitFeatureFlags(action.payload.features);
-		},
-		initAuthData: (state) => {
-			const user = localStorage.getItem(USER_LS_KEY);
-			if (user) {
-				state.authData = JSON.parse(user);
-			} else state.authData = undefined;
-			state._loaded = true;
-			//console.log(state.authData, 'get auth data from state');
 		},
 		logOut: (state) => {
 			//const emptyUser = { id: '', username: '', password: '' };
@@ -45,6 +38,16 @@ const userSlice = createSlice({
 		// });
 		builder.addCase(getJSONSettingByKey.fulfilled, (state, { payload }: PayloadAction<Partial<JSONSettings>>) => {
 			if (state.authData) state.authData.jsonSettings = { ...state.authData.jsonSettings, ...payload };
+		});
+		builder.addCase(initAuthData.fulfilled, (state, { payload }: PayloadAction<UserData>) => {
+			if (payload) {
+				localStorage.setItem(USER_LS_KEY, JSON.stringify(payload));
+				state.authData = payload;
+			}
+			state._loaded = true;
+		});
+		builder.addCase(initAuthData.rejected, (state, action) => {
+			state._loaded = true;
 		});
 	}
 });

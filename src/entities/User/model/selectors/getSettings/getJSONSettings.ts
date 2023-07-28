@@ -1,6 +1,7 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
 import { buildSelector } from '@/shared/lib/store';
+import { ToValues } from '@react-spring/web';
 
 // Создаем селектор, возвращающий настройки пользователя
 export const [useSettingsByUser, getSettingsByUser] = buildSelector(
@@ -9,6 +10,7 @@ export const [useSettingsByUser, getSettingsByUser] = buildSelector(
 
 // Создаем селектор, возвращающий настройки пользователя по ключу
 export const [useSettingsByKey, getSettingsByKey] = buildSelector(
-	(state: StateSchema, key: keyof JSONSettings) =>
-		state.user?.authData?.jsonSettings?.[key] as JSONSettings[typeof key]
+	(state: StateSchema, key: keyof JSONSettings) => {
+		return state.user?.authData?.jsonSettings?.[key];
+	}
 );

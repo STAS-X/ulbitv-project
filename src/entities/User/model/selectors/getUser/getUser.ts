@@ -4,6 +4,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 
 export const getUser = (state?: StateSchema) => state?.user;
 export const getUserData = createSelector(getUser, (user: UserSchema | undefined) => user?.authData);
+export const getUserId = createSelector(getUser, (user: UserSchema | undefined) => user?.authData?.id);
 export const getUserRoles = createSelector(getUser, (user: UserSchema | undefined) => user?.authData?.roles);
 export const getUserIsAdmin = createSelector(
 	getUser,

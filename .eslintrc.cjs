@@ -112,7 +112,8 @@ module.exports = {
 					'target',
 					'justify',
 					'align',
-					'direction'
+					'direction',
+					'feature'
 				]
 			}
 		]

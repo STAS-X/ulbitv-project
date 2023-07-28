@@ -1,6 +1,6 @@
 import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
-import { getUserData } from '../selectors/getUser/getUser';
+import { getUserId } from '../selectors/getUser/getUser';
 import { getSettingsByUser } from '../selectors/getSettings/getJSONSettings';
 import { setJSONSettingsMutation } from '../../api/userApi';
 
@@ -15,16 +15,16 @@ export const saveJSONSettingsByUser = createAppAsyncThunk<JSONSettings, JSONSett
 	async (jsonSettings, thunkApi) => {
 		const { extra, getState, dispatch, rejectWithValue } = thunkApi;
 
-		const userData = getUserData(getState());
+		const userId = getUserId(getState());
 		const currentSettings = getSettingsByUser(getState());
 
 		if (!jsonSettings) return rejectWithValue('settingsNotFound');
-		if (!userData) return rejectWithValue('userNotFound');
+		if (!userId) return rejectWithValue('userNotFound');
 
 		try {
 			const response = await dispatch(
 				setJSONSettingsMutation({
-					userId: userData.id,
+					userId,
 					jsonSettings: {
 						...currentSettings,
 						...jsonSettings
@@ -39,7 +39,7 @@ export const saveJSONSettingsByUser = createAppAsyncThunk<JSONSettings, JSONSett
 
 			return response.jsonSettings;
 		} catch (e: ThunkError) {
-			if (e.response?.status === 404) return rejectWithValue('articleNotFound');
+			if (e.response?.status === 404) return rejectWithValue('settingsNotFound');
 			//if (!e.response || !e.message) throw e;
 			return rejectWithValue(getErrorMessage(e));
 		}

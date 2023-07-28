@@ -17,6 +17,13 @@
 	transition: background-color 0.3s;
 }
 
+.app_redesigned {
+    background: var(--bg-redesigned);
+    min-height: 100vh;
+    font: var(--font-m-redesigned);
+    color: var(--text-redesigned);
+} 
+
 .content-page {
 	display: flex;
 	position: absolute;

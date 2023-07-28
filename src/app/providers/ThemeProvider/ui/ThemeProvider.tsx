@@ -2,7 +2,7 @@ import { ThemeContext, ThemeContextProps } from '@/shared/lib/context/ThemeConte
 import { Theme } from '@/shared/const/theme';
 import React, { FC, useMemo, useState, ReactNode, useEffect } from 'react';
 //import { USER_LS_KEY } from '@/shared/const/localstorage';
-import { useSettingsByKey } from '@/entities/User';
+import { getUserId, useSettingsByKey } from '@/entities/User';
 import { useAppDispatch } from '../../StoreProvider';
 import { getJSONSettingByKey, getUserData } from '@/entities/User';
 import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
@@ -19,13 +19,8 @@ interface ThemeProviderProps {
 const ThemeProvider: FC<ThemeProviderProps> = (props: ThemeProviderProps) => {
 	const { children, toTheme } = props;
 	//const userTheme = useSettingsByKey('theme') as Theme;
-	const userData = useSelector(getUserData);
+	const userId = useSelector(getUserId);
 	const defaultTheme = (useSettingsByKey('theme') as Theme) || Theme.LIGHT;
-
-	const userId = useMemo(() => {
-		if (userData) return userData.id;
-	}, [userData]);
-	console.log(userData, 'get user data');
 
 	const dispatch = useAppDispatch();
 

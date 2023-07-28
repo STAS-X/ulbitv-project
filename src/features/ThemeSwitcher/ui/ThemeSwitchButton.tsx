@@ -17,8 +17,11 @@ export const ThemeSwitchButton: FC<ThemeSwitchButtonProps> = memo((props: ThemeS
 	const dispatch = useAppDispatch();
 
 	const onToggleTheme = useCallback(() => {
-		toggleTheme(async (theme) => {
-			await dispatch(saveJSONSettingsByUser({ theme }));
+		toggleTheme((theme) => {
+			const saveSettings = async () => {
+				await dispatch(saveJSONSettingsByUser({ theme }));
+			};
+			void saveSettings();
 			//console.log(theme, 'on toggle theme');
 		});
 	}, [dispatch, toggleTheme]);

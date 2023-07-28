@@ -16,8 +16,8 @@ import { VStack } from '@/shared/ui/Stack';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 import { ArticleDetailesComments } from '../ArticleDetailesComments/ArticleDetailesComments';
 import { AddArticleRating } from '@/features/AddArticleRating';
-import { getFeatureFlag } from '@/shared/lib/features/featureFlag';
-import { Counter } from '@/entities/Common';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
+import { Card } from '@/shared/ui/Card/Card';
 
 export interface ArticleDetailesPageProps {
 	className?: string;
@@ -33,9 +33,9 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 	const location = useLocation();
 	const { id: articleId = '' } = useParams<{ id: string }>();
 
-	const isFeatureRecommendation: boolean = getFeatureFlag('isFeatureRecommendation');
-	const isFeatureRating: boolean = getFeatureFlag('isFeatureRating');
-	const isFeatureCounter: boolean = getFeatureFlag('isFeatureCounter');
+	//const isFeatureRecommendation: boolean = getFeatureFlag('isFeatureRecommendation');
+	//const isFeatureRating: boolean = getFeatureFlag('isFeatureRating');
+	//const isFeatureCounter: boolean = getFeatureFlag('isFeatureCounter');
 
 	const dispatch = useAppDispatch();
 
@@ -69,12 +69,18 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 				<VStack gap={16}>
 					<ArticleDetailesPageHeader />
 					<ArticleDetailes articleId={articleId} />
-					{/* Feature flag для компонента счетчика */}
-					{isFeatureCounter && <Counter />}
 					{/* Feature flag для фичи рейтинг статьи */}
-					{isFeatureRating && <AddArticleRating articleId={articleId} />}
+					<ToggleFeatures
+						feature={'isFeatureRating'}
+						on={<AddArticleRating articleId={articleId} />}
+						off={
+							<Card>
+								<span>Фича ArticleRating пока недлоступна для Вас</span>
+							</Card>
+						}
+					/>
 					{/* Feature flag для фичи рекомендации для статьи */}
-					{isFeatureRecommendation && <ArticleRecommendationsList />}
+					<ArticleRecommendationsList />
 					<ArticleDetailesComments id={articleId} />
 				</VStack>
 			</PageWrapper>

@@ -35,7 +35,8 @@
 		"storybook": "sb dev -p 6006 -c ./config/storybook",
 		"storybook:build": "sb build -c ./config/storybook",
 		"prepare": "husky install",
-		"postinstall": "patch-package && node scripts/clearCache ./node_modules/.cache"
+		"postinstall": "patch-package && node scripts/clearCache ./node_modules/.cache",
+		"remove-feature": "ts-node scripts/remove-feature.ts isFeatureRating off"
 	},
 	"lint-stage": {
 		"**/*.{ts?}": [

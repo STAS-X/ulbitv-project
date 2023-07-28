@@ -5,6 +5,7 @@ import classes from './Icon.module.scss';
 export enum IconTheme {
 	PRIMARY = 'primary',
 	INVERTED = 'inverted',
+	NONE = '',
 	ALERT = 'alert'
 }
 

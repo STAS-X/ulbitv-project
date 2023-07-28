@@ -2,7 +2,7 @@ import { FC, memo, useCallback, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import StarIcon from '@/shared/assets/icons/star-24-24.svg';
 import classes from './StarRating.module.scss';
-import { Icon } from '../Icon/Icon';
+import { Icon, IconTheme } from '../Icon/Icon';
 import { HStack } from '../Stack';
 
 export interface StarRatingProps {
@@ -60,6 +60,7 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
 						<Icon
 							dataTestId={`${dataTestId}.${index + 1}`}
 							key={index}
+							theme={IconTheme.NONE}
 							className={classNames(
 								classes.starIcon,
 								{

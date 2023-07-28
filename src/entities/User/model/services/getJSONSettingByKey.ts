@@ -1,6 +1,6 @@
 import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
-import { getUserData } from '../selectors/getUser/getUser';
+import { getUserId } from '../selectors/getUser/getUser';
 import { getJSONSettingQuery } from '../../api/userApi';
 
 // First, create the thunk
@@ -9,14 +9,14 @@ export const getJSONSettingByKey = createAppAsyncThunk<Partial<JSONSettings>, ke
 	async (key, thunkApi) => {
 		const { extra, getState, dispatch, rejectWithValue } = thunkApi;
 
-		const userData = getUserData(getState());
+		const userId = getUserId(getState());
 
-		if (!userData) return rejectWithValue('userNotFound');
+		if (!userId) return rejectWithValue('userNotFound');
 
 		try {
 			const response = await dispatch(
 				getJSONSettingQuery({
-					userId: userData.id
+					userId
 				})
 			).unwrap();
 
@@ -27,7 +27,7 @@ export const getJSONSettingByKey = createAppAsyncThunk<Partial<JSONSettings>, ke
 
 			return { [key]: response.jsonSettings[key] } as Partial<JSONSettings>;
 		} catch (e: ThunkError) {
-			if (e.response?.status === 404) return rejectWithValue('articleNotFound');
+			if (e.response?.status === 404) return rejectWithValue('settingNotFound');
 			//if (!e.response || !e.message) throw e;
 			return rejectWithValue(getErrorMessage(e));
 		}

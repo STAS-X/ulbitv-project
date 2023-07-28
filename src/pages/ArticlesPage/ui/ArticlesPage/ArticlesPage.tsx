@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, ReactNode } from 'react';
+import { FC, memo, useEffect, ReactNode, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -9,6 +9,9 @@ import { /*useArticleById,*/ getArticlesPageInited } from '../../model/selectors
 import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
 import { ArticlesPageFilters, ArticleInfiniteGridLoader } from '@/entities/Article';
 import { useArticlesParams } from '@/shared/lib/hooks/useArticlesQueryParams';
+import { getJSONSettingByKey, saveJSONSettingsByUser, getUserData, useSettingsByKey } from '@/entities/User';
+import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
+import { JSONSettings } from '../../../../shared/lib/settings/jsonSettings';
 
 export interface ArticlesPageProps {
 	className?: string;
@@ -24,10 +27,21 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 
 	const dispatch = useAppDispatch();
 	const inited = useSelector(getArticlesPageInited) || false;
+	const { username } = useSelector(getUserData) ?? {};
 	//const currentLimit = Math.min(limit, selectedTotal >= 0 && total > 0 ? total - selectedTotal : limit);
 	//const articleFromSelector = useArticleById(5);
 	const { queryParams } = useArticlesParams();
+	//const [isFirstVisit, setIsFirstVisit]  = useState();
+	const isFirstVisit = useSettingsByKey('isFirstVisit') as boolean;
 
+	//console.log(isFirstVisit, typeof isFirstVisit, 'get FirstVisit param');
+
+	//const isFirstVisit = dispatch(getJSONSettingByKey('isFirstVisit')).then((res)=> console.log(res, 'PROMISE'));
+	//console.log(isFirstVisit, 'get first visit data');
+
+	const removeFirstVisit = async () => {
+		await dispatch(saveJSONSettingsByUser({ isFirstVisit: false }));
+	};
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	// useEffect(() => {
 	// 	setReloading(false);
@@ -143,6 +157,9 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 						onLoadNext={onLoadNextArticlesPage}
 					/> */}
 				</div>
+				{isFirstVisit && (
+					<ArticlePageGreeting isModalOpen={isFirstVisit} userName={username} onClose={removeFirstVisit} />
+				)}
 			</PageWrapper>
 		</DynamicModuleLoader>
 	);

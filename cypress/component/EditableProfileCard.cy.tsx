@@ -17,7 +17,7 @@ describe('EditableProfileCard.cy.tsx', () => {
 
 	it('Test visualize ProfileCard', () => {
 		cy.mount(
-			<TestComponentRender initialState={{ user: { authData: { userId: '3', profileId: '3' } } }}>
+			<TestComponentRender initialState={{ user: { authData: { id: '3', profileId: '3' } } }}>
 				<EditableProfileCard id={profileId} />
 			</TestComponentRender>
 		);

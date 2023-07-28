@@ -886,7 +886,7 @@
       ],
       "jsonSettings": {
         "theme": "orange_theme",
-        "isFirstVisit": true
+        "isFirstVisit": false
       },
       "features": {
         "isFeatureRecommendation": true,
@@ -924,7 +924,7 @@
       ],
       "jsonSettings": {
         "theme": "light_theme",
-        "isFirstVisit": true
+        "isFirstVisit": false
       },
       "features": {
         "isFeatureRecommendation": true,

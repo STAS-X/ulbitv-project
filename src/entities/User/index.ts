@@ -1,6 +1,6 @@
 export type { UserData, UserRoleType, UserSchema } from './model/types/userSchema';
 export { userReducer, userActions } from './model/slices/userSlices';
-export { getUserData, getUserRoles, getUserStatus, getUserIsAdmin } from './model/selectors/getUser/getUser';
+export { getUserData, getUserId, getUserRoles, getUserStatus, getUserIsAdmin } from './model/selectors/getUser/getUser';
 export {
 	useSettingsByUser,
 	getSettingsByUser,
@@ -9,3 +9,4 @@ export {
 } from './model/selectors/getSettings/getJSONSettings';
 export { saveJSONSettingsByUser } from './model/services/saveJSONSettings';
 export { getJSONSettingByKey } from './model/services/getJSONSettingByKey';
+export { initAuthData } from './model/services/initAuthData';
