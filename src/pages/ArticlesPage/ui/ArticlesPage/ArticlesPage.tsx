@@ -9,9 +9,8 @@ import { /*useArticleById,*/ getArticlesPageInited } from '../../model/selectors
 import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
 import { ArticlesPageFilters, ArticleInfiniteGridLoader } from '@/entities/Article';
 import { useArticlesParams } from '@/shared/lib/hooks/useArticlesQueryParams';
-import { getJSONSettingByKey, saveJSONSettingsByUser, getUserData, useSettingsByKey } from '@/entities/User';
+import { saveJSONSettingsByUser, getUserData, useSettingsByKey } from '@/entities/User';
 import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
-import { JSONSettings } from '../../../../shared/lib/settings/jsonSettings';
 
 export interface ArticlesPageProps {
 	className?: string;
@@ -140,11 +139,12 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-			{inited && <ArticlesPageFilters />}
 			<PageWrapper data-testid={'ArticlesPage'} className={classNames(classes.articlespage, {}, [className])}>
-				<div data-testid={'ArticleList'} className={classes.articlelist}>
-					{inited && <ArticleInfiniteGridLoader />}
-					{/* <ArticleList
+				<div className={classes.container}>
+					{inited && <ArticlesPageFilters />}
+					<div data-testid={'ArticleList'} className={classes.articlelist}>
+						{inited && <ArticleInfiniteGridLoader />}
+						{/* <ArticleList
 						view={view}
 						isLoading={isLoading}
 						hasMore={hasMore}
@@ -156,6 +156,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 						onInitScroll={initScrollWrapper}
 						onLoadNext={onLoadNextArticlesPage}
 					/> */}
+					</div>
 				</div>
 				{isFirstVisit && (
 					<ArticlePageGreeting isModalOpen={isFirstVisit} userName={username} onClose={removeFirstVisit} />

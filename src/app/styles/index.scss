@@ -35,9 +35,21 @@
 	overflow: hidden;
 }
 
+.content-page-redesign {
+	display: flex;
+	flex-grow: 1;
+	width: 100%;
+	height: calc(100vh - var(--navbar-heigth));
+	overflow: hidden;
+
+}
+
 .content-page-collapsed {
 	left: var(--sidebar-width-collapsed);
-	width: calc(100vw - var(--sidebar-width-collapsed));
+}
+
+.content-page-redesign-collapsed {
+	left: var(--sidebar-width-redesign-collapsed);
 }
 
 .articles-header {

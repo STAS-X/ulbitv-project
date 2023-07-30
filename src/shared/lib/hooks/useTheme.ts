@@ -12,7 +12,7 @@ export const LOCAL_STORAGE_THEME_KEY = 'theme';
 export function useTheme(): UseThemeResult {
 	const { theme = Theme.LIGHT, setTheme } = useContext(ThemeContext);
 	//const defaultTheme = (useSettingsByKey('theme') as Theme) || Theme.LIGHT;
-	document.body.className = theme;
+	//document.body.className = theme;
 
 	const toggleTheme = (saveAction: (theme: Theme) => void) => {
 		let newTheme: Theme;

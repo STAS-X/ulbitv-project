@@ -1,27 +1,27 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import { Sidebar } from './Sidebar';
+import { SideBar } from './SideBar';
 import componentRender from '@/shared/lib/tests/componentRender/componentRender';
 //import { act } from 'react-dom/test-utils';
 
 describe('button test', () => {
-	test('Sidebar test with provider HOC', async () => {
-		// const SideBarHoc = withTranslation()(Sidebar);
+	test('SideBar test with provider HOC', async () => {
+		// const SideBarHoc = withTranslation()(SideBar);
 		await waitFor(async () => {
-			await componentRender(<Sidebar />);
+			await componentRender(<SideBar />);
 		});
-		expect(screen.getByTestId('sidebar')).toBeInTheDocument();
+		expect(screen.getByTestId('SideBar')).toBeInTheDocument();
 	});
 
-	test('Sidebar test collapse', async () => {
-		// const SideBarHoc = withTranslation()(Sidebar);
+	test('SideBar test collapse', async () => {
+		// const SideBarHoc = withTranslation()(SideBar);
 		await waitFor(async () => {
-			await componentRender(<Sidebar />);
+			await componentRender(<SideBar />);
 		});
-		const toggleBtn = screen.getByTestId('sidebar-toggle');
-		expect(screen.getByTestId('sidebar')).toBeInTheDocument();
+		const toggleBtn = screen.getByTestId('SideBar-toggle');
+		expect(screen.getByTestId('SideBar')).toBeInTheDocument();
 		fireEvent.click(toggleBtn);
-		expect(screen.getByTestId('sidebar')).toHaveClass('collapsed');
+		expect(screen.getByTestId('SideBar')).toHaveClass('collapsed');
 		fireEvent.click(toggleBtn);
-		expect(screen.getByTestId('sidebar')).not.toHaveClass('collapsed');
+		expect(screen.getByTestId('SideBar')).not.toHaveClass('collapsed');
 	});
 });

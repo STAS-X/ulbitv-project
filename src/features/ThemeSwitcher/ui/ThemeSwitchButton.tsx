@@ -5,6 +5,7 @@ import ThemeIcon from '@/shared/assets/icons/theme-icon.svg';
 import { Button } from '@/shared/ui/Button/Button';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { saveJSONSettingsByUser } from '@/entities/User';
+import classes from './ThemeSwitchButton.module.scss';
 
 export interface ThemeSwitchButtonProps {
 	className?: string;
@@ -13,7 +14,7 @@ export interface ThemeSwitchButtonProps {
 export const ThemeSwitchButton: FC<ThemeSwitchButtonProps> = memo((props: ThemeSwitchButtonProps) => {
 	const { className = '' } = props;
 	const { theme, toggleTheme } = useTheme();
-	const [fillColor, setFillColor] = useState('');
+	//const [fillColor, setFillColor] = useState('');
 	const dispatch = useAppDispatch();
 
 	const onToggleTheme = useCallback(() => {
@@ -26,17 +27,17 @@ export const ThemeSwitchButton: FC<ThemeSwitchButtonProps> = memo((props: ThemeS
 		});
 	}, [dispatch, toggleTheme]);
 
-	useEffect(() => {
-		const rootThemeElement = document.body.getElementsByClassName(theme)?.[0];
-		if (rootThemeElement) {
-			const bgColor = getComputedStyle(rootThemeElement).getPropertyValue('--theme-icon-flood-color');
-			setFillColor(bgColor);
-		}
-	}, [theme]);
+	// useEffect(() => {
+	// 	const rootThemeElement = document.body.getElementsByClassName(theme)?.[0];
+	// 	if (rootThemeElement) {
+	// 		const bgColor = getComputedStyle(rootThemeElement).getPropertyValue('--theme-icon-flood-color');
+	// 		setFillColor(bgColor);
+	// 	}
+	// }, [theme]);
 
 	return (
 		<Button className={classNames('', {}, [className])} onClick={onToggleTheme}>
-			<ThemeIcon fill={fillColor} transform="scale(0.75)" />
+			<ThemeIcon className={classes.icon} />
 		</Button>
 	);
 });

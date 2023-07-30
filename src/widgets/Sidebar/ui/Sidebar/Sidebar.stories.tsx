@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 
-import { Sidebar, SidebarProps } from './Sidebar';
+import { SideBar, SideBarProps } from './Sidebar';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
 	title: 'widget/Sidebar',
-	component: Sidebar,
+	component: SideBar,
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
-} as Meta<typeof Sidebar>;
+} as Meta<typeof SideBar>;
 
-const Template: StoryFn<typeof Sidebar> = (args: SidebarProps) => <Sidebar {...args} />;
+const Template: StoryFn<typeof SideBar> = (args: SideBarProps) => <SideBar {...args} />;
 
 export const LightNoAuthBar = Template.bind({});
 

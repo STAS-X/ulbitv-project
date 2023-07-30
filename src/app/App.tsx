@@ -1,14 +1,15 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Navbar } from '@/widgets/Navbar';
-import { FC, memo, Suspense, useEffect, useMemo } from 'react';
+import { FC, memo, Suspense, useEffect } from 'react';
 import { AppRouter } from './providers/router';
-import { Sidebar } from '@/widgets/Sidebar';
+import { SideBar } from '@/widgets/Sidebar';
 import { getUserId, getUserStatus, initAuthData } from '@/entities/User';
 import { useAppDispatch } from './providers/StoreProvider';
 import { useSelector } from 'react-redux';
 import { useTheme } from '@/shared/lib/hooks/useTheme';
 import { PageLoader } from '@/widgets/PageLoader';
 import { ToggleFeatures } from '../shared/lib/features/ToggleFeatures';
+import { MainLayout } from '@/shared/layout';
 
 interface AppComponentProps {
 	className?: string;
@@ -22,11 +23,27 @@ const AppComponent: FC<AppComponentProps> = memo((props: AppComponentProps) => {
 	return (
 		<div className={classNames(className, {}, [theme])}>
 			<Suspense fallback={<PageLoader />}>
-				<Navbar />
-				<div className="content-page">
-					<Sidebar />
-					{isInited && <AppRouter />}
-				</div>
+				{className === 'app' && (
+					<>
+						<Navbar />
+						<div className="content-page">
+							<SideBar />
+							{isInited && <AppRouter />}
+						</div>
+					</>
+				)}
+				{className !== 'app' && (
+					<MainLayout
+						header={<Navbar />}
+						content={<div className="content-page-redesign">{isInited && <AppRouter />}</div>}
+						sidebar={<SideBar />}
+						toolbar={
+							<div>
+								<span>test toolbar visual</span>
+							</div>
+						}
+					/>
+				)}
 			</Suspense>
 		</div>
 	);

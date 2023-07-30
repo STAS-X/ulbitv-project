@@ -3,9 +3,24 @@
 	height: calc(100vh - var(--navbar-heigth));
 	background: var(--inverted-bg-color);
 	position: fixed;
-	z-index: var(--bars-z-index);
+	z-index: var(--bar-z-index);
 	left: 0;
 	top: var(--navbar-heigth);
+
+}
+
+.sidebarredesigned {
+	//position: fixed;
+	width: 220px;
+	height: 100%;
+	left: 0;
+	background: var(--light-bg-redesigned);
+	border-radius: 32px;
+	z-index: var(--bar-z-index);
+
+}
+
+.animation {
 	transition: width 0.3s;
 	transition: background-color 0.1s 0.2s;
 }
@@ -18,6 +33,13 @@
 	width: 100%;
 }
 
+.switchersredesign {
+	position: absolute;
+	bottom: 32px;
+	display: flex;
+	margin-left:32px;
+}
+
 .lang {
 	margin: auto 20px;
 }
@@ -28,6 +50,12 @@
 	bottom: 32px;
 }
 
+.collapsebtnredesign {
+	position: absolute;
+	left: 248px;
+	bottom: 48px;
+}
+
 .items {
 	margin-top: 20px;
 	margin-left: 30px;
@@ -36,9 +64,17 @@
 .collapsed {
 	width: var(--sidebar-width-collapsed);
 
-	.switchers {
+	.switchers, .switchersredesign {
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.switchersredesign {
+		margin-left:8px;
+	}
+
+	.collapsebtnredesign {
+		left: 120px;
 	}
 
 	.lang {

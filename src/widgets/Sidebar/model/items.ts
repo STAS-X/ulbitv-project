@@ -4,14 +4,14 @@ import MainIcon from '@/shared/assets/icons/main-20-20.svg';
 import ProfileIcon from '@/shared/assets/icons/profile-20-20.svg';
 import ArticleIcon from '@/shared/assets/icons/article-20-20.svg';
 import React from 'react';
-export interface SidebarItemType {
+export interface SideBarItemType {
 	path: string;
 	text: string;
 	isAuth: boolean;
-	Icon: React.VFC<React.SVGProps<SVGSVGElement>>;
+	Icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
-export const SidebarItemsList: SidebarItemType[] = [
+export const SideBarItemsList: SideBarItemType[] = [
 	{
 		path: getRouteMain(),
 		Icon: MainIcon,
@@ -39,5 +39,5 @@ export const SidebarItemsList: SidebarItemType[] = [
 ];
 
 export const configSideBarItem = (isAuth: boolean) => {
-	return SidebarItemsList.filter((item) => item.isAuth === isAuth || item.isAuth === false);
+	return SideBarItemsList.filter((item) => item.isAuth === isAuth || item.isAuth === false);
 };

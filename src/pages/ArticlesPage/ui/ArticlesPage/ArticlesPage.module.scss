@@ -1,11 +1,18 @@
 .articlespage {
 	min-height: 100%;
 	overflow: auto;
-	padding-top: var(--section-header-heigth);
-	padding-right: 0;
+	//padding-top: var(--section-header-heigth);
+	//padding-right: 0;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	gap: 32px;
 }
 
 .articlelist {
-	margin-top: 30px;
-	min-height: calc(100% - 30px);
+	//margin-top: 30px;
+	height: calc(100% - 30px);
 }

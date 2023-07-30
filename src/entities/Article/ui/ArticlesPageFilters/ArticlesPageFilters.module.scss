@@ -1,11 +1,12 @@
 .articlesheader {
-	position: fixed;
+	//position: fixed;
 	display: flex;
 	background: var(--bg-color);
 	align-items: flex-end;
-	top: var(--navbar-heigth);
+	//top: var(--navbar-heigth);
 	padding: 10px 20px;
-	right: 35px;
+	//right: 35px;
+	width: 100%;
 	z-index: var(--header-z-index);
 
 	& button,
@@ -28,7 +29,7 @@
 }
 
 .headercategory {
-	min-width: 30vw;
+	min-width: 20vw;
 	min-height: var(--headers-heigth);
 	margin-left: 20px;
 }
@@ -44,7 +45,7 @@
 .inprogress {
 	position: absolute;
 	background: linear-gradient(to left, lime 28px, red 77%, cyan);
-	top: calc(100% - 5px);
+	top: calc(var(--navbar-heigth) - 24px);
 	left: 0;
 	right: 0;
 	height: 5px;
@@ -55,11 +56,12 @@
 @keyframes progress-bar {
 	0% {
 		width: 0;
+		left: 0;
 	}
 
 	50% {
-		left: 0;
 		width: 100%;
+		left: 0;
 	}
 
 	100% {

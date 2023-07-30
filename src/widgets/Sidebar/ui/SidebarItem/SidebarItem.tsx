@@ -1,20 +1,20 @@
 import { FC, memo, MouseEventHandler } from 'react';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink/AppLink';
-import classes from './SidebarItem.module.scss';
+import classes from './SideBarItem.module.scss';
 import { useTranslation } from 'react-i18next';
-import { SidebarItemType } from '../../model/items';
+import { SideBarItemType } from '../../model/items';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { AppRoutes } from '@/shared/config/routeConfig';
 import { useNavigate } from '@/shared/lib/hooks/useRouterUtils';
 import { getRouteProfile } from '@/shared/config/routeConfig';
 
-interface SidebarItemProps {
-	item?: SidebarItemType;
+interface SideBarItemProps {
+	item?: SideBarItemType;
 	userId?: string;
 	collapsed: boolean;
 }
 
-export const SidebarItem: FC<SidebarItemProps> = memo((props: SidebarItemProps) => {
+export const SideBarItem: FC<SideBarItemProps> = memo((props: SideBarItemProps) => {
 	const { item, collapsed, userId } = props;
 	const { t } = useTranslation(['pages']);
 
