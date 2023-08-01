@@ -27,7 +27,8 @@ const LazyLoadImage: FC<ImageProps> = (props: ImageProps) => {
 
 	return (
 		<Suspense fallback={<Skeleton border={border} {...otherProps} />}>
-			{loaded && <OriginImage src={src} alt={alt} className={classNames('', {}, [className])} {...otherProps} />}
+			{loaded && <OriginImage src={src} alt={alt} className={classNames('', {}, [className])}
+{...otherProps} />}
 		</Suspense>
 	);
 };

@@ -12,6 +12,18 @@
 	transition: background-color 0.1s 0.2s;
 }
 
+.navbarredesign {
+	// position: absolute;
+	// width: 100%;
+	height: var(--navbar-heigth);
+	background: var(--inverted-bg-color);
+	// z-index: var(--bar-z-index);
+	display: flex;
+	align-items: center;
+	padding: 16px;
+	transition: background-color 0.1s 0.2s;
+}
+
 .mainlink {
 	margin-right: 15px;
 }

@@ -9,6 +9,7 @@
 .app_drawer {
 	font: var(--font-m);
 	color: var(--primary-color);
+	overflow: hidden;
 }
 
 .app {
@@ -17,12 +18,12 @@
 	transition: background-color 0.3s;
 }
 
-.app_redesigned {
-    background: var(--bg-redesigned);
-    min-height: 100vh;
-    font: var(--font-m-redesigned);
-    color: var(--text-redesigned);
-} 
+.app_redesign {
+	background: var(--bg-redesigned);
+	min-height: 100vh;
+	font: var(--font-m-redesigned);
+	color: var(--text-redesigned);
+}
 
 .content-page {
 	display: flex;
@@ -31,38 +32,36 @@
 	left: var(--sidebar-width);
 	top: var(--navbar-heigth);
 	width: calc(100vw - var(--sidebar-width));
-	height: calc(100vh - var(--navbar-heigth));
-	overflow: hidden;
+	height: calc(100% - var(--navbar-heigth));
+	&.collapsed {
+		width: calc(100vw - var(--sidebar-width-collapsed));
+		left: calc(var(--sidebar-width-collapsed));
+	}
 }
 
 .content-page-redesign {
 	display: flex;
 	flex-grow: 1;
 	width: 100%;
-	height: calc(100vh - var(--navbar-heigth));
+	height: 100%;
 	overflow: hidden;
-
-}
-
-.content-page-collapsed {
-	left: var(--sidebar-width-collapsed);
-}
-
-.content-page-redesign-collapsed {
-	left: var(--sidebar-width-redesign-collapsed);
+	&.collapsed {
+		left: var(--sidebar-width-redesign-collapsed);
+	}
 }
 
 .articles-header {
 	left: calc(var(--sidebar-width) + 50px);
-}
+	&.collapsed {
+		left: calc(var(--sidebar-width-collapsed) + 50px);
+	}
 
-.articles-header-collapsed {
-	left: calc(var(--sidebar-width-collapsed) + 50px);
 }
 
 main {
 	display: flex;
 	width: 100vw;
+	overflow: hidden;
 	overflow-y: auto;
 }
 
@@ -75,8 +74,15 @@ main {
 }
 
 *::-webkit-scrollbar {
+	position: unset;
 	width: 12px; /* ширина scrollbar */
 	height: 8px;
+	transform: rotateX(180deg);
+	-ms-transform: rotateX(180deg); /* IE 9 */
+	-moz-transform: rotateX(180deg); /* Mozilla */
+	-webkit-transform: rotateX(180deg); /* Safari and Chrome */
+	z-index: -1;
+	left: -150px;
 }
 
 *::-webkit-scrollbar-track {
@@ -88,3 +94,27 @@ main {
 	border-radius: 20px; /* закругления плашки */
 	border: 2px solid var(--primary-color); /* padding вокруг плашки */
 }
+
+
+
+// html {
+//     overflow: auto;
+// }
+// body {
+//     position: absolute;
+//     top: 20px;
+//     left: 20px;
+//     bottom: 5px;
+//     right: 20px;
+//     overflow: scroll;
+// }
+// ::-webkit-scrollbar{
+//     background: transparent;
+//     width: 10px;
+// }
+// ::-webkit-scrollbar-thumb{
+//     background: rgba(0,0,0,0.4); /*-- black at 40% opacity --*/
+// }
+// ::-webkit-resizer,
+// ::-webkit-scrollbar-button,
+// ::-webkit-scrollbar-corner { display: none; }

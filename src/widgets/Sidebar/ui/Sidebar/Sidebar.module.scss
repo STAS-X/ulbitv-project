@@ -1,4 +1,4 @@
-.sidebar {
+.Sidebar {
 	width: var(--sidebar-width);
 	height: calc(100vh - var(--navbar-heigth));
 	background: var(--inverted-bg-color);
@@ -6,18 +6,16 @@
 	z-index: var(--bar-z-index);
 	left: 0;
 	top: var(--navbar-heigth);
-
 }
 
 .sidebarredesigned {
-	//position: fixed;
+	// position: fixed;
 	width: 220px;
 	height: 100%;
 	left: 0;
 	background: var(--light-bg-redesigned);
 	border-radius: 32px;
 	z-index: var(--bar-z-index);
-
 }
 
 .animation {
@@ -35,9 +33,9 @@
 
 .switchersredesign {
 	position: absolute;
-	bottom: 32px;
+	bottom: 64px;
 	display: flex;
-	margin-left:32px;
+	margin-left: 32px;
 }
 
 .lang {
@@ -46,35 +44,51 @@
 
 .collapsebtn {
 	position: absolute;
-	right: -32px;
-	bottom: 32px;
+	right: -84px;
+	bottom: 20px;
 }
 
 .collapsebtnredesign {
-	position: absolute;
-	left: 248px;
-	bottom: 48px;
+	position: relative;
+	left: 16px;
+	bottom: -16px;
 }
 
 .items {
-	margin-top: 20px;
-	margin-left: 30px;
+	// margin-top: 16px;
+	margin-left: 20%;
+}
+
+.appicon {
+	margin-block: 32px;
+}
+
+.appiconsmall {
+	margin-block: 16px;
 }
 
 .collapsed {
 	width: var(--sidebar-width-collapsed);
 
-	.switchers, .switchersredesign {
+	.switchers,
+	.switchersredesign {
 		flex-direction: column;
 		align-items: center;
 	}
 
 	.switchersredesign {
-		margin-left:8px;
+		margin-left: 8px;
+		margin-bottom: -20px;
 	}
 
+	 .collapsebtn {
+		right: -40px;
+	 	bottom: 32px;
+	 }
+
 	.collapsebtnredesign {
-		left: 120px;
+		left: 64px;
+		bottom: 40px;
 	}
 
 	.lang {

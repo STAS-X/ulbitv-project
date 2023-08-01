@@ -1,13 +1,15 @@
 .articlesheader {
-	//position: fixed;
+	// position: fixed;
 	display: flex;
 	background: var(--bg-color);
 	align-items: flex-end;
-	//top: var(--navbar-heigth);
+
+	// top: var(--navbar-heigth);
 	padding: 10px 20px;
-	//right: 35px;
+
+	// right: 35px;
 	width: 100%;
-	z-index: var(--header-z-index);
+	// z-index: var(--header-z-index);
 
 	& button,
 	select {
@@ -49,6 +51,7 @@
 	left: 0;
 	right: 0;
 	height: 5px;
+	margin:0;
 	animation: progress-bar 1s ease-in-out;
 	animation-iteration-count: infinite;
 }
@@ -56,12 +59,12 @@
 @keyframes progress-bar {
 	0% {
 		width: 0;
-		left: 0;
+		left: 32px;
 	}
 
 	50% {
-		width: 100%;
-		left: 0;
+		width: calc(100% - 32px);
+		left: 32px;
 	}
 
 	100% {

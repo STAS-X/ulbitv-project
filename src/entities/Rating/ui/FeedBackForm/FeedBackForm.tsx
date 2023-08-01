@@ -57,7 +57,8 @@ const FeedBackForm: FC<FeedBackFormProps> = memo((props: FeedBackFormProps) => {
 				value={feedBack}
 			/>
 
-			<HStack className={classes.feedbackbtn} justify={'end'} gap={16} max>
+			<HStack className={classes.feedbackbtn} justify={'end'} gap={16}
+max>
 				<Button dataTestId={'Rating.FeedBack.Cancel'} theme={ButtonTheme.OUTLINE_RED} onClick={onFeedBackClose}>
 					{t('cancel')}
 				</Button>

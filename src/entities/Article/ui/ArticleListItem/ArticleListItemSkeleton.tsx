@@ -19,7 +19,8 @@ export const ArticleListItemSkeleton: FC<ArticleListItemSkeletonProps> = memo((p
 			<div className={classNames('', {}, [className, classes[view]])}>
 				<Card className={classes.card}>
 					<div className={classes.header}>
-						<Skeleton border={'50%'} width={30} height={30} className={classes.avatar} />
+						<Skeleton border={'50%'} width={30} height={30}
+className={classes.avatar} />
 						<Skeleton width={150} height={20} className={classes.username} />
 						<Skeleton width={100} height={20} className={classes.date} />
 					</div>

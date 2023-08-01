@@ -19,11 +19,8 @@ import {
 	ArticleViewSelector,
 	ArticleCategorySelector
 } from '@/features/ArticleSelectors';
-import { ArticleView } from '@/shared/lib/filters/sortTypes';
-import { useAppDispatch } from '@/app/providers/StoreProvider';
-import { useTranslation } from 'react-i18next';
-import { OptionType } from '@/shared/ui/Select/Select';
 import {
+	ArticleView,
 	SortFields,
 	SortOrder,
 	fieldsForSort,
@@ -31,6 +28,9 @@ import {
 	ArticlesSearch,
 	ArticlesSort
 } from '@/shared/lib/filters/sortTypes';
+import { useAppDispatch } from '@/app/providers/StoreProvider';
+import { useTranslation } from 'react-i18next';
+import { OptionType } from '@/shared/ui/Select/Select';
 
 export interface ArticlesPageFiltersProps {
 	className?: string;
@@ -115,6 +115,7 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: Ar
 
 	return (
 		<div className={classNames(classes.articlesheader, {}, [className, 'articles-header'])}>
+			{renderProgress()}
 			<div className={classes.headerfilters}>
 				<ArticleSortSelector
 					sortBy={sortBy}
@@ -130,7 +131,6 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = memo((props: Ar
 			<div className={classes.headerviews}>
 				<ArticleViewSelector view={view} onViewClick={handleChangeView} />
 			</div>
-			{renderProgress()}
 		</div>
 	);
 });

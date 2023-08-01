@@ -30,7 +30,8 @@ export const ArticleRecommendationsList: FC<ArticleRecommendationsListProps> = m
 		const errorMessage = recomendationsError ? getErrorMessage(recomendationsError) : '';
 
 		return (
-			<VStack dataTestId={'Article.Recommendation'} gap={10} max className={classNames('', {}, [className])}>
+			<VStack dataTestId={'Article.Recommendation'} gap={10} max
+className={classNames('', {}, [className])}>
 				<Text size={TextSize.L} className={classes.title} title={t('recommendedForm', { ns: 'articles' })} />
 				{errorMessage && (
 					<Text

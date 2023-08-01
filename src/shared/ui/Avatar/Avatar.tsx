@@ -47,7 +47,8 @@ const OriginAvatar: FC<AvatarProps> = (props: AvatarProps) => {
 			: PLACEHOLDER_AVATAR
 		: PLACEHOLDER_AVATAR;
 
-	return <img src={srcOut} width={size} height={size} style={{ borderRadius: border }} {...otherProps} />;
+	return <img src={srcOut} width={size} height={size}
+style={{ borderRadius: border }} {...otherProps} />;
 };
 
 export { LazyLoadAvatar as Avatar };

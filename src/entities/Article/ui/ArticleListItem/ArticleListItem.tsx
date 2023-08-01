@@ -105,7 +105,8 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 				}}
 			>
 				<div className={classes.imagewrapper}>
-					<Image width={200} height={200} src={article.img} alt={article.title} className={classes.img} />
+					<Image width={200} height={200} src={article.img}
+alt={article.title} className={classes.img} />
 					<Text content={article.createdAt} className={classes.date} />
 				</div>
 				<div className={classes.infowrapper}>

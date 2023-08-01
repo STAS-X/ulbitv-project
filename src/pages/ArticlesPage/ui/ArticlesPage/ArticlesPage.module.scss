@@ -1,8 +1,9 @@
 .articlespage {
 	min-height: 100%;
-	overflow: auto;
-	//padding-top: var(--section-header-heigth);
-	//padding-right: 0;
+	overflow: hidden;
+	overflow-y: auto;
+	// padding-top: var(--section-header-heigth);
+	// padding-right: 0;
 }
 
 .container {
@@ -13,6 +14,6 @@
 }
 
 .articlelist {
-	//margin-top: 30px;
+	// margin-top: 30px;
 	height: calc(100% - 30px);
 }

@@ -30,9 +30,11 @@ export const CommentList: FC<CommentListProps> = memo((props: CommentListProps) 
 				comments?.length ? (
 					<>
 						{comments.map((comment, index) => (
-							<VStack gap={10} key={index} className={classes.comment} max>
+							<VStack gap={10} key={index} className={classes.comment}
+max>
 								<HStack gap={4}>
-									<Skeleton width={32} height={32} border="50%" className={classes.avatar} />
+									<Skeleton width={32} height={32} border="50%"
+className={classes.avatar} />
 									<Skeleton width={100} height={16} className={classes.username} />
 								</HStack>
 								<Skeleton width={'100%'} height={50} className={classes.text} />
@@ -42,7 +44,8 @@ export const CommentList: FC<CommentListProps> = memo((props: CommentListProps) 
 				) : (
 					<VStack gap={10} className={classes.comment} max>
 						<HStack gap={4}>
-							<Skeleton width={32} height={32} border="50%" className={classes.avatar} />
+							<Skeleton width={32} height={32} border="50%"
+className={classes.avatar} />
 							<Skeleton width={100} height={16} className={classes.username} />
 						</HStack>
 						<Skeleton width={'100%'} height={50} className={classes.text} />

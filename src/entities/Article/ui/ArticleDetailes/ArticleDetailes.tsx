@@ -75,7 +75,8 @@ export const ArticleDetailes: FC<ArticleDetailesProps> = memo((props: ArticleDet
 					/>
 				) : isLoading ? (
 					<>
-						<Skeleton className={classes.avatar} width={200} height={200} border={'50%'} />
+						<Skeleton className={classes.avatar} width={200} height={200}
+border={'50%'} />
 						<Skeleton className={classes.title} width={300} height={60} />
 						<Skeleton className={classes.skeleton} width={600} height={30} />
 						<Skeleton className={classes.skeleton} width={'100%'} height={150} />

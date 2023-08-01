@@ -27,7 +27,8 @@ export const useNotifications = (): NotificationListSchema => {
 	const notificationItems = useMemo<NotificationItemSchema[]>(() => {
 		if (notificationIsLoading) {
 			return Array.from({ length: 3 }, (_, i) => {
-				return { content: <Skeleton key={i} width={'100%'} height={100} border={15} /> };
+				return { content: <Skeleton key={i} width={'100%'} height={100}
+border={15} /> };
 			});
 		}
 		if (errorMessage) {

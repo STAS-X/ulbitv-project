@@ -4,18 +4,19 @@ import classes from './SideBarItem.module.scss';
 import { useTranslation } from 'react-i18next';
 import { SideBarItemType } from '../../model/items';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { AppRoutes } from '@/shared/config/routeConfig';
+import { AppRoutes , getRouteProfile } from '@/shared/config/routeConfig';
 import { useNavigate } from '@/shared/lib/hooks/useRouterUtils';
-import { getRouteProfile } from '@/shared/config/routeConfig';
+
 
 interface SideBarItemProps {
 	item?: SideBarItemType;
 	userId?: string;
+	className?:string;
 	collapsed: boolean;
 }
 
 export const SideBarItem: FC<SideBarItemProps> = memo((props: SideBarItemProps) => {
-	const { item, collapsed, userId } = props;
+	const { item, collapsed, userId, className } = props;
 	const { t } = useTranslation(['pages']);
 
 	const navigate = useNavigate();
@@ -38,7 +39,7 @@ export const SideBarItem: FC<SideBarItemProps> = memo((props: SideBarItemProps) 
 		<AppLink
 			theme={AppLinkTheme.SECONDARY}
 			onClick={refreshPage}
-			className={classNames(classes.item, { [classes.collapsed]: collapsed })}
+			className={classNames(classes.item, { [classes.collapsed]: collapsed }, [className])}
 			to={item.path}
 		>
 			<item.Icon className={classes.icon} />

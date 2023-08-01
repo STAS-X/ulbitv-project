@@ -1,3 +1,3 @@
-## Widget Sidebar 
+## Widget Sidebar
 
 Описание:

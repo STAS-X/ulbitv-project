@@ -8,12 +8,12 @@ type Result<T, Args extends any[]> = [HookSelector<T, Args>, Selector<T, Args>];
 
 export function buildSelector<T, Args extends any[]>(selector: Selector<T, Args>): Result<T, Args> {
 	const useSelectorHook: HookSelector<T, Args> = (...args: Args) => {
-		console.log(args, 'get args of selector');
+		//console.log(args, 'get args of selector');
 		const createNewReselector = createSelector(
 			[(state: StateSchema) => state, (state: StateSchema, args: Args) => args],
 			(state: StateSchema, args: Args) => selector(state, ...args)
 		)
-
+		// @ts-ignore
 		return useSelector((state: StateSchema) => createNewReselector(state, args));
 	};
 
