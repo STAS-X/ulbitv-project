@@ -2,14 +2,14 @@ import { FC, memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Rating.module.scss';
-import { Card } from '@/shared/ui/Card/Card';
-import { VStack } from '@/shared/ui/Stack';
-import { Text, TextSize, TextTheme } from '@/shared/ui/Text/Text';
-import { StarRating } from '@/shared/ui/StarRating/StarRating';
+import { Card } from '@/shared/ui/deprecated/Card/Card';
+import { VStack } from '@/shared/ui/deprecated/Stack';
+import { Text, TextSize, TextTheme } from '@/shared/ui/deprecated/Text/Text';
+import { StarRating } from '@/shared/ui/deprecated/StarRating/StarRating';
 import { RatingModal } from '../RatingModal/RatingModal';
 import { detectMobileDevice } from '@/shared/lib/helpers/checkIsMobile';
 import { useModal } from '@/shared/lib/hooks/useModal';
-import { Drawer } from '@/shared/ui/Drawer/Drawer';
+import { Drawer } from '@/shared/ui/deprecated/Drawer/Drawer';
 import FeedBackForm from '../FeedBackForm/FeedBackForm';
 
 export interface RatingProps {

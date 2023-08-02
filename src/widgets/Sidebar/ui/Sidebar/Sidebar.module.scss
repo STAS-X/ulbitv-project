@@ -54,9 +54,9 @@
 	bottom: -16px;
 }
 
-.items {
-	// margin-top: 16px;
-	margin-left: 20%;
+.links {
+	margin-top: 64px;
+	margin-inline: auto;
 }
 
 .appicon {
@@ -89,6 +89,10 @@
 	.collapsebtnredesign {
 		left: 64px;
 		bottom: 40px;
+	}
+
+	.links {
+		margin-top: 32px;
 	}
 
 	.lang {

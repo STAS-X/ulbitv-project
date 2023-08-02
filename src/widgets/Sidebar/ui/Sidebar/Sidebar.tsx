@@ -1,16 +1,16 @@
 import { useState, memo, useEffect, FC } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Sidebar.module.scss';
-import { ButtonTheme, Button, ButtonSize } from '@/shared/ui/Button/Button';
-import { SideBarItem } from '../SideBarItem/SideBarItem';
+import { ButtonTheme, Button, ButtonSize } from '@/shared/ui/deprecated/Button/Button';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
 import { getUserData } from '@/entities/User';
 import { useSelector } from 'react-redux';
 import { configSideBarItem } from '../../model/items';
-import { VStack } from '@/shared/ui/Stack/VStack/VStack';
+import { VStack } from '@/shared/ui/deprecated/Stack';
 import { LanguageSwitchButton } from '@/features/LanguageSwitcher';
 import { ThemeSwitchButton } from '@/features/ThemeSwitcher';
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
-import { AppLogo } from '@/shared/ui/AppLogo/AppLogo';
+import { AppLogo } from '@/shared/ui/deprecated/AppLogo/AppLogo';
 
 export interface SidebarProps {
 	className?: string;
@@ -50,16 +50,10 @@ const SideBarComponent = memo((props: SidebarProps) => {
 			data-testid="Sidebar"
 			className={classNames(className, { [classes.collapsed]: collapsed }, [classes.animation])}
 		>
-			<VStack role={'navigation'} gap={16}>
-				<AppLogo className={collapsed ? classes.appiconsmall : classes.appicon} isSmall={collapsed} />
+			<AppLogo className={collapsed ? classes.appiconsmall : classes.appicon} isSmall={collapsed} />
+			<VStack role={'navigation'} gap={16} className={classes.links}>
 				{configSideBarItem(Boolean(authData)).map((item) => (
-					<SideBarItem
-						key={item.path}
-						className={classes.items}
-						collapsed={collapsed}
-						userId={authData?.id}
-						item={item}
-					/>
+					<SidebarItem key={item.path} collapsed={collapsed} userId={authData?.id} item={item} />
 				))}
 			</VStack>
 			<div className={classes.collapsebtn ? classes.switchersredesign : classes.switchers}>

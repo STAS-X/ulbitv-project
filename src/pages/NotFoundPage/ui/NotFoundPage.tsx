@@ -2,7 +2,7 @@ import { useLocation } from '@/shared/lib/hooks/useRouterUtils';
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
+import { PageWrapper } from '@/shared/ui/deprecated/PageWrapper/PageWrapper';
 import classes from './NotFoundPage.module.scss';
 
 interface NotFoundPageProps {

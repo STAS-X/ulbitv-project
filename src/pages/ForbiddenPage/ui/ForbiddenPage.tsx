@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Location } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
+import { PageWrapper } from '@/shared/ui/deprecated/PageWrapper/PageWrapper';
 import classes from './ForbiddenPage.module.scss';
 
 interface ForbiddenPageProps {

@@ -1,6 +1,6 @@
 import { FC, memo, ReactNode, useMemo } from 'react';
 import { DropDownDirectionType } from '@/shared/types/dropdown/directions';
-import { ListBoxSelector } from '@/shared/ui/ListBox/ListBoxSelector';
+import { ListBoxSelector } from '@/shared/ui/deprecated/ListBox/ListBoxSelector';
 import { Currency } from '../model/types/currency';
 
 interface CurrencySelectorProps {

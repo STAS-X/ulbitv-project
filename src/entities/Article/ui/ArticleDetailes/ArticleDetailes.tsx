@@ -9,16 +9,16 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
-import { Text, TextAlign, TextSize, TextTheme } from '@/shared/ui/Text/Text';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton/Skeleton';
+import { Text, TextAlign, TextSize, TextTheme } from '@/shared/ui/deprecated/Text/Text';
 import classes from './ArticleDetailes.module.scss';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
-import { Avatar } from '@/shared/ui/Avatar/Avatar';
-import { Icon } from '@/shared/ui/Icon/Icon';
+import { Avatar } from '@/shared/ui/deprecated/Avatar/Avatar';
+import { Icon } from '@/shared/ui/deprecated/Icon/Icon';
 import { ArticleBlock, ArticleBlockType } from '../../model/types/articleSchema';
 import { fetchArticleById } from '../../model/services/fetchArticleById';
-import { HStack, VStack } from '@/shared/ui/Stack';
+import { HStack, VStack } from '@/shared/ui/deprecated/Stack';
 
 const redusers: ReducerList = {
 	articleDetailes: articleDetailsReducer

@@ -1,5 +1,5 @@
 import { FC, lazy, Suspense } from 'react';
-import { Loader } from '@/shared/ui/Loader/Loader';
+import { Loader } from '@/shared/ui/deprecated/Loader/Loader';
 import { FeedBackFormProps } from './FeedBackForm';
 
 export const FeedBackFormLoad: FC<FeedBackFormProps> = lazy<FC<FeedBackFormProps>>(() => import('./FeedBackForm'));

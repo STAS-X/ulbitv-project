@@ -2,11 +2,11 @@ import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { Text } from '@/shared/ui/Text/Text';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
+import { Text } from '@/shared/ui/deprecated/Text/Text';
 import classes from './ProfilePageHeader.module.scss';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
-import { HStack } from '@/shared/ui/Stack/HStack/HStack';
+import { HStack } from '@/shared/ui/deprecated/Stack/HStack/HStack';
 import {
 	getEditableProfileReadOnly,
 	getEditableProfileIsLoading,

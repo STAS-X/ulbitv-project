@@ -1,18 +1,18 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
-import { Text, TextAlign, TextTheme } from '@/shared/ui/Text/Text';
+import { Text, TextAlign, TextTheme } from '@/shared/ui/deprecated/Text/Text';
 import classes from './ProfileCard.module.scss';
-import { Input } from '@/shared/ui/Input/Input';
-import { Loader } from '@/shared/ui/Loader/Loader';
-import { Avatar } from '@/shared/ui/Avatar/Avatar';
+import { Input } from '@/shared/ui/deprecated/Input/Input';
+import { Loader } from '@/shared/ui/deprecated/Loader/Loader';
+import { Avatar } from '@/shared/ui/deprecated/Avatar/Avatar';
 import { CountrySelector } from '@/entities/Country';
 import { CurrencySelector } from '@/entities/Currency';
 import { useSelector } from 'react-redux';
 import { ProfileData, ProfileFieldType, ValidateProfileError } from '../../model/types/profileSchema';
 import { useParams } from 'react-router-dom';
-import { VStack } from '@/shared/ui/Stack/VStack/VStack';
-import { HStack } from '@/shared/ui/Stack/HStack/HStack';
+import { VStack } from '@/shared/ui/deprecated/Stack/VStack/VStack';
+import { HStack } from '@/shared/ui/deprecated/Stack/HStack/HStack';
 // eslint-disable-next-line stas-eslint-plugin/layer-imports, stas-eslint-plugin/import-public-api
 import { getEditableProfileValidation } from '@/features/EditableProfileCard/model/selectors/getEditableProfile/getEditableProfileData';
 

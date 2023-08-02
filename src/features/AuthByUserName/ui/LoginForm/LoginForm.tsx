@@ -8,9 +8,9 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { Input } from '@/shared/ui/Input/Input';
-import { Text, TextTheme } from '@/shared/ui/Text/Text';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
+import { Input } from '@/shared/ui/deprecated/Input/Input';
+import { Text, TextTheme } from '@/shared/ui/deprecated/Text/Text';
 import classes from './LoginForm.module.scss';
 
 export interface LoginFormProps {
@@ -107,8 +107,7 @@ const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
 					onChange={onChangeUsername}
 					value={login}
 				/>
-				<Input type="text" className={classes.input} onChange={onChangePassword}
-value={password} />
+				<Input type="text" className={classes.input} onChange={onChangePassword} value={password} />
 				<Button
 					theme={ButtonTheme.OUTLINE}
 					className={classes.loginbtn}

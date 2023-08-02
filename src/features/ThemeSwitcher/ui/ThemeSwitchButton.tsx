@@ -2,7 +2,7 @@ import { useTheme } from '@/shared/lib/hooks/useTheme';
 import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import ThemeIcon from '@/shared/assets/icons/theme-icon.svg';
-import { Button } from '@/shared/ui/Button/Button';
+import { Button } from '@/shared/ui/deprecated/Button/Button';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { saveJSONSettingsByUser } from '@/entities/User';
 import classes from './ThemeSwitchButton.module.scss';

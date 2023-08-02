@@ -1,11 +1,11 @@
 import { FC, memo, ReactNode, useEffect, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Modal } from '@/shared/ui/Modal/Modal';
-import { Text } from '@/shared/ui/Text/Text';
+import { Modal } from '@/shared/ui/deprecated/Modal/Modal';
+import { Text } from '@/shared/ui/deprecated/Text/Text';
 import { detectMobileDevice } from '@/shared/lib/helpers/checkIsMobile';
-import { Drawer } from '@/shared/ui/Drawer/Drawer';
-import { HStack } from '@/shared/ui/Stack';
-import { Card } from '@/shared/ui/Card/Card';
+import { Drawer } from '@/shared/ui/deprecated/Drawer/Drawer';
+import { HStack } from '@/shared/ui/deprecated/Stack';
+import { Card } from '@/shared/ui/deprecated/Card/Card';
 
 export interface ArticlePageGreetingProps {
 	className?: string;

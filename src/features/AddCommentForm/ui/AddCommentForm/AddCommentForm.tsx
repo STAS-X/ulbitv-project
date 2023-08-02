@@ -1,8 +1,8 @@
 import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Input } from '@/shared/ui/Input/Input';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Input } from '@/shared/ui/deprecated/Input/Input';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
 import classes from './AddCommentForm.module.scss';
 import { useSelector } from 'react-redux';
 import {
@@ -10,12 +10,12 @@ import {
 	getAddCommentError,
 	getAddCommentIsLoading
 } from '../../model/selectors/addCommentFormData';
-import { Text, TextTheme } from '@/shared/ui/Text/Text';
+import { Text, TextTheme } from '@/shared/ui/deprecated/Text/Text';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { CommentSchema } from '@/entities/Comment';
 import { addCommentFormActions, addCommentFormReducer } from '../../model/slices/addCommentFormSlice';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { HStack, VStack } from '@/shared/ui/Stack';
+import { HStack, VStack } from '@/shared/ui/deprecated/Stack';
 
 export interface AddCommentFormProps {
 	className?: string;

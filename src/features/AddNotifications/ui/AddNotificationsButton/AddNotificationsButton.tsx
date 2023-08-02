@@ -1,13 +1,13 @@
 import { FC, memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Icon, IconTheme } from '@/shared/ui/Icon/Icon';
-import { PopOver } from '@/shared/ui/PopOver/PopOver';
-import { Text, TextAlign, TextSize, TextTheme } from '@/shared/ui/Text/Text';
+import { Icon, IconTheme } from '@/shared/ui/deprecated/Icon/Icon';
+import { PopOver } from '@/shared/ui/deprecated/PopOver/PopOver';
+import { Text, TextAlign, TextSize, TextTheme } from '@/shared/ui/deprecated/Text/Text';
 import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg';
 import classes from './AddNotificationsButton.module.scss';
 import { useNotifications } from '@/shared/lib/hooks/useNotifications';
 import { detectMobileDevice } from '@/shared/lib/helpers/checkIsMobile';
-import { Drawer } from '@/shared/ui/Drawer/Drawer';
+import { Drawer } from '@/shared/ui/deprecated/Drawer/Drawer';
 import { NotificationList } from '@/entities/Notification';
 import { useModal } from '@/shared/lib/hooks/useModal';
 

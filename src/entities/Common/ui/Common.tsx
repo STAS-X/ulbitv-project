@@ -1,7 +1,7 @@
 /* eslint-disable i18next/no-literal-string */
 import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
 import { useCounterValue } from '../model/selectors/getCommon/getCommon';
 import { commonActions, useCounterActions } from '../model/slices/commonSlices';
 

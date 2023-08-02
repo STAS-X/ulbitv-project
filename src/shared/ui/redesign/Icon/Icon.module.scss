@@ -1,0 +1,22 @@
+.icon {
+	stroke-width: 1;
+}
+
+.primary {
+	fill: var(--primary-color);
+	stroke: var(--primary-color);
+}
+
+.inverted {
+	fill: var(--inverted-primary-color);
+	stroke: var(--inverted-primary-color);
+}
+
+.none {
+	fill: none;
+	stroke: none;
+}
+
+.alert {
+	fill: red;
+}

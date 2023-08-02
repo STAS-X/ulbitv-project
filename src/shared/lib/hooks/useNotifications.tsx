@@ -9,8 +9,8 @@ import {
 } from '@/entities/Notification';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getErrorMessage } from '@/shared/types/thunk/thunkAction';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
-import { Text, TextSize, TextTheme } from '@/shared/ui/Text/Text';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton/Skeleton';
+import { Text, TextSize, TextTheme } from '@/shared/ui/deprecated/Text/Text';
 
 export const useNotifications = (): NotificationListSchema => {
 	const {
@@ -27,8 +27,7 @@ export const useNotifications = (): NotificationListSchema => {
 	const notificationItems = useMemo<NotificationItemSchema[]>(() => {
 		if (notificationIsLoading) {
 			return Array.from({ length: 3 }, (_, i) => {
-				return { content: <Skeleton key={i} width={'100%'} height={100}
-border={15} /> };
+				return { content: <Skeleton key={i} width={'100%'} height={100} border={15} /> };
 			});
 		}
 		if (errorMessage) {

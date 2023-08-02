@@ -11,7 +11,7 @@ import {
 	useGetArticleFeedBackQuery
 } from '../api/articleFeedBackApi';
 import { getErrorMessage } from '@/shared/types/thunk/thunkAction';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton/Skeleton';
 
 export interface AddArticleRatingProps {
 	className?: string;

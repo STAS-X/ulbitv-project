@@ -1,4 +1,4 @@
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton/Skeleton';
 import { FC, lazy, Suspense } from 'react';
 import { AddArticleRatingProps } from './AddArticleRating';
 

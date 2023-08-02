@@ -6,14 +6,14 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ArticleListItem.module.scss';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
-import { Icon } from '@/shared/ui/Icon/Icon';
-import { Text } from '@/shared/ui/Text/Text';
-import { Card } from '@/shared/ui/Card/Card';
-import { Avatar } from '@/shared/ui/Avatar/Avatar';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Icon } from '@/shared/ui/deprecated/Icon/Icon';
+import { Text } from '@/shared/ui/deprecated/Text/Text';
+import { Card } from '@/shared/ui/deprecated/Card/Card';
+import { Avatar } from '@/shared/ui/deprecated/Avatar/Avatar';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
 
 import { DEBOUNCE_DELAY } from '@/shared/const/localstorage';
-import { Image } from '@/shared/ui/Image/Image';
+import { Image } from '@/shared/ui/deprecated/Image/Image';
 
 export interface ArticleListItemProps {
 	className?: string;
@@ -105,8 +105,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 				}}
 			>
 				<div className={classes.imagewrapper}>
-					<Image width={200} height={200} src={article.img}
-alt={article.title} className={classes.img} />
+					<Image width={200} height={200} src={article.img} alt={article.title} className={classes.img} />
 					<Text content={article.createdAt} className={classes.date} />
 				</div>
 				<div className={classes.infowrapper}>

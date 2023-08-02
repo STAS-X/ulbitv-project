@@ -30,7 +30,7 @@ import {
 } from '@/shared/lib/filters/sortTypes';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { useTranslation } from 'react-i18next';
-import { OptionType } from '@/shared/ui/Select/Select';
+import { OptionType } from '@/shared/ui/deprecated/Select/Select';
 
 export interface ArticlesPageFiltersProps {
 	className?: string;

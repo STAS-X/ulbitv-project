@@ -2,7 +2,7 @@ import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 import { TestComponentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { setInitFeatureFlags } from '@/shared/lib/features/featureFlag';
 import { AddArticleRating } from '@/features/AddArticleRating';
-import { Card } from '@/shared/ui/Card/Card';
+import { Card } from '@/shared/ui/deprecatedCard/Card';
 import '@/app/styles/index.scss';
 
 describe('EditableProfileCard.cy.tsx', () => {

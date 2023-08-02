@@ -6,7 +6,7 @@ import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { articlesPageReducer, articlesPageActions } from '../../model/slices/articlePageSlice';
 import classes from './ArticlesPage.module.scss';
 import { /*useArticleById,*/ getArticlesPageInited } from '../../model/selectors/getArticlesPageData';
-import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
+import { PageWrapper } from '@/shared/ui/deprecated/PageWrapper/PageWrapper';
 import { ArticlesPageFilters, ArticleInfiniteGridLoader } from '@/entities/Article';
 import { useArticlesParams } from '@/shared/lib/hooks/useArticlesQueryParams';
 import { saveJSONSettingsByUser, getUserData, useSettingsByKey } from '@/entities/User';

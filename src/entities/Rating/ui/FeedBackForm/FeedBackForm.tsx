@@ -1,11 +1,11 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { Input } from '@/shared/ui/Input/Input';
-import { Text } from '@/shared/ui/Text/Text';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
+import { Input } from '@/shared/ui/deprecated/Input/Input';
+import { Text } from '@/shared/ui/deprecated/Text/Text';
 import classes from './FeedBackForm.module.scss';
-import { HStack } from '@/shared/ui/Stack';
+import { HStack } from '@/shared/ui/deprecated/Stack';
 
 export interface FeedBackFormProps {
 	className?: string;
@@ -57,8 +57,7 @@ const FeedBackForm: FC<FeedBackFormProps> = memo((props: FeedBackFormProps) => {
 				value={feedBack}
 			/>
 
-			<HStack className={classes.feedbackbtn} justify={'end'} gap={16}
-max>
+			<HStack className={classes.feedbackbtn} justify={'end'} gap={16} max>
 				<Button dataTestId={'Rating.FeedBack.Cancel'} theme={ButtonTheme.OUTLINE_RED} onClick={onFeedBackClose}>
 					{t('cancel')}
 				</Button>

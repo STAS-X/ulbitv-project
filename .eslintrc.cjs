@@ -113,7 +113,9 @@ module.exports = {
 					'justify',
 					'align',
 					'direction',
-					'feature'
+					'feature',
+					'color',
+					'variant'
 				]
 			}
 		]

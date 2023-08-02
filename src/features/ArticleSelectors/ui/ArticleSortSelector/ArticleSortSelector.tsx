@@ -1,7 +1,7 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ArticleSortSelector.module.scss';
-import { OptionType, Select } from '@/shared/ui/Select/Select';
+import { OptionType, Select } from '@/shared/ui/deprecated/Select/Select';
 import { useTranslation } from 'react-i18next';
 import { ArticlesSort, SortFields, SortOrder } from '@/shared/lib/filters/sortTypes';
 

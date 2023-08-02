@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { FC, memo } from 'react';
-import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
+import { PageWrapper } from '@/shared/ui/deprecated/PageWrapper/PageWrapper';
 import { Counter } from '@/entities/Common';
 import { useSettingsByKey, useSettingsByUser } from '@/entities/User';
 

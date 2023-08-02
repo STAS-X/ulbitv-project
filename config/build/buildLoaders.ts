@@ -7,7 +7,21 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 	const { isDev, project } = options;
 	const svgLoader = {
 		test: /\.svg$/,
-		use: ['@svgr/webpack']
+		use: [{
+			loader: '@svgr/webpack',
+			options: {
+				icon: true,
+				svgConfig: {
+					plugins: [{
+						name: 'convertColors',
+						params: {
+							currentColor: true
+						}
+					}]
+				}
+			}
+		}
+		]
 	};
 	const isTest = project !== 'frontend';
 
@@ -31,7 +45,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 		]
 	};
 
-	
+
 
 	return [svgLoader, fileLoader, codeBabelLoaders, tsxBabelLoaders, cssLoaders];
 }

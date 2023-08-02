@@ -1,8 +1,8 @@
 import { FC, memo, ReactNode } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ArticleListItem.module.scss';
-import { Card } from '@/shared/ui/Card/Card';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { Card } from '@/shared/ui/deprecated/Card/Card';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton/Skeleton';
 import { ArticleView } from '@/shared/lib/filters/sortTypes';
 
 export interface ArticleListItemSkeletonProps {

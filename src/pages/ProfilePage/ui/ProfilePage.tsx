@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
+import { PageWrapper } from '@/shared/ui/deprecated/PageWrapper/PageWrapper';
 import classes from './ProfilePage.module.scss';
 import { getUserData } from '@/entities/User';
 import { EditableProfileCard } from '@/features/EditableProfileCard';

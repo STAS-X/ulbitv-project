@@ -6,7 +6,7 @@ import { useDebounce as useFilterDebounce } from '@/shared/lib/hooks/useDebounce
 import { DEBOUNCE_DELAY } from '@/shared/const/localstorage';
 // eslint-disable-next-line stas-eslint-plugin/import-public-api
 import { ArticleType } from '@/entities/Article/model/types/articleSchema';
-import { Tabs } from '@/shared/ui/Tabs/Tabs';
+import { Tabs } from '@/shared/ui/deprecated/Tabs/Tabs';
 
 export interface ArticleCategorySelectorProps {
 	className?: string;

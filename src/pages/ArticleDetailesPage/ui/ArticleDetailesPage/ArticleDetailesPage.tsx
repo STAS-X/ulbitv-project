@@ -7,17 +7,17 @@ import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/Dynami
 import { ArticleDetailesPageHeader } from '../ArticleDetailesPageHeader/ArticleDetailesPageHeader';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { PageWrapper } from '@/shared/ui/PageWrapper/PageWrapper';
+import { PageWrapper } from '@/shared/ui/deprecated/PageWrapper/PageWrapper';
 import { fetchRecommendationsForArticle } from '../../model/services/fetchRecommendationsForArticle/fetchRecommendationsForArticle';
 import { articleDetailesPageReducer } from './../../model/slice';
 import { useLocation } from '@/shared/lib/hooks/useRouterUtils';
 import { OptionalRecord } from '@/shared/lib/url/queryParams/addQueryParams';
-import { VStack } from '@/shared/ui/Stack';
+import { VStack } from '@/shared/ui/deprecated/Stack';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 import { ArticleDetailesComments } from '../ArticleDetailesComments/ArticleDetailesComments';
 import { AddArticleRating } from '@/features/AddArticleRating';
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
-import { Card } from '@/shared/ui/Card/Card';
+import { Card } from '@/shared/ui/deprecated/Card/Card';
 
 export interface ArticleDetailesPageProps {
 	className?: string;

@@ -31,7 +31,7 @@ import {
 } from '@/pages/ArticlesPage';
 import { useNavigate } from '@/shared/lib/hooks/useRouterUtils';
 import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
-import { Text, TextSize } from '@/shared/ui/Text/Text';
+import { Text, TextSize } from '@/shared/ui/deprecated/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { getRouteArticleDetailes } from '@/shared/config/routeConfig';

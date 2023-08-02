@@ -2,7 +2,7 @@ import { FC, ForwardedRef, memo, MutableRefObject, useCallback, useState } from 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ArticleSearchSelector.module.scss';
 import { useTranslation } from 'react-i18next';
-import { Input } from '@/shared/ui/Input/Input';
+import { Input } from '@/shared/ui/deprecated/Input/Input';
 import { useDebounce as useFilterDebounce } from '@/shared/lib/hooks/useDebounce';
 import { DEBOUNCE_DELAY } from '@/shared/const/localstorage';
 import { ArticlesSearch } from '@/shared/lib/filters/sortTypes';

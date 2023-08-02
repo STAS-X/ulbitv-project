@@ -8,9 +8,9 @@ import { CommentList, CommentSchema } from '@/entities/Comment';
 import { useFetchCommentForArticle } from '../../model/services/fetchCommentForArticle/fetchCommentForArticle';
 import { getArticleComments } from '../../model/slice/articleDetailesCommentsSlice';
 import { getArticleCommentsIsLoading } from '../../model/selectors/getArticleCommentsData';
-import { Text } from '@/shared/ui/Text/Text';
+import { Text } from '@/shared/ui/deprecated/Text/Text';
 import { AddCommentForm } from '@/features/AddCommentForm';
-import { VStack } from '@/shared/ui/Stack';
+import { VStack } from '@/shared/ui/deprecated/Stack';
 
 export interface ArticleDetailesCommentsProps {
 	className?: string;
