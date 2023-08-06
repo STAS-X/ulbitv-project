@@ -4,7 +4,7 @@ import { Modal } from '@/shared/ui/deprecated/Modal/Modal';
 import { Text } from '@/shared/ui/deprecated/Text/Text';
 import { detectMobileDevice } from '@/shared/lib/helpers/checkIsMobile';
 import { Drawer } from '@/shared/ui/deprecated/Drawer/Drawer';
-import { HStack } from '@/shared/ui/deprecated/Stack';
+import { HStack } from '@/shared/ui/redesign/Stack';
 import { Card } from '@/shared/ui/deprecated/Card/Card';
 
 export interface ArticlePageGreetingProps {

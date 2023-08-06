@@ -6,7 +6,7 @@ import { Skeleton } from '@/shared/ui/deprecated/Skeleton/Skeleton';
 import { CommentSchema } from '../../model/types/commentSchema';
 import { CommentCard } from '../CommentCard/CommentCard';
 import classes from './CommentList.module.scss';
-import { HStack, VStack } from '@/shared/ui/deprecated/Stack';
+import { HStack, VStack } from '@/shared/ui/redesign/Stack';
 
 export interface CommentListProps {
 	className?: string;

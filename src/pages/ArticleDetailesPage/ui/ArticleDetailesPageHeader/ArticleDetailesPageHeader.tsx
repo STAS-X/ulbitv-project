@@ -6,7 +6,7 @@ import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
 import { useSelector } from 'react-redux';
 import { getUserCanEditArticle } from '../../model/selectors/getArticleEditable';
 import { getArticleData } from '@/entities/Article';
-import { HStack } from '@/shared/ui/deprecated/Stack';
+import { HStack } from '@/shared/ui/redesign/Stack';
 import { getRouteArticleEdit, getRouteArticles } from '@/shared/config/routeConfig';
 
 export interface ArticleDetailesPageHeaderProps {

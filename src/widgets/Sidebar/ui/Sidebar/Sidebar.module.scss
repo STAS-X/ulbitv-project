@@ -9,7 +9,7 @@
 }
 
 .sidebarredesigned {
-	// position: fixed;
+	position: relative;
 	width: 220px;
 	height: 100%;
 	left: 0;
@@ -49,14 +49,14 @@
 }
 
 .collapsebtnredesign {
-	position: relative;
-	left: 16px;
-	bottom: -16px;
+	transform: rotate(90deg);
+	transition: transform 0.1s 0.2s;
 }
 
 .links {
 	margin-top: 64px;
 	margin-inline: auto;
+	width: fit-content;
 }
 
 .appicon {
@@ -81,14 +81,13 @@
 		margin-bottom: -20px;
 	}
 
-	 .collapsebtn {
+	.collapsebtn {
 		right: -40px;
-	 	bottom: 32px;
-	 }
+		bottom: 32px;
+	}
 
 	.collapsebtnredesign {
-		left: 64px;
-		bottom: 40px;
+		transform: rotate(-90deg);
 	}
 
 	.links {

@@ -16,7 +16,7 @@ export const setInitFeatureFlags = (flags?: FeatureFlags): void => {
 }
 
 export const getFeatureFlag = (flag: keyof FeatureFlags): boolean => {
-	const featureFlags = localStorage.getItem(FEATURES_LS_KEY);
+	const featureFlags = localStorage.getItem(FEATURES_LS_KEY) ?? '{}';
 	if (featureFlags && JSON.parse(featureFlags)) {
 		//console.log(JSON.parse(featureFlags)[flag], 'get flags data');
 		return Boolean(JSON.parse(featureFlags)[flag]);

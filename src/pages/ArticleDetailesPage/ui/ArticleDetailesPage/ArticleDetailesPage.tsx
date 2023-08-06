@@ -12,7 +12,7 @@ import { fetchRecommendationsForArticle } from '../../model/services/fetchRecomm
 import { articleDetailesPageReducer } from './../../model/slice';
 import { useLocation } from '@/shared/lib/hooks/useRouterUtils';
 import { OptionalRecord } from '@/shared/lib/url/queryParams/addQueryParams';
-import { VStack } from '@/shared/ui/deprecated/Stack';
+import { VStack } from '@/shared/ui/redesign/Stack';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 import { ArticleDetailesComments } from '../ArticleDetailesComments/ArticleDetailesComments';
 import { AddArticleRating } from '@/features/AddArticleRating';

@@ -1,38 +1,52 @@
+import { getFeatureFlag } from '@/shared/lib/features/featureFlag';
 import { getRouteAbout, getRouteMain, getRouteProfile, getRouteArticles, AppRoutes } from '@/shared/config/routeConfig';
 import AboutIcon from '@/shared/assets/icons/about-20-20.svg';
 import MainIcon from '@/shared/assets/icons/main-20-20.svg';
 import ProfileIcon from '@/shared/assets/icons/profile-20-20.svg';
 import ArticleIcon from '@/shared/assets/icons/article-20-20.svg';
+import AboutIconRedesign from '@/shared/assets/icons/info.svg';
+import MainIconRedesign from '@/shared/assets/icons/home.svg';
+import ProfileIconRedesign from '@/shared/assets/icons/profile.svg';
+import ArticleIconRedesign from '@/shared/assets/icons/article.svg';
 import React from 'react';
+
+const toggleIcons = (oldIcon: React.FC<React.SVGProps<SVGSVGElement>>, newIcon: React.FC<React.SVGProps<SVGSVGElement>>) => {
+	if (getFeatureFlag('isAppRedesined')) {
+		return newIcon;
+	}
+	return oldIcon
+}
+
+
 export interface SideBarItemType {
 	path: string;
 	text: string;
 	isAuth: boolean;
-	Icon: React.FC<React.SVGProps<SVGSVGElement>>;
+	Icon: () => React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
 export const SideBarItemsList: SideBarItemType[] = [
 	{
 		path: getRouteMain(),
-		Icon: MainIcon,
+		Icon: () => toggleIcons(MainIcon, MainIconRedesign),
 		isAuth: false,
 		text: 'main'
 	},
 	{
 		path: getRouteAbout(),
-		Icon: AboutIcon,
+		Icon: ()=>toggleIcons(AboutIcon, AboutIconRedesign),
 		isAuth: false,
 		text: 'about'
 	},
 	{
 		path: AppRoutes.PROFILE,
-		Icon: ProfileIcon,
+		Icon: ()=>toggleIcons(ProfileIcon, ProfileIconRedesign),
 		isAuth: true,
 		text: 'profile'
 	},
 	{
 		path: getRouteArticles(),
-		Icon: ArticleIcon,
+		Icon: ()=>toggleIcons(ArticleIcon, ArticleIconRedesign),
 		isAuth: true,
 		text: 'articles'
 	}

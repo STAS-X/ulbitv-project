@@ -1,4 +1,4 @@
-import { FlexAlign, FlexJustify } from '../../ui/deprecated/Stack/Flex/Flex';
+import { FlexAlign, FlexJustify } from '../../ui/redesign/Stack/Flex/Flex';
 
 export const convertToProperty = (property: FlexJustify | FlexAlign) => {
 	switch (property) {

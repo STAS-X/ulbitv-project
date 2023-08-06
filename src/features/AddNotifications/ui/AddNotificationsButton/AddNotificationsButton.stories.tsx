@@ -4,7 +4,7 @@ import { AddNotificationsButton } from './AddNotificationsButton';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { HStack } from '@/shared/ui/deprecated/Stack';
+import { HStack } from '@/shared/ui/redesign/Stack';
 
 export default {
 	title: 'features/Notifications/AddNotificationsButton',

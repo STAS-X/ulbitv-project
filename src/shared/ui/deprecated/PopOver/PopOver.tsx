@@ -3,7 +3,7 @@ import { Popover } from '@headlessui/react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './PopOver.module.scss';
 import { useNavigate } from '@/shared/lib/hooks/useRouterUtils';
-import { VStack } from '../Stack';
+import { VStack } from '../../redesign/Stack';
 import { directionsToInlineStyle } from '@/shared/lib/helpers/directionsToInlineStyle';
 import { DropDownDirectionType } from '@/shared/types/dropdown/directions';
 

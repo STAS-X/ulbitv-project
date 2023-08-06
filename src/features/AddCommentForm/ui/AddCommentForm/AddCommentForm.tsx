@@ -15,7 +15,7 @@ import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { CommentSchema } from '@/entities/Comment';
 import { addCommentFormActions, addCommentFormReducer } from '../../model/slices/addCommentFormSlice';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { HStack, VStack } from '@/shared/ui/deprecated/Stack';
+import { HStack, VStack } from '@/shared/ui/redesign/Stack';
 
 export interface AddCommentFormProps {
 	className?: string;

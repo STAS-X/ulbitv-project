@@ -17,7 +17,7 @@ import {
 import { ProfileData, ProfileCard, ProfileFieldType } from '@/entities/Profile';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
-import { VStack } from '@/shared/ui/deprecated/Stack';
+import { VStack } from '@/shared/ui/redesign/Stack';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 export interface EditableProfileCardProps {

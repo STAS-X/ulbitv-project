@@ -11,8 +11,7 @@ export interface AppLinkProps extends LinkProps {
 	children?: ReactNode;
 }
 /**
- * Компонент устарел, используем новые компоненты из папки redesigned
- * @depricated
+ * Используем новые компоненты из папки redesigned
  */
 export const AppLink: FC<AppLinkProps> = memo((props: AppLinkProps) => {
 	const { to, className, variant = 'primary', children, ...otherProps } = props;

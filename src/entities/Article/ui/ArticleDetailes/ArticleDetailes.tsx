@@ -18,7 +18,7 @@ import { Avatar } from '@/shared/ui/deprecated/Avatar/Avatar';
 import { Icon } from '@/shared/ui/deprecated/Icon/Icon';
 import { ArticleBlock, ArticleBlockType } from '../../model/types/articleSchema';
 import { fetchArticleById } from '../../model/services/fetchArticleById';
-import { HStack, VStack } from '@/shared/ui/deprecated/Stack';
+import { HStack, VStack } from '@/shared/ui/redesign/Stack';
 
 const redusers: ReducerList = {
 	articleDetailes: articleDetailsReducer

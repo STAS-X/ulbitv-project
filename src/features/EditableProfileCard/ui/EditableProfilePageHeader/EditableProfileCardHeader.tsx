@@ -6,7 +6,7 @@ import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
 import { Text } from '@/shared/ui/deprecated/Text/Text';
 import classes from './ProfilePageHeader.module.scss';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
-import { HStack } from '@/shared/ui/deprecated/Stack/HStack/HStack';
+import { HStack } from '@/shared/ui/redesign/Stack/HStack/HStack';
 import {
 	getEditableProfileReadOnly,
 	getEditableProfileIsLoading,

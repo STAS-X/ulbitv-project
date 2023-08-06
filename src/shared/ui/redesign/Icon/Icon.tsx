@@ -2,32 +2,62 @@ import { FC, memo, SVGProps } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Icon.module.scss';
 
-export enum IconTheme {
-	PRIMARY = 'primary',
-	INVERTED = 'inverted',
-	NONE = '',
-	ALERT = 'alert'
-}
+export type IconVariant = 'standart' | '' | 'alert';
 
-export interface IconProps extends SVGProps<SVGSVGElement> {
+type SvgProps = Omit<SVGProps<SVGSVGElement>, 'onClick' | 'ref'>;
+
+interface IconBaseProps extends SvgProps {
 	className?: string;
 	Svg: FC<SVGProps<SVGSVGElement>>;
-	theme?: IconTheme;
+	variant?: IconVariant;
 	dataTestId?: string;
 }
 
-/**
- * Компонент устарел, используем новые компоненты из папки redesigned
- * @depricated
- */
-export const Icon: FC<Omit<IconProps, 'ref'>> = memo((props: IconProps) => {
-	const { className, Svg, theme = IconTheme.PRIMARY, dataTestId = '', ...others } = props;
+interface IconNonClickable extends IconBaseProps {
+	clickable?: false;
+}
 
-	return (
+interface IconClickable extends IconBaseProps {
+	clickable: true;
+	onClick: () => void;
+}
+
+export type IconProps = IconClickable | IconNonClickable;
+
+/**
+ * Используем новые компоненты из папки redesigned
+ */
+export const Icon: FC<IconProps> = memo((props: IconProps) => {
+	const {
+		className,
+		Svg,
+		variant = 'standart',
+		width = 32,
+		height = 32,
+		clickable,
+		dataTestId = '',
+		...others
+	} = props;
+
+	const SvgIcon = (
 		<Svg
 			data-testid={dataTestId}
-			className={classNames(classes.icon, { [classes[theme]]: true }, [className])}
+			className={classNames(classes.icon, { [classes.clickable]: clickable ?? false}, [
+				classes[variant] ?? '',
+				className
+			])}
+			width={width}
+			height={height}
 			{...others}
 		/>
 	);
+
+	if (clickable)
+		return (
+			<button type={'button'} className={classNames(classes.button)} onClick={props.onClick}>
+				{SvgIcon}
+			</button>
+		);
+
+	return SvgIcon;
 });

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Rating.module.scss';
 import { Card } from '@/shared/ui/deprecated/Card/Card';
-import { VStack } from '@/shared/ui/deprecated/Stack';
+import { VStack } from '@/shared/ui/redesign/Stack';
 import { Text, TextSize, TextTheme } from '@/shared/ui/deprecated/Text/Text';
 import { StarRating } from '@/shared/ui/deprecated/StarRating/StarRating';
 import { RatingModal } from '../RatingModal/RatingModal';

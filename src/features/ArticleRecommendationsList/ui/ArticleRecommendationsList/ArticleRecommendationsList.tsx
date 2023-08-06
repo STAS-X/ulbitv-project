@@ -5,7 +5,7 @@ import { Text, TextSize, TextTheme } from '@/shared/ui/deprecated/Text/Text';
 // eslint-disable-next-line stas-eslint-plugin/import-public-api
 import { ArticleList } from '@/entities/Article/ui/ArticleList/ArticleList';
 import { ArticleView } from '@/shared/lib/filters/sortTypes';
-import { VStack } from '@/shared/ui/deprecated/Stack';
+import { VStack } from '@/shared/ui/redesign/Stack';
 import classes from './ArticleRecommendationsList.module.scss';
 import { getErrorMessage } from '@/shared/types/thunk/thunkAction';
 import { useGetRecommendationByArticleQuery } from '../../api/useArticleRecommendations';

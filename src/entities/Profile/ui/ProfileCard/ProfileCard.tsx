@@ -11,8 +11,8 @@ import { CurrencySelector } from '@/entities/Currency';
 import { useSelector } from 'react-redux';
 import { ProfileData, ProfileFieldType, ValidateProfileError } from '../../model/types/profileSchema';
 import { useParams } from 'react-router-dom';
-import { VStack } from '@/shared/ui/deprecated/Stack/VStack/VStack';
-import { HStack } from '@/shared/ui/deprecated/Stack/HStack/HStack';
+import { VStack } from '@/shared/ui/redesign/Stack/VStack/VStack';
+import { HStack } from '@/shared/ui/redesign/Stack/HStack/HStack';
 // eslint-disable-next-line stas-eslint-plugin/layer-imports, stas-eslint-plugin/import-public-api
 import { getEditableProfileValidation } from '@/features/EditableProfileCard/model/selectors/getEditableProfile/getEditableProfileData';
 

@@ -21,7 +21,7 @@ export interface IconProps extends SVGProps<SVGSVGElement> {
  * @depricated
  */
 export const Icon: FC<Omit<IconProps, 'ref'>> = memo((props: IconProps) => {
-	const { className, Svg, theme = IconTheme.PRIMARY, dataTestId = '', ...others } = props;
+	const { className, Svg, theme = IconTheme.INVERTED, dataTestId = '', ...others } = props;
 
 	return (
 		<Svg

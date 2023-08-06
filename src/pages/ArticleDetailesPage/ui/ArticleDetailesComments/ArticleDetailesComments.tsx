@@ -10,7 +10,7 @@ import { getArticleComments } from '../../model/slice/articleDetailesCommentsSli
 import { getArticleCommentsIsLoading } from '../../model/selectors/getArticleCommentsData';
 import { Text } from '@/shared/ui/deprecated/Text/Text';
 import { AddCommentForm } from '@/features/AddCommentForm';
-import { VStack } from '@/shared/ui/deprecated/Stack';
+import { VStack } from '@/shared/ui/redesign/Stack';
 
 export interface ArticleDetailesCommentsProps {
 	className?: string;

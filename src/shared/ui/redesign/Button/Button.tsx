@@ -28,8 +28,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
- * Компонент устарел, используем новые компоненты из папки redesigned
- * @depricated
+ * Используем новые компоненты из папки redesigned
  */
 export const Button: FC<ButtonProps> = memo((props: ButtonProps) => {
 	const {

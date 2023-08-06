@@ -3,7 +3,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ListBoxSelector.module.scss';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Listbox } from '@headlessui/react';
-import { HStack } from '../Stack';
+import { HStack } from '../../redesign/Stack';
 import { directionsToInlineStyle } from '@/shared/lib/helpers/directionsToInlineStyle';
 import { DropDownDirectionType } from '@/shared/types/dropdown/directions';
 

@@ -21,8 +21,7 @@ export interface FlexProps extends DivProps {
 }
 
 /**
- * Компонент устарел, используем новые компоненты из папки redesigned
- * @depricated
+ * Используем новые компоненты из папки redesigned
  */
 export const Flex: FC<FlexProps> = (props: FlexProps) => {
 	const {

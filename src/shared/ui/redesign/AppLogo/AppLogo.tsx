@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import cls from './AppLogo.module.scss';
-import { HStack } from '../../deprecated/Stack';
+import { HStack } from '../Stack';
 import AppSvg from '@/shared/assets/icons/app-image.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Icon } from '../Icon/Icon';
@@ -11,8 +11,7 @@ interface AppLogoProps {
 }
 
 /**
- * Компонент устарел, используем новые компоненты из папки redesigned
- * @depricated
+ * Используем новые компоненты из папки redesigned
  */
 export const AppLogo = memo(({ className, size = 64 }: AppLogoProps) => {
 	return (

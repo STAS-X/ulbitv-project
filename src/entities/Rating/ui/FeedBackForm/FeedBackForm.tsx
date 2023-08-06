@@ -5,7 +5,7 @@ import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
 import { Input } from '@/shared/ui/deprecated/Input/Input';
 import { Text } from '@/shared/ui/deprecated/Text/Text';
 import classes from './FeedBackForm.module.scss';
-import { HStack } from '@/shared/ui/deprecated/Stack';
+import { HStack } from '@/shared/ui/redesign/Stack';
 
 export interface FeedBackFormProps {
 	className?: string;

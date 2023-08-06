@@ -5,7 +5,7 @@ import { Text } from '@/shared/ui/deprecated/Text/Text';
 import { CommentSchema } from '../../model/types/commentSchema';
 import classes from './CommentCard.module.scss';
 import { AppLink } from '@/shared/ui/deprecated/AppLink/AppLink';
-import { HStack, VStack } from '@/shared/ui/deprecated/Stack';
+import { HStack, VStack } from '@/shared/ui/redesign/Stack';
 import { getRouteProfile } from '@/shared/config/routeConfig';
 
 export interface CommentCardProps {
