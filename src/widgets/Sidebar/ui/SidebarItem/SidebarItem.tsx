@@ -1,6 +1,6 @@
 import { FC, memo, MouseEventHandler } from 'react';
 import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink/AppLink';
-import { AppLink as AppLinkRedesign, AppLinkVariant } from '@/shared/ui/redesign/AppLink/AppLink';
+import { AppLink as AppLinkRedesign } from '@/shared/ui/redesign/AppLink/AppLink';
 import classes from './SidebarItem.module.scss';
 import { useTranslation } from 'react-i18next';
 import { SideBarItemType } from '../../model/items';
@@ -37,14 +37,17 @@ export const SidebarItem: FC<SidebarItemProps> = memo((props: SidebarItemProps) 
 	};
 
 	if (!item) return null;
-	console.log(redesigned, 'side component redesigned');
-
-	const ItemIcon = item.Icon();
+	// console.log(redesigned, 'side component redesigned');
 
 	return redesigned ? (
 		<AppLinkRedesign
 			onClick={refreshPage}
-			className={classNames(classes.item, { [classes.collapsed]: collapsed }, [className])}
+			className={classNames(
+				classes.itemredesigned,
+				{ [classes.collapsed]: collapsed },
+				[className]
+			)}
+			activeLinkClass={classes.activeLink}
 			to={item.path}
 		>
 			<IconRedesign Svg={item.Icon()} width={collapsed ? 32 : 40} height={collapsed ? 32 : 40} />

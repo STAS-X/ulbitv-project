@@ -1,5 +1,15 @@
+.themeswitcher, .themeswitcherredesign {
+	margin: 0;
+}
+
 .icon {
 	fill: var(--theme-icon-flood-color);
 	stroke: var(--theme-icon-flood-color);
+	transform: scale(0.75);
+}
+
+.iconredesign {
+	fill: var(--icon-redesigned);
+	stroke: var(--icon-redesigned);
 	transform: scale(0.75);
 }

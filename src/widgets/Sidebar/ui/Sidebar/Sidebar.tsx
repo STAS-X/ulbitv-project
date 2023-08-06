@@ -6,7 +6,7 @@ import { SidebarItem } from '../SidebarItem/SidebarItem';
 import { getUserData } from '@/entities/User';
 import { useSelector } from 'react-redux';
 import { configSideBarItem } from '../../model/items';
-import { VStack } from '@/shared/ui/redesign/Stack';
+import { VStack, HStack } from '@/shared/ui/redesign/Stack';
 import { LanguageSwitchButton } from '@/features/LanguageSwitcher';
 import { ThemeSwitchButton } from '@/features/ThemeSwitcher';
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
@@ -54,7 +54,7 @@ const SideBarComponent = memo((props: SidebarProps) => {
 			className={classNames(className, { [classes.collapsed]: collapsed }, [classes.animation])}
 		>
 			<AppLogo className={collapsed ? classes.appiconsmall : classes.appicon} isSmall={collapsed} />
-			<VStack role={'navigation'} gap={16} className={classes.links}>
+			<VStack role={'navigation'} gap={16} className={isRedesigned ? classes.linksredesign : classes.links} max>
 				{configSideBarItem(Boolean(authData)).map((item) => (
 					<SidebarItem
 						key={item.path}
@@ -72,11 +72,12 @@ const SideBarComponent = memo((props: SidebarProps) => {
 					className={classNames(classes.collapsebtnredesign, {
 						[classes.collapsed]: collapsed
 					})}
+					variant={'button'}
 					clickable
 					onClick={onToggle}
 				/>
 			)}
-			<div className={classes.collapsebtn ? classes.switchersredesign : classes.switchers}>
+			<HStack gap={16} justify={'center'} className={classNames(classes.switchers)} max>
 				<ThemeSwitchButton />
 				<LanguageSwitchButton short={collapsed} className={classes.lang} />
 				{!isRedesigned && (
@@ -94,7 +95,7 @@ const SideBarComponent = memo((props: SidebarProps) => {
 						{collapsed ? '>' : '<'}
 					</Button>
 				)}
-			</div>
+			</HStack>
 		</aside>
 	);
 });

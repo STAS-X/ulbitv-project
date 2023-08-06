@@ -25,17 +25,8 @@
 
 .switchers {
 	position: absolute;
-	bottom: 20px;
-	display: flex;
-	justify-content: flex-end;
-	width: 100%;
-}
-
-.switchersredesign {
-	position: absolute;
-	bottom: 64px;
-	display: flex;
-	margin-left: 32px;
+	flex-wrap: wrap;
+	bottom: 48px;
 }
 
 .lang {
@@ -44,13 +35,19 @@
 
 .collapsebtn {
 	position: absolute;
-	right: -84px;
+	right: -30px;
 	bottom: 20px;
 }
 
 .collapsebtnredesign {
 	transform: rotate(90deg);
 	transition: transform 0.1s 0.2s;
+}
+
+.linksredesign {
+	margin-top: 64px;
+	// margin-inline: auto;
+	// width: fit-content;
 }
 
 .links {
@@ -70,19 +67,14 @@
 .collapsed {
 	width: var(--sidebar-width-collapsed);
 
-	.switchers,
-	.switchersredesign {
-		flex-direction: column;
+	.switchers {
+		flex-direction: column !important;
 		align-items: center;
-	}
-
-	.switchersredesign {
-		margin-left: 8px;
-		margin-bottom: -20px;
+		bottom: 32px;
 	}
 
 	.collapsebtn {
-		right: -40px;
+		right: -30px;
 		bottom: 32px;
 	}
 

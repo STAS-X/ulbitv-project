@@ -2,11 +2,13 @@ import { FC, memo, ReactNode } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './AppLink.module.scss';
+import { NavLink } from 'react-router-dom';
 
 export type AppLinkVariant = 'primary' | 'red';
 
 export interface AppLinkProps extends LinkProps {
 	className?: string;
+	activeLinkClass?: string;
 	variant?: AppLinkVariant;
 	children?: ReactNode;
 }
@@ -14,11 +16,17 @@ export interface AppLinkProps extends LinkProps {
  * Используем новые компоненты из папки redesigned
  */
 export const AppLink: FC<AppLinkProps> = memo((props: AppLinkProps) => {
-	const { to, className, variant = 'primary', children, ...otherProps } = props;
+	const { to, className, activeLinkClass = '', variant = 'primary', children, ...otherProps } = props;
 
 	return (
-		<Link to={to} className={classNames(classes.applink, {}, [className, classes[variant]])} {...otherProps}>
+		<NavLink
+			to={to}
+			className={({ isActive }) =>
+				classNames(classes.applink, { [activeLinkClass]: isActive }, [className, classes[variant]])
+			}
+			{...otherProps}
+		>
 			{children}
-		</Link>
+		</NavLink>
 	);
 });

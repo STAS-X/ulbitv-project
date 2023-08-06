@@ -1,17 +1,18 @@
 .button {
 	cursor: pointer;
-	color: var(--inverted-primary-color);
-	background-color: var(--inverted-secondary-color);
+	color: var(--text-redesigned);
+	background-color: var(--light-bg-redesigned);
 	padding: 10px 15px;
 
 	&:hover {
 		opacity: 0.8;
+		color: var(--accent-redesigned);
 		fill-opacity: 0.8;
 		stroke-opacity: 0.8;
 	}
 
 	svg > path {
-		stroke: var(--primary-color);
+		stroke: var(--text-redesigned);
 	}
 }
 
@@ -28,12 +29,12 @@
 }
 
 .inverted {
-	color: var(--inverted-primary-color);
+	color: var(--bg-redesigned);
 }
 
 .outline {
-	border: 1px solid var(--primary-color);
-	color: var(--primary-color);
+	border: 1px solid var(--text-redesigned);
+	color: var(--text-redesigned);
 	background: none;
 }
 
@@ -44,14 +45,14 @@
 }
 
 .background {
-	background: var(--bg-color);
-	color: var(--primary-color);
+	background: var(--bg-redesigned);
+	color: var(--text-redesigned);
 	border: none;
 }
 
 .backgroundInverted {
-	background: var(--inverted-bg-color);
-	color: var(--inverted-primary-color);
+	background: var(--light-bg-redesigned);
+	color: var(--text-redesigned);
 	border: none;
 }
 
@@ -63,32 +64,32 @@
 	opacity: 0.5;
 }
 
-.square.size_m {
+.square.m {
 	width: var(--font-line-m);
 	height: var(--font-line-m);
-	font: var(--font-m);
+	font: var(--font-m-redesigned);
 }
 
-.square.size_l {
+.square.l {
 	width: var(--font-line-l);
 	height: var(--font-line-l);
-	font: var(--font-l);
+	font: var(--font-l-redesigned);
 }
 
-.square.size_xl {
+.square.xl {
 	width: var(--font-line-xl);
 	height: var(--font-line-xl);
-	font: var(--font-xl);
+	font: var(--font-xl-redesigned);
 }
 
-.size_m {
-	font: var(--font-m);
+.m {
+	font: var(--font-m)-redesigned;
 }
 
-.size_l {
-	font: var(--font-l);
+.l {
+	font: var(--font-l-redesigned);
 }
 
-.size_xl {
-	font: var(--font-xl);
+.xl {
+	font: var(--font-xl-redesigned);
 }
