@@ -22,7 +22,7 @@ export const Card: FC<CardProps> = memo((props: CardProps) => {
 	const { className, theme = CardTheme.NORMAL, children, dataTestId = '', ...otherProps } = props;
 
 	return (
-		<div data-testid={dataTestId} className={classNames(classes.card, {}, [className])} {...otherProps}>
+		<div data-testid={dataTestId} className={classNames(classes.card, {}, [classes[theme], className])} {...otherProps}>
 			{children}
 		</div>
 	);

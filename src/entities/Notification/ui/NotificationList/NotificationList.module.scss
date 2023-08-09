@@ -1,4 +1,5 @@
-.notificationlist {
+.notificationlist,
+.notificationlistredesign {
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -15,6 +16,11 @@
 	cursor: pointer;
 }
 
+.itemredesign {
+	color: var(--text-redesign);
+	background: var(--bg-redesigned);
+}
+
 .selected {
 	&:hover {
 		background: var(--inverted-primary-color);
@@ -26,8 +32,24 @@
 	}
 }
 
+.selectedredesign {
+	&:hover {
+		background: var(--light-bg-redesigned);
+		border-color: var(--accent-redesign);
+	}
+
+	&:focus {
+		background: var(--light-bg-redesigned);
+	}
+}
+
 .active {
 	background: var(--inverted-primary-color);
+	border-radius: 10px;
+}
+
+.activeredesign {
+	background: var(--light-bg-redesigned);
 	border-radius: 10px;
 }
 

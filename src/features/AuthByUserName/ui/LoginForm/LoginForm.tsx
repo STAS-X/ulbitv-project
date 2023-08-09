@@ -107,7 +107,8 @@ const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
 					onChange={onChangeUsername}
 					value={login}
 				/>
-				<Input type="text" className={classes.input} onChange={onChangePassword} value={password} />
+				<Input type="text" className={classes.input} onChange={onChangePassword}
+value={password} />
 				<Button
 					theme={ButtonTheme.OUTLINE}
 					className={classes.loginbtn}

@@ -3,21 +3,22 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './NotificationList.module.scss';
 import { useNavigate } from '@/shared/lib/hooks/useRouterUtils';
 import { VStack } from '@/shared/ui/redesign/Stack';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
-export interface NotificationListSize {
+interface NotificationListSize {
 	maxWidth?: string | number;
 	minWidth?: string | number;
 	maxHeight?: string | number;
 	minHeight?: string | number;
 }
 
-export interface NotificationListItem {
+interface NotificationListItem {
 	disabled?: boolean;
 	content?: ReactNode;
 	href?: string;
 }
 
-export interface NotificationListProps {
+interface NotificationListProps {
 	className?: string;
 	size?: NotificationListSize;
 	isLoading?: boolean;
@@ -25,8 +26,11 @@ export interface NotificationListProps {
 	items: NotificationListItem[];
 }
 
-export const NotificationList: FC<NotificationListProps> = memo((props: NotificationListProps) => {
+const NotificationListComponent: FC<NotificationListProps> = memo((props: NotificationListProps) => {
 	const { className = '', items, isLoading = false, onClick = () => null, size = {} } = props;
+
+	const isRedesigned = className === classes.notificationlistredesign;
+	console.log(isRedesigned, 'get redesign notifylist');
 
 	const navigate = useNavigate();
 
@@ -43,11 +47,20 @@ export const NotificationList: FC<NotificationListProps> = memo((props: Notifica
 			{items.map((item, index) => {
 				const notificationWithClass = isValidElement(item.content)
 					? cloneElement(item.content as ReactElement, {
-							className: classNames(
-								'',
-								{ [classes.disabled]: item.disabled || false, [classes.selected]: !isLoading },
-								[]
-							)
+							className: isRedesigned
+								? classNames(
+										'',
+										{
+											[classes.disabledredesign]: item.disabled || false,
+											[classes.selectedredesign]: !isLoading
+										},
+										[classes.itemredesign]
+								  )
+								: classNames(
+										'',
+										{ [classes.disabled]: item.disabled || false, [classes.selected]: !isLoading },
+										[]
+								  )
 					  })
 					: item.content;
 				return (
@@ -68,3 +81,14 @@ export const NotificationList: FC<NotificationListProps> = memo((props: Notifica
 		</VStack>
 	);
 });
+
+export const NotificationList: FC<NotificationListProps> = (props: NotificationListProps) => {
+	console.log(props, 'notify listitem');
+	return (
+		<ToggleFeatures
+			feature={'isAppRedesined'}
+			off={<NotificationListComponent {...props} className={props.className} />}
+			on={<NotificationListComponent {...props} className={classes.notificationlistredesign} />}
+		/>
+	);
+};

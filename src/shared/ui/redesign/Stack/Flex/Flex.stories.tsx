@@ -5,7 +5,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme';
 
 export default {
-	title: 'shared/Flex',
+	title: 'shared/redesigned/Flex',
 	component: Flex,
 	args: {
 		children: (

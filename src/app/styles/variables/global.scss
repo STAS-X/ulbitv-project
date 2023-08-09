@@ -1,3 +1,7 @@
+@import '../themes/normal';
+@import '../themes/dark';
+@import '../themes/orange';
+
 :root {
 	--font-family-main: consolas, 'Times New Roman', serif;
 	--font-family-text-redesigned: 'Nunito Sans', sans-serif;
@@ -40,7 +44,11 @@
 	--red-dark: rgb(180 10 10);
 
 	// redesigned fonts
+	$type: line1;
 
+	// --track-bg: var(--card-bg);
+	// --thumb-bg: var(--inverted-primary-color);
+	// --thumb-color: var(--primary-color);
 	// s
 	--font-s-redesigned: var(--font-size-s) / var(--font-line-s) var(--font-family-text-redesigned);
 

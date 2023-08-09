@@ -1,5 +1,7 @@
 export { default as PLACEHOLDER_IMAGE } from '@/shared/assets/images/placeholder.jpg';
-export { default as PLACEHOLDER_AVATAR} from '@/shared/assets/images/avatar.jpg';
+export { default as PLACEHOLDER_AVATAR } from '@/shared/assets/images/avatar.jpg';
+
+export const AVATAR_REDESIGN = _DEV_MODE_ ? '/src/shared/assets/icons/avatar.svg' : './shared/assrts/icons/avatar.svg';
 
 export const USER_LS_KEY = 'user';
 export const FEATURES_LS_KEY = 'features';

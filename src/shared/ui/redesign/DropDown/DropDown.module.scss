@@ -1,0 +1,42 @@
+.ropDown {
+	position: relative;
+}
+
+.button {
+	background: none;
+	outline: none;
+	margin: 0;
+	padding: 0;
+	border: none;
+	color: var(--text-redesigned);
+	cursor: pointer;
+}
+
+.menu {
+	background: var(--dark-bg-redesigned);
+	position: absolute;
+	border-radius: 18px;
+	border: 1px solid var(--accent-redesigned);
+	padding: 1px;
+	width: max-content;
+}
+
+.menuitem {
+	padding: 10px 25px;
+	border: none;
+	background: none;
+	outline: none;
+	color: var(--text-redesigned);
+	list-style-type: none;
+	cursor: pointer;
+}
+
+.active {
+	background: var(--light-bg-redesigned);
+	border-radius: 10px;
+}
+
+.disabled {
+	opacity: 0.7;
+	cursor: not-allowed;
+}

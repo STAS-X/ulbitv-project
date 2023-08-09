@@ -7,7 +7,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import ImageImg from '@/shared/assets/images/avatar.jpg';
 
 export default {
-	title: 'shared/Image',
+	title: 'shared/redesigned/Image',
 	component: Image,
 	argTypes: {
 		backgroundColor: { control: 'color' }

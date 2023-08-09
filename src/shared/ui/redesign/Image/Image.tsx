@@ -3,7 +3,7 @@ import { FC, Suspense, useEffect, useState, ReactNode } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { PLACEHOLDER_IMAGE } from '../../../const/localstorage';
 import { ImageResource } from '../../../lib/reactImageSource/imageSource';
-import { Skeleton } from '../Skeleton/Skeleton';
+import { Skeleton } from '../../deprecated/Skeleton/Skeleton';
 
 export interface ImageProps {
 	className?: string;
@@ -46,7 +46,6 @@ const OriginImage: FC<ImageProps> = (props: ImageProps) => {
 };
 
 /**
- * Компонент устарел, используем новые компоненты из папки redesigned
- * @depricated
+ * Используем новые компоненты из папки redesigned
  */
 export { LazyLoadImage as Image };

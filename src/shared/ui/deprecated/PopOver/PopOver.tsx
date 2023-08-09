@@ -60,14 +60,15 @@ export const PopOver: FC<PopOverProps> = memo((props: PopOverProps) => {
 				<VStack align={'center'} max>
 					{items.map((item, index) => {
 						const panelItemWithClass = isValidElement(item.content)
-							? cloneElement(item.content as ReactElement, {
+							? cloneElement(item.content, {
 									className: classNames(
-										'',
+										item.content.props.className,
 										{ [classes.disabled]: item.disabled || false, [classes.selected]: !isLoading },
 										[]
 									)
 							  })
 							: item.content;
+						console.log(panelItemWithClass, 'isValid');
 						return (
 							<li
 								className={classes.panelitem}

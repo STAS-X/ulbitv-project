@@ -7,8 +7,7 @@ interface PortalProps {
 }
 
 /**
- * Компонент устарел, используем новые компоненты из папки redesigned
- * @depricated
+ * Используем новые компоненты из папки redesigned
  */
 export const Portal: FC<PortalProps> = (props) => {
 	const { children, element = document.body } = props;

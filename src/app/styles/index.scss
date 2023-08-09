@@ -4,6 +4,20 @@
 @import 'reset';
 @import 'variables/global';
 
+*::-webkit-scrollbar {
+	width: 20px; /* ширина scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+	margin-block: 5px;
+	border-radius: 10px; /* закругления дорожки */
+}
+
+*::-webkit-scrollbar-thumb {
+	border-radius: 10px; /* закругления плашки */
+	border: 5px solid transparent; /* padding вокруг плашки */
+}
+
 .app,
 .app_modal,
 .app_drawer {
@@ -16,6 +30,33 @@
 	min-height: 100vh;
 	background: var(--bg-color);
 	transition: background-color 0.3s;
+
+	*::-webkit-scrollbar-track {
+		background: var(--card-bg); /* цвет дорожки */
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background:
+			linear-gradient(
+				to top,
+				var(--primary-color) 0%,
+				var(--primary-color) 1.7%,
+				transparent 1.7%,
+				transparent 98.3%,
+				var(--primary-color) 98.3%,
+				var(--primary-color) 100%
+			),
+			linear-gradient(
+				to left,
+				var(--primary-color) 0%,
+				var(--primary-color) 15%,
+				var(--bg-color) 15%,
+				var(--bg-color) 80%,
+				var(--primary-color) 80%,
+				var(--primary-color) 100%
+			);
+		background-clip: content-box;
+	}
 }
 
 .app_redesign {
@@ -23,6 +64,33 @@
 	min-height: 100vh;
 	font: var(--font-m-redesigned);
 	color: var(--text-redesigned);
+
+	*::-webkit-scrollbar-track {
+		background: var(--card-redesigned); /* цвет дорожки */
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background:
+			linear-gradient(
+				to top,
+				var(--accent-redesigned) 0%,
+				var(--accent-redesigned) 1.7%,
+				transparent 1.7%,
+				transparent 98.3%,
+				var(--accent-redesigned) 98.3%,
+				var(--accent-redesigned) 100%
+			),
+			linear-gradient(
+				to left,
+				var(--accent-redesigned) 0%,
+				var(--accent-redesigned) 15%,
+				var(--light-bg-redesigned) 15%,
+				var(--bg-redesigned) 80%,
+				var(--accent-redesigned) 80%,
+				var(--accent-redesigned) 100%
+			);
+		background-clip: content-box;
+	}
 }
 
 .content-page {
@@ -33,6 +101,7 @@
 	top: var(--navbar-heigth);
 	width: calc(100vw - var(--sidebar-width));
 	height: calc(100% - var(--navbar-heigth));
+
 	&.collapsed {
 		width: calc(100vw - var(--sidebar-width-collapsed));
 		left: calc(var(--sidebar-width-collapsed));
@@ -45,6 +114,7 @@
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
+
 	&.collapsed {
 		left: var(--sidebar-width-redesign-collapsed);
 	}
@@ -52,10 +122,10 @@
 
 .articles-header {
 	left: calc(var(--sidebar-width) + 50px);
+
 	&.collapsed {
 		left: calc(var(--sidebar-width-collapsed) + 50px);
 	}
-
 }
 
 main {
@@ -72,49 +142,3 @@ main {
 	margin-top: 0;
 	pointer-events: all;
 }
-
-*::-webkit-scrollbar {
-	position: unset;
-	width: 12px; /* ширина scrollbar */
-	height: 8px;
-	transform: rotateX(180deg);
-	-ms-transform: rotateX(180deg); /* IE 9 */
-	-moz-transform: rotateX(180deg); /* Mozilla */
-	-webkit-transform: rotateX(180deg); /* Safari and Chrome */
-	z-index: -1;
-	left: -150px;
-}
-
-*::-webkit-scrollbar-track {
-	background: var(--card-bg); /* цвет дорожки */
-}
-
-*::-webkit-scrollbar-thumb {
-	background-color: var(--inverted-primary-color); /* цвет плашки */
-	border-radius: 20px; /* закругления плашки */
-	border: 2px solid var(--primary-color); /* padding вокруг плашки */
-}
-
-
-
-// html {
-//     overflow: auto;
-// }
-// body {
-//     position: absolute;
-//     top: 20px;
-//     left: 20px;
-//     bottom: 5px;
-//     right: 20px;
-//     overflow: scroll;
-// }
-// ::-webkit-scrollbar{
-//     background: transparent;
-//     width: 10px;
-// }
-// ::-webkit-scrollbar-thumb{
-//     background: rgba(0,0,0,0.4); /*-- black at 40% opacity --*/
-// }
-// ::-webkit-resizer,
-// ::-webkit-scrollbar-button,
-// ::-webkit-scrollbar-corner { display: none; }

@@ -1,0 +1,53 @@
+.PopOver {
+	position: relative;
+}
+
+.trigger {
+	background: none;
+	outline: none;
+	margin: 0;
+	padding: 0;
+	border: none;
+	color: var(--text-redesigned);
+	cursor: pointer;
+}
+
+.panel {
+	background: var(--dark-bg-redesigned);
+	position: absolute;
+	padding: 10px;
+	border-radius: 18px;
+	border: 1px solid var(--accent-redesigned);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.panelitem {
+	padding: 0 10px;
+	width: 100%;
+	border: 1px solid transparent;
+	color: var(--text-redesigned);
+	background: none;
+	list-style-type: none;
+	transition: all 0.3s ease;
+	user-select: none;
+	cursor: pointer;
+}
+
+.selected {
+	&:hover {
+		background: var(--light-bg-redesigned);
+		border-color: var(--accent-redesigned);
+		opacity: 0.9;
+	}
+}
+
+.active {
+	background: var(--light-bg-redesigned);
+	border-radius: 10px;
+}
+
+.disabled {
+	opacity: 0.7;
+	cursor: not-allowed;
+}

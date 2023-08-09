@@ -1,21 +1,24 @@
 import { FC, memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { DropDown } from '@/shared/ui/deprecated/DropDown/DropDown';
-import { Avatar } from '@/shared/ui/deprecated/Avatar/Avatar';
+import { DropDown as DropDownDeprecated } from '@/shared/ui/deprecated/DropDown/DropDown';
+import { DropDown } from '@/shared/ui/redesign/DropDown/DropDown';
+import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar/Avatar';
+import { Avatar } from '@/shared/ui/redesign/Avatar/Avatar';
 import { useSelector } from 'react-redux';
 import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
 import { userActions, UserData, getUserData, getUserIsAdmin } from '@/entities/User';
 import { getRouteAdminPanel, getRouteProfile } from '@/shared/config/routeConfig';
 import { useLocation, useNavigate } from '@/shared/lib/hooks/useRouterUtils';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
 interface AddMenuButtonProps {
 	className?: string;
-	onAuthModal: () => void;
+	onAuthModal?: () => void;
 }
 
-export const AddMenuButton: FC<AddMenuButtonProps> = memo((props: AddMenuButtonProps) => {
-	const { className, onAuthModal } = props;
+export const AddMenuButtonComponent: FC<AddMenuButtonProps> = memo((props: AddMenuButtonProps) => {
+	const { className = '', onAuthModal } = props;
 
 	const { t } = useTranslation(['translation']);
 
@@ -25,6 +28,8 @@ export const AddMenuButton: FC<AddMenuButtonProps> = memo((props: AddMenuButtonP
 	const isAdmin = useSelector<StateSchema, boolean>(getUserIsAdmin);
 	const location = useLocation(); // Your hook to get login status
 	const navigate = useNavigate();
+
+	const isRedesigned = className === 'redesigned';
 
 	const showAuthModal = useCallback(() => {
 		if (onAuthModal) onAuthModal();
@@ -49,11 +54,28 @@ export const AddMenuButton: FC<AddMenuButtonProps> = memo((props: AddMenuButtonP
 		[t, userdata, isAdmin, showAuthModal, setLogOut]
 	);
 
-	return (
+	return isRedesigned ? (
 		<DropDown
 			className={classNames('', {}, [className])}
 			items={menuItems}
-			trigger={<Avatar size={30} border={'50%'} src={userdata?.avatar || ''} />}
+			trigger={<Avatar size={40} border={'50%'} src={userdata?.avatar} />}
+		/>
+	) : (
+		<DropDownDeprecated
+			className={classNames('', {}, [className])}
+			items={menuItems}
+			trigger={<AvatarDeprecated size={30} border={'50%'} src={userdata?.avatar} />}
 		/>
 	);
 });
+
+
+export const AddMenuButton: FC<AddMenuButtonProps> = (props: AddMenuButtonProps) => {
+	return (
+		<ToggleFeatures
+			feature={'isAppRedesined'}
+			off={<AddMenuButtonComponent {...props} className={'classic'} />}
+			on={<AddMenuButtonComponent {...props} className={'redesigned'} />}
+		/>
+	);
+};

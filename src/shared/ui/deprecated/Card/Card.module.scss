@@ -5,3 +5,11 @@
 	background: var(--card-bg);
 	transition: all ease 0.3s;
 }
+
+.normal {
+	background: var(--card-bg);
+}
+
+.outline {
+	border: 1px solid var(--primary-color);
+}

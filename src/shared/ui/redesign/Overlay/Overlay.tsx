@@ -9,8 +9,7 @@ interface OverlayProps {
 }
 
 /**
- * Компонент устарел, используем новые компоненты из папки redesigned
- * @depricated
+ * Используем новые компоненты из папки redesigned
  */
 export const Overlay = memo((props: OverlayProps) => {
 	const { className, onClick, children } = props;

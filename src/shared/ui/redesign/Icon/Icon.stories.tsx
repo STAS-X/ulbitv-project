@@ -7,7 +7,7 @@ import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
 
 export default {
-	title: 'shared/Icon',
+	title: 'shared/redesigned/Icon',
 	component: Icon,
 	argTypes: {
 		backgroundColor: { control: 'color' }

@@ -54,7 +54,8 @@ const SideBarComponent = memo((props: SidebarProps) => {
 			className={classNames(className, { [classes.collapsed]: collapsed }, [classes.animation])}
 		>
 			<AppLogo className={collapsed ? classes.appiconsmall : classes.appicon} isSmall={collapsed} />
-			<VStack role={'navigation'} gap={16} className={isRedesigned ? classes.linksredesign : classes.links} max>
+			<VStack role={'navigation'} gap={16} className={isRedesigned ? classes.linksredesign : classes.links}
+max>
 				{configSideBarItem(Boolean(authData)).map((item) => (
 					<SidebarItem
 						key={item.path}
@@ -77,7 +78,8 @@ const SideBarComponent = memo((props: SidebarProps) => {
 					onClick={onToggle}
 				/>
 			)}
-			<HStack gap={16} justify={'center'} className={classNames(classes.switchers)} max>
+			<HStack gap={16} justify={'center'} className={classNames(classes.switchers)}
+max>
 				<ThemeSwitchButton />
 				<LanguageSwitchButton short={collapsed} className={classes.lang} />
 				{!isRedesigned && (

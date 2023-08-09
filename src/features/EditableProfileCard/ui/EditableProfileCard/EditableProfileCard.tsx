@@ -133,7 +133,8 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = memo((props: Ed
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<VStack dataTestId={'ProfileCard'} className={classNames('', {}, [className])} gap={10} max={true}>
+			<VStack dataTestId={'ProfileCard'} className={classNames('', {}, [className])} gap={10}
+max={true}>
 				<EditableProfileCardHeader isDirty={isDirty} isEdit={isEdit} />
 				<ProfileCard
 					data={formData}

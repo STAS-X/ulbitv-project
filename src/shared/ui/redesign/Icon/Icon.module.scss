@@ -3,7 +3,8 @@
 	pointer-events: none;
 }
 
-.standart, .button {
+.standart,
+.button {
 	fill: var(--icon-redesigned);
 	stroke: var(--icon-redesigned);
 }
@@ -20,6 +21,7 @@
 .togglebutton {
 	margin: 0;
 	padding: 0;
+
 	// border: 1;
 	// outline: 0;
 	position: absolute;
@@ -39,6 +41,7 @@
 	margin: 0;
 	padding: 0;
 	border: none;
+
 	// outline: 0;
 	width: fit-content;
 	height: fit-content;
@@ -50,5 +53,6 @@
 	.icon {
 		color: var(--accent-redesigned);
 	}
+
 	opacity: 1;
 }

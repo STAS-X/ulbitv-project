@@ -13,7 +13,7 @@ import { Avatar } from '@/shared/ui/deprecated/Avatar/Avatar';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
 
 import { DEBOUNCE_DELAY } from '@/shared/const/localstorage';
-import { Image } from '@/shared/ui/deprecated/Image/Image';
+import { Image } from '@/shared/ui/redesign/Image/Image';
 
 export interface ArticleListItemProps {
 	className?: string;
@@ -105,7 +105,8 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 				}}
 			>
 				<div className={classes.imagewrapper}>
-					<Image width={200} height={200} src={article.img} alt={article.title} className={classes.img} />
+					<Image width={200} height={200} src={article.img}
+alt={article.title} className={classes.img} />
 					<Text content={article.createdAt} className={classes.date} />
 				</div>
 				<div className={classes.infowrapper}>

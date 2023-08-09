@@ -6,7 +6,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme';
 
 export default {
-	title: 'shared/Button',
+	title: 'shared/redesigned/Button',
 	component: Button,
 	argTypes: {
 		backgroundColor: { control: 'color' }
