@@ -4,7 +4,13 @@
 }
 
 .primary {
-	padding: 0;
+	.title {
+		color: var(--text-redesigned);
+	}
+
+	.content {
+		color: var(--text-redesigned);
+	}
 }
 
 .title {

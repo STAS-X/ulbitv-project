@@ -45,7 +45,9 @@ border={15} /> };
 	}, [hasNewNotes, notifications]);
 
 	const cancelAlertNotifications = useCallback(() => {
+		console.log('запускаем функцию прекращения уведомлений');
 		if (hasNewNotes) {
+			console.log('запустили функцию прекращения уведомлений');
 			setHasNewNotes(false);
 			writeNotifyToLS(notifications);
 		}

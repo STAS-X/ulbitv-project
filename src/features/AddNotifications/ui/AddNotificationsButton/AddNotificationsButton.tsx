@@ -44,10 +44,12 @@ export const AddNotificationsButtonComponent: FC<AddNotificationsButtonProps> = 
 			animationDelay: isMobile ? 350 : 300
 		});
 
+		console.log(hasNewNotes, 'новые уведомления');
+
 		const triggerButton = isRedesigned ? (
 			<>
 				<IconRedesign Svg={NotificationIconRedesign} width={32} height={32}
-clickable onClick={closeHandler} />
+clickable onClick={()=>console.log('popover is open')} />
 				<TextRedesign
 					className={classNames(classes.notifications,{},[classes.notifyredesign])}
 					size={'m'}
@@ -95,6 +97,7 @@ clickable onClick={closeHandler} />
 		) : isRedesigned ? (
 			<PopOverRedesign
 				className={classNames('', {}, [className])}
+				onClose={closeHandler}
 				items={notificationItems}
 				size={{ minWidth: notificationIsError && !notificationIsLoading ? 'max-content' : 320, maxHeight: 420 }}
 				isLoading={notificationIsLoading}

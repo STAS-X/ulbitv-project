@@ -1,0 +1,31 @@
+.ContentLayout {
+	min-height: 100vh;
+	display: grid;
+	grid-template-areas: 'left content right';
+	column-gap: 16px;
+	grid-template-columns: minmax(auto, min-content) 1fr minmax(auto, min-content);
+	grid-auto-flow: column dense;
+}
+
+.left {
+	grid-area: left;
+}
+
+.content {
+	grid-area: content;
+	width: 100%;
+	max-width: 1200px;
+	max-height: 100vh;
+	justify-self: center;
+}
+
+.right {
+	grid-area: right;
+}
+
+.left,
+.right {
+	position: sticky;
+	top: 16px;
+	height: fit-content;
+}

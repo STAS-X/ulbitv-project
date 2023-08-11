@@ -1,4 +1,15 @@
-import { FC, memo, ReactNode, useCallback, useRef, ReactElement, isValidElement, cloneElement } from 'react';
+import {
+	FC,
+	memo,
+	ReactNode,
+	useCallback,
+	useRef,
+	ReactElement,
+	isValidElement,
+	cloneElement,
+	useEffect,
+	useState
+} from 'react';
 import { Popover } from '@headlessui/react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './PopOver.module.scss';
@@ -26,6 +37,7 @@ export interface PopOverProps {
 	direction?: DropDownDirectionType;
 	size?: PopOverSize;
 	isLoading?: boolean;
+	onClose?: () => void;
 	items: PopOverItem[];
 	trigger: ReactNode;
 }
@@ -34,7 +46,7 @@ export interface PopOverProps {
  * Используем новые компоненты из папки redesigned
  */
 export const PopOver: FC<PopOverProps> = memo((props: PopOverProps) => {
-	const { className, items, direction, isLoading = false, size = {}, trigger } = props;
+	const { className, items, direction, onClose, isLoading = false, size = {}, trigger } = props;
 
 	const navigate = useNavigate();
 	const triggerRef = useRef<HTMLButtonElement>(null);
@@ -48,41 +60,70 @@ export const PopOver: FC<PopOverProps> = memo((props: PopOverProps) => {
 		[triggerRef, navigate]
 	);
 
+	useEffect(() => {
+		document.addEventListener('click', handleClick);
+		return () => document.removeEventListener('click', handleClick);
+		function handleClick(e: Event) {
+			//console.log(isOpen, 'get isopen');
+			if (e.target && (e.target as HTMLElement).className !== classes.panel) onClose?.();
+		}
+		//if (isOpen === false) onClose?.();
+		//console.log(isOpen, 'get isopen');
+	}, [onClose]);
+
 	const inlineStyle = directionsToInlineStyle(direction);
 
 	return (
-		<Popover as={'div'} className={classNames(classes.PopOver, {}, [className])}>
-			<Popover.Button as={'div'} ref={triggerRef} className={classes.trigger}>
-				{trigger}
-			</Popover.Button>
-			<Popover.Panel className={classes.panel} style={{ ...inlineStyle, ...size }}>
-				<VStack align={'center'} max>
-					{items.map((item, index) => {
-						const panelItemWithClass = isValidElement(item.content)
-							? cloneElement(item.content as ReactElement, {
-									className: classNames(
-										'',
-										{ [classes.disabled]: item.disabled || false, [classes.selected]: !isLoading },
-										[]
-									)
-							  })
-							: item.content;
-						return (
-							<li
-								className={classes.panelitem}
-								key={index}
-								onClick={() => {
-									if (!item.disabled) {
-										handlePopoverClick(item.href, item.onClick);
-									}
-								}}
-							>
-								{panelItemWithClass}
-							</li>
-						);
-					})}
-				</VStack>
-			</Popover.Panel>
+		<Popover className={classNames(classes.PopOver, {}, [className])}>
+			{({ open }) => {
+				return (
+					<>
+						<Popover.Button
+							as={'div'}
+							ref={triggerRef}
+							className={classes.trigger}
+						>
+							{trigger}
+						</Popover.Button>
+
+						<Popover.Panel
+							as={'div'}
+							className={classes.panel}
+							style={{ ...inlineStyle, ...size }}
+						>
+							<VStack align={'center'} max>
+								{items.map((item, index) => {
+									const panelItemWithClass = isValidElement(item.content)
+										? cloneElement(item.content as ReactElement, {
+												className: classNames(
+													'',
+													{
+														[classes.disabled]: item.disabled || false,
+														[classes.selected]: !isLoading
+													},
+													[]
+												)
+										  })
+										: item.content;
+									return (
+										<li
+											className={classes.panelitem}
+											key={index}
+											onClick={() => {
+												if (!item.disabled) {
+													handlePopoverClick(item.href, item.onClick);
+												}
+											}}
+										>
+											{panelItemWithClass}
+										</li>
+									);
+								})}
+							</VStack>
+						</Popover.Panel>
+					</>
+				);
+			}}
 		</Popover>
 	);
 });

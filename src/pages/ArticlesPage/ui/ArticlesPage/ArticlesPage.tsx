@@ -11,6 +11,8 @@ import { ArticlesPageFilters, ArticleInfiniteGridLoader } from '@/entities/Artic
 import { useArticlesParams } from '@/shared/lib/hooks/useArticlesQueryParams';
 import { saveJSONSettingsByUser, getUserData, useSettingsByKey } from '@/entities/User';
 import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
+import { ContentLayout } from '@/shared/layout';
 
 export interface ArticlesPageProps {
 	className?: string;
@@ -34,7 +36,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	const isFirstVisit = useSettingsByKey('isFirstVisit') as boolean;
 
 	//console.log(isFirstVisit, typeof isFirstVisit, 'get FirstVisit param');
-
+	const isRedesign = className === classes.articlepageredesign;
 	//const isFirstVisit = dispatch(getJSONSettingByKey('isFirstVisit')).then((res)=> console.log(res, 'PROMISE'));
 	//console.log(isFirstVisit, 'get first visit data');
 
@@ -139,12 +141,18 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-			<PageWrapper data-testid={'ArticlesPage'} className={classNames(classes.articlespage, {}, [className])}>
-				<div className={classes.container}>
-					{inited && <ArticlesPageFilters />}
-					<div data-testid={'ArticleList'} className={classes.articlelist}>
-						{inited && <ArticleInfiniteGridLoader />}
-						{/* <ArticleList
+			<ToggleFeatures
+				feature={'isAppRedesined'}
+				off={
+					<PageWrapper
+						data-testid={'ArticlesPage'}
+						className={classNames(classes.articlespage, {}, [className])}
+					>
+						<div className={classes.container}>
+							{inited && <ArticlesPageFilters />}
+							<div data-testid={'ArticleList'} className={classes.articlelist}>
+								{inited && <ArticleInfiniteGridLoader />}
+								{/* <ArticleList
 						view={view}
 						isLoading={isLoading}
 						hasMore={hasMore}
@@ -156,14 +164,43 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 						onInitScroll={initScrollWrapper}
 						onLoadNext={onLoadNextArticlesPage}
 					/> */}
-					</div>
-				</div>
-				{isFirstVisit && (
-					<ArticlePageGreeting isModalOpen={isFirstVisit} userName={username} onClose={removeFirstVisit} />
-				)}
-			</PageWrapper>
+							</div>
+						</div>
+						{isFirstVisit && (
+							<ArticlePageGreeting
+								isModalOpen={isFirstVisit}
+								userName={username}
+								onClose={removeFirstVisit}
+							/>
+						)}
+					</PageWrapper>
+				}
+				on={
+					<ContentLayout
+						dataTestId={'ArticlesPage'}
+						className={classNames(classes.articlespage, {}, [className])}
+						left={<div>Left side</div>}
+						right={<div>Right side</div>}
+						content={
+							<div data-testid={'ArticleList'} className={classes.articlelistredesign}>
+								{inited && <ArticleInfiniteGridLoader />}
+							</div>
+						}
+					/>
+				}
+			/>
 		</DynamicModuleLoader>
 	);
 });
+
+// const ArticlesPage: FC<ArticlesPageProps> = (props: ArticlesPageProps) => {
+// 	return (
+// 		<ToggleFeatures
+// 			feature={'isAppRedesined'}
+// 			off={<ArticlesPageComponent {...props} />}
+// 			on={<ArticlesPageComponent {...props} className={classes.articlepageredesign} />}
+// 		/>
+// 	);
+// };
 
 export default ArticlesPage;
