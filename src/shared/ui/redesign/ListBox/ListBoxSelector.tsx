@@ -1,52 +1,62 @@
-import { FC, ReactNode, useState } from 'react';
+import { ReactElement, ReactNode, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ListBoxSelector.module.scss';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Listbox } from '@headlessui/react';
-import { HStack } from '../../redesign/Stack';
 import { directionsToInlineStyle } from '@/shared/lib/helpers/directionsToInlineStyle';
 import { DropDownDirectionType } from '@/shared/types/dropdown/directions';
+import { Button } from '../Button/Button';
 
-type ListBoxSelectorItem = {
+export interface ListBoxSelectorItem<T extends string> {
 	id: number;
-	value: string;
+	value: T;
 	content: ReactNode;
 	disabled?: boolean;
-};
+}
 
-export interface ListBoxSelectorProps {
-	items?: ListBoxSelectorItem[];
+export interface ListBoxSelectorProps<T extends string> {
+	items?: ListBoxSelectorItem<T>[];
 	className?: string;
 	children?: ReactNode;
 	dataTestId?: string;
-	value?: string;
-	defaultValue?: string;
+	value?: T;
+	defaultValue?: T;
 	placeholder: string;
+	labelblock?: boolean;
 	readonly?: boolean;
 	direction?: DropDownDirectionType;
-	onChange?: <T extends string>(value: T) => void;
+	onChange?: (value: T) => void;
 }
 
 /**
  * Используем новые компоненты из папки redesigned
  */
-export const ListBoxSelector: FC<ListBoxSelectorProps> = (props: ListBoxSelectorProps) => {
+export const ListBoxSelector = <T extends string>(
+	props: ListBoxSelectorProps<T>
+): ReactElement<ListBoxSelectorProps<T>> => {
 	const {
 		className,
 		items,
-		defaultValue,
+		defaultValue = '',
 		placeholder,
 		direction,
 		readonly,
+		labelblock = false,
 		value,
 		dataTestId = 'ListBox',
 		onChange
 	} = props;
 
-	const [selectedValue, setSelectedValue] = useState(defaultValue);
+	const convertValueToDescription = (value?: T) => {
+		return (value ? items?.filter((item) => item.value === value)?.[0].content : defaultValue) as T;
+	};
 
-	const handleChange = <T extends string>(value: T) => {
+	const [selectedValue, setSelectedValue] = useState(value);
+	const [selectedDescription, setSelectedDescription] = useState(convertValueToDescription(value));
+
+	const handleChange = (value: T) => {
 		setSelectedValue(value);
+		setSelectedDescription(convertValueToDescription(value));
 		if (onChange) onChange(value);
 	};
 
@@ -61,13 +71,17 @@ export const ListBoxSelector: FC<ListBoxSelectorProps> = (props: ListBoxSelector
 			disabled={readonly}
 			onChange={handleChange}
 		>
-			{placeholder && <Listbox.Label className={classes.label}>{placeholder}</Listbox.Label>}
-			<Listbox.Button data-testid={`${dataTestId}.Trigger`} className={classes.trigger}>
+			{placeholder && (
+				<Listbox.Label className={classNames(classes.label, { [classes.labelblock]: labelblock })}>
+					{placeholder}
+				</Listbox.Label>
+			)}
+			<Listbox.Button as={'div'} data-testid={`${dataTestId}.Trigger`} className={classes.trigger}>
 				{({ open }) => (
-					<HStack dataTestId={`${dataTestId}.Value`} justify={'between'} max>
-						{value ?? defaultValue}
+					<Button dataTestId={`${dataTestId}.Value`} variant={'filled'}>
+						{selectedDescription}
 						{open ? '	▼' : '	▲'}
-					</HStack>
+					</Button>
 				)}
 			</Listbox.Button>
 			<Listbox.Options

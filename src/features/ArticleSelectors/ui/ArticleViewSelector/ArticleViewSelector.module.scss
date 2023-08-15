@@ -1,9 +1,8 @@
 .view {
 	width: 100%;
-}
 
-.selector {
-	margin-right: 10px;
+	.selector {
+		margin-right: 10px;
 
 	& svg {
 		transform: scale(1.25);
@@ -27,3 +26,24 @@
 		stroke: var(--primary-color);
 	}
 }
+}
+
+.viewredesign {
+
+	.selectorredesign {
+			fill: var(--light-bg-redesigned);
+			stroke: var(--light-bg-redesigned);
+			transition: transform 0.2s;
+	}
+	button:hover > svg {
+		transform: scale(1.25);
+	}
+
+	.selectedredesign {
+			transform: scale(1.25);
+			fill: var(--accent-redesigned);
+			stroke: var(--accent-redesigned);
+	}
+}
+
+

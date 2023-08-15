@@ -3,13 +3,19 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ArticleViewSelector.module.scss';
 import ListIcon from '@/shared/assets/icons/list-24-24.svg';
 import TileIcon from '@/shared/assets/icons/tiled-24-24.svg';
+import ListIconRedesign from '@/shared/assets/icons/burger.svg';
+import TileIconRedesign from '@/shared/assets/icons/tile.svg';
 import { Icon } from '@/shared/ui/deprecated/Icon/Icon';
+import { Icon as IconRedesign } from '@/shared/ui/redesign/Icon/Icon';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
 import { ArticleView } from '@/shared/lib/filters/sortTypes';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
+import { Card as CardRedesign } from '@/shared/ui/redesign/Card/Card';
+import { HStack as HStackRedesign } from '@/shared/ui/redesign/Stack';
 
-const viewTypes = [
-	{ view: ArticleView.LIST, icon: ListIcon },
-	{ view: ArticleView.TILE, icon: TileIcon }
+const viewTypes = (isRedesign: boolean) => [
+	{ view: ArticleView.LIST, icon: isRedesign ? ListIconRedesign : ListIcon },
+	{ view: ArticleView.TILE, icon: isRedesign ? TileIconRedesign : TileIcon }
 ];
 
 export interface ArticleViewSelectorProps {
@@ -20,7 +26,7 @@ export interface ArticleViewSelectorProps {
 }
 
 export const ArticleViewSelector: FC<ArticleViewSelectorProps> = (props: ArticleViewSelectorProps) => {
-	const { className, view, onViewClick } = props;
+	const { className = '', view, onViewClick } = props;
 
 	const handleChangeView = useCallback(
 		(newView: ArticleView) => () => {
@@ -30,20 +36,43 @@ export const ArticleViewSelector: FC<ArticleViewSelectorProps> = (props: Article
 	);
 
 	return (
-		<div data-testid={'ArticleSortSelector'} className={classNames(classes.view, {}, [className])}>
-			{viewTypes.map((viewItem) => (
-				<Button
-					dataTestId={`Button.${viewItem.view}`}
-					key={viewItem.view}
-					theme={ButtonTheme.CLEAR}
-					onClick={handleChangeView(viewItem.view)}
-					className={classNames(classes.selector, {
-						[classes.selected]: viewItem.view === view
-					})}
-				>
-					<Icon Svg={viewItem.icon} />
-				</Button>
-			))}
-		</div>
+		<ToggleFeatures
+			feature={'isAppRedesined'}
+			on={
+				<CardRedesign data-testid={'ArticleSortSelector'} border={'round'} className={classNames(className)}>
+					<HStackRedesign gap={8}>
+						{viewTypes(true).map((viewItem) => (
+							<IconRedesign
+								dataTestId={`Button.${viewItem.view}`}
+								key={viewItem.view}
+								clickable
+								onClick={handleChangeView(viewItem.view)}
+								className={classNames(classes.selectorredesign, {
+									[classes.selectedredesign]: viewItem.view === view
+								})}
+								Svg={viewItem.icon}
+							></IconRedesign>
+						))}
+					</HStackRedesign>
+				</CardRedesign>
+			}
+			off={
+				<div data-testid={'ArticleSortSelector'} className={classNames(className)}>
+					{viewTypes(false).map((viewItem) => (
+						<Button
+							dataTestId={`Button.${viewItem.view}`}
+							key={viewItem.view}
+							theme={ButtonTheme.CLEAR}
+							onClick={handleChangeView(viewItem.view)}
+							className={classNames(classes.selector, {
+								[classes.selected]: viewItem.view === view
+							})}
+						>
+							<Icon Svg={viewItem.icon} />
+						</Button>
+					))}
+				</div>
+			}
+		/>
 	);
 };

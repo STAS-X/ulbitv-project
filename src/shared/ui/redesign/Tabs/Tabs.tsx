@@ -4,8 +4,13 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { ArticleType } from '@/entities/Article';
 import { DEBOUNCE_DELAY } from '../../../const/localstorage';
 import { useDebounce as useDebounceTab } from '../../../lib/hooks/useDebounce';
-import { Card } from '../../deprecated/Card/Card';
+import { Card } from '../Card/Card';
+import { Flex } from '../Stack/Flex/Flex';
+import {Text} from '../Text/Text';
 import classes from './Tabs.module.scss';
+import { useTranslation } from 'react-i18next';
+
+type TabDirection = 'row' | 'column';
 
 interface TabItem {
 	value: ArticleType;
@@ -16,16 +21,19 @@ export interface TabsProps {
 	className?: string;
 	children?: ReactNode;
 	tabs: TabItem[];
+	direction?: TabDirection;
+	gap?: number;
 	category: string[];
 	onTabClick?: (newCategory: string[]) => void;
 }
 
 /**
- * Компонент устарел, используем новые компоненты из папки redesigned
- * @depricated
+ * Используем новые компоненты из папки redesigned
  */
 export const Tabs: FC<TabsProps> = memo((props: TabsProps) => {
-	const { className, tabs, category = [], onTabClick } = props;
+	const { className, tabs, direction = 'column', gap = 16, category = [], onTabClick } = props;
+
+	const { t } = useTranslation(['articles']);
 
 	const [newCategory, setNewCategory] = useState(category);
 
@@ -43,7 +51,14 @@ export const Tabs: FC<TabsProps> = memo((props: TabsProps) => {
 	);
 
 	return (
-		<div className={classNames(classes.tabs, {}, [className])}>
+		<Flex
+			className={classNames(classes.tabs, {}, [className])}
+			direction={direction}
+			gap={gap}
+			align={direction === 'row' ? 'center' : 'start'}
+			justify={direction === 'row' ? 'start' : 'center'}
+		>
+			{<Text className={classes.label} content={t('category.label')}/>}
 			{tabs.map((tab) => (
 				<Card
 					dataTestId={`Article.Category.${tab.value}`}
@@ -51,11 +66,12 @@ export const Tabs: FC<TabsProps> = memo((props: TabsProps) => {
 						[classes.selected]: newCategory.includes(tab.value as string)
 					})}
 					key={tab.value}
+					border={'round'}
 					onClick={() => handleCategoryClick(tab.value)}
 				>
 					{tab.content}
 				</Card>
 			))}
-		</div>
+		</Flex>
 	);
 });

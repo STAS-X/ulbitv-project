@@ -3,9 +3,11 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ArticleSearchSelector.module.scss';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/deprecated/Input/Input';
+import { Input as InputRedesign } from '@/shared/ui/redesign/Input/Input';
 import { useDebounce as useFilterDebounce } from '@/shared/lib/hooks/useDebounce';
 import { DEBOUNCE_DELAY } from '@/shared/const/localstorage';
 import { ArticlesSearch } from '@/shared/lib/filters/sortTypes';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
 export interface ArticleSearchSelectorProps {
 	className?: string;
@@ -15,7 +17,7 @@ export interface ArticleSearchSelectorProps {
 }
 
 export const ArticleSearchSelector: FC<ArticleSearchSelectorProps> = memo((props: ArticleSearchSelectorProps) => {
-	const { className, searchBy = '', refInput, onFilterArticle } = props;
+	const { className = '', searchBy = '', refInput, onFilterArticle } = props;
 
 	const [filter, setFilter] = useState(searchBy);
 
@@ -34,20 +36,35 @@ export const ArticleSearchSelector: FC<ArticleSearchSelectorProps> = memo((props
 
 	return (
 		<div className={classNames(classes.filtration, {}, [className])}>
-			{/*<div className={classes.title}>
-				<Text title={t('search.formTitle')} align={TextAlign.CENTER} />
-	</div>*/}
-			<div data-testid={'ArtricleSearch'} className={classes.filters}>
-				<Input
-					dataTestId={'Article.Filter'}
-					ref={refInput as ForwardedRef<HTMLInputElement>}
-					className={classes.input}
-					value={filter ?? searchBy}
-					readonly={false}
-					placeholder={t('search.filterHolder')}
-					onChange={setFilter}
-				/>
-			</div>
+			<ToggleFeatures
+				feature={'isAppRedesined'}
+				on={
+					<div data-testid={'ArtricleSearch'} className={classes.filters}>
+						<InputRedesign
+							dataTestId={'Article.Filter'}
+							ref={refInput as ForwardedRef<HTMLInputElement>}
+							className={classes.inputredesign}
+							value={filter ?? searchBy}
+							readonly={false}
+							placeholder={t('search.filterHolder')}
+							onChange={setFilter}
+						/>
+					</div>
+				}
+				off={
+					<div data-testid={'ArtricleSearch'} className={classes.filters}>
+						<Input
+							dataTestId={'Article.Filter'}
+							ref={refInput as ForwardedRef<HTMLInputElement>}
+							className={classes.input}
+							value={filter ?? searchBy}
+							readonly={false}
+							placeholder={t('search.filterHolder')}
+							onChange={setFilter}
+						/>
+					</div>
+				}
+			/>
 		</div>
 	);
 });

@@ -7,8 +7,7 @@ import {
 	ReactElement,
 	isValidElement,
 	cloneElement,
-	useEffect,
-	useState
+	useEffect
 } from 'react';
 import { Popover } from '@headlessui/react';
 import { classNames } from '@/shared/lib/classNames/classNames';

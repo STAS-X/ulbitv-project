@@ -7,7 +7,7 @@
 	"backToList": "Назад к списку",
 	"selectors": {
 		"views": "Просмотры",
-		"title": "Наименование",
+		"title": "Название",
 		"createdAt": "Создано",
 		"asc": "возрастание",
 		"desc": "убывание",
@@ -17,9 +17,10 @@
 	},
 	"search": {
 		"formTitle": "Поиск статей",
-		"filterHolder": "Искать по названию"
+		"filterHolder": "Искать по тексту"
 	},
 	"category": {
+		"label": "Выбор категории >",
 		"IT": "ИТ",
 		"SCIENCE": "Наука",
 		"ECONOMICS": "Экономика"

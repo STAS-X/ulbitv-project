@@ -1,7 +1,8 @@
 // eslint-disable-next-line stas-eslint-plugin/import-public-api
 import { ArticleView } from '@/shared/lib/filters/sortTypes';
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { EntityId } from '@reduxjs/toolkit';
+import { buildSelector } from '@/shared/lib/store';
+// import { EntityId } from '@reduxjs/toolkit';
 
 export const getArticlesPageIsLoading = (state: StateSchema) => state.articlesPage?.isLoading ?? false;
 export const getArticlesPageError = (state: StateSchema) => state.articlesPage?.error;
@@ -17,3 +18,6 @@ export const getArticlesPageCategory = (state: StateSchema) => state.articlesPag
 export const getArticlesPageHasMore = (state: StateSchema) => state.articlesPage?.hasMore ?? true;
 export const getArticlesPageInited = (state: StateSchema) => state.articlesPage?._inited;
 export const getArticlesPageTarget = (state: StateSchema) => state.articlesPage?._target;
+
+// Возвращаем мемизированный список категорий статей
+export const [useArticlesCategory] = buildSelector((state: StateSchema) => state.articlesPage?.categoryFilter);

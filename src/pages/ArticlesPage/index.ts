@@ -12,6 +12,7 @@ export {
 	getArticlesPageSortOrder,
 	getArticlesPageFilter,
 	getArticlesPageCategory,
+	useArticlesCategory,
 	getArticlesPageInited,
 	getArticlesPageTarget
 } from './model/selectors/getArticlesPageData';

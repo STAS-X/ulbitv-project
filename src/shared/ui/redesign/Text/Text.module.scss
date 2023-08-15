@@ -35,6 +35,16 @@
 	}
 }
 
+.error {
+	.title {
+		color: var(--red-light);
+	}
+
+	.content {
+		color: var(--red-dark);
+	}
+}
+
 .align-right {
 	text-align: right;
 }

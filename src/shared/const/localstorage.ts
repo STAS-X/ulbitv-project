@@ -16,8 +16,8 @@ export const DIV_SCROLL_SELECTOR = 'div.infiniteLoaderContainer';
 export const ARTICLE_ITEM_SELECTOR = 'div.article_list_item';
 export const DEBOUNCE_DELAY = 500;
 export const LIST_ARTICLE_HEIGHT = 650;
-export const TILE_ARTICLE_WIDTH = 240;
-export const TILE_ARTICLE_HEIGTH = 290;
+export const TILE_ARTICLE_WIDTH = 250;
+export const TILE_ARTICLE_HEIGTH = 300;
 export const LIST_SCELETON_HEIGTH = 360;
 
 export type SelectorType = 'view' | 'sortOrder' | 'sortField' | 'filter' | 'category';

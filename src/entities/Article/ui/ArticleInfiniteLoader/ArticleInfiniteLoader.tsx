@@ -29,8 +29,6 @@ interface ItemRendererProps {
 }
 
 const LIST_ARTICLE_HEIGHT = 680;
-const TILE_ARTICLE_WIDTH = 240;
-const TILE_ARTICLE_HEIGTH = 300;
 
 export const ArticleInfiniteLoader: FC<ArticleInfiniteLoaderProps> = (props: ArticleInfiniteLoaderProps) => {
 	const {

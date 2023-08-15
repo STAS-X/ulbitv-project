@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, FC, memo, ReactNode } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import classes from './Button.module.scss';
 
-type ButtonTheme = 'clear' | 'inverted' | 'outline' | 'outline_red' | 'background' | 'backgroundInverted';
+type ButtonTheme = 'clear' | 'inverted' | 'outline' | 'filled' | 'outline_red' | 'background' | 'backgroundInverted';
 
 type ButtonSize = 'm'| 'l'| 'xl';
 

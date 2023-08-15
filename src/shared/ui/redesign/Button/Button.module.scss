@@ -32,6 +32,14 @@
 	color: var(--bg-redesigned);
 }
 
+.filled {
+	background: var(--light-bg-redesigned);
+	border: none;
+	outline: none;
+	padding: 8px 16px;
+	border-radius: 34px;
+}
+
 .outline {
 	border: 1px solid var(--text-redesigned);
 	color: var(--text-redesigned);

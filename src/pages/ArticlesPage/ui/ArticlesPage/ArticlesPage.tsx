@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, ReactNode, useState } from 'react';
+import { FC, memo, useEffect, ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -13,6 +13,9 @@ import { saveJSONSettingsByUser, getUserData, useSettingsByKey } from '@/entitie
 import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 import { ContentLayout } from '@/shared/layout';
+import { useArticleFilter } from '@/shared/lib/hooks/useArticleFilter';
+import { ArticleViewSelector } from '@/features/ArticleSelectors';
+import { ArticlesFilters } from '@/widgets/ArticlesFilters';
 
 export interface ArticlesPageProps {
 	className?: string;
@@ -35,8 +38,10 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	//const [isFirstVisit, setIsFirstVisit]  = useState();
 	const isFirstVisit = useSettingsByKey('isFirstVisit') as boolean;
 
+	const {view, handleChangeView, renderProgress} = useArticleFilter();
+
 	//console.log(isFirstVisit, typeof isFirstVisit, 'get FirstVisit param');
-	const isRedesign = className === classes.articlepageredesign;
+	//const isRedesign = className === classes.articlepageredesign;
 	//const isFirstVisit = dispatch(getJSONSettingByKey('isFirstVisit')).then((res)=> console.log(res, 'PROMISE'));
 	//console.log(isFirstVisit, 'get first visit data');
 
@@ -179,10 +184,15 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 					<ContentLayout
 						dataTestId={'ArticlesPage'}
 						className={classNames(classes.articlespage, {}, [className])}
-						left={<div>Left side</div>}
-						right={<div>Right side</div>}
+						left={
+							<div className={classes.headerviews}>
+								<ArticleViewSelector view={view} onViewClick={handleChangeView} />
+							</div>
+						}
+						right={<ArticlesFilters />}
 						content={
 							<div data-testid={'ArticleList'} className={classes.articlelistredesign}>
+								{renderProgress(classes.inprogress)}
 								{inited && <ArticleInfiniteGridLoader />}
 							</div>
 						}

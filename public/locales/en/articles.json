@@ -20,6 +20,7 @@
 		"filterHolder": "Filter by text"
 	},
 	"category": {
+		"label": "Select category >",
 		"IT": "IT",
 		"SIENCE": "SIENCE",
 		"ECONOMICS": "ECONOMICS"

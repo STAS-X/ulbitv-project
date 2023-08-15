@@ -7,7 +7,7 @@ import { HStack } from '../../redesign/Stack';
 import { directionsToInlineStyle } from '@/shared/lib/helpers/directionsToInlineStyle';
 import { DropDownDirectionType } from '@/shared/types/dropdown/directions';
 
-type ListBoxSelectorItem = {
+interface ListBoxSelectorItem {
 	id: number;
 	value: string;
 	content: ReactNode;

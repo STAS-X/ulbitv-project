@@ -31,10 +31,12 @@ import {
 } from '@/pages/ArticlesPage';
 import { useNavigate } from '@/shared/lib/hooks/useRouterUtils';
 import { StateSchema, useAppDispatch } from '@/app/providers/StoreProvider';
-import { Text, TextSize } from '@/shared/ui/deprecated/Text/Text';
+import { Text, TextSize, TextTheme } from '@/shared/ui/deprecated/Text/Text';
+import { Text as TextRedesign } from '@/shared/ui/redesign/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { getRouteArticleDetailes } from '@/shared/config/routeConfig';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
 export interface ArticleInfiniteGridLoaderProps {
 	className?: string;
@@ -286,16 +288,38 @@ export const ArticleInfiniteGridLoader: FC<ArticleInfiniteGridLoaderProps> = mem
 		let emptyPlaceholder: JSX.Element | null = null;
 
 		if (!hasNextPage && !hasFilter) {
-			emptyPlaceholder = <Text size={TextSize.L} content={t('noArticles')} />;
+			emptyPlaceholder = (
+				<ToggleFeatures
+					feature={'isAppRedesined'}
+					on={<TextRedesign variant={'error'} size={'l'} content={t('noArticles')} />}
+					off={<Text theme={TextTheme.ERROR} size={TextSize.L} content={t('noArticles')} />}
+				/>
+			);
 		} else {
 			emptyPlaceholder =
 				hasNextPage || isNextPageLoading ? null : (
-					<Text
-						size={TextSize.L}
-						content={t('noFiltredArticles', {
-							filter,
-							category: Array.isArray(category) ? category.join(', ') : 'ALL'
-						})}
+					<ToggleFeatures
+						feature={'isAppRedesined'}
+						on={
+							<TextRedesign
+								variant={'error'}
+								size={'l'}
+								content={t('noFiltredArticles', {
+									filter,
+									category: Array.isArray(category) ? category.join(', ') : 'ALL'
+								})}
+							/>
+						}
+						off={
+							<Text
+								theme={TextTheme.ERROR}
+								size={TextSize.L}
+								content={t('noFiltredArticles', {
+									filter,
+									category: Array.isArray(category) ? category.join(', ') : 'ALL'
+								})}
+							/>
+						}
 					/>
 				);
 		}
