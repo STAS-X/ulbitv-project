@@ -1,5 +1,4 @@
 import { ForwardedRef, forwardRef, InputHTMLAttributes, memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import Search from '@/shared/assets/icons/search.svg';
 import { Text } from '../Text/Text';
@@ -13,7 +12,7 @@ export interface InputProps extends HTMLInputProps {
 	className?: string;
 	value?: string | number;
 	type?: string;
-	placeholder?: string;
+	placeholder?: string | null;
 	validation?: string | null;
 	onChange?: (value: string) => void;
 	readonly?: boolean;
@@ -24,7 +23,7 @@ export interface InputProps extends HTMLInputProps {
 const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 	const {
 		className,
-		placeholder = 'userName',
+		placeholder,
 		type = 'text',
 		readonly = false,
 		value = '',
@@ -34,7 +33,6 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 		dataTestId = 'TextError',
 		...otherProps
 	} = props;
-	const { t } = useTranslation();
 
 	const onChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const {
@@ -73,7 +71,7 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 					type={type}
 					onChange={onChangeValue}
 					readOnly={readonly}
-					placeholder={t(placeholder)}
+					placeholder={placeholder ?? ''}
 					{...otherProps}
 				></input>
 				{iconalign === 'right' && (
