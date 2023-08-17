@@ -12,7 +12,7 @@
 	background: var(--dark-bg-redesigned);
 	transition: all 0.1s ease-in;
 	box-shadow: 2px 0.5px 2px 0.5px var(--bg-redesigned);
-	border: 2px solid transparent;
+	border: 2px solid var(--light-bg-redesigned);
 	cursor: pointer;
 
 	&::selection {
@@ -29,6 +29,7 @@
 
 .selected {
 	background: var(--light-bg-redesigned);
+
 	// color: var(--accent-redesigned);
 	// border: 2px solid var(--accent-redesigned);
 }

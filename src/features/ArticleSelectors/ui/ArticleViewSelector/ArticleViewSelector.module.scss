@@ -4,46 +4,44 @@
 	.selector {
 		margin-right: 10px;
 
-	& svg {
-		transform: scale(1.25);
-		margin: 5px 0 0;
+		& svg {
+			transform: scale(1.25);
+			margin: 5px 0 0;
+		}
+
+		& svg > path {
+			fill: var(--secondary-color);
+			stroke: var(--secondary-color);
+		}
 	}
 
-	& svg > path {
-		fill: var(--secondary-color);
-		stroke: var(--secondary-color);
-	}
-}
+	.selected {
+		& svg {
+			transform: scale(1.25);
+			margin: 5px 0 0;
+		}
 
-.selected {
-	& svg {
-		transform: scale(1.25);
-		margin: 5px 0 0;
+		& svg > path {
+			fill: var(--primary-color);
+			stroke: var(--primary-color);
+		}
 	}
-
-	& svg > path {
-		fill: var(--primary-color);
-		stroke: var(--primary-color);
-	}
-}
 }
 
 .viewredesign {
-
 	.selectorredesign {
-			fill: var(--light-bg-redesigned);
-			stroke: var(--light-bg-redesigned);
-			transition: transform 0.2s;
+		fill: var(--light-bg-redesigned);
+		stroke: var(--light-bg-redesigned);
+		transition: transform 0.2s;
 	}
+
 	button:hover > svg {
 		transform: scale(1.25);
 	}
 
 	.selectedredesign {
-			transform: scale(1.25);
-			fill: var(--accent-redesigned);
-			stroke: var(--accent-redesigned);
+		transform: scale(1.25);
+		fill: var(--accent-redesigned);
+		stroke: var(--accent-redesigned);
 	}
 }
-
-

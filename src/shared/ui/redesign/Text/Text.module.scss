@@ -3,16 +3,6 @@
 	pointer-events: none;
 }
 
-.primary {
-	.title {
-		color: var(--text-redesigned);
-	}
-
-	.content {
-		color: var(--text-redesigned);
-	}
-}
-
 .title {
 	font: var(--font-l-redesigned);
 	color: var(--text-redesigned);
@@ -23,6 +13,16 @@
 	color: var(--text-redesigned);
 	margin-top: 5px;
 	margin-bottom: -5px;
+}
+
+.primary {
+	.title {
+		color: var(--text-redesigned);
+	}
+
+	.content {
+		color: var(--text-redesigned);
+	}
 }
 
 .accent {

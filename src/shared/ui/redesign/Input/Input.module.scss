@@ -1,22 +1,33 @@
-.inputwrapper {
+.wrapper {
 	display: flex;
 	flex-wrap: wrap;
 }
 
-span {
-	pointer-events: none;
+.searchicon {
+	position: absolute;
+	padding-bottom: 5px;
+	fill: var(--hint-redesigned);
+	stroke: var(--hint-redesigned);
+
+	&.left {
+		left: 3px;
+	}
+
+	&.right {
+		right: 3px;
+	}
 }
 
-.placeholder {
-	margin-right: 5px;
-}
-
-.caretwrapper {
-	flex-grow: 1;
+.inputwrapper {
 	position: relative;
+
+	&:has(input:focus) .searchicon {
+		fill: var(--accent-redesigned);
+		stroke: var(--accent-redesigned);
+	}
 }
 
-.inputwrapper > .validation {
+.wrapper > .validation {
 	flex: 1 1 100%;
 
 	p::after {
@@ -29,25 +40,31 @@ span {
 	margin-top: -25px;
 }
 
-.caret {
-	height: 3px;
-	width: 9px;
-	background: var(--primary-color);
-	bottom: 0;
-	left: 0;
-}
-
 .readonly {
 	opacity: 0.7;
 	cursor: not-allowed;
 }
 
 .input {
-	margin-left: 5px;
-	padding-left: 5px;
+	&.left {
+		padding-left: 32px;
+		padding-right: 8px;
+	}
+
+	&.right {
+		padding-left: 8px;
+		padding-right: 32px;
+	}
+
 	background: transparent;
-	color: var(--primary-color);
-	border: none;
+	color: var(--text-redesigned);
+	border: 2px solid var(--hint-redesigned);
+	border-radius: 48px;
 	outline: none;
 	width: 100%;
+
+	&:focus,
+	&:hover {
+		border: 2px solid var(--accent-redesigned);
+	}
 }

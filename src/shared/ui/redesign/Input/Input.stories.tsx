@@ -6,7 +6,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme';
 
 export default {
-	title: 'shared/Input',
+	title: 'shared/redesigned/Input',
 	component: Input,
 	argTypes: {
 		backgroundColor: { control: 'color' }

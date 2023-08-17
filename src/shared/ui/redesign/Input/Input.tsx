@@ -1,10 +1,13 @@
 import { ForwardedRef, forwardRef, InputHTMLAttributes, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import Search from '@/shared/assets/icons/search.svg';
 import { Text } from '../Text/Text';
 import classes from './Input.module.scss';
+import { Icon } from '../Icon/Icon';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'placeholder' | 'value' | 'readOnly' | 'onChange'>;
+type InputIconAlign = 'left' | 'right';
 
 export interface InputProps extends HTMLInputProps {
 	className?: string;
@@ -14,6 +17,7 @@ export interface InputProps extends HTMLInputProps {
 	validation?: string | null;
 	onChange?: (value: string) => void;
 	readonly?: boolean;
+	iconalign?: InputIconAlign;
 	dataTestId?: string;
 }
 
@@ -25,6 +29,7 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 		readonly = false,
 		value = '',
 		validation = '',
+		iconalign = 'left',
 		onChange,
 		dataTestId = 'TextError',
 		...otherProps
@@ -44,7 +49,7 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 	};
 
 	return (
-		<div className={classNames(classes.inputwrapper, {}, [className])}>
+		<div className={classNames(classes.wrapper, {}, [className])}>
 			{validation && (
 				<div className={classes.validation}>
 					<Text
@@ -55,19 +60,25 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 					/>
 				</div>
 			)}
-			{placeholder && <span className={classes.placeholder}>{`${t(placeholder)}>`}</span>}
-			<div className={classes.caretwrapper}>
+			{/*placeholder && <span className={classes.placeholder}>{`${t(placeholder)}>`}</span>*/}
+			<div className={classes.inputwrapper}>
+				{iconalign === 'left' && (
+					<Icon Svg={Search} className={classNames(classes.searchicon, {}, [classes[iconalign]])} />
+				)}
 				<input
 					data-testid={`${dataTestId}.Value`}
 					ref={ref || undefined}
-					className={classNames(classes.input, mods)}
+					className={classNames(classes.input, mods, [classes[iconalign]])}
 					value={value}
 					type={type}
 					onChange={onChangeValue}
 					readOnly={readonly}
+					placeholder={placeholder ? t(placeholder) : ''}
 					{...otherProps}
 				></input>
-				<span className={classes.caret}></span>
+				{iconalign === 'right' && (
+					<Icon Svg={Search} className={classNames(classes.searchicon, {}, [classes[iconalign]])} />
+				)}
 			</div>
 		</div>
 	);

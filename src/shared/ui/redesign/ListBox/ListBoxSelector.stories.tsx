@@ -35,7 +35,7 @@ const inlineConteinerStyle: React.CSSProperties = {
 	alignItems: 'center'
 };
 
-const Template: StoryFn<typeof ListBoxSelector> = (args: ListBoxSelectorProps) => <ListBoxSelector {...args} />;
+const Template: StoryFn<typeof ListBoxSelector> = (args: ListBoxSelectorProps<string>) => <ListBoxSelector {...args} />;
 
 export const ListBoxBottomRight = Template.bind({});
 ListBoxBottomRight.args = {

@@ -6,6 +6,10 @@ import { Listbox } from '@headlessui/react';
 import { directionsToInlineStyle } from '@/shared/lib/helpers/directionsToInlineStyle';
 import { DropDownDirectionType } from '@/shared/types/dropdown/directions';
 import { Button } from '../Button/Button';
+import Arrow from '@/shared/assets/icons/arrow-bottom.svg';
+import { Icon } from '../Icon/Icon';
+
+type InputIconAlign = 'left' | 'right';
 
 export interface ListBoxSelectorItem<T extends string> {
 	id: number;
@@ -24,6 +28,7 @@ export interface ListBoxSelectorProps<T extends string> {
 	placeholder: string;
 	labelblock?: boolean;
 	readonly?: boolean;
+	iconalign?: InputIconAlign;
 	direction?: DropDownDirectionType;
 	onChange?: (value: T) => void;
 }
@@ -42,6 +47,7 @@ export const ListBoxSelector = <T extends string>(
 		direction,
 		readonly,
 		labelblock = false,
+		iconalign = 'right',
 		value,
 		dataTestId = 'ListBox',
 		onChange
@@ -78,9 +84,20 @@ export const ListBoxSelector = <T extends string>(
 			)}
 			<Listbox.Button as={'div'} data-testid={`${dataTestId}.Trigger`} className={classes.trigger}>
 				{({ open }) => (
-					<Button dataTestId={`${dataTestId}.Value`} variant={'filled'}>
+					<Button dataTestId={`${dataTestId}.Value`} variant={'filled'} className={classes.buttonwrapper}>
+						{iconalign === 'left' && (
+							<Icon
+								Svg={Arrow}
+								className={classNames(classes.arrowicon, { [classes.open]: open })}
+							/>
+						)}
 						{selectedDescription}
-						{open ? '	▼' : '	▲'}
+						{iconalign === 'right' && (
+							<Icon
+								Svg={Arrow}
+								className={classNames(classes.arrowicon, { [classes.open]: open })}
+							/>
+						)}
 					</Button>
 				)}
 			</Listbox.Button>

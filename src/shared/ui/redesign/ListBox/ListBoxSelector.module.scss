@@ -4,6 +4,7 @@
 
 .label {
 	width: max-content;
+
 	&::after {
 		content: ' > ';
 	}
@@ -13,11 +14,32 @@
 	display: block;
 }
 
+.arrowicon {
+	fill: var(--accent-redesigned);
+	stroke: var(--accent-redesigned);
+	transition: all 0.2s;
+}
+
+.open {
+	transform: rotate(180deg);
+}
+
+.buttonwrapper {
+	display: flex;
+	align-items: center;
+
+	&:hover > svg.arrowicon > path {
+		fill: var(--accent-redesigned);
+		stroke: var(--accent-redesigned);
+	}
+}
+
 .trigger {
 	background: none;
 	border: none;
 	outline: 0;
 	margin: 0;
+	margin-top: 8px;
 	cursor: pointer;
 	color: var(--text-redesigned);
 
