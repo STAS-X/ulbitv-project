@@ -13,7 +13,7 @@ export interface InputProps extends HTMLInputProps {
 	className?: string;
 	value?: string | number;
 	type?: string;
-	placeholder?: string | null;
+	placeholder?: string;
 	validation?: string | null;
 	onChange?: (value: string) => void;
 	readonly?: boolean;
@@ -73,7 +73,7 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 					type={type}
 					onChange={onChangeValue}
 					readOnly={readonly}
-					placeholder={placeholder ? t(placeholder) : ''}
+					placeholder={t(placeholder)}
 					{...otherProps}
 				></input>
 				{iconalign === 'right' && (
