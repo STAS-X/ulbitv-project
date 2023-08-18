@@ -1,0 +1,21 @@
+.profilecard {
+	padding: 20px;
+	border: 2px solid var(--bg-redesigned);
+}
+
+.input {
+	flex-grow: 1;
+}
+
+.error {
+	height: 30vh;
+}
+
+.loading {
+	height: fit-content;
+}
+
+.editing {
+	border: 2px solid var(--ight-bg-redesigned);
+	background-color: rgb(220 240 240 / 20%);
+}

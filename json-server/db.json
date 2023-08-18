@@ -923,8 +923,7 @@
         "manager"
       ],
       "jsonSettings": {
-        "theme": "light_theme",
-        "isFirstVisit": false
+        "theme": "light_theme"
       },
       "features": {
         "isFeatureRecommendation": true,

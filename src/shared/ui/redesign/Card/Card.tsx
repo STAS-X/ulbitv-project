@@ -10,7 +10,8 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 	children?: ReactNode;
 	variant?: CardTheme;
 	dataTestId?: string;
-	border?:CardBorder;
+	border?: CardBorder;
+	max?: boolean;
 	paddings?: number;
 }
 
@@ -24,6 +25,7 @@ export const Card: FC<CardProps> = memo((props: CardProps) => {
 		border = 'standart',
 		paddings = 10,
 		children,
+		max = false,
 		dataTestId = '',
 		...otherProps
 	} = props;
@@ -31,7 +33,7 @@ export const Card: FC<CardProps> = memo((props: CardProps) => {
 	return (
 		<div
 			data-testid={dataTestId}
-			className={classNames(classes.card, {}, [classes[variant], classes[border], className])}
+			className={classNames(classes.card, {[classes.max]:max}, [classes[variant], classes[border], className])}
 			style={{ padding: paddings }}
 			{...otherProps}
 		>

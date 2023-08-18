@@ -10,6 +10,7 @@ import Arrow from '@/shared/assets/icons/arrow-bottom.svg';
 import { Icon } from '../Icon/Icon';
 
 type InputIconAlign = 'left' | 'right';
+type ListFontSize = 's' | 'm' | 'l'
 
 export interface ListBoxSelectorItem<T extends string> {
 	id: number;
@@ -29,6 +30,7 @@ export interface ListBoxSelectorProps<T extends string> {
 	labelblock?: boolean;
 	readonly?: boolean;
 	iconalign?: InputIconAlign;
+	size?: ListFontSize;
 	direction?: DropDownDirectionType;
 	onChange?: (value: T) => void;
 }
@@ -45,9 +47,10 @@ export const ListBoxSelector = <T extends string>(
 		defaultValue = '',
 		placeholder,
 		direction,
-		readonly,
+		readonly = false,
 		labelblock = false,
 		iconalign = 'right',
+		size = 'm',
 		value,
 		dataTestId = 'ListBox',
 		onChange
@@ -72,31 +75,26 @@ export const ListBoxSelector = <T extends string>(
 		<Listbox
 			data-testid={`${dataTestId}.ListBox`}
 			as={'div'}
-			className={classNames(classes.ListBox, {}, [className])}
+			className={classNames(classes.ListBox, { [classes.inline]: !labelblock }, [className, classes[size]])}
 			value={selectedValue}
 			disabled={readonly}
 			onChange={handleChange}
 		>
-			{placeholder && (
-				<Listbox.Label className={classNames(classes.label, { [classes.labelblock]: labelblock })}>
-					{placeholder}
-				</Listbox.Label>
-			)}
+			{placeholder && <Listbox.Label className={classNames(classes.label)}>{placeholder}</Listbox.Label>}
 			<Listbox.Button as={'div'} data-testid={`${dataTestId}.Trigger`} className={classes.trigger}>
 				{({ open }) => (
-					<Button dataTestId={`${dataTestId}.Value`} variant={'filled'} className={classes.buttonwrapper}>
+					<Button
+						dataTestId={`${dataTestId}.Value`}
+						variant={'filled'}
+						className={classes.buttonwrapper}
+						disabled={readonly}
+					>
 						{iconalign === 'left' && (
-							<Icon
-								Svg={Arrow}
-								className={classNames(classes.arrowicon, { [classes.open]: open })}
-							/>
+							<Icon Svg={Arrow} className={classNames(classes.arrowicon, { [classes.open]: open })} />
 						)}
 						{selectedDescription}
 						{iconalign === 'right' && (
-							<Icon
-								Svg={Arrow}
-								className={classNames(classes.arrowicon, { [classes.open]: open })}
-							/>
+							<Icon Svg={Arrow} className={classNames(classes.arrowicon, { [classes.open]: open })} />
 						)}
 					</Button>
 				)}

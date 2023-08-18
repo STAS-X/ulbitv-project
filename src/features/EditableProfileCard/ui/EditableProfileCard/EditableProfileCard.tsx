@@ -14,11 +14,12 @@ import {
 	getEditableProfileIsLoading,
 	getEditableProfileReadOnly
 } from '../../model/selectors/getEditableProfile/getEditableProfileData';
-import { ProfileData, ProfileCard, ProfileFieldType } from '@/entities/Profile';
+import { ProfileData, ProfileCard, ProfileCardRedesign, ProfileFieldType } from '@/entities/Profile';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 import { VStack } from '@/shared/ui/redesign/Stack';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
 export interface EditableProfileCardProps {
 	className?: string;
@@ -133,15 +134,33 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = memo((props: Ed
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<VStack dataTestId={'ProfileCard'} className={classNames('', {}, [className])} gap={10}
-max={true}>
-				<EditableProfileCardHeader isDirty={isDirty} isEdit={isEdit} />
-				<ProfileCard
-					data={formData}
-					isLoading={isLoading}
-					error={error}
-					readonly={readonly}
-					onChangeProfileFields={onChangeProfileForm}
+			<VStack dataTestId={'ProfileCard'} className={classNames('', {}, [className])} gap={10} max={true}>
+				<ToggleFeatures
+					feature={'isAppRedesined'}
+					off={
+						<>
+							<EditableProfileCardHeader isDirty={isDirty} isEdit={isEdit} />
+							<ProfileCard
+								data={formData}
+								isLoading={isLoading}
+								error={error}
+								readonly={readonly}
+								onChangeProfileFields={onChangeProfileForm}
+							/>
+						</>
+					}
+					on={
+						<>
+							<EditableProfileCardHeader isDirty={isDirty} isEdit={isEdit} />
+							<ProfileCardRedesign
+								data={formData}
+								isLoading={isLoading}
+								error={error}
+								readonly={readonly}
+								onChangeProfileFields={onChangeProfileForm}
+							/>
+						</>
+					}
 				/>
 			</VStack>
 		</DynamicModuleLoader>

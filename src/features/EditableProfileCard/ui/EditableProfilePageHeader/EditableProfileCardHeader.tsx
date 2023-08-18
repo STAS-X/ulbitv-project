@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
+import { Button as ButtonRedesign } from '@/shared/ui/redesign/Button/Button';
 import { Text } from '@/shared/ui/deprecated/Text/Text';
+import { Text as TextRedesign } from '@/shared/ui/redesign/Text/Text';
 import classes from './ProfilePageHeader.module.scss';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { HStack } from '@/shared/ui/redesign/Stack/HStack/HStack';
@@ -15,6 +17,7 @@ import {
 } from '../../model/selectors/getEditableProfile/getEditableProfileData';
 import { updateEditableProfileData } from '../../model/services/updateEditableProfileData/updateEditableProfileData';
 import { editableProfileActions } from '../../model/slices/editableProfileSlices';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
 enum ProfileEditType {
 	EDIT = 'edit',
@@ -70,45 +73,95 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 			dataTestId={'ProfileCard.Header'}
 			className={classNames(classes.profilepageheader, {}, [className])}
 			justify={'between'}
-			max={true}
+			max
 		>
-			<Text title={t('profile', { ns: 'pages' })} />
-			<div className={classes.btns}>
-				{isEdit &&
-					(readonly ? (
-						<Button
-							dataTestId={'ProfileCard.EditBtn'}
-							className={classes.editbtn}
-							theme={ButtonTheme.OUTLINE}
-							onClick={onChangeEdit(ProfileEditType.EDIT)}
-							disabled={isLoading || Boolean(error)}
-						>
-							{t('edit', { ns: 'profile' })}
-						</Button>
-					) : (
-						<HStack gap={10}>
-							<Button
-								dataTestId={'ProfileCard.SaveBtn'}
-								className={classes.editbtn}
-								theme={ButtonTheme.OUTLINE}
-								onClick={onChangeEdit(ProfileEditType.SAVE)}
-								disabled={
-									!isDirty || (isDirty && validationError && Object.keys(validationError).length > 0)
-								}
-							>
-								{t('save', { ns: 'profile' })}
-							</Button>
-							<Button
-								dataTestId={'ProfileCard.CancelBtn'}
-								className={classes.editbtn}
-								theme={ButtonTheme.OUTLINE_RED}
-								onClick={onChangeEdit(ProfileEditType.CANCEL)}
-							>
-								{t('cancel', { ns: 'profile' })}
-							</Button>
-						</HStack>
-					))}
-			</div>
+			<ToggleFeatures
+				feature={'isAppRedesined'}
+				off={
+					<>
+						<Text title={t('profile', { ns: 'pages' })} />
+						<div className={classes.btns}>
+							{isEdit &&
+								(readonly ? (
+									<Button
+										dataTestId={'ProfileCard.EditBtn'}
+										className={classes.editbtn}
+										theme={ButtonTheme.OUTLINE}
+										onClick={onChangeEdit(ProfileEditType.EDIT)}
+										disabled={isLoading || Boolean(error)}
+									>
+										{t('edit', { ns: 'profile' })}
+									</Button>
+								) : (
+									<HStack gap={10}>
+										<Button
+											dataTestId={'ProfileCard.SaveBtn'}
+											className={classes.editbtn}
+											theme={ButtonTheme.OUTLINE}
+											onClick={onChangeEdit(ProfileEditType.SAVE)}
+											disabled={
+												!isDirty ||
+												(isDirty && validationError && Object.keys(validationError).length > 0)
+											}
+										>
+											{t('save', { ns: 'profile' })}
+										</Button>
+										<Button
+											dataTestId={'ProfileCard.CancelBtn'}
+											className={classes.editbtn}
+											theme={ButtonTheme.OUTLINE_RED}
+											onClick={onChangeEdit(ProfileEditType.CANCEL)}
+										>
+											{t('cancel', { ns: 'profile' })}
+										</Button>
+									</HStack>
+								))}
+						</div>
+					</>
+				}
+				on={
+					<>
+						<TextRedesign title={t('profile', { ns: 'pages' })} />
+						<div className={classes.btns}>
+							{isEdit &&
+								(readonly ? (
+									<ButtonRedesign
+										dataTestId={'ProfileCard.EditBtn'}
+										className={classes.editbtn}
+										variant={'outline'}
+										onClick={onChangeEdit(ProfileEditType.EDIT)}
+										disabled={isLoading || Boolean(error)}
+									>
+										{t('edit', { ns: 'profile' })}
+									</ButtonRedesign>
+								) : (
+									<HStack gap={10}>
+										<ButtonRedesign
+											dataTestId={'ProfileCard.SaveBtn'}
+											className={classNames(classes.editbtn, {}, [classes.saveredesign])}
+											variant={'outline'}
+											onClick={onChangeEdit(ProfileEditType.SAVE)}
+											disabled={
+												!isDirty ||
+												(isDirty && validationError && Object.keys(validationError).length > 0)
+											}
+										>
+											{t('save', { ns: 'profile' })}
+										</ButtonRedesign>
+										<ButtonRedesign
+											dataTestId={'ProfileCard.CancelBtn'}
+											className={classNames(classes.editbtn, {}, [classes.cancelredesign])}
+											variant={'outline_red'}
+											onClick={onChangeEdit(ProfileEditType.CANCEL)}
+										>
+											{t('cancel', { ns: 'profile' })}
+										</ButtonRedesign>
+									</HStack>
+								))}
+						</div>
+					</>
+				}
+			/>
 		</HStack>
 	);
 };

@@ -26,7 +26,7 @@ export interface ProfileCardProps {
 }
 
 export const ProfileCard: FC<ProfileCardProps> = (props) => {
-	const { data = {}, isLoading, error, onChangeProfileFields, readonly, className } = props;
+	const { data = {}, isLoading = false, error = '', onChangeProfileFields, readonly, className } = props;
 
 	const { id: userId = '' } = useParams<{ id: string }>();
 
@@ -41,10 +41,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 	return (
 		<HStack className={classNames(classes.profilecard, mods, [className])} max>
 			<VStack
-				className={classNames(
-					'',
-					isLoading ? { [classes.loading]: true } : { [classes.error]: Boolean(error) }
-				)}
+				className={classNames('', { [classes.loading]: isLoading, [classes.error]: Boolean(error) })}
 				align={'center'}
 				justify={'center'}
 				max

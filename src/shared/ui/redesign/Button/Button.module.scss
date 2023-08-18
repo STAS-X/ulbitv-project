@@ -6,12 +6,17 @@
 
 	&:hover {
 		opacity: 0.8;
-		color: var(--accent-redesigned);
+
+		&:not([disabled]) {
+			color: var(--accent-redesigned);
+		}
+		
 		fill-opacity: 0.8;
 		stroke-opacity: 0.8;
 	}
 
 	svg > path {
+		fill: var(--text-redesigned);
 		stroke: var(--text-redesigned);
 	}
 }
@@ -36,7 +41,7 @@
 	background: var(--light-bg-redesigned);
 	border: none;
 	outline: none;
-	padding: 8px 16px;
+	padding: 0 16px;
 	border-radius: 34px;
 }
 
@@ -91,7 +96,7 @@
 }
 
 .m {
-	font: var(--font-m) -redesigned;
+	font: var(--font-m-redesigned);
 }
 
 .l {

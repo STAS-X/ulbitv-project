@@ -1,5 +1,6 @@
 import { FC, ForwardedRef, memo, MutableRefObject, useCallback, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import Search from '@/shared/assets/icons/search.svg';
 import classes from './ArticleSearchSelector.module.scss';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/deprecated/Input/Input';
@@ -43,6 +44,7 @@ export const ArticleSearchSelector: FC<ArticleSearchSelectorProps> = memo((props
 						<InputRedesign
 							dataTestId={'Article.Filter'}
 							ref={refInput as ForwardedRef<HTMLInputElement>}
+							Svg={Search}
 							className={classes.inputredesign}
 							value={filter ?? searchBy}
 							readonly={false}

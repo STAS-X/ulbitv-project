@@ -1,6 +1,8 @@
 .wrapper {
 	display: flex;
 	flex-wrap: wrap;
+	width: 100%;
+	white-space: nowrap;
 }
 
 .searchicon {
@@ -20,6 +22,7 @@
 
 .inputwrapper {
 	position: relative;
+	width: 100%;
 
 	&:has(input:focus) .searchicon {
 		fill: var(--accent-redesigned);
@@ -46,6 +49,8 @@
 }
 
 .input {
+	padding-left: 8px;
+
 	&.left {
 		padding-left: 32px;
 		padding-right: 8px;
@@ -67,4 +72,19 @@
 	&:hover {
 		border: 2px solid var(--accent-redesigned);
 	}
+}
+
+.s {
+	height: 24px;
+	font: var(--font-s-redesigned);
+}
+
+.m {
+	height: 32px;
+	font: var(--font-m-redesigned);
+}
+
+.l {
+	height: 40px;
+	font: var(--font-l-redesigned);
 }

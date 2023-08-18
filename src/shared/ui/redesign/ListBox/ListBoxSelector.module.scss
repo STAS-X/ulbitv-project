@@ -1,5 +1,16 @@
 .ListBox {
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.inline {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10px;
 }
 
 .label {
@@ -10,13 +21,7 @@
 	}
 }
 
-.labelblock {
-	display: block;
-}
-
 .arrowicon {
-	fill: var(--accent-redesigned);
-	stroke: var(--accent-redesigned);
 	transition: all 0.2s;
 }
 
@@ -28,9 +33,9 @@
 	display: flex;
 	align-items: center;
 
-	&:hover > svg.arrowicon > path {
-		fill: var(--accent-redesigned);
-		stroke: var(--accent-redesigned);
+	&:not([disabled]):hover > svg.arrowicon > path {
+		fill: var(--icon-redesigned);
+		stroke: var(--icon-redesigned);
 	}
 }
 
@@ -39,7 +44,6 @@
 	border: none;
 	outline: 0;
 	margin: 0;
-	margin-top: 8px;
 	cursor: pointer;
 	color: var(--text-redesigned);
 
@@ -90,4 +94,16 @@
 	.selected:hover {
 		border: 1px solid var(--bg-redesigned);
 	}
+}
+
+.s {
+	font: var(--font-s-redesigned);
+}
+
+.m {
+	font: var(--font-m-redesigned);
+}
+
+.l {
+	font: var(--font-l-redesigned);
 }

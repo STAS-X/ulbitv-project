@@ -1,7 +1,9 @@
 import { FC, memo, ReactNode, useMemo } from 'react';
 import { DropDownDirectionType } from '@/shared/types/dropdown/directions';
 import { ListBoxSelector } from '@/shared/ui/deprecated/ListBox/ListBoxSelector';
+import { ListBoxSelector as ListBoxSelectorRedesign } from '@/shared/ui/redesign/ListBox/ListBoxSelector';
 import { Currency } from '../model/types/currency';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
 interface CurrencySelectorProps {
 	className?: string;
@@ -22,17 +24,23 @@ export const CurrencySelector: FC<CurrencySelectorProps> = memo((props: Currency
 		});
 	}, []);
 
+	const propsToComponent = {
+		dataTestId,
+		className,
+		items: options,
+		readonly,
+		direction,
+		value,
+		defaultValue: value,
+		placeholder,
+		onChange: onChange
+	};
+
 	return (
-		<ListBoxSelector
-			dataTestId={dataTestId}
-			className={className}
-			items={options}
-			readonly={readonly}
-			direction={direction}
-			value={value}
-			defaultValue={value}
-			placeholder={placeholder}
-			onChange={onChange}
+		<ToggleFeatures
+			feature={'isAppRedesined'}
+			off={<ListBoxSelector {...propsToComponent} />}
+			on={<ListBoxSelectorRedesign {...propsToComponent} />}
 		/>
 	);
 });

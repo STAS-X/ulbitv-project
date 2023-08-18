@@ -1,22 +1,29 @@
-import { ForwardedRef, forwardRef, InputHTMLAttributes, memo } from 'react';
+import { FC, ForwardedRef, forwardRef, InputHTMLAttributes, memo, SVGProps } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
-import Search from '@/shared/assets/icons/search.svg';
 import { Text } from '../Text/Text';
 import classes from './Input.module.scss';
 import { Icon } from '../Icon/Icon';
+import { HStack } from '../Stack';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'placeholder' | 'value' | 'readOnly' | 'onChange'>;
+type HTMLInputProps = Omit<
+	InputHTMLAttributes<HTMLInputElement>,
+	'placeholder' | 'value' | 'size' | 'readOnly' | 'onChange'
+>;
 type InputIconAlign = 'left' | 'right';
+type FontSize = 's' | 'm' | 'l';
 
 export interface InputProps extends HTMLInputProps {
 	className?: string;
 	value?: string | number;
 	type?: string;
 	placeholder?: string | null;
+	label?: string;
 	validation?: string | null;
 	onChange?: (value: string) => void;
 	readonly?: boolean;
+	size?: FontSize;
 	iconalign?: InputIconAlign;
+	Svg?: FC<SVGProps<SVGSVGElement>>;
 	dataTestId?: string;
 }
 
@@ -26,9 +33,12 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 		placeholder,
 		type = 'text',
 		readonly = false,
+		label = '',
 		value = '',
 		validation = '',
 		iconalign = 'left',
+		size = 'm',
+		Svg,
 		onChange,
 		dataTestId = 'TextError',
 		...otherProps
@@ -47,7 +57,7 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 	};
 
 	return (
-		<div className={classNames(classes.wrapper, {}, [className])}>
+		<div className={classNames(classes.wrapper, {}, [className, classes[size]])}>
 			{validation && (
 				<div className={classes.validation}>
 					<Text
@@ -58,26 +68,36 @@ const InputRef = (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
 					/>
 				</div>
 			)}
-			{/*placeholder && <span className={classes.placeholder}>{`${t(placeholder)}>`}</span>*/}
-			<div className={classes.inputwrapper}>
-				{iconalign === 'left' && (
-					<Icon Svg={Search} className={classNames(classes.searchicon, {}, [classes[iconalign]])} />
+			<HStack gap={8} justify={'start'} max>
+				{label && (
+					<Text
+						dataTestId={`${dataTestId}.Label`}
+						content={label}
+						size={size}
+						variant={'primary'}
+						align={'align-left'}
+					/>
 				)}
-				<input
-					data-testid={`${dataTestId}.Value`}
-					ref={ref || undefined}
-					className={classNames(classes.input, mods, [classes[iconalign]])}
-					value={value}
-					type={type}
-					onChange={onChangeValue}
-					readOnly={readonly}
-					placeholder={placeholder ?? ''}
-					{...otherProps}
-				></input>
-				{iconalign === 'right' && (
-					<Icon Svg={Search} className={classNames(classes.searchicon, {}, [classes[iconalign]])} />
-				)}
-			</div>
+				<div className={classes.inputwrapper}>
+					{iconalign === 'left' && Svg && (
+						<Icon Svg={Svg} className={classNames(classes.searchicon, {}, [classes[iconalign]])} />
+					)}
+					<input
+						data-testid={`${dataTestId}.Value`}
+						ref={ref || undefined}
+						className={classNames(classes.input, mods, [Svg ? classes[iconalign] : ''])}
+						value={value}
+						type={type}
+						onChange={onChangeValue}
+						readOnly={readonly}
+						placeholder={placeholder ?? ''}
+						{...otherProps}
+					></input>
+					{iconalign === 'right' && Svg && (
+						<Icon Svg={Svg} className={classNames(classes.searchicon, {}, [classes[iconalign]])} />
+					)}
+				</div>
+			</HStack>
 		</div>
 	);
 };

@@ -11,6 +11,7 @@ import { LanguageSwitchButton } from '@/features/LanguageSwitcher';
 import { ThemeSwitchButton } from '@/features/ThemeSwitcher';
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 import { AppLogo } from '@/shared/ui/deprecated/AppLogo/AppLogo';
+import { AppLogo as AppLogoRedesign } from '@/shared/ui/redesign/AppLogo/AppLogo';
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
 import { Icon } from '@/shared/ui/redesign/Icon/Icon';
 
@@ -53,9 +54,15 @@ const SideBarComponent = memo((props: SidebarProps) => {
 			data-testid="Sidebar"
 			className={classNames(className, { [classes.collapsed]: collapsed }, [classes.animation])}
 		>
-			<AppLogo className={collapsed ? classes.appiconsmall : classes.appicon} isSmall={collapsed} />
-			<VStack role={'navigation'} gap={16} className={isRedesigned ? classes.linksredesign : classes.links}
-max>
+			{isRedesigned ? (
+				<AppLogoRedesign
+					className={collapsed ? classes.appiconsmall : classes.appicon}
+					size={collapsed ? 40 : 64}
+				/>
+			) : (
+				<AppLogo className={collapsed ? classes.appiconsmall : classes.appicon} isSmall={collapsed} />
+			)}
+			<VStack role={'navigation'} gap={16} className={isRedesigned ? classes.linksredesign : classes.links} max>
 				{configSideBarItem(Boolean(authData)).map((item) => (
 					<SidebarItem
 						key={item.path}
@@ -78,8 +85,7 @@ max>
 					onClick={onToggle}
 				/>
 			)}
-			<HStack gap={16} justify={'center'} className={classNames(classes.switchers)}
-max>
+			<HStack gap={16} justify={'center'} className={classNames(classes.switchers)} max>
 				<ThemeSwitchButton />
 				<LanguageSwitchButton short={collapsed} className={classes.lang} />
 				{!isRedesigned && (
