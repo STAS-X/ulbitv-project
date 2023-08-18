@@ -17,7 +17,7 @@ export interface InputProps extends HTMLInputProps {
 	value?: string | number;
 	type?: string;
 	placeholder?: string | null;
-	label?: string;
+	label?: string | null;
 	validation?: string | null;
 	onChange?: (value: string) => void;
 	readonly?: boolean;
