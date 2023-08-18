@@ -6,12 +6,12 @@
 
 	&:hover {
 		opacity: 0.8;
+		fill-opacity: 0.8;
+		stroke-opacity: 0.8;
 
 		&:not([disabled]) {
 			color: var(--accent-redesigned);
 		}
-		fill-opacity: 0.8;
-		stroke-opacity: 0.8;
 	}
 
 	svg > path {
