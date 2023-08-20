@@ -34,7 +34,7 @@ export const AddNotificationsButtonComponent: FC<AddNotificationsButtonProps> = 
 		} = useNotifications();
 
 		const isRedesigned = className === 'NotificationsRedesign';
-		console.log(isRedesigned, 'get redesign navbar');
+		// console.log(isRedesigned, 'get redesign navbar');
 
 		const isMobile = detectMobileDevice();
 

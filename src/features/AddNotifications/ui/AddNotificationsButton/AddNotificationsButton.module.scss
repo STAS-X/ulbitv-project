@@ -17,7 +17,7 @@
 	position: absolute;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-end;
 	border-radius: 50%;
 	min-width: 50%;
 	max-height: 50%;
@@ -28,5 +28,6 @@
 }
 
 .notifyredesign {
+	align-items: center;
 	background: var(--light-bg-redesigned);
 }

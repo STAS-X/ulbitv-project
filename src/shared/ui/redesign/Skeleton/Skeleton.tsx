@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from 'react';
+import { CSSProperties, FC, Fragment, ReactElement } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Skeleton.module.scss';
 

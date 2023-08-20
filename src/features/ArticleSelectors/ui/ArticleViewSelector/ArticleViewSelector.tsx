@@ -39,7 +39,11 @@ export const ArticleViewSelector: FC<ArticleViewSelectorProps> = (props: Article
 		<ToggleFeatures
 			feature={'isAppRedesined'}
 			on={
-				<CardRedesign data-testid={'ArticleSortSelector'} border={'round'} className={classNames(className)}>
+				<CardRedesign
+					data-testid={'ArticleSortSelector'}
+					border={'round'}
+					className={classNames(classes.viewredesign)}
+				>
 					<HStackRedesign gap={8}>
 						{viewTypes(true).map((viewItem) => (
 							<IconRedesign
@@ -57,7 +61,7 @@ export const ArticleViewSelector: FC<ArticleViewSelectorProps> = (props: Article
 				</CardRedesign>
 			}
 			off={
-				<div data-testid={'ArticleSortSelector'} className={classNames(className)}>
+				<div data-testid={'ArticleSortSelector'} className={classNames(classes.view)}>
 					{viewTypes(false).map((viewItem) => (
 						<Button
 							dataTestId={`Button.${viewItem.view}`}
