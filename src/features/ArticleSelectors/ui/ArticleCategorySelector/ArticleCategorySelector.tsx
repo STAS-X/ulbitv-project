@@ -45,7 +45,7 @@ export const ArticleCategorySelector: FC<ArticleCategorySelectorProps> = memo((p
 
 	return (
 		<ToggleFeatures
-			feature={'isAppRedesined'}
+			feature={'isAppRedesigned'}
 			on={
 				<div
 					data-testid={'ArticleCategorySelector'}

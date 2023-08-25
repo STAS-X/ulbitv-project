@@ -881,17 +881,16 @@
       "password": "12345",
       "profileId": "1",
       "roles": [
-        "admin",
-        "manager"
+        "admin"
       ],
       "jsonSettings": {
         "theme": "dark_theme"
       },
       "features": {
+        "isAppRedesigned": true,
         "isFeatureRecommendation": true,
         "isFeatureRating": true,
-        "isFeatureCounter": false,
-        "isAppRedesined": true
+        "isFeatureCounter": true
       },
       "avatar": "https://bipbap.ru/wp-content/uploads/2021/07/Kartinki-na-avu-v-VK-dlya-parnej-i-muzhchin-samye-klassnye-i-krutye-3.jpg"
     },

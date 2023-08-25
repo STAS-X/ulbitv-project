@@ -48,14 +48,20 @@ export const AddNotificationsButtonComponent: FC<AddNotificationsButtonProps> = 
 
 		const triggerButton = isRedesigned ? (
 			<>
-				<IconRedesign Svg={NotificationIconRedesign} width={32} height={32}
-clickable onClick={()=>console.log('popover is open')} />
+				<IconRedesign
+					Svg={NotificationIconRedesign}
+					width={32}
+					height={32}
+					clickable
+					onClick={() => console.log('popover is open')}
+				/>
 				<TextRedesign
-					className={classNames(classes.notifications,{},[classes.notifyredesign])}
-					size={'m'}
+					className={classNames(classes.notifications, {}, [classes.notifyredesign])}
+					size={'s'}
 					align={'align-center'}
+					bold={hasNewNotes ? true : false}
 					variant={hasNewNotes ? 'accent' : 'primary'}
-					content={String(countNotify)}
+					title={String(countNotify)}
 				/>
 			</>
 		) : (
@@ -120,7 +126,7 @@ export const AddNotificationsButton: FC<AddNotificationsButtonProps> = (props: A
 
 	return (
 		<ToggleFeatures
-			feature={'isAppRedesined'}
+			feature={'isAppRedesigned'}
 			off={<AddNotificationsButtonComponent className={className} />}
 			on={<AddNotificationsButtonComponent className={'NotificationsRedesign'} />}
 		/>

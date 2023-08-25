@@ -76,7 +76,7 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 			max
 		>
 			<ToggleFeatures
-				feature={'isAppRedesined'}
+				feature={'isAppRedesigned'}
 				off={
 					<>
 						<Text title={t('profile', { ns: 'pages' })} />

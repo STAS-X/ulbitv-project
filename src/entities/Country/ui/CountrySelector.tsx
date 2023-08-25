@@ -24,21 +24,21 @@ export const CountrySelector: FC<CountrySelectorProps> = memo((props: CountrySel
 		});
 	}, []);
 
-		const propsToComponent = {
-			dataTestId,
-			className,
-			items: options,
-			readonly,
-			direction,
-			value,
-			defaultValue: value,
-			placeholder,
-			onChange: onChange
-		};
+	const propsToComponent = {
+		dataTestId,
+		className,
+		items: options,
+		readonly,
+		direction,
+		value,
+		defaultValue: value,
+		placeholder,
+		onChange: onChange
+	};
 
 	return (
 		<ToggleFeatures
-			feature={'isAppRedesined'}
+			feature={'isAppRedesigned'}
 			off={<ListBoxSelector {...propsToComponent} />}
 			on={<ListBoxSelectorRedesign {...propsToComponent} />}
 		/>

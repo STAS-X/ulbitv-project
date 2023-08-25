@@ -1,3 +1,4 @@
+
 import { initAuthData } from './../services/initAuthData';
 import { getJSONSettingByKey } from '../services/getJSONSettingByKey';
 import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
@@ -5,7 +6,7 @@ import { saveJSONSettingsByUser } from '../services/saveJSONSettings';
 import { FEATURES_LS_KEY, USER_LS_KEY } from '@/shared/const/localstorage';
 import { UserData, UserSchema } from '../types/userSchema';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { setInitFeatureFlags } from '@/shared/lib/features/featureFlag';
+import { FeatureFlags, setInitFeatureFlags } from '@/shared/lib/features/featureFlag';
 
 const initialState: UserSchema = { authData: undefined, _loaded: false };
 
@@ -16,6 +17,12 @@ const userSlice = createSlice({
 		setAuthData: (state, action: PayloadAction<UserData>) => {
 			state.authData = action.payload;
 			setInitFeatureFlags(action.payload.features);
+		},
+		setFeaturesData: (state, action: PayloadAction<FeatureFlags>) => {
+			if (state.authData) {
+				state.authData.features = { ...state.authData.features, ...action.payload};
+				setInitFeatureFlags(action.payload);
+			}
 		},
 		logOut: (state) => {
 			//const emptyUser = { id: '', username: '', password: '' };
@@ -41,6 +48,7 @@ const userSlice = createSlice({
 		builder.addCase(getJSONSettingByKey.fulfilled, (state, { payload }: PayloadAction<Partial<JSONSettings>>) => {
 			if (state.authData) state.authData.jsonSettings = { /*...state.authData.jsonSettings,*/ ...payload };
 		});
+		
 		builder.addCase(initAuthData.fulfilled, (state, { payload }: PayloadAction<UserData>) => {
 			if (payload) {
 				localStorage.setItem(USER_LS_KEY, JSON.stringify(payload));

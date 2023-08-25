@@ -38,7 +38,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	//const [isFirstVisit, setIsFirstVisit]  = useState();
 	const isFirstVisit = useSettingsByKey('isFirstVisit') as boolean;
 
-	const {view, handleChangeView, renderProgress} = useArticleFilter();
+	const { view, handleChangeView, renderProgress } = useArticleFilter();
 
 	//console.log(isFirstVisit, typeof isFirstVisit, 'get FirstVisit param');
 	//const isRedesign = className === classes.articlepageredesign;
@@ -147,7 +147,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
 			<ToggleFeatures
-				feature={'isAppRedesined'}
+				feature={'isAppRedesigned'}
 				off={
 					<PageWrapper
 						data-testid={'ArticlesPage'}
@@ -206,7 +206,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 // const ArticlesPage: FC<ArticlesPageProps> = (props: ArticlesPageProps) => {
 // 	return (
 // 		<ToggleFeatures
-// 			feature={'isAppRedesined'}
+// 			feature={'isAppRedesigned'}
 // 			off={<ArticlesPageComponent {...props} />}
 // 			on={<ArticlesPageComponent {...props} className={classes.articlepageredesign} />}
 // 		/>

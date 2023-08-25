@@ -1,14 +1,4 @@
-import {
-	FC,
-	memo,
-	ReactNode,
-	useCallback,
-	useRef,
-	ReactElement,
-	isValidElement,
-	cloneElement,
-	useEffect
-} from 'react';
+import { FC, memo, ReactNode, useCallback, useRef, ReactElement, isValidElement, cloneElement, useEffect } from 'react';
 import { Popover } from '@headlessui/react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './PopOver.module.scss';
@@ -77,19 +67,11 @@ export const PopOver: FC<PopOverProps> = memo((props: PopOverProps) => {
 			{({ open }) => {
 				return (
 					<>
-						<Popover.Button
-							as={'div'}
-							ref={triggerRef}
-							className={classes.trigger}
-						>
+						<Popover.Button as={'div'} ref={triggerRef} className={classes.trigger}>
 							{trigger}
 						</Popover.Button>
 
-						<Popover.Panel
-							as={'div'}
-							className={classes.panel}
-							style={{ ...inlineStyle, ...size }}
-						>
+						<Popover.Panel as={'div'} className={classes.panel} style={{ ...inlineStyle, ...size }}>
 							<VStack align={'center'} max>
 								{items.map((item, index) => {
 									const panelItemWithClass = isValidElement(item.content)

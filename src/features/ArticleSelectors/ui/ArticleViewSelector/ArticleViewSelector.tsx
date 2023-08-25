@@ -37,7 +37,7 @@ export const ArticleViewSelector: FC<ArticleViewSelectorProps> = (props: Article
 
 	return (
 		<ToggleFeatures
-			feature={'isAppRedesined'}
+			feature={'isAppRedesigned'}
 			on={
 				<CardRedesign
 					data-testid={'ArticleSortSelector'}

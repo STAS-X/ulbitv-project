@@ -1,6 +1,8 @@
 {
 	"about": "О сайте",
 	"main": "Главная",
+	"settings": "Настройки",
+	"settingsPage": "Настройки пользователя",
 	"profile": "Профиль",
 	"articles": "Статьи",
 	"articleDetailes": "Сведения о статье",

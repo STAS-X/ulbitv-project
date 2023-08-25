@@ -1,7 +1,6 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
 import { buildSelector } from '@/shared/lib/store';
-import { ToValues } from '@react-spring/web';
 
 // Создаем селектор, возвращающий настройки пользователя
 export const [useSettingsByUser, getSettingsByUser] = buildSelector(

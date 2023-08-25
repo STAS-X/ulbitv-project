@@ -290,7 +290,7 @@ export const ArticleInfiniteGridLoader: FC<ArticleInfiniteGridLoaderProps> = mem
 		if (!hasNextPage && !hasFilter) {
 			emptyPlaceholder = (
 				<ToggleFeatures
-					feature={'isAppRedesined'}
+					feature={'isAppRedesigned'}
 					on={<TextRedesign variant={'error'} size={'l'} content={t('noArticles')} />}
 					off={<Text theme={TextTheme.ERROR} size={TextSize.L} content={t('noArticles')} />}
 				/>
@@ -299,7 +299,7 @@ export const ArticleInfiniteGridLoader: FC<ArticleInfiniteGridLoaderProps> = mem
 			emptyPlaceholder =
 				hasNextPage || isNextPageLoading ? null : (
 					<ToggleFeatures
-						feature={'isAppRedesined'}
+						feature={'isAppRedesigned'}
 						on={
 							<TextRedesign
 								variant={'error'}

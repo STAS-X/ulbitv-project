@@ -8,6 +8,7 @@
   "adminpanel": "",
   "appName": "",
   "authForm": "",
+  "authNeed": "",
   "authTitle": "",
   "backToList": "",
   "cancel": "",
@@ -54,6 +55,7 @@
     "formTitle": "",
     "orderHolder": ""
   },
+  "settingsMenu": "",
   "toggle": "",
   "translation:login": "",
   "translationlogin": "",

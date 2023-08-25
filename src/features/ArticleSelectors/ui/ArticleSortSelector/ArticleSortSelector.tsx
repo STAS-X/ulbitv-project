@@ -59,7 +59,7 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = memo<ArticleSor
 		return (
 			<div className={classNames(classes.sortiration, {}, [className])}>
 				<ToggleFeatures
-					feature={'isAppRedesined'}
+					feature={'isAppRedesigned'}
 					on={
 						<VStack data-testid={'ArticleSortSelector'} gap={16} max>
 							<ListBoxSelector

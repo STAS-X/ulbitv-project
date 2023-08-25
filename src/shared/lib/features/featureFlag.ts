@@ -1,10 +1,12 @@
+// eslint-disable-next-line stas-eslint-plugin/layer-imports
+import { useFeaturesByKey } from '@/entities/User';
 import { FEATURES_LS_KEY } from '../../const/localstorage';
 
 export interface FeatureFlags {
 	isFeatureRecommendation?: boolean;
 	isFeatureRating?: boolean;
 	isFeatureCounter?: boolean;
-	isAppRedesined?: boolean;
+	isAppRedesigned?: boolean;
 }
 
 export const setInitFeatureFlags = (flags?: FeatureFlags): void => {
@@ -15,7 +17,10 @@ export const setInitFeatureFlags = (flags?: FeatureFlags): void => {
 	}
 }
 
-export const getFeatureFlag = (flag: keyof FeatureFlags): boolean => {
+export const useGetFeatureByKey = (flag: keyof FeatureFlags): boolean => {
+	const featureFlagValue = useFeaturesByKey(flag);
+	if (typeof featureFlagValue === 'boolean') return featureFlagValue;
+
 	const featureFlags = localStorage.getItem(FEATURES_LS_KEY) ?? '{}';
 	if (featureFlags && JSON.parse(featureFlags)) {
 		//console.log(JSON.parse(featureFlags)[flag], 'get flags data');

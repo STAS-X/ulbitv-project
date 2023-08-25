@@ -1,6 +1,6 @@
 import { FC, memo, ReactNode, useEffect, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Modal } from '@/shared/ui/deprecated/Modal/Modal';
+import { Modal } from '@/shared/ui/redesign/Modal/Modal';
 import { Text } from '@/shared/ui/deprecated/Text/Text';
 import { detectMobileDevice } from '@/shared/lib/helpers/checkIsMobile';
 import { Drawer } from '@/shared/ui/deprecated/Drawer/Drawer';

@@ -53,7 +53,7 @@ export const NavbarComponent = memo((props: NavbarProps) => {
 export const Navbar: FC<NavbarProps> = () => {
 	return (
 		<ToggleFeatures
-			feature={'isAppRedesined'}
+			feature={'isAppRedesigned'}
 			off={<NavbarComponent className={classes.navbar} />}
 			on={<NavbarComponent className={classes.navbarredesign} />}
 		/>

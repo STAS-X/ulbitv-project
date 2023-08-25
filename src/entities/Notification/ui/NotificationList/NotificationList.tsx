@@ -3,6 +3,8 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './NotificationList.module.scss';
 import { useNavigate } from '@/shared/lib/hooks/useRouterUtils';
 import { VStack } from '@/shared/ui/redesign/Stack';
+import { Skeleton as SkeletonDepracated } from '@/shared/ui/deprecated/Skeleton/Skeleton';
+import { Skeleton as SkeletonRedesign } from '@/shared/ui/redesign/Skeleton/Skeleton';
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
 interface NotificationListSize {
@@ -27,10 +29,12 @@ interface NotificationListProps {
 }
 
 const NotificationListComponent: FC<NotificationListProps> = memo((props: NotificationListProps) => {
-	const { className = '', items, isLoading = false, onClick = () => null, size = {} } = props;
+	const { className = '', items, isLoading = true, onClick = () => null, size = {} } = props;
 
 	const isRedesigned = className === classes.notificationlistredesign;
-	console.log(isRedesigned, 'get redesign notifylist');
+	// console.log(isRedesigned, 'get redesign notifylist');
+	// @ts-ignore
+	const Skeleton = toggleFeatures({ feature: 'isAppRedesigned', on: SkeletonRedesign, off: SkeletonDepracated });
 
 	const navigate = useNavigate();
 
@@ -74,7 +78,7 @@ const NotificationListComponent: FC<NotificationListProps> = memo((props: Notifi
 						}}
 						style={{ ...size }}
 					>
-						{notificationWithClass}
+						{isLoading ? <Skeleton width={'100%'} height={20} /> : notificationWithClass}
 					</li>
 				);
 			})}
@@ -86,7 +90,7 @@ export const NotificationList: FC<NotificationListProps> = (props: NotificationL
 	console.log(props, 'notify listitem');
 	return (
 		<ToggleFeatures
-			feature={'isAppRedesined'}
+			feature={'isAppRedesigned'}
 			off={<NotificationListComponent {...props} className={props.className} />}
 			on={<NotificationListComponent {...props} className={classes.notificationlistredesign} />}
 		/>

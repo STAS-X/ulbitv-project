@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Modal } from '@/shared/ui/deprecated/Modal/Modal';
+import { Modal } from '@/shared/ui/redesign/Modal/Modal';
 import { FeedBackFormLazy as FeedBackForm } from '../FeedBackForm/FeedBackFormLazy';
 
 export interface RatingModalProps {

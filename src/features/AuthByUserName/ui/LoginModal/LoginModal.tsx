@@ -1,6 +1,6 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Modal } from '@/shared/ui/deprecated/Modal/Modal';
+import { Modal } from '@/shared/ui/redesign/Modal/Modal';
 import { LoginFormLazy as LoginForm } from '../LoginForm/LoginFormLazy';
 
 export interface LoginModalProps {

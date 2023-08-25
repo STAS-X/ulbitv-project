@@ -38,7 +38,7 @@ export const CurrencySelector: FC<CurrencySelectorProps> = memo((props: Currency
 
 	return (
 		<ToggleFeatures
-			feature={'isAppRedesined'}
+			feature={'isAppRedesigned'}
 			off={<ListBoxSelector {...propsToComponent} />}
 			on={<ListBoxSelectorRedesign {...propsToComponent} />}
 		/>

@@ -38,7 +38,7 @@ export const ArticleSearchSelector: FC<ArticleSearchSelectorProps> = memo((props
 	return (
 		<div className={classNames(classes.filtration, {}, [className])}>
 			<ToggleFeatures
-				feature={'isAppRedesined'}
+				feature={'isAppRedesigned'}
 				on={
 					<div data-testid={'ArtricleSearch'} className={classes.filters}>
 						<InputRedesign

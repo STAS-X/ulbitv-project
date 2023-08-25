@@ -7,6 +7,7 @@ import { Card as CardRedesign } from '@/shared/ui/redesign/Card/Card';
 import { Skeleton as SkeletonRedesign } from '@/shared/ui/redesign/Skeleton/Skeleton';
 import { ArticleView } from '@/shared/lib/filters/sortTypes';
 import { toggleFeatures } from '@/shared/lib/features/ToggleFeatures';
+import { HStack, VStack } from '@/shared/ui/redesign/Stack';
 
 export interface ArticleListItemSkeletonProps {
 	className?: string;
@@ -17,40 +18,50 @@ export interface ArticleListItemSkeletonProps {
 export const ArticleListItemSkeleton: FC<ArticleListItemSkeletonProps> = memo((props: ArticleListItemSkeletonProps) => {
 	const { view, className } = props;
 	// @ts-ignore
-	const Card = toggleFeatures({ feature: 'isAppRedesined', on: CardRedesign, off: CardDeprecated });
+	const Card = toggleFeatures({ feature: 'isAppRedesigned', on: CardRedesign, off: CardDeprecated });
 	// @ts-ignore
-	const Skeleton = toggleFeatures({ feature: 'isAppRedesined', on: SkeletonRedesign, off: SkeletonDepracated });
+	const Skeleton = toggleFeatures({ feature: 'isAppRedesigned', on: SkeletonRedesign, off: SkeletonDepracated });
 
 	if (view === ArticleView.LIST) {
 		return (
-			<div className={classNames('', {}, [className, classes[view]])}>
-				<Card className={classes.card}>
-					<div className={classes.header}>
-						<Skeleton border={'50%'} width={30} height={30} className={classes.avatar} />
-						<Skeleton width={150} height={20} className={classes.username} />
-						<Skeleton width={100} height={20} className={classes.date} />
-					</div>
-					<Skeleton width={250} height={24} className={classes.title} />
-					<Skeleton height={200} className={classes.img} />
-					<div className={classes.footer}>
-						<Skeleton width={200} height={40} className={classes.types} />
-					</div>
-				</Card>
-			</div>
+			<Card paddings={24}>
+				<VStack gap={16}>
+					<HStack justify="between" max>
+						<Skeleton border={'50%'} width={30} height={30} />
+						<Skeleton width={150} height={20} />
+					</HStack>
+					<Skeleton width={250} height={24} />
+					<Skeleton width={150} height={20} />
+					<Skeleton height={400} />
+					<HStack justify="between" max>
+						<Skeleton width={160} height={50} />
+						<HStack>
+							<Skeleton border={'50%'} width={20} height={20} />
+							<Skeleton width={50} height={20} />
+						</HStack>
+					</HStack>
+				</VStack>
+			</Card>
 		);
 	}
 
 	return (
-		<div className={classNames('', {}, [className, classes[view]])}>
-			<Card className={classes.card}>
-				<div className={classes.imagewrapper}>
-					<Skeleton width={200} height={200} className={classes.img} />
-				</div>
-				<div className={classes.infowrapper}>
-					<Skeleton width={130} height={20} className={classes.types} />
-				</div>
-				<Skeleton width={150} height={20} className={classes.title} />
-			</Card>
-		</div>
+		<Card paddings={16}>
+			<VStack gap={16}>
+				<Skeleton width={'100%'} height={150} />
+				<Skeleton width={150} height={20} />
+				<HStack justify="between" gap={8} max>
+					<Skeleton width={60} height={20} />
+					<HStack>
+						<Skeleton border={'50%'} width={20} height={20} />
+						<Skeleton width={30} height={20} />
+					</HStack>
+				</HStack>
+				<HStack gap={8}>
+					<Skeleton border={'50%'} width={30} height={30} />
+					<Skeleton width={100} height={20} />
+				</HStack>
+			</VStack>
+		</Card>
 	);
 });

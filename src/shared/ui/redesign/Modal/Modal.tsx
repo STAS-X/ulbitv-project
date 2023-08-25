@@ -1,9 +1,11 @@
-import { FC, ReactNode, useCallback } from 'react';
+import { FC, ReactNode, useCallback, useMemo } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { useTheme } from '@/shared/lib/hooks/useTheme';
-import { Portal } from '../../redesign/Portal/Portal';
+import { Portal } from '../Portal/Portal';
 import classes from './Modal.module.scss';
-import { Overlay } from '../../redesign/Overlay/Overlay';
+import { Overlay } from '../Overlay/Overlay';
+// eslint-disable-next-line stas-eslint-plugin/layer-imports
+import { useFeaturesByKey } from '@/entities/User';
 
 export interface ModalProps {
 	className?: string;
@@ -13,18 +15,22 @@ export interface ModalProps {
 }
 
 /**
- * Компонент устарел, используем новые компоненты из папки redesigned
- * @depricated
+ * Используем новые компоненты из папки redesigned
  */
 export const Modal: FC<ModalProps> = (props: ModalProps) => {
 	const { className, children, isOpen, onClose } = props;
 
 	const { theme } = useTheme();
 
-	const mods: Mods = {
-		[classes.opened]: isOpen,
-		[classes.closed]: !isOpen
-	};
+	const isAppRedesigned = useFeaturesByKey('isAppRedesigned');
+
+	const mods: Mods = useMemo(() => {
+		return {
+			[classes.opened]: isOpen,
+			[classes.closed]: !isOpen,
+			[classes.redesigned]: isAppRedesigned as boolean
+		};
+	}, [isOpen, isAppRedesigned]);
 
 	const handleClose = useCallback(() => {
 		onClose?.();

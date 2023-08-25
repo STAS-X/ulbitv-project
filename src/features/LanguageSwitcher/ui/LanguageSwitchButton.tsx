@@ -21,7 +21,7 @@ export const LanguageSwitchComponent: FC<LanguageSwitchButtonProps> = memo(({ cl
 	};
 
 	return (
-		<div className={classNames(isRedesigned? classes.languageswitcherredesign : classes.languageswitcher)}>
+		<div className={classNames(isRedesigned ? classes.languageswitcherredesign : classes.languageswitcher)}>
 			{isRedesigned ? (
 				<ButtonRedesign variant={'clear'} onClick={toggleLanguage}>
 					{t(short ? 'short lng' : 'language')}
@@ -35,12 +35,12 @@ export const LanguageSwitchComponent: FC<LanguageSwitchButtonProps> = memo(({ cl
 	);
 });
 
-export const LanguageSwitchButton: FC<LanguageSwitchButtonProps> = (props : LanguageSwitchButtonProps) => {
-	const { short = false, className = '' }  = props;
+export const LanguageSwitchButton: FC<LanguageSwitchButtonProps> = (props: LanguageSwitchButtonProps) => {
+	const { short = false, className = '' } = props;
 
 	return (
 		<ToggleFeatures
-			feature={'isAppRedesined'}
+			feature={'isAppRedesigned'}
 			off={
 				<LanguageSwitchComponent
 					short={short}

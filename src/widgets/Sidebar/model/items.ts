@@ -1,17 +1,22 @@
-import { getFeatureFlag } from '@/shared/lib/features/featureFlag';
 import { getRouteAbout, getRouteMain, getRouteArticles, AppRoutes } from '@/shared/config/routeConfig';
+import { useFeaturesByKey } from '@/entities/User';
 import AboutIcon from '@/shared/assets/icons/about-20-20.svg';
 import MainIcon from '@/shared/assets/icons/main-20-20.svg';
+import SettingsIcon from '@/shared/assets/icons/settings-32.svg';
 import ProfileIcon from '@/shared/assets/icons/profile-20-20.svg';
 import ArticleIcon from '@/shared/assets/icons/article-20-20.svg';
 import AboutIconRedesign from '@/shared/assets/icons/about.svg';
 import MainIconRedesign from '@/shared/assets/icons/home.svg';
+import SettingsIconRedesign from '@/shared/assets/icons/settings.svg';
 import ProfileIconRedesign from '@/shared/assets/icons/profile.svg';
 import ArticleIconRedesign from '@/shared/assets/icons/article.svg';
 import React from 'react';
 
 const toggleIcons = (oldIcon: React.FC<React.SVGProps<SVGSVGElement>>, newIcon: React.FC<React.SVGProps<SVGSVGElement>>) => {
-	if (getFeatureFlag('isAppRedesined')) {
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const featureFlagValue = useFeaturesByKey('isAppRedesigned');
+
+	if (featureFlagValue) {
 		return newIcon;
 	}
 	return oldIcon
@@ -34,19 +39,25 @@ export const SideBarItemsList: SideBarItemType[] = [
 	},
 	{
 		path: getRouteAbout(),
-		Icon: ()=>toggleIcons(AboutIcon, AboutIconRedesign),
+		Icon: () => toggleIcons(AboutIcon, AboutIconRedesign),
 		isAuth: false,
 		text: 'about'
 	},
 	{
 		path: AppRoutes.PROFILE,
-		Icon: ()=>toggleIcons(ProfileIcon, ProfileIconRedesign),
+		Icon: () => toggleIcons(ProfileIcon, ProfileIconRedesign),
 		isAuth: true,
 		text: 'profile'
 	},
 	{
+		path: AppRoutes.SETTINGS,
+		Icon: () => toggleIcons(SettingsIcon, SettingsIconRedesign),
+		isAuth: true,
+		text: 'settings'
+	},	
+	{
 		path: getRouteArticles(),
-		Icon: ()=>toggleIcons(ArticleIcon, ArticleIconRedesign),
+		Icon: () => toggleIcons(ArticleIcon, ArticleIconRedesign),
 		isAuth: true,
 		text: 'articles'
 	}

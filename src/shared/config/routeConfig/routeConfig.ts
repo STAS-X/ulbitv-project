@@ -4,6 +4,7 @@ import { ArticlesPage } from '@/pages/ArticlesPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { AboutPage } from '@/pages/AboutPage';
+import { SettingsPage } from '@/pages/SettingsPage';
 import { MainPage } from '@/pages/MainPage';
 import { ArticleDetailesPage } from '@/pages/ArticleDetailesPage';
 import { ArticleEditPage } from '@/pages/ArticleEditPage';
@@ -15,6 +16,7 @@ import { PathRouteProps } from 'react-router-dom';
 
 export const getRouteMain = () => '/';
 export const getRouteAbout = () => '/about';
+export const getRouteSettings = () => '/settings';
 export const getRouteProfile = (id: string) => `/profile/${id}`;
 export const getRouteArticles = () => '/articles';
 export const getRouteArticleDetailes = (id: string) => `/articles/${id}`;
@@ -27,6 +29,7 @@ export const getRouteNotFound = () => '*';
 export enum AppRoutes {
 	MAIN = 'main',
 	ABOUT = 'about',
+	SETTINGS = 'settings',
 	PROFILE = 'profile',
 	ARTICLES = 'articles',
 	ARTICLE_DETAILES = 'article_detailes',
@@ -52,6 +55,11 @@ export const RoutePath: Record<AppRoutes, AuthRouteProps> = {
 	[AppRoutes.ABOUT]: {
 		pathname: getRouteAbout(),
 		Element: AboutPage
+	},
+	[AppRoutes.SETTINGS]: {
+		pathname: getRouteSettings(),
+		isAuth: true,
+		Element: SettingsPage
 	},
 	[AppRoutes.PROFILE]: {
 		pathname: getRouteProfile(':id'),

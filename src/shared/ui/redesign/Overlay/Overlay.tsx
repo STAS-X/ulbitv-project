@@ -1,6 +1,8 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { memo, ReactNode } from 'react';
-import cls from './Overlay.module.scss';
+// eslint-disable-next-line stas-eslint-plugin/layer-imports
+import { useFeaturesByKey } from '@/entities/User';
+import classes from './Overlay.module.scss';
 
 interface OverlayProps {
 	className?: string;
@@ -14,8 +16,13 @@ interface OverlayProps {
 export const Overlay = memo((props: OverlayProps) => {
 	const { className, onClick, children } = props;
 
+	const isAppRedesigned = useFeaturesByKey('isAppRedesigned');
+
 	return (
-		<div onClick={onClick} className={classNames(cls.Overlay, {}, [className])}>
+		<div
+			onClick={onClick}
+			className={classNames(classes.Overlay, { [classes.redesigned]: isAppRedesigned as boolean }, [className])}
+		>
 			{children}
 		</div>
 	);

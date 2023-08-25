@@ -1,5 +1,5 @@
 import { FC, ReactElement } from 'react';
-import { FeatureFlags, getFeatureFlag } from './featureFlag';
+import { FeatureFlags, useGetFeatureByKey } from './featureFlag';
 
 interface ToggleFeatureProps {
 	feature: keyof FeatureFlags;
@@ -9,8 +9,10 @@ interface ToggleFeatureProps {
 
 export const ToggleFeatures = (props: ToggleFeatureProps) => {
 	const { on, off, feature } = props;
+
+	const featureFlagValue = useGetFeatureByKey(feature);
 	//console.log(getFeatureFlag(feature), feature, 'get feature flag');
-	if (getFeatureFlag(feature)) {
+	if (featureFlagValue) {
 		return on;
 	}
 	return off;
@@ -18,8 +20,11 @@ export const ToggleFeatures = (props: ToggleFeatureProps) => {
 
 export const toggleFeatures: ReactElement | FC<any> = (props: ToggleFeatureProps)  => {
 	const { on, off, feature } = props;
+
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const featureFlagValue = useGetFeatureByKey(feature);
 	//console.log(getFeatureFlag(feature), feature, 'get feature flag');
-	if (getFeatureFlag(feature)) {
+	if (featureFlagValue) {
 		return on;
 	}
 	return off;

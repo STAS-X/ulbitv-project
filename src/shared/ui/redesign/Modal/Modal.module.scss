@@ -21,6 +21,10 @@
 	transform: scale(0.5);
 }
 
+.content.redesigned {
+	background: var(--light-bg-redesigned);
+}
+
 .modal.opened {
 	pointer-events: auto;
 	z-index: var(--modal-z-index);

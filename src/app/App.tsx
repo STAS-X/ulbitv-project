@@ -62,7 +62,7 @@ const App = () => {
 
 	return (
 		<ToggleFeatures
-			feature={'isAppRedesined'}
+			feature={'isAppRedesigned'}
 			off={<AppComponent isInited={isRouterLoaded} />}
 			on={<AppComponent isInited={isRouterLoaded} className={'app_redesign'} />}
 		/>

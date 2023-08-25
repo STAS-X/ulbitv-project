@@ -115,6 +115,8 @@ module.exports = {
 					'direction',
 					'feature',
 					'color',
+					'border',
+					'size',
 					'variant'
 				]
 			}

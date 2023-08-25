@@ -11,6 +11,7 @@ import { userActions, UserData, getUserData, getUserIsAdmin } from '@/entities/U
 import { getRouteAdminPanel, getRouteProfile } from '@/shared/config/routeConfig';
 import { useLocation, useNavigate } from '@/shared/lib/hooks/useRouterUtils';
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
+import { getRouteSettings } from '../../../shared/config/routeConfig/routeConfig';
 
 interface AddMenuButtonProps {
 	className?: string;
@@ -49,6 +50,11 @@ export const AddMenuButtonComponent: FC<AddMenuButtonProps> = memo((props: AddMe
 					href: getRouteProfile(`${userdata?.id ?? ''}`),
 					disabled: !Boolean(userdata)
 				},
+				{
+					content: t('settingsMenu'),
+					href: getRouteSettings(),
+					disabled: !Boolean(userdata)
+				},
 				{ content: t(userdata ? 'logout' : 'login'), onClick: userdata ? setLogOut : showAuthModal }
 			].filter(Boolean),
 		[t, userdata, isAdmin, showAuthModal, setLogOut]
@@ -69,11 +75,10 @@ export const AddMenuButtonComponent: FC<AddMenuButtonProps> = memo((props: AddMe
 	);
 });
 
-
 export const AddMenuButton: FC<AddMenuButtonProps> = (props: AddMenuButtonProps) => {
 	return (
 		<ToggleFeatures
-			feature={'isAppRedesined'}
+			feature={'isAppRedesigned'}
 			off={<AddMenuButtonComponent {...props} className={'classic'} />}
 			on={<AddMenuButtonComponent {...props} className={'redesigned'} />}
 		/>

@@ -36,9 +36,19 @@ export const NotificationListItem: FC<NotificationListItemProps> = (props: Notif
 
 	return (
 		<ToggleFeatures
-			feature={'isAppRedesined'}
-			off={<NotificationListItemComponent {...props} className={classNames(classes.notificationlistitem,{},[className])} />}
-			on={<NotificationListItemComponent {...props} className={classNames(classes.notificationlistitemredesign,{},[className])} />}
+			feature={'isAppRedesigned'}
+			off={
+				<NotificationListItemComponent
+					{...props}
+					className={classNames(classes.notificationlistitem, {}, [className])}
+				/>
+			}
+			on={
+				<NotificationListItemComponent
+					{...props}
+					className={classNames(classes.notificationlistitemredesign, {}, [className])}
+				/>
+			}
 		/>
 	);
 };
