@@ -8,7 +8,7 @@ import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 export interface NavigateButtonProps {
 	className?: string;
 	navigateTo: string;
-	title?: string;
+	title?: string | null;
 	children?: ReactNode;
 }
 
