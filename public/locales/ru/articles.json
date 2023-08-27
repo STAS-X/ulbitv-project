@@ -5,6 +5,15 @@
 	"recommendedError": "Возникла ошибка `{{message}}`",
 	"readMore": "Читать далее",
 	"backToList": "Назад к списку",
+	"plurals": {
+		"views_zero": "{{count}} просмотров",
+		"views_one": "{{count}} просмотр",
+		"views_two": "{{count}} просмотра",
+		"views_three": "{{count}} просмотра",
+		"views_four": "{{count}} просмотра",
+		"views_many": "{{count}} просмотров",
+		"views_other": "{{count}} просмотров"
+	},
 	"selectors": {
 		"views": "Просмотры",
 		"title": "Название",

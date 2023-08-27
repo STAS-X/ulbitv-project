@@ -1,4 +1,4 @@
-import { getArticleData } from '@/entities/Article';
+import { getArticleData } from './getArticleData';
 import { getUserData } from '@/entities/User';
 import { createSelector } from '@reduxjs/toolkit';
 

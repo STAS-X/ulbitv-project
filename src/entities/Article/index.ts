@@ -2,6 +2,8 @@ export type { ArticleSchema } from './model/types/articleSchema';
 export type { ArticleDetailesSchema } from './model/types/articleDetailesSchema';
 export { ArticleBlockType, ArticleType } from './model/types/articleSchema';
 export { getArticleData, getArticleError, getArticleIsLoading } from './model/selectors/getArticleData';
+export { getUserCanEditArticle } from './model/selectors/getArticleEditable';
+export { getArticleAdditinalInfo } from './model/selectors/getArticleAdditionalInfo';
 export { articleDetailsActions, articleDetailsReducer } from './model/slices/articleSlice';
 export { ArticleCodeBlockComponent } from './ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 export { ArticleImageBlockComponent } from './ui/ArticleImageBlockComponent/ArticleImageBlockComponent';

@@ -1,13 +1,12 @@
-import { FC, ReactNode, useCallback } from 'react';
+import { FC, ReactNode, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { useNavigate } from 'react-router-dom';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
 import { useSelector } from 'react-redux';
-import { getUserCanEditArticle } from '../../model/selectors/getArticleEditable';
-import { getArticleData } from '@/entities/Article';
+import { getUserCanEditArticle, getArticleData } from '@/entities/Article';
 import { HStack } from '@/shared/ui/redesign/Stack';
 import { getRouteArticleEdit, getRouteArticles } from '@/shared/config/routeConfig';
+import { AddNavigateButton } from '@/features/AddNavigateButton';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 export interface ArticleDetailesPageHeaderProps {
 	className?: string;
@@ -23,26 +22,12 @@ export const ArticleDetailesPageHeader: FC<ArticleDetailesPageHeaderProps> = (
 	const isEditable = useSelector(getUserCanEditArticle);
 	const articleId = String(useSelector(getArticleData)?.id) || '';
 
-	const navigate = useNavigate();
-
-	const navigateToList = useCallback(() => {
-		navigate(getRouteArticles());
-	}, [navigate]);
-
-	const navigateToEditArticle = useCallback(() => {
-		navigate(getRouteArticleEdit(`${articleId}`));
-	}, [navigate, articleId]);
+	const navigateToEditArticle = useMemo(() => getRouteArticleEdit(`${articleId}`), [articleId]);
 
 	return (
 		<HStack className={classNames('', {}, [className])} justify={'between'} max>
-			<Button theme={ButtonTheme.OUTLINE} onClick={navigateToList}>
-				{t('backToList')}
-			</Button>
-			{isEditable && (
-				<Button theme={ButtonTheme.OUTLINE} onClick={navigateToEditArticle}>
-					{t('editArticle')}
-				</Button>
-			)}
+			<AddNavigateButton navigateTo={getRouteArticles()} />
+			{isEditable && <AddNavigateButton navigateTo={navigateToEditArticle} title={t('editArticle')} />}
 		</HStack>
 	);
 };

@@ -1,36 +1,28 @@
 import { FC, memo, ReactNode, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import classes from './ArticleDetailesPage.module.scss';
-import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { ArticleDetailesPageHeader } from '../ArticleDetailesPageHeader/ArticleDetailesPageHeader';
+import { ArticleDetailes } from '@/entities/Article';
+import classes from './ArticleDetailesPageDeprecated.module.scss';
+import { ArticleDetailesPageHeader } from '../../ArticleDetailesPageHeader/ArticleDetailesPageHeader';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
-import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { fetchCommentsByArticleId } from '../../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { PageWrapper } from '@/shared/ui/deprecated/PageWrapper/PageWrapper';
-import { fetchRecommendationsForArticle } from '../../model/services/fetchRecommendationsForArticle/fetchRecommendationsForArticle';
-import { articleDetailesPageReducer } from './../../model/slice';
+import { fetchRecommendationsForArticle } from '../../../model/services/fetchRecommendationsForArticle/fetchRecommendationsForArticle';
 import { useLocation } from '@/shared/lib/hooks/useRouterUtils';
 import { OptionalRecord } from '@/shared/lib/url/queryParams/addQueryParams';
 import { VStack } from '@/shared/ui/redesign/Stack';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
-import { ArticleDetailesComments } from '../ArticleDetailesComments/ArticleDetailesComments';
+import { ArticleDetailesComments } from '../../ArticleDetailesComments/ArticleDetailesComments';
 import { AddArticleRating } from '@/features/AddArticleRating';
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
-import ArticleDetailesPageDeprecated from './ArticleDetailesPageDeprecated/ArticleDetailesPageDeprecated';
-import { ContentLayout } from '@/shared/layout';
-import { ArticleDetailesContainer } from '../ArticleDetailesContainer/ArticleDetailesContainer';
-import { ArticleInfoContainer } from '../ArticleInfoContainer/ArticleInfoContainer';
+import { Card } from '@/shared/ui/deprecated/Card/Card';
 
 export interface ArticleDetailesPageProps {
 	className?: string;
 	children?: ReactNode;
 }
 
-const redusers: ReducerList = {
-	articleDetailesPage: articleDetailesPageReducer
-};
-
-const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDetailesPageProps) => {
+const ArticleDetailesPageDeprecated: FC<ArticleDetailesPageProps> = memo((props: ArticleDetailesPageProps) => {
 	const { className } = props;
 	const location = useLocation();
 	const { id: articleId = '' } = useParams<{ id: string }>();
@@ -63,31 +55,29 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 	}, [dispatch, articleId]);
 
 	return (
-		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<ToggleFeatures
-				feature={'isAppRedesigned'}
-				on={
-					<ContentLayout
-						content={
-							<PageWrapper
-								data-testid={'ArticleDetailesPage'}
-								className={classNames(classes.articledetailespage, {}, [className])}
-							>
-								<VStack gap={16}>
-									<ArticleDetailesContainer />
-									<AddArticleRating articleId={articleId} />
-									<ArticleRecommendationsList />
-									<ArticleDetailesComments id={articleId} />
-								</VStack>
-							</PageWrapper>
-						}
-						right={<ArticleInfoContainer />}
-					/>
-				}
-				off={<ArticleDetailesPageDeprecated className={className} {...props} />}
-			/>
-		</DynamicModuleLoader>
+		<PageWrapper
+			data-testid={'ArticleDetailesPage'}
+			className={classNames(classes.articledetailespage, {}, [className])}
+		>
+			<VStack gap={16}>
+				<ArticleDetailesPageHeader />
+				<ArticleDetailes articleId={articleId} />
+				{/* Feature flag для фичи рейтинг статьи */}
+				<ToggleFeatures
+					feature={'isFeatureRating'}
+					on={<AddArticleRating articleId={articleId} />}
+					off={
+						<Card>
+							<span>Фича ArticleRating пока недлоступна для Вас</span>
+						</Card>
+					}
+				/>
+				{/* Feature flag для фичи рекомендации для статьи */}
+				<ArticleRecommendationsList />
+				<ArticleDetailesComments id={articleId} />
+			</VStack>
+		</PageWrapper>
 	);
 });
 
-export default ArticleDetailesPage;
+export default ArticleDetailesPageDeprecated;

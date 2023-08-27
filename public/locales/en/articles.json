@@ -5,6 +5,13 @@
 	"recommendedError": "Error occured `{{message}}`",
 	"readMore": "Read more",
 	"backToList": "Back to list",
+	"plurals": {
+		"views_zero": "{{count}} views",
+		"views_one": "{{count}} view",
+		"views_few": "{{count}} views",
+		"views_many": "{{count}} views",
+		"views_other": "{{count}} views"
+	},
 	"selectors": {
 		"views": "Views",
 		"title": "Title",

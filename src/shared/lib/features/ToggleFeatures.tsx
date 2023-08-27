@@ -1,5 +1,6 @@
 import { FC, ReactElement } from 'react';
-import { FeatureFlags, useGetFeatureByKey } from './featureFlag';
+import { FeatureFlags } from './featureFlag';
+import {useGetFeatureByKey} from '../hooks/useFetures';
 
 interface ToggleFeatureProps {
 	feature: keyof FeatureFlags;
