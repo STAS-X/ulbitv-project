@@ -2,15 +2,20 @@ import { FC, memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Rating.module.scss';
-import { Card } from '@/shared/ui/deprecated/Card/Card';
+import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card/Card';
+import { Card as CardRedesign } from '@/shared/ui/redesign/Card/Card';
 import { VStack } from '@/shared/ui/redesign/Stack';
-import { Text, TextSize, TextTheme } from '@/shared/ui/deprecated/Text/Text';
-import { StarRating } from '@/shared/ui/deprecated/StarRating/StarRating';
+import { Text as TextDeprecated, TextSize, TextTheme } from '@/shared/ui/deprecated/Text/Text';
+import { Text } from '@/shared/ui/redesign/Text/Text';
+import { StarRating as StarRatingDeprecated } from '@/shared/ui/deprecated/StarRating/StarRating';
+import { StarRating } from '@/shared/ui/redesign/StarRating/StarRating';
 import { RatingModal } from '../RatingModal/RatingModal';
 import { detectMobileDevice } from '@/shared/lib/helpers/checkIsMobile';
 import { useModal } from '@/shared/lib/hooks/useModal';
-import { Drawer } from '@/shared/ui/deprecated/Drawer/Drawer';
+import { Drawer as DrawerDeprecated } from '@/shared/ui/deprecated/Drawer/Drawer';
+import { Drawer as DrawerRedesign } from '@/shared/ui/redesign/Drawer/Drawer';
 import FeedBackForm from '../FeedBackForm/FeedBackForm';
+import { toggleFeatures, ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
 export interface RatingProps {
 	className?: string;
@@ -50,6 +55,11 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 		animationDelay: isMobile ? 350 : 300
 	});
 
+	// @ts-ignore
+	const Card = toggleFeatures({ feature: 'isAppRedesigned', on: CardRedesign, off: CardDeprecated });
+	// @ts-ignore
+	const Drawer = toggleFeatures({ feature: 'isAppRedesigned', on: DrawerRedesign, off: DrawerDeprecated });
+
 	const handleSuccess = useCallback(
 		(feedback: string) => {
 			onModalHandler();
@@ -75,18 +85,42 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 
 	return (
 		<Card className={classNames(classes.Rating, { [classes.max]: max }, [className])}>
-			<VStack dataTestId={'Article.Rating.Frame'} align={'center'} gap={8}>
-				<Text title={rating ? t('ratingTitle') : title} />
-				{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}
-				<StarRating rating={rating} size={40} onSelect={onSelectStarts} />
-				{articleFeedBack && (
-					<Text
-						dataTestId={'Rating.FeedBack'}
-						content={`${t('ratingPlaceholder')} ${articleFeedBack}`}
-						size={TextSize.M}
-					/>
-				)}
-			</VStack>
+			<ToggleFeatures
+				feature={'isAppRedesigned'}
+				on={
+					<VStack dataTestId={'Article.Rating.Frame'} align={'center'} gap={8} max>
+						<Text title={rating ? t('ratingTitle') : title} />
+						{error && <Text content={t('errorApp', { ns: 'errors', message: error })} variant={'error'} />}
+						<StarRating rating={rating} size={40} onSelect={onSelectStarts} />
+						{articleFeedBack && (
+							<Text
+								dataTestId={'Rating.FeedBack'}
+								content={`${t('ratingPlaceholder')} ${articleFeedBack}`}
+								size={'m'}
+							/>
+						)}
+					</VStack>
+				}
+				off={
+					<VStack dataTestId={'Article.Rating.Frame'} align={'center'} gap={8} max>
+						<TextDeprecated title={rating ? t('ratingTitle') : title} />
+						{error && (
+							<TextDeprecated
+								content={t('errorApp', { ns: 'errors', message: error })}
+								theme={TextTheme.ERROR}
+							/>
+						)}
+						<StarRatingDeprecated rating={rating} size={40} onSelect={onSelectStarts} />
+						{articleFeedBack && (
+							<TextDeprecated
+								dataTestId={'Rating.FeedBack'}
+								content={`${t('ratingPlaceholder')} ${articleFeedBack}`}
+								size={TextSize.M}
+							/>
+						)}
+					</VStack>
+				}
+			/>
 			{hasFeedBack &&
 				(isMobile ? (
 					<Drawer onClose={onModalHandler} isOpen={isOpen} maxHeight={'50%'}>

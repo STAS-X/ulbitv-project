@@ -64,7 +64,14 @@ export const AddMenuButtonComponent: FC<AddMenuButtonProps> = memo((props: AddMe
 		<DropDown
 			className={classNames('', {}, [className])}
 			items={menuItems}
-			trigger={<Avatar size={40} border={'50%'} src={userdata?.avatar} />}
+			trigger={
+				<Avatar
+					variant={userdata?.avatar ? 'none' : 'filter'}
+					size={40}
+					border={'50%'}
+					src={userdata?.avatar}
+				/>
+			}
 		/>
 	) : (
 		<DropDownDeprecated

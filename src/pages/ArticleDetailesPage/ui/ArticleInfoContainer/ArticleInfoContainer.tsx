@@ -15,7 +15,7 @@ export const ArticleInfoContainer: FC<ArticleInfoContainerProps> = memo((props: 
 	const additionalInfo = useSelector(getArticleAdditinalInfo);
 
 	return (
-		<Card className={classes.infocontainer} paddings={24} border={'round'} max>
+		<Card className={classes.infocontainer} paddings={24} border={'partial'} max>
 			{additionalInfo && <ArticleAdditionalInfo {...additionalInfo} className={className} />}
 		</Card>
 	);

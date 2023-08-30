@@ -6,6 +6,7 @@
 
 *::-webkit-scrollbar {
 	width: 20px; /* ширина scrollbar */
+	height: 10px; /* высота scrollbar */
 }
 
 *::-webkit-scrollbar-track {
@@ -57,13 +58,26 @@
 			);
 		background-clip: content-box;
 	}
+
+	*::-webkit-scrollbar-thumb:horizontal {
+		background: none;
+		border: 2px solid var(--primary-color);
+	}
+}
+
+.app_redesign,
+.app_modal_redesign,
+.app_drawer_redesign {
+	font: var(--font-m-redesigned);
+	color: var(--text-redesigned);
+	// background: var(--bg-redesigned);
+	overflow: hidden;
 }
 
 .app_redesign {
-	background: var(--bg-redesigned);
 	min-height: 100vh;
-	font: var(--font-m-redesigned);
-	color: var(--text-redesigned);
+	background: var(--bg-redesigned);
+	transition: background-color 0.3s;
 
 	*::-webkit-scrollbar-track {
 		background: var(--card-redesigned); /* цвет дорожки */
@@ -90,6 +104,11 @@
 				var(--accent-redesigned) 100%
 			);
 		background-clip: content-box;
+	}
+
+	*::-webkit-scrollbar-thumb:horizontal {
+		background: none;
+		border: 2px solid var(--accent-redesigned);
 	}
 }
 

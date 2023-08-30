@@ -73,7 +73,7 @@ const ArticleDetailesPage: FC<ArticleDetailesPageProps> = memo((props: ArticleDe
 								data-testid={'ArticleDetailesPage'}
 								className={classNames(classes.articledetailespage, {}, [className])}
 							>
-								<VStack gap={16}>
+								<VStack gap={32}>
 									<ArticleDetailesContainer />
 									<AddArticleRating articleId={articleId} />
 									<ArticleRecommendationsList />

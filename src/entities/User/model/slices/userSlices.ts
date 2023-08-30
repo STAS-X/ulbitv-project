@@ -27,7 +27,7 @@ const userSlice = createSlice({
 		logOut: (state) => {
 			//const emptyUser = { id: '', username: '', password: '' };
 			localStorage.removeItem(USER_LS_KEY);
-			localStorage.removeItem(FEATURES_LS_KEY);
+			// localStorage.removeItem(FEATURES_LS_KEY);
 			state.authData = undefined;
 			state._loaded = false;
 		}

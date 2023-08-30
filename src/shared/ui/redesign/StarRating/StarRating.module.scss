@@ -1,0 +1,92 @@
+.StarRating {
+	margin-block: 5px;
+	padding: 5px;
+	border: 2px solid var(--accent-redesigned);
+}
+
+.starIcon {
+	& path {
+		fill: none;
+		stroke-width: 1px;
+		stroke: var(--accent-redesigned);
+	}
+
+	&:hover:not(.isSelected) {
+		animation: onratingstar 0.3s ease-in-out;
+		path {
+			stroke: var(--text-redesigned);
+		}
+	}
+}
+
+.isSelected {
+	& path {
+		fill: var(--accent-redesigned);
+		cursor: pointer;
+	}
+
+	&:hover {
+		animation: onratingstar 0.3s ease-in-out;
+	}
+}
+
+.hasRating {
+	cursor: grabbing;
+	animation: oncancelratingstar 0.3s ease-in-out;
+	path {
+			fill: none;
+			stroke-width: 2px;
+			stroke: red;
+		}
+
+}
+
+@keyframes onratingstar {
+	0% {
+		transform: scale(1);
+		fill: none;
+	}
+
+	25% {
+		transform: scale(1.2);
+	}
+
+	50% {
+		transform: scale(1);
+	}
+
+	75% {
+		transform: scale(0.8);
+	}
+
+	100% {
+		transform: scale(1);
+		fill: var(--accent-redesigned);
+	}
+}
+
+@keyframes oncancelratingstar {
+	0% {
+		transform: scale(1);
+		stroke-width: 1px;
+		fill: var(--accent-redesigned);
+	}
+
+	25% {
+		transform: scale(1.2);
+	}
+
+	50% {
+		transform: scale(1);
+	}
+
+	75% {
+		transform: scale(0.8);
+	}
+
+	100% {
+		transform: scale(1);
+		stroke-width: 2px;
+		fill: none;
+	}
+}

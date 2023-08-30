@@ -9,9 +9,15 @@ import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
+import { Button as ButtonRedesign } from '@/shared/ui/redesign/Button/Button';
 import { Input } from '@/shared/ui/deprecated/Input/Input';
+import { Input as InputRedesign } from '@/shared/ui/redesign/Input/Input';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text/Text';
+import { Text as TextRedesign } from '@/shared/ui/redesign/Text/Text';
 import classes from './LoginForm.module.scss';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
+import { Card } from '@/shared/ui/redesign/Card/Card';
+import { HStack, VStack } from '@/shared/ui/redesign/Stack';
 
 export interface LoginFormProps {
 	className?: string;
@@ -97,27 +103,70 @@ const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
 
 	return (
 		<DynamicModuleLoader removeAfterUnmount reducers={reducers}>
-			<div className={classNames(classes.loginform, {}, [className])}>
-				<Text title={t('authTitle')} />
-				{error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />}
-				<Input
-					ref={userNameRef}
-					type="text"
-					className={classes.input}
-					onChange={onChangeUsername}
-					value={login}
-				/>
-				<Input type="text" className={classes.input} onChange={onChangePassword}
-value={password} />
-				<Button
-					theme={ButtonTheme.OUTLINE}
-					className={classes.loginbtn}
-					disabled={isLoading}
-					onClick={onLoginClick}
-				>
-					{t('login')}
-				</Button>
-			</div>
+			<ToggleFeatures
+				feature={'isAppRedesigned'}
+				on={
+					<Card variant={'light'} className={classNames(classes.loginformredesign, {}, [className])}>
+						<VStack gap={10} max>
+							<TextRedesign title={t('authTitle')} />
+							{error && (
+								<TextRedesign
+									content={t('errorApp', { ns: 'errors', message: error })}
+									variant={'error'}
+								/>
+							)}
+							<InputRedesign
+								placeholder={t('userName')}
+								ref={userNameRef}
+								type="text"
+								onChange={onChangeUsername}
+								value={login}
+							/>
+							<InputRedesign
+								placeholder={t('userPass')}
+								type="text"
+								className={classes.input}
+								onChange={onChangePassword}
+								value={password}
+							/>
+							<HStack justify="end" max>
+								<ButtonRedesign
+									className={classes.loginbtnredesign}
+									variant={'outline'}
+									disabled={isLoading}
+									onClick={onLoginClick}
+								>
+									{t('login')}
+								</ButtonRedesign>
+							</HStack>
+						</VStack>
+					</Card>
+				}
+				off={
+					<div className={classNames(classes.loginform, {}, [className])}>
+						<Text title={t('authTitle')} />
+						{error && (
+							<Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />
+						)}
+						<Input
+							ref={userNameRef}
+							type="text"
+							className={classes.input}
+							onChange={onChangeUsername}
+							value={login}
+						/>
+						<Input type="text" className={classes.input} onChange={onChangePassword} value={password} />
+						<Button
+							theme={ButtonTheme.OUTLINE}
+							className={classes.loginbtn}
+							disabled={isLoading}
+							onClick={onLoginClick}
+						>
+							{t('login')}
+						</Button>
+					</div>
+				}
+			/>
 		</DynamicModuleLoader>
 	);
 });

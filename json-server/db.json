@@ -123,6 +123,30 @@
       "userId": "1",
       "articleId": "7",
       "id": "PCcDbZm"
+    },
+    {
+      "text": "dddfdf",
+      "userId": "1",
+      "articleId": "10",
+      "id": "2o1k3Ju"
+    },
+    {
+      "text": "ssdssd",
+      "userId": "1",
+      "articleId": "10",
+      "id": "bJINRpV"
+    },
+    {
+      "text": "fffffffffffgggggggggggggggggggggggg",
+      "userId": "1",
+      "articleId": "10",
+      "id": "i7iHcNy"
+    },
+    {
+      "text": "vvvvvvvvvvvvc",
+      "userId": "1",
+      "articleId": "11",
+      "id": "EjcukCe"
     }
   ],
   "articles": [
@@ -884,7 +908,7 @@
         "admin"
       ],
       "jsonSettings": {
-        "theme": "orange_theme"
+        "theme": "dark_theme"
       },
       "features": {
         "isAppRedesigned": true,
@@ -1000,7 +1024,7 @@
     {
       "articleId": "10",
       "userId": "1",
-      "rating": 2,
+      "rating": 3,
       "feedback": "",
       "id": "II0a75O"
     },

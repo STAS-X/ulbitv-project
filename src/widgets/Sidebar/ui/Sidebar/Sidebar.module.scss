@@ -40,8 +40,12 @@
 }
 
 .collapsebtnredesign {
-	transform: rotate(90deg);
+	transform: rotate(180deg);
 	transition: transform 0.1s 0.2s;
+	& path {
+			transform-origin: center center;
+			transform: rotate(-90deg);
+		}
 }
 
 .linksredesign {
@@ -80,7 +84,11 @@
 	}
 
 	.collapsebtnredesign {
-		transform: rotate(-90deg);
+		width: initial;
+		transform: rotate(-180deg);
+		& path {
+			transform: rotate(90deg);
+		}
 	}
 
 	.links {

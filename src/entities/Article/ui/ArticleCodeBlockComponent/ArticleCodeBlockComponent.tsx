@@ -1,9 +1,10 @@
 import { ArticleCodeBlock } from '../../model/types/articleSchema';
 import { FC, memo, ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Code } from '@/shared/ui/deprecated/Code/Code';
+import { Code as CodeDeprecated } from '@/shared/ui/deprecated/Code/Code';
+import { Code as CodeRedesign } from '@/shared/ui/redesign/Code/Code';
 import classes from './ArticleCodeBlockComponent.module.scss';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
 export interface ArticleCodeBlockComponentProps {
 	className?: string;
@@ -14,11 +15,14 @@ export interface ArticleCodeBlockComponentProps {
 export const ArticleCodeBlockComponent: FC<ArticleCodeBlockComponentProps> = memo(
 	(props: ArticleCodeBlockComponentProps) => {
 		const { block, className } = props;
-		const { t } = useTranslation();
 
 		return (
 			<div className={classNames(classes.ArticleCodeBlockComponent, {}, [className])}>
-				<Code>{block.code}</Code>
+				<ToggleFeatures
+					feature={'isAppRedesigned'}
+					on={<CodeRedesign>{block.code}</CodeRedesign>}
+					off={<CodeDeprecated>{block.code}</CodeDeprecated>}
+				/>
 			</div>
 		);
 	}

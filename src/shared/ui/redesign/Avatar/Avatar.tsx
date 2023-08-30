@@ -4,17 +4,21 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { AVATAR_REDESIGN } from '../../../const/localstorage';
 import { ImageResource } from '../../../lib/reactImageSource/imageSource';
 import { Skeleton } from '../Skeleton/Skeleton';
+import classes from './Avatar.module.scss';
+
+type AvatarVariant = 'filter' | 'none';
 
 export interface AvatarProps {
 	className?: string;
 	src?: string;
 	size?: number;
+	variant?: AvatarVariant;
 	border?: string | number;
 	alt?: string;
 }
 
 const LazyLoadAvatar: FC<AvatarProps> = (props: AvatarProps) => {
-	const { src = AVATAR_REDESIGN, size = 100, className = '', border = '50%', alt = '' } = props;
+	const { src = AVATAR_REDESIGN, size = 100, className = '', variant = 'none', border = '50%', alt = '' } = props;
 	//console.log(src, AVATAR_REDESIGN, typeof AVATAR_REDESIGN, 'get avatar src data');
 	const [loaded, setLoaded] = useState<boolean>(false);
 
@@ -30,6 +34,7 @@ const LazyLoadAvatar: FC<AvatarProps> = (props: AvatarProps) => {
 					src={src}
 					size={size}
 					border={border}
+					variant={variant}
 					alt={alt}
 					className={classNames('', {}, [className])}
 				/>
@@ -39,7 +44,7 @@ const LazyLoadAvatar: FC<AvatarProps> = (props: AvatarProps) => {
 };
 
 const OriginAvatar: FC<AvatarProps> = (props: AvatarProps) => {
-	const { src = AVATAR_REDESIGN, size = 100, border = '50%', ...otherProps } = props;
+	const { src = AVATAR_REDESIGN, size = 100, variant = 'none', border = '50%', ...otherProps } = props;
 
 	const srcOut = src
 		? _PROJECT_ !== 'jest' && ImageResource.read(src) instanceof Event
@@ -47,8 +52,16 @@ const OriginAvatar: FC<AvatarProps> = (props: AvatarProps) => {
 			: AVATAR_REDESIGN
 		: AVATAR_REDESIGN;
 
-	return <img src={srcOut} width={size} height={size}
-style={{ borderRadius: border }} {...otherProps} />;
+	return (
+		<img
+			src={srcOut}
+			width={size}
+			height={size}
+			style={{ borderRadius: border }}
+			{...otherProps}
+			className={classes[variant]}
+		/>
+	);
 };
 
 /**

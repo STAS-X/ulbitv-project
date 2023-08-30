@@ -1,23 +1,20 @@
 .button {
 	cursor: pointer;
-	color: var(--text-redesigned);
 	background-color: var(--light-bg-redesigned);
 	padding: 10px 15px;
 
-	&:hover {
-		opacity: 0.8;
-		fill-opacity: 0.8;
-		stroke-opacity: 0.8;
-
-		&:not([disabled]) {
-			color: var(--accent-redesigned);
-		}
+	&:hover:not([disabled]) {
+		opacity: 0.7;
+		fill-opacity: 0.7;
+		stroke-opacity: 0.7;
+		color: var(--accent-redesigned);
 	}
 
 	svg > path {
 		fill: var(--text-redesigned);
 		stroke: var(--text-redesigned);
 	}
+
 }
 
 .button[disabled] {
@@ -55,6 +52,20 @@
 	}
 }
 
+.cancel {
+	border: 1px solid var(--cancel-redesigned);
+	color: var(--text-redesigned);
+	border-radius: 34px;
+	background: none;
+}
+
+.success {
+	border: 1px solid var(--save-redesigned);
+	color: var(--text-redesigned);
+	border-radius: 34px;
+	background: none;
+}
+
 .outline_red {
 	border: 1px solid var(--red-light);
 	color: var(--red-light);
@@ -78,7 +89,7 @@
 }
 
 .disabled {
-	opacity: 0.5;
+	opacity: 0.7;
 }
 
 .square.m {

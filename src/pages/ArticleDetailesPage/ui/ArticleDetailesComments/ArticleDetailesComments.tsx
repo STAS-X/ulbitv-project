@@ -9,8 +9,10 @@ import { useFetchCommentForArticle } from '../../model/services/fetchCommentForA
 import { getArticleComments } from '../../model/slice/articleDetailesCommentsSlice';
 import { getArticleCommentsIsLoading } from '../../model/selectors/getArticleCommentsData';
 import { Text } from '@/shared/ui/deprecated/Text/Text';
+import { Text as TextRedesign } from '@/shared/ui/redesign/Text/Text';
 import { AddCommentForm } from '@/features/AddCommentForm';
 import { VStack } from '@/shared/ui/redesign/Stack';
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
 export interface ArticleDetailesCommentsProps {
 	className?: string;
@@ -38,7 +40,11 @@ export const ArticleDetailesComments: FC<ArticleDetailesCommentsProps> = (props:
 
 	return (
 		<VStack gap={10} max className={classNames('', {}, [className])}>
-			<Text title={t('commentForm')} />
+			<ToggleFeatures
+				feature={'isAppRedesigned'}
+				on={<TextRedesign title={t('commentForm')} bold/>}
+				off={<Text title={t('commentForm')} />}
+			/>
 			<AddCommentForm onSendComment={sendCommentForArticle} />
 			<CommentList isLoading={isLoading} comments={comments} />
 		</VStack>

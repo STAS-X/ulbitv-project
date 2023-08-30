@@ -15,14 +15,11 @@
 .content {
 	padding: 20px;
 	border-radius: 12px;
-	background: var(--bg-color);
+	background: var(--bg-redesigned);
 	font: var(--font-s);
 	transition: var(--animation-delay) ease;
 	transform: scale(0.5);
-}
-
-.content.redesigned {
-	background: var(--light-bg-redesigned);
+	z-index: 1;
 }
 
 .modal.opened {

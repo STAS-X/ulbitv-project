@@ -1,6 +1,6 @@
 .card {
 	border: 1px solid var(--text-redesigned);
-	background: var(--bg-redesign);
+	background: var(--bg-redesigned);
 	transition: all ease 0.3s;
 }
 
@@ -13,12 +13,21 @@
 	border: none;
 }
 
+.light {
+	background: var(--light-bg-redesigned);
+	border: none;
+}
+
 .outline {
 	border: 1px solid var(--accent-redesigned);
 }
 
 .standart {
 	border-radius: 24px;
+}
+
+.partial {
+	border-radius: 32px;
 }
 
 .round {

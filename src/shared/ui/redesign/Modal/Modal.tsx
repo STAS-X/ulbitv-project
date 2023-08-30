@@ -22,15 +22,12 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
 
 	const { theme } = useTheme();
 
-	const isAppRedesigned = useFeaturesByKey('isAppRedesigned');
-
 	const mods: Mods = useMemo(() => {
 		return {
 			[classes.opened]: isOpen,
 			[classes.closed]: !isOpen,
-			[classes.redesigned]: isAppRedesigned as boolean
 		};
-	}, [isOpen, isAppRedesigned]);
+	}, [isOpen]);
 
 	const handleClose = useCallback(() => {
 		onClose?.();
@@ -38,9 +35,9 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
 
 	return (
 		<Portal>
-			<div className={classNames(classes.modal, mods, [className, theme, 'app_modal'])}>
+			<div className={classNames(classes.modal, mods, [className, theme, 'app_modal_redesign'])}>
 				<Overlay onClick={handleClose} />
-				<div className={classNames(classes.content, {}, [])}>{children}</div>
+				<div className={classNames(classes.content)}>{children}</div>
 			</div>
 		</Portal>
 	);

@@ -1,23 +1,24 @@
 import { useAppDispatch } from '@/app/providers/StoreProvider';
-import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
-import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
-import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
-import { getArticleError, getArticleIsLoading, getArticleData } from '../../model/selectors/getArticleData';
-import { articleDetailsReducer } from '../../model/slices/articleSlice';
+import { ArticleCodeBlockComponent } from '../../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+import { ArticleImageBlockComponent } from '../../ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleTextBlockComponent } from '../../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { getArticleError, getArticleIsLoading, getArticleData } from '../../../model/selectors/getArticleData';
+import { articleDetailsReducer } from '../../../model/slices/articleSlice';
 import { FC, memo, ReactNode, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Skeleton } from '@/shared/ui/redesign/Skeleton/Skeleton';
-import { Text } from '@/shared/ui/redesign/Text/Text';
-import classes from './ArticleDetailes.module.scss';
-import { ArticleBlock, ArticleBlockType } from '../../model/types/articleSchema';
-import { fetchArticleById } from '../../model/services/fetchArticleById';
-import { VStack } from '@/shared/ui/redesign/Stack';
-import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
-import { ArticleDetailesDeprecated } from './ArticlesDetailesDeprecated/ArticleDetailesDeprecated';
-import { Image } from '@/shared/ui/redesign/Image/Image';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton/Skeleton';
+import { Text, TextAlign, TextSize, TextTheme } from '@/shared/ui/deprecated/Text/Text';
+import classes from './ArticleDetailesDeprecated.module.scss';
+import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
+import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
+import { Avatar } from '@/shared/ui/deprecated/Avatar/Avatar';
+import { Icon } from '@/shared/ui/deprecated/Icon/Icon';
+import { ArticleBlock, ArticleBlockType } from '../../../model/types/articleSchema';
+import { fetchArticleById } from '../../../model/services/fetchArticleById';
+import { HStack, VStack } from '@/shared/ui/redesign/Stack';
 
 const redusers: ReducerList = {
 	articleDetailes: articleDetailsReducer
@@ -29,7 +30,7 @@ export interface ArticleDetailesProps {
 	children?: ReactNode;
 }
 
-const ArticleDetailesRedesigned: FC<ArticleDetailesProps> = memo((props: ArticleDetailesProps) => {
+export const ArticleDetailesDeprecated: FC<ArticleDetailesProps> = memo((props: ArticleDetailesProps) => {
 	const { articleId = '', className } = props;
 	const dispatch = useAppDispatch();
 	const { t } = useTranslation(['articles', 'errors']);
@@ -69,8 +70,8 @@ const ArticleDetailesRedesigned: FC<ArticleDetailesProps> = memo((props: Article
 					<Text
 						title={t('errorTitle', { ns: 'errors' })}
 						content={t(error, { ns: 'errors', articleId })}
-						variant={'error'}
-						align={'align-center'}
+						theme={TextTheme.ERROR}
+						align={TextAlign.CENTER}
 					/>
 				) : isLoading ? (
 					<>
@@ -84,20 +85,26 @@ const ArticleDetailesRedesigned: FC<ArticleDetailesProps> = memo((props: Article
 				) : (
 					articleData && (
 						<>
-							<Text
-								dataTestId={'Article.Title'}
-								title={articleData.title}
-								content={articleData.subtitle}
-								size={'l'}
-								bold
-							/>
-							<Image
-								width={'100%'}
-								height={420}
-								src={articleData.img}
-								border={16}
-								className={classes.image}
-							/>
+							<HStack justify={'center'} max>
+								<Avatar size={200} src={articleData.img} className={classes.avatar} />
+							</HStack>
+							<VStack gap={4}>
+								<Text
+									dataTestId={'Article.Title'}
+									className={classes.title}
+									title={articleData.title}
+									content={articleData.subtitle}
+									size={TextSize.L}
+								/>
+								<HStack gap={10} max className={classes.articleinfo}>
+									<Icon Svg={EyeIcon} className={classes.icon} />
+									<Text content={String(articleData.views)} />
+								</HStack>
+								<HStack gap={10} max className={classes.articleinfo}>
+									<Icon Svg={CalendarIcon} className={classes.icon} />
+									<Text content={articleData.createdAt} />
+								</HStack>
+							</VStack>
 							{articleData.blocks?.map(renderBlock)}
 						</>
 					)
@@ -106,13 +113,3 @@ const ArticleDetailesRedesigned: FC<ArticleDetailesProps> = memo((props: Article
 		</DynamicModuleLoader>
 	);
 });
-
-export const ArticleDetailes = (props: ArticleDetailesProps) => {
-	return (
-		<ToggleFeatures
-			feature={'isAppRedesigned'}
-			on={<ArticleDetailesRedesigned {...props} />}
-			off={<ArticleDetailesDeprecated {...props} />}
-		/>
-	);
-};

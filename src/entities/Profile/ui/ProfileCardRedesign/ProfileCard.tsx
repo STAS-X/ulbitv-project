@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { Text } from '@/shared/ui/redesign/Text/Text';
@@ -35,9 +35,13 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 	const { t } = useTranslation(['profile', 'errors']);
 	const validateError = useSelector(getEditableProfileValidation);
 
-	const mods: Mods = {
-		[classes.editing]: !readonly
-	};
+	const mods: Mods = useMemo(() => {
+		return {
+			[classes.editing]: !readonly,
+			[classes.loading]: isLoading,
+			[classes.error]: Boolean(error)
+		};
+	}, [readonly, isLoading, error]);
 
 	const loadingContent = (
 		<VStack className={classes.loading} align={'center'} justify={'center'} gap={48} max>
@@ -60,14 +64,15 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 	);
 
 	return (
-		<Card variant={'outline'} paddings={24} max>
-			<HStack className={classNames('', mods, [className])} max>
-				<VStack
-					className={classNames('', { [classes.loading]: isLoading, [classes.error]: Boolean(error) })}
-					align={'center'}
-					justify={'center'}
-					max
-				>
+		<Card
+			className={classNames(classes.editform, mods, [className])}
+			variant={'normal'}
+			paddings={24}
+			border={'partial'}
+			max
+		>
+			<HStack max>
+				<VStack className={classNames('')} align={'center'} justify={'center'} max>
 					{error ? (
 						<Text
 							title={t('errorTitle', { ns: 'errors' })}

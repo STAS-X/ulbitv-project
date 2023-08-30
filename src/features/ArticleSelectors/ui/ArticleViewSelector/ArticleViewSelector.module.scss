@@ -15,9 +15,13 @@
 		}
 	}
 
+	button:hover > svg {
+		transform: scale(1.25);
+	}
+
 	.selected {
 		& svg {
-			transform: scale(1.25);
+			// transform: scale(1.25);
 			margin: 5px 0 0;
 		}
 
@@ -40,7 +44,7 @@
 	}
 
 	.selectedredesign {
-		transform: scale(1.25);
+		//transform: scale(1.25);
 		fill: var(--accent-redesigned);
 		stroke: var(--accent-redesigned);
 	}

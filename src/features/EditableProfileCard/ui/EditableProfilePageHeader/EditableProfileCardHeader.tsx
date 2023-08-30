@@ -18,6 +18,7 @@ import {
 import { updateEditableProfileData } from '../../model/services/updateEditableProfileData/updateEditableProfileData';
 import { editableProfileActions } from '../../model/slices/editableProfileSlices';
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
+import { Card } from '@/shared/ui/redesign/Card/Card';
 
 enum ProfileEditType {
 	EDIT = 'edit',
@@ -120,9 +121,9 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 					</>
 				}
 				on={
-					<>
-						<TextRedesign title={t('profile', { ns: 'pages' })} />
-						<div className={classes.btns}>
+					<Card paddings={24} border={'partial'} max>
+						<HStack justify={'between'} max>
+							<TextRedesign title={t('profile', { ns: 'pages' })} />
 							{isEdit &&
 								(readonly ? (
 									<ButtonRedesign
@@ -138,8 +139,8 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 									<HStack gap={10}>
 										<ButtonRedesign
 											dataTestId={'ProfileCard.SaveBtn'}
-											className={classNames(classes.editbtn, {}, [classes.saveredesign])}
-											variant={'outline'}
+											className={classNames(classes.editbtn)}
+											variant={'success'}
 											onClick={onChangeEdit(ProfileEditType.SAVE)}
 											disabled={
 												!isDirty ||
@@ -150,16 +151,16 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 										</ButtonRedesign>
 										<ButtonRedesign
 											dataTestId={'ProfileCard.CancelBtn'}
-											className={classNames(classes.editbtn, {}, [classes.cancelredesign])}
-											variant={'outline_red'}
+											className={classNames(classes.editbtn)}
+											variant={'cancel'}
 											onClick={onChangeEdit(ProfileEditType.CANCEL)}
 										>
 											{t('cancel', { ns: 'profile' })}
 										</ButtonRedesign>
 									</HStack>
 								))}
-						</div>
-					</>
+						</HStack>
+					</Card>
 				}
 			/>
 		</HStack>
