@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ArticleDetailesPage.module.scss';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { ArticleDetailesPageHeader } from '../ArticleDetailesPageHeader/ArticleDetailesPageHeader';
 import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { PageWrapper } from '@/shared/ui/deprecated/PageWrapper/PageWrapper';

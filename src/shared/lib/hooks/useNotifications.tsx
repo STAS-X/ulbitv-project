@@ -55,7 +55,7 @@ export const useNotifications = (): NotificationListSchema => {
 	}, [isLoading]);
 
 	const cancelAlertNotifications = useCallback(() => {
-		console.log('запускаем функцию прекращения уведомлений');
+		//console.log('запускаем функцию прекращения уведомлений');
 		if (hasNewNotes) {
 			console.log('запустили функцию прекращения уведомлений');
 			setHasNewNotes(false);

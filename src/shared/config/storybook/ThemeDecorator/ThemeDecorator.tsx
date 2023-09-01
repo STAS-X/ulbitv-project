@@ -1,16 +1,17 @@
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import { Children, cloneElement, FC, isValidElement, ReactNode, useState } from 'react';
 import { ThemeContext } from '@/shared/lib/context/ThemeContext';
 import { Theme } from '@/shared/const/theme';
 // eslint-disable-next-line stas-eslint-plugin/layer-imports
 import '@/app/styles/index.scss';
+import { setInitFeatureFlags } from '../../../lib/features/featureFlag';
 
 export interface StoryContextProps {
 	theme?: Theme;
 	setTheme?: (theme: Theme) => void;
 }
 
-export const ThemeDecorator = (theme: Theme) => (StoryComponent: Story) => {
+export const ThemeDecorator = (theme: Theme) => (StoryComponent: StoryFn) => {
 	return (
 		<ThemeStoryProvider initialValue={theme}>
 			<div className={`app ${theme}`}>
@@ -27,6 +28,9 @@ interface ThemeStoryProps {
 
 const ThemeStoryProvider: FC<ThemeStoryProps> = ({ children, initialValue = Theme.LIGHT }) => {
 	const [theme, setTheme] = useState<Theme>(initialValue);
+
+	// Сбрасываем настройки фичей для показа default компонентов в сторибуке
+	setInitFeatureFlags({});
 
 	const toggletheme = () => {
 		setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);

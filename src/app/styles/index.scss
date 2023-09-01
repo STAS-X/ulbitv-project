@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 @import 'themes/normal';
 @import 'themes/dark';
 @import 'themes/orange';
@@ -5,7 +6,7 @@
 @import 'variables/global';
 
 *::-webkit-scrollbar {
-	width: 20px; /* ширина scrollbar */
+	width: 10px; /* ширина scrollbar */
 	height: 10px; /* высота scrollbar */
 }
 
@@ -17,6 +18,11 @@
 *::-webkit-scrollbar-thumb {
 	border-radius: 10px; /* закругления плашки */
 	border: 5px solid transparent; /* padding вокруг плашки */
+}
+
+*::-webkit-scrollbar-thumb:horizontal {
+	background: none; /* убираем заполнение горизонтального скролла */
+	border: none; /* убираем границы горизонтального скролла */
 }
 
 .app,
@@ -37,26 +43,27 @@
 	}
 
 	*::-webkit-scrollbar-thumb {
-		background:
-			linear-gradient(
-				to top,
-				var(--primary-color) 0%,
-				var(--primary-color) 1.7%,
-				transparent 1.7%,
-				transparent 98.3%,
-				var(--primary-color) 98.3%,
-				var(--primary-color) 100%
-			),
-			linear-gradient(
-				to left,
-				var(--primary-color) 0%,
-				var(--primary-color) 15%,
-				var(--bg-color) 15%,
-				var(--bg-color) 80%,
-				var(--primary-color) 80%,
-				var(--primary-color) 100%
-			);
-		background-clip: content-box;
+		border: 2px solid var(--primary-color);
+
+		// background: linear-gradient(
+		// 		to top,
+		// 		var(--primary-color) 0%,
+		// 		var(--primary-color) 1.7%,
+		// 		transparent 1.7%,
+		// 		transparent 98.3%,
+		// 		var(--primary-color) 98.3%,
+		// 		var(--primary-color) 100%
+		// 	),
+		// 	linear-gradient(
+		// 		to left,
+		// 		var(--primary-color) 0%,
+		// 		var(--primary-color) 15%,
+		// 		var(--bg-color) 15%,
+		// 		var(--bg-color) 80%,
+		// 		var(--primary-color) 80%,
+		// 		var(--primary-color) 100%
+		// 	);
+		// background-clip: content-box;
 	}
 
 	*::-webkit-scrollbar-thumb:horizontal {
@@ -70,12 +77,14 @@
 .app_drawer_redesign {
 	font: var(--font-m-redesigned);
 	color: var(--text-redesigned);
+
 	// background: var(--bg-redesigned);
 	overflow: hidden;
 }
 
 .app_redesign {
 	min-height: 100vh;
+	min-width: 100vw;
 	background: var(--bg-redesigned);
 	transition: background-color 0.3s;
 
@@ -84,26 +93,27 @@
 	}
 
 	*::-webkit-scrollbar-thumb {
-		background:
-			linear-gradient(
-				to top,
-				var(--accent-redesigned) 0%,
-				var(--accent-redesigned) 1.7%,
-				transparent 1.7%,
-				transparent 98.3%,
-				var(--accent-redesigned) 98.3%,
-				var(--accent-redesigned) 100%
-			),
-			linear-gradient(
-				to left,
-				var(--accent-redesigned) 0%,
-				var(--accent-redesigned) 15%,
-				var(--light-bg-redesigned) 15%,
-				var(--bg-redesigned) 80%,
-				var(--accent-redesigned) 80%,
-				var(--accent-redesigned) 100%
-			);
-		background-clip: content-box;
+		border: 2px solid var(--accent-redesigned);
+
+		// background: linear-gradient(
+		// 		to top,
+		// 		var(--accent-redesigned) 0%,
+		// 		var(--accent-redesigned) 1.7%,
+		// 		transparent 1.7%,
+		// 		transparent 98.3%,
+		// 		var(--accent-redesigned) 98.3%,
+		// 		var(--accent-redesigned) 100%
+		// 	),
+		// 	linear-gradient(
+		// 		to left,
+		// 		var(--accent-redesigned) 0%,
+		// 		var(--accent-redesigned) 15%,
+		// 		var(--light-bg-redesigned) 15%,
+		// 		var(--bg-redesigned) 80%,
+		// 		var(--accent-redesigned) 80%,
+		// 		var(--accent-redesigned) 100%
+		// 	);
+		// background-clip: content-box;
 	}
 
 	*::-webkit-scrollbar-thumb:horizontal {
@@ -147,16 +157,16 @@
 	}
 }
 
-main {
-	display: flex;
+main,
+section {
+	// display: flex;
 	width: 100vw;
-	overflow: hidden;
-	overflow-y: auto;
 }
 
 .page-wrapper {
 	position: relative;
 	flex-grow: 1;
+	overflow: hidden;
 	padding: 30px 30px 0 60px;
 	margin-top: 0;
 	pointer-events: all;

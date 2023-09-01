@@ -4,21 +4,6 @@
 	border: 2px solid var(--accent-redesigned);
 }
 
-.starIcon {
-	& path {
-		fill: none;
-		stroke-width: 1px;
-		stroke: var(--accent-redesigned);
-	}
-
-	&:hover:not(.isSelected) {
-		animation: onratingstar 0.3s ease-in-out;
-		path {
-			stroke: var(--text-redesigned);
-		}
-	}
-}
-
 .isSelected {
 	& path {
 		fill: var(--accent-redesigned);
@@ -33,12 +18,28 @@
 .hasRating {
 	cursor: grabbing;
 	animation: oncancelratingstar 0.3s ease-in-out;
-	path {
-			fill: none;
-			stroke-width: 2px;
-			stroke: red;
-		}
 
+	path {
+		fill: none;
+		stroke-width: 2px;
+		stroke: red;
+	}
+}
+
+.starIcon {
+	& path {
+		fill: none;
+		stroke-width: 1px;
+		stroke: var(--accent-redesigned);
+	}
+
+	&:hover:not(.isSelected) {
+		animation: onratingstar 0.3s ease-in-out;
+
+		path {
+			stroke: var(--text-redesigned);
+		}
+	}
 }
 
 @keyframes onratingstar {

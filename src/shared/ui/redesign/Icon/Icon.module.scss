@@ -3,14 +3,16 @@
 	pointer-events: none;
 }
 
-.standart, .button {
+.standart,
+.navlink,
+.scroll,
+.button {
 	fill: var(--icon-redesigned);
 	stroke: none; // var(--icon-redesigned);
 }
 
-.navlink {
-	fill: var(--icon-redesigned);
-	stroke: none;
+.scroll {
+	opacity: 0.7;
 }
 
 .none {
@@ -44,6 +46,7 @@
 		.icon {
 			color: var(--accent-redesigned);
 		}
+
 		opacity: 1;
 	}
 }
@@ -52,10 +55,14 @@
 	margin: 0;
 	padding: 0;
 	border: none;
-
-	// outline: 0;
+	outline: 0;
 	width: fit-content;
 	height: fit-content;
 	background: none;
 	cursor: pointer;
+}
+
+button[disabled] {
+	opacity: 0.2;
+	cursor: not-allowed;
 }

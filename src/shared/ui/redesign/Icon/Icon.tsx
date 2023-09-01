@@ -2,7 +2,7 @@ import { FC, memo, SVGProps } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Icon.module.scss';
 
-export type IconVariant = 'standart' | 'none' | 'button' | 'alert' | 'navlink';
+export type IconVariant = 'standart' | 'none' | 'button' | 'alert' | 'navlink' | 'scroll';
 
 type SvgProps = Omit<SVGProps<SVGSVGElement>, 'onClick' | 'ref'>;
 
@@ -10,6 +10,7 @@ interface IconBaseProps extends SvgProps {
 	className?: string;
 	Svg: FC<SVGProps<SVGSVGElement>>;
 	variant?: IconVariant;
+	disabled?: boolean;
 	dataTestId?: string;
 }
 
@@ -35,6 +36,7 @@ export const Icon: FC<IconProps> = memo((props: IconProps) => {
 		width = 32,
 		height = 32,
 		clickable,
+		disabled = false,
 		dataTestId = '',
 		onMouseEnter,
 		...others
@@ -57,6 +59,7 @@ export const Icon: FC<IconProps> = memo((props: IconProps) => {
 				className={classNames(variant === 'button' ? classes.togglebutton : classes.nonebutton, {}, [
 					className
 				])}
+				disabled={disabled}
 				onMouseEnter={(e: any) => onMouseEnter?.(e)}
 				onClick={props.onClick}
 			>

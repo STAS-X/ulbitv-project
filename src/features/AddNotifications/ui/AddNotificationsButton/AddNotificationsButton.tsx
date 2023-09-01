@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Icon, IconTheme } from '@/shared/ui/deprecated/Icon/Icon';
 import { Icon as IconRedesign } from '@/shared/ui/redesign/Icon/Icon';
@@ -24,6 +24,7 @@ interface AddNotificationsButtonProps {
 export const AddNotificationsButtonComponent: FC<AddNotificationsButtonProps> = memo(
 	(props: AddNotificationsButtonProps) => {
 		const { className } = props;
+		const [popoverIsOpen, setPopoverIsOpen] = useState<boolean>(false);
 		const {
 			notes: notificationItems,
 			isLoading: notificationIsLoading,
@@ -44,6 +45,11 @@ export const AddNotificationsButtonComponent: FC<AddNotificationsButtonProps> = 
 			animationDelay: isMobile ? 350 : 300
 		});
 
+		const handleClose = useCallback(() => {
+			if (closeHandler) closeHandler();
+			setPopoverIsOpen(false);
+		}, [closeHandler, setPopoverIsOpen]);
+
 		console.log(hasNewNotes, 'новые уведомления');
 
 		const triggerButton = isRedesigned ? (
@@ -53,7 +59,7 @@ export const AddNotificationsButtonComponent: FC<AddNotificationsButtonProps> = 
 					width={32}
 					height={32}
 					clickable
-					onClick={() => console.log('popover is open')}
+					onClick={() => setPopoverIsOpen((prev) => !prev)}
 				/>
 				<TextRedesign
 					className={classNames(classes.notifications, {}, [classes.notifyredesign])}
@@ -65,7 +71,7 @@ export const AddNotificationsButtonComponent: FC<AddNotificationsButtonProps> = 
 				/>
 			</>
 		) : (
-			<div onClick={closeHandler}>
+			<div onClick={handleClose}>
 				<Icon Svg={NotificationIcon} theme={IconTheme.INVERTED} />
 				<Text
 					className={classes.notifications}
@@ -81,20 +87,20 @@ export const AddNotificationsButtonComponent: FC<AddNotificationsButtonProps> = 
 			<>
 				<div className={classes.trigger}>{triggerButton}</div>
 				isRedesigned ? (
-				<DrawerRedesign onClose={closeHandler} isOpen={isOpen}>
+				<DrawerRedesign onClose={handleClose} isOpen={isOpen}>
 					<NotificationList
 						items={notificationItems}
 						isLoading={notificationIsLoading}
-						onClick={() => setTimeout(() => closeHandler(), 100)}
+						onClick={() => setTimeout(() => handleClose(), 100)}
 						size={{ minWidth: '100%', maxHeight: 420 }}
 					/>
 				</DrawerRedesign>
 				) : (
-				<Drawer onClose={closeHandler} isOpen={isOpen}>
+				<Drawer onClose={handleClose} isOpen={isOpen}>
 					<NotificationList
 						items={notificationItems}
 						isLoading={notificationIsLoading}
-						onClick={() => setTimeout(() => closeHandler(), 100)}
+						onClick={() => setTimeout(() => handleClose(), 100)}
 						size={{ minWidth: '100%', maxHeight: 420 }}
 					/>
 				</Drawer>
@@ -103,8 +109,9 @@ export const AddNotificationsButtonComponent: FC<AddNotificationsButtonProps> = 
 		) : isRedesigned ? (
 			<PopOverRedesign
 				className={classNames('', {}, [className])}
-				onClose={closeHandler}
+				onClose={handleClose}
 				items={notificationItems}
+				isOpened={popoverIsOpen}
 				size={{ minWidth: notificationIsError && !notificationIsLoading ? 'max-content' : 320, maxHeight: 420 }}
 				isLoading={notificationIsLoading}
 				trigger={triggerButton}

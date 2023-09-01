@@ -2,10 +2,11 @@ import { ThemeContext, ThemeContextProps } from '@/shared/lib/context/ThemeConte
 import { Theme } from '@/shared/const/theme';
 import React, { FC, useMemo, useState, ReactNode, useEffect } from 'react';
 //import { USER_LS_KEY } from '@/shared/const/localstorage';
-import { getUserId, useSettingsByKey, getJSONSettingByKey } from '@/entities/User';
+import { getUserId, getJSONSettingByKey } from '@/entities/User';
 import { useAppDispatch } from '../../StoreProvider';
 import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
 import { useSelector } from 'react-redux';
+import { useGetDefaultTheme } from '@/shared/lib/hooks/useTheme';
 
 // const defaultTheme =
 // 	(JSON.parse(localStorage.getItem(USER_LS_KEY) ?? '{}')?.jsonSettings?.theme as Theme) || Theme.LIGHT;
@@ -19,7 +20,7 @@ const ThemeProvider: FC<ThemeProviderProps> = (props: ThemeProviderProps) => {
 	const { children, toTheme } = props;
 	//const userTheme = useSettingsByKey('theme') as Theme;
 	const userId = useSelector(getUserId);
-	const defaultTheme = (useSettingsByKey('theme') as Theme) || Theme.LIGHT;
+	const defaultTheme = useGetDefaultTheme();
 
 	const dispatch = useAppDispatch();
 

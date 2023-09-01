@@ -36,6 +36,7 @@
 
 	&:not([disabled]):hover {
 		border: 1px solid var(--accent-redesigned);
+
 		& > svg.arrowicon > path {
 			fill: var(--icon-redesigned);
 			stroke: var(--icon-redesigned);

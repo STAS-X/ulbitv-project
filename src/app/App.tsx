@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Navbar } from '@/widgets/Navbar';
-import { FC, memo, Suspense, useEffect } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 import { AppRouter } from './providers/router';
 import { Sidebar } from '@/widgets/Sidebar';
 import { getUserId, getUserStatus, initAuthData } from '@/entities/User';
@@ -9,7 +9,8 @@ import { useSelector } from 'react-redux';
 import { useTheme } from '@/shared/lib/hooks/useTheme';
 import { PageLoader } from '@/widgets/PageLoader';
 import { ToggleFeatures } from '../shared/lib/features/ToggleFeatures';
-import { MainLayout } from '@/shared/layout';
+import { ApplicationFallBackLayout, MainLayout } from '@/shared/layout';
+import { ScrollToTop } from '@/widgets/ScrollToTop';
 
 interface AppComponentProps {
 	className?: string;
@@ -18,31 +19,32 @@ interface AppComponentProps {
 
 const AppComponent: FC<AppComponentProps> = memo((props: AppComponentProps) => {
 	const { className = 'app', isInited = false } = props;
+
 	const { theme } = useTheme();
+	const [inited, setInited] = useState(isInited);
+
+	useEffect(() => setInited(isInited), [isInited]);
 
 	return (
 		<div className={classNames(className, {}, [theme])}>
-			<Suspense fallback={<PageLoader />}>
-				{className === 'app' && (
-					<main>
-						<Navbar />
-						<Sidebar />
-						<div className="content-page">{isInited && <AppRouter />}</div>
-					</main>
-				)}
-				{className !== 'app' && (
-					<MainLayout
-						header={<Navbar />}
-						content={<div className="content-page-redesign">{isInited && <AppRouter />}</div>}
-						sidebar={<Sidebar />}
-						toolbar={
-							<aside>
-								<span>test toolbar visual</span>
-							</aside>
-						}
-					/>
-				)}
-			</Suspense>
+			{!inited && (
+				<ToggleFeatures feature={'isAppRedesigned'} on={<ApplicationFallBackLayout />} off={<PageLoader />} />
+			)}
+			{className === 'app' && inited && (
+				<main>
+					<Navbar />
+					<Sidebar />
+					<div className="content-page">{inited && <AppRouter />}</div>
+				</main>
+			)}
+			{className !== 'app' && inited && (
+				<MainLayout
+					header={<Navbar />}
+					content={<div className="content-page-redesign">{inited && <AppRouter />}</div>}
+					sidebar={<Sidebar />}
+					toolbar={<ScrollToTop />}
+				/>
+			)}
 		</div>
 	);
 });
@@ -55,7 +57,7 @@ const App = () => {
 
 	useEffect(() => {
 		const initUser = async () => await dispatch(initAuthData());
-		if (!userId) void initUser();
+		if (!userId) setTimeout(() => void initUser(), 1000);
 	}, [dispatch, userId]);
 
 	//console.log(isRouterLoaded, 'isInited value is');
@@ -63,8 +65,8 @@ const App = () => {
 	return (
 		<ToggleFeatures
 			feature={'isAppRedesigned'}
-			off={<AppComponent isInited={isRouterLoaded} />}
 			on={<AppComponent isInited={isRouterLoaded} className={'app_redesign'} />}
+			off={<AppComponent isInited={isRouterLoaded} className={'app'} />}
 		/>
 	);
 };

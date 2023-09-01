@@ -4,8 +4,6 @@ import { useTheme } from '@/shared/lib/hooks/useTheme';
 import { Portal } from '../Portal/Portal';
 import classes from './Modal.module.scss';
 import { Overlay } from '../Overlay/Overlay';
-// eslint-disable-next-line stas-eslint-plugin/layer-imports
-import { useFeaturesByKey } from '@/entities/User';
 
 export interface ModalProps {
 	className?: string;

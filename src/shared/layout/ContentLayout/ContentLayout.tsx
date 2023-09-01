@@ -1,4 +1,4 @@
-import { FC, memo, ReactElement } from 'react';
+import {memo, ReactElement } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './ContentLayout.module.scss';
 
