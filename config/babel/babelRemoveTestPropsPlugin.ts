@@ -1,6 +1,6 @@
 import { PluginItem } from '@babel/core';
 
-export const removeProps = ['data-testid'];
+export const removeProps = ['data-testID'];
 
 export default function (): PluginItem {
 	return {

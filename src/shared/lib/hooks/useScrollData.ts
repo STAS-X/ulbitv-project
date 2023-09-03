@@ -17,7 +17,7 @@ export const useScrollData = (): UseScrollData => {
 	const scrollElement = useRef<HTMLElement | null>(null);
 
 	const { pathname } = useLocation();
-	console.log('scroll data hook');
+
 	const scrollDetecting = useCallback(
 		(e: Event) => {
 			if (e.currentTarget && isNextScroll) {
@@ -37,14 +37,12 @@ export const useScrollData = (): UseScrollData => {
 	}, [isNextScroll, isScrolling, isNeedRerended]);
 
 	useEffect(() => {
-		console.log(isNeedRerended, isRecheck, `check and rerender`);
 		if (!isNeedRerended) {
 			setTimeout(() => setIsRecheck(!isRecheck), 500);
 		}
 	}, [isNeedRerended, isRecheck]);
 
 	useEffect(() => {
-		console.log(pathname, scrollElement.current, hasScroll, `check pathname`);
 		if (pathname.includes(getRouteArticles())) {
 			setHasScroll(true);
 			if (pathname.includes(getRouteArticles() + '/')) {

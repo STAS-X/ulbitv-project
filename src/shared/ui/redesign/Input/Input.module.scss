@@ -23,6 +23,7 @@
 .inputwrapper {
 	position: relative;
 	width: 100%;
+	color: var(--text-redesigned);
 
 	&:has(input:focus) .searchicon {
 		fill: var(--accent-redesigned);
