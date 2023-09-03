@@ -56,9 +56,7 @@ export const Icon: FC<IconProps> = memo((props: IconProps) => {
 		return (
 			<button
 				type={'button'}
-				className={classNames(variant === 'button' ? classes.togglebutton : classes.nonebutton, {}, [
-					className
-				])}
+				className={classNames(variant === 'button' ? classes.togglebutton : classes.nonebutton)}
 				disabled={disabled}
 				onMouseEnter={(e: any) => onMouseEnter?.(e)}
 				onClick={props.onClick}

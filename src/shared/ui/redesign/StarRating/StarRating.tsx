@@ -26,7 +26,18 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
 	const stars = Array.from({ length: count }, (_, i) => i);
 
 	const isSelected = useCallback(
-		(starIndex: number) => Boolean(starIndex <= currentStar || (starIndex <= currentRating && currentStar === 0)),
+		(starIndex: number) =>
+			Boolean(starIndex <= (currentStar === 0 ? currentRating : currentStar) && currentRating != currentStar),
+		[currentStar, currentRating]
+	);
+
+	const hasAnimation = useCallback(
+		(starIndex: number) =>
+			Boolean(
+				starIndex <= (currentStar === 0 ? currentRating : currentStar) &&
+					currentRating != currentStar &&
+					currentStar !== 0
+			),
 		[currentStar, currentRating]
 	);
 
@@ -77,15 +88,12 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
 						<Icon
 							dataTestId={`${dataTestId}.${index + 1}`}
 							key={index}
-							variant={'none'}
-							className={classNames(
-								classes.starIcon,
-								{
-									[classes.isSelected]: isSelected(index + 1),
-									[classes.hasRating]: hasRating(index + 1)
-								},
-								[]
-							)}
+							variant={'standart'}
+							className={classNames(classes.starIcon, {
+								[classes.isSelected]: isSelected(index + 1),
+								[classes.hasRating]: hasRating(index + 1),
+								[classes.hasAnimation]: hasAnimation(index+1)
+							})}
 							Svg={StarIcon}
 							width={size}
 							height={size}

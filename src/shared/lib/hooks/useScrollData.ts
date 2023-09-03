@@ -9,31 +9,38 @@ interface UseScrollData {
 }
 
 export const useScrollData = (): UseScrollData => {
-
 	const [isScrolling, setIsScrolling] = useState(false);
 	const [isRecheck, setIsRecheck] = useState(false);
 	const [hasScroll, setHasScroll] = useState(false);
+	const [isNeedRerended, setIsNeedRerended] = useState(false);
 	const [isNextScroll, setIsNextScroll] = useState(true);
 	const scrollElement = useRef<HTMLElement | null>(null);
 
 	const { pathname } = useLocation();
 
-	const scrollDetecting = useCallback((e: Event) => {
-		if (e.currentTarget && isNextScroll) {
-			setIsScrolling(Boolean((e.currentTarget as HTMLElement).scrollTop > 0));
-		}
-	}, [isNextScroll]);
+	const scrollDetecting = useCallback(
+		(e: Event) => {
+			if (e.currentTarget && isNextScroll) {
+				setIsScrolling(Boolean((e.currentTarget as HTMLElement).scrollTop > 0));
+			}
+		},
+		[isNextScroll]
+	);
 
-	const handleScrollToTop = useCallback((element: HTMLElement | null) => () => {
-		console.log(element, isNextScroll, isScrolling, 'get function data')
-		if (element && isNextScroll && isScrolling) {
-			element.scrollTo({ top: 0, behavior: 'smooth' });
+	const handleScrollToTop = useCallback(() => {
+		if (scrollElement.current && isNextScroll && isScrolling && isNeedRerended) {
+			(scrollElement.current as HTMLElement).scrollTo({ top: 0, behavior: 'smooth' });
 			setIsScrolling(false);
 			setIsNextScroll(false);
 			setTimeout(() => setIsNextScroll(true), 1000);
 		}
-	}, [isNextScroll, isScrolling]);
+	}, [isNextScroll, isScrolling, isNeedRerended]);
 
+	useEffect(() => {
+		if (!isNeedRerended) {
+			setTimeout(() => setIsRecheck(!isRecheck), 500);
+		}
+	}, [isNeedRerended, isRecheck]);
 
 	useEffect(() => {
 		if (pathname.includes(getRouteArticles())) {
@@ -44,34 +51,27 @@ export const useScrollData = (): UseScrollData => {
 				}
 			} else {
 				scrollElement.current = document.querySelector('[data-testid="ArticleList"]>div>div');
-
 			}
 			if (scrollElement.current) {
-				(scrollElement.current).addEventListener('scroll', scrollDetecting);
-			} else {
-				console.log(scrollElement.current, 'scroll not found');
-				setTimeout(() => setIsRecheck((prev) => !prev), 500);
+				scrollElement.current.addEventListener('scroll', scrollDetecting);
+				setIsNeedRerended(true);
 			}
 		} else {
 			setHasScroll(false);
 		}
 
-		const scrollToElement = scrollElement.current;
-		console.log(scrollElement.current, 'scroll element detected');
-
 		return () => {
-			if (scrollToElement) scrollToElement.removeEventListener('scroll', scrollDetecting);
-			console.log('scroll unmount');
-		}
-
-	}, [pathname, isRecheck, isNextScroll, isScrolling, scrollElement, hasScroll, scrollDetecting]);
+			if (scrollElement.current) scrollElement.current.removeEventListener('scroll', scrollDetecting);
+			scrollElement.current = null;
+		};
+	}, [pathname, isRecheck, isNextScroll, isScrolling, hasScroll, scrollDetecting]);
 
 	const returnResult = useMemo(() => {
 		return {
 			isScrolling,
 			hasScroll,
-			onScrollToTop: scrollElement.current ? handleScrollToTop(scrollElement.current) : () => console.log('scroll element searching...')
-		}
+			onScrollToTop: handleScrollToTop
+		};
 	}, [isScrolling, hasScroll, handleScrollToTop]);
 
 	return returnResult;

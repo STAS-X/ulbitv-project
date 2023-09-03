@@ -1024,7 +1024,7 @@
     {
       "articleId": "10",
       "userId": "1",
-      "rating": 3,
+      "rating": 4,
       "feedback": "",
       "id": "II0a75O"
     },
@@ -1062,6 +1062,13 @@
       "rating": 3,
       "feedback": "Круто!",
       "id": "pOKs8Yd"
+    },
+    {
+      "articleId": "11",
+      "userId": "1",
+      "rating": 3,
+      "feedback": "",
+      "id": "TdmdLRE"
     }
   ]
 }

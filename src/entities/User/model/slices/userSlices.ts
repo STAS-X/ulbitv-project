@@ -3,7 +3,7 @@ import { initAuthData } from './../services/initAuthData';
 import { getJSONSettingByKey } from '../services/getJSONSettingByKey';
 import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
 import { saveJSONSettingsByUser } from '../services/saveJSONSettings';
-import { FEATURES_LS_KEY, USER_LS_KEY } from '@/shared/const/localstorage';
+import { LOCAL_STORAGE_THEME_KEY, USER_LS_KEY } from '@/shared/const/localstorage';
 import { UserData, UserSchema } from '../types/userSchema';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FeatureFlags, setInitFeatureFlags } from '@/shared/lib/features/featureFlag';
@@ -17,6 +17,7 @@ const userSlice = createSlice({
 		setAuthData: (state, action: PayloadAction<UserData>) => {
 			state.authData = action.payload;
 			setInitFeatureFlags(action.payload.features);
+			if (action.payload.jsonSettings?.theme) localStorage.setItem(LOCAL_STORAGE_THEME_KEY, action.payload.jsonSettings?.theme);
 		},
 		setFeaturesData: (state, action: PayloadAction<FeatureFlags>) => {
 			if (state.authData) {

@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { unstable_createResource } from 'react-cache';
+import { unstable_createResource } from './react-cache.mjs';
 
 export const ImageResource = unstable_createResource(
 	(src: string) =>

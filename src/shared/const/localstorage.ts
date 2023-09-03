@@ -5,6 +5,7 @@ export const AVATAR_REDESIGN = _DEV_MODE_ ? '/src/shared/assets/icons/avatar.svg
 
 export const USER_LS_KEY = 'user';
 export const FEATURES_LS_KEY = 'features';
+export const LOCAL_STORAGE_THEME_KEY = 'theme';
 export const NOTIFY_LS_KEY = 'notifications';
 export const PROFILE_KEY = 'profile';
 export const ARTICLE_VIEW = 'view';

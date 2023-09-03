@@ -3,13 +3,12 @@ import { useSettingsByKey } from '@/entities/User';
 import { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
 import { Theme } from '../../const/theme';
+import { LOCAL_STORAGE_THEME_KEY } from '../../const/localstorage';
 
 interface UseThemeResult {
 	toggleTheme: (saveAction: (theme: Theme) => void) => void;
 	theme: Theme;
 }
-
-export const LOCAL_STORAGE_THEME_KEY = 'theme';
 
 export const useGetDefaultTheme = (): Theme => {
 	const themeValue = useSettingsByKey('theme') as Theme;
@@ -18,14 +17,12 @@ export const useGetDefaultTheme = (): Theme => {
 	const themeFlag = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) ?? '';
 	//console.log(themeFlag, typeof themeFlag, JSON.stringify(Theme).indexOf(themeFlag+'112212'), 'theme flag type');
 	if (themeFlag && JSON.stringify(Theme).indexOf(themeFlag) > -1) {
-
 		//console.log(JSON.parse(featureFlags)[flag], 'get flags data');
 		console.log(themeFlag, 'get themeFlag');
 		return themeFlag as Theme;
 	}
 	return Theme.LIGHT;
 };
-
 
 export function useTheme(): UseThemeResult {
 	const { theme, setTheme } = useContext(ThemeContext);
@@ -46,7 +43,7 @@ export function useTheme(): UseThemeResult {
 			default:
 				newTheme = Theme.LIGHT;
 				break;
-		};
+		}
 
 		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
 		setTheme?.(newTheme);

@@ -7,8 +7,7 @@ import {
 	ReactElement,
 	isValidElement,
 	cloneElement,
-	useEffect,
-	useState
+	useEffect
 } from 'react';
 import { Popover } from '@headlessui/react';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -94,8 +93,7 @@ export const PopOver: FC<PopOverProps> = memo((props: PopOverProps) => {
 													{
 														[classes.disabled]: item.disabled || false,
 														[classes.selected]: !isLoading
-													},
-													[]
+													}
 												)
 										  })
 										: item.content;
