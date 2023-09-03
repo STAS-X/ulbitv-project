@@ -1,6 +1,7 @@
 .loginform {
 	display: flex;
 	flex-direction: column;
+	background: var(--inverted-bg-color);
 	min-width: 350px;
 }
 
