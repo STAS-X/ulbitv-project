@@ -34,8 +34,8 @@
 		"screen:ui": "npx storycap http://localhost:6006 -o \"_storycap_srceenshots_\"",
 		"storybook": "sb dev -p 6006 -c ./config/storybook",
 		"build:storybook": "sb build -c ./config/storybook",
-		// "prepare": "husky install",
-		// "postinstall": "patch-package && node scripts/clearCache ./node_modules/.cache",
+		"//prepare": "husky install",
+		"//postinstall": "patch-package && node scripts/clearCache ./node_modules/.cache",
 		"remove-feature": "ts-node scripts/remove-feature.ts isFeatureRating off"
 	},
 	"lint-stage": {

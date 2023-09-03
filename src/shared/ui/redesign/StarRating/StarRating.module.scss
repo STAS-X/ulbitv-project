@@ -8,8 +8,7 @@
 	& path {
 		fill: var(--accent-redesigned);
 		cursor: pointer;
-	}	
-
+	}
 }
 
 .hasAnimation {
@@ -25,13 +24,12 @@
 		stroke-width: 2px;
 		stroke: red;
 	}
-
 }
 
 .starIcon {
-		fill: none;
-		stroke-width: 1px;
-		stroke: var(--accent-redesigned);
+	fill: none;
+	stroke-width: 1px;
+	stroke: var(--accent-redesigned);
 }
 
 @keyframes onratingstar {
