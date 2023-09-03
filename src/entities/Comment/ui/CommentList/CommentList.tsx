@@ -9,7 +9,7 @@ import { CommentSchema } from '../../model/types/commentSchema';
 import { CommentCard } from '../CommentCard/CommentCard';
 import classes from './CommentList.module.scss';
 import { HStack, VStack } from '@/shared/ui/redesign/Stack';
-import { toggleFeatures } from '../../../../shared/lib/features/ToggleFeatures';
+import { toggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
 export interface CommentListProps {
 	className?: string;

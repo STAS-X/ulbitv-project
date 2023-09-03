@@ -911,7 +911,7 @@
         "theme": "orange_theme"
       },
       "features": {
-        "isAppRedesigned": false,
+        "isAppRedesigned": true,
         "isFeatureRecommendation": true,
         "isFeatureRating": true,
         "isFeatureCounter": true
