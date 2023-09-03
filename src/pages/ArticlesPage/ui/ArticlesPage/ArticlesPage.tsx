@@ -42,7 +42,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 
 	//console.log(isFirstVisit, typeof isFirstVisit, 'get FirstVisit param');
 	//const isRedesign = className === classes.articlepageredesign;
-	//const isFirstVisit = dispatch(getJSONSettingByKey('isFirstVisit')).then((res)=> console.log(res, 'PROMISE'));
+	//const isFirstVisit = dispatch(getJSONSettingByKey('isFirstVisit')).then((res: any) => console.log(res, 'PROMISE'));
 	//console.log(isFirstVisit, 'get first visit data');
 
 	const removeFirstVisit = async () => {

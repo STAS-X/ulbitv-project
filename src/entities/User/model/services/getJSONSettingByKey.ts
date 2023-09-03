@@ -2,6 +2,7 @@ import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
 import { getUserId } from '../selectors/getUser/getUser';
 import { getJSONSettingQuery } from '../../api/userApi';
+import { useSettingsByUser } from '../selectors/getSettings/getJSONSettings';
 
 // First, create the thunk
 export const getJSONSettingByKey = createAppAsyncThunk<Partial<JSONSettings>, keyof JSONSettings>(
@@ -10,6 +11,7 @@ export const getJSONSettingByKey = createAppAsyncThunk<Partial<JSONSettings>, ke
 		const { extra, getState, dispatch, rejectWithValue } = thunkApi;
 
 		const userId = getUserId(getState());
+		const currentSettings = useSettingsByUser();
 
 		if (!userId) return rejectWithValue('userNotFound');
 
@@ -25,7 +27,7 @@ export const getJSONSettingByKey = createAppAsyncThunk<Partial<JSONSettings>, ke
 			}
 			//throw new Error('network error occured');
 
-			return { [key]: response.jsonSettings[key] } as Partial<JSONSettings>;
+			return { ...currentSettings, [key]: response.jsonSettings[key] } as Partial<JSONSettings>;
 		} catch (e: ThunkError) {
 			if (e.response?.status === 404) return rejectWithValue('settingNotFound');
 			//if (!e.response || !e.message) throw e;

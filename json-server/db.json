@@ -933,7 +933,7 @@
       "features": {
         "isFeatureRecommendation": false,
         "isFeatureRating": false,
-        "isFeatureCounter": true
+        "isFeatureCounter": false
       },
       "avatar": "https://bipbap.ru/wp-content/uploads/2021/07/unikal-nye-kartinki-na-avu-vk-i-odnoklassniki-samye-krasivye-2.jpg"
     },

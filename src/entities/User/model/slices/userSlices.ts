@@ -1,4 +1,3 @@
-
 import { initAuthData } from './../services/initAuthData';
 import { getJSONSettingByKey } from '../services/getJSONSettingByKey';
 import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
@@ -17,11 +16,12 @@ const userSlice = createSlice({
 		setAuthData: (state, action: PayloadAction<UserData>) => {
 			state.authData = action.payload;
 			setInitFeatureFlags(action.payload.features);
-			if (action.payload.jsonSettings?.theme) localStorage.setItem(LOCAL_STORAGE_THEME_KEY, action.payload.jsonSettings?.theme);
+			if (action.payload.jsonSettings?.theme)
+				localStorage.setItem(LOCAL_STORAGE_THEME_KEY, action.payload.jsonSettings?.theme);
 		},
 		setFeaturesData: (state, action: PayloadAction<FeatureFlags>) => {
 			if (state.authData) {
-				state.authData.features = { ...state.authData.features, ...action.payload};
+				state.authData.features = { ...state.authData.features, ...action.payload };
 				setInitFeatureFlags(action.payload);
 			}
 		},
@@ -49,7 +49,7 @@ const userSlice = createSlice({
 		builder.addCase(getJSONSettingByKey.fulfilled, (state, { payload }: PayloadAction<Partial<JSONSettings>>) => {
 			if (state.authData) state.authData.jsonSettings = { /*...state.authData.jsonSettings,*/ ...payload };
 		});
-		
+
 		builder.addCase(initAuthData.fulfilled, (state, { payload }: PayloadAction<UserData>) => {
 			if (payload) {
 				localStorage.setItem(USER_LS_KEY, JSON.stringify(payload));
