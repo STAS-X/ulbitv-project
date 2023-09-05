@@ -23,13 +23,15 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
 
 	//@ts-ignore
 	const additionalModalClass = toggleFeatures({
-		feature: 'isAppredesigned',
+		feature: 'isAppRedesigned',
 		on: 'app_modal_redesign',
-		off: `app_modal`
+		off: 'app_modal'
 	});
+	console.log(additionalModalClass, 'additionalClass');
+
 	//@ts-ignore
 	const additionalContentClass = toggleFeatures({
-		feature: 'isAppredesigned',
+		feature: 'isAppRedesigned',
 		on: classes.content,
 		off: `${classes.content} ${classes.contentold}`
 	});

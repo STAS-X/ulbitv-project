@@ -8,6 +8,9 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 export default {
 	title: 'entities/Rating/FeedBackForm',
 	component: FeedBackForm,
+	args: {
+		onSuccess: () => new Promise((resolve) => resolve(console.log('i am opened')))
+	},
 	argTypes: {
 		backgroundColor: { control: 'color' }
 	}
@@ -16,36 +19,19 @@ export default {
 const Template: StoryFn<typeof FeedBackForm> = (args: FeedBackFormProps) => <FeedBackForm {...args} />;
 
 export const FeedBackFormPrimary = Template.bind({});
-FeedBackFormPrimary.args = {
-	onSuccess: () => {
-		console.log('i am opened');
-	}
-};
 
 export const FeedBackFormWithError = Template.bind({});
-FeedBackFormWithError.args = {
-	onSuccess: () => {
-		console.log('i am opened');
-	}
-};
+
 FeedBackFormWithError.decorators = [
 	StoreDecorator({ loginForm: { username: '', password: '', isLoading: false, error: 'Ошибка получения данных' } })
 ];
 
 export const FeedBackFormLoading = Template.bind({});
-FeedBackFormLoading.args = {
-	onSuccess: () => {
-		console.log('i am opened');
-	}
-};
+
 FeedBackFormLoading.decorators = [
 	StoreDecorator({ loginForm: { username: '', password: '', error: '', isLoading: true } })
 ];
 
 export const FeedBackFormDark = Template.bind({});
-FeedBackFormDark.args = {
-	onSuccess: () => {
-		console.log('i am opened');
-	}
-};
+
 FeedBackFormDark.decorators = [ThemeDecorator(Theme.DARK)];

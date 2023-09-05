@@ -44,7 +44,8 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 	}, [readonly, isLoading, error]);
 
 	const loadingContent = (
-		<VStack className={classes.loading} align={'center'} justify={'center'} gap={48} max>
+		<VStack className={classes.loading} align={'center'} justify={'center'}
+gap={48} max>
 			<Skeleton width={100} height={100} border={'50%'} />
 			<HStack gap={24} max>
 				<VStack gap={32} max>
@@ -72,7 +73,8 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 			max
 		>
 			<HStack max>
-				<VStack className={classNames('')} align={'center'} justify={'center'} max>
+				<VStack className={classNames('')} align={'center'} justify={'center'}
+max>
 					{error ? (
 						<Text
 							title={t('errorTitle', { ns: 'errors' })}
@@ -83,7 +85,8 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 					) : isLoading ? (
 						loadingContent
 					) : (
-						<VStack data-testid={'ProfileForm'} className={classes.profilecard} gap={48} max>
+						<VStack data-testid={'ProfileForm'} className={classes.profilecard} gap={48}
+max>
 							{data?.avatar && (
 								<HStack justify={'center'} max>
 									<Avatar className={classes.avatar} size={100} src={data?.avatar} />

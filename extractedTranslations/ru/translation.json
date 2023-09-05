@@ -17,6 +17,10 @@
   "commentPlaceholder": "",
   "commentSubmit": "",
   "createArticle": "",
+  "designSwitch": {
+    "modern": "",
+    "old": ""
+  },
   "edit": "",
   "editArticle": "",
   "editArticleId": "",

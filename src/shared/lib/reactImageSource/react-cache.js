@@ -8,8 +8,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use strict';
-
 //Object.defineProperty(exports, '__esModule', { value: true });
 
 import React from 'react';
@@ -373,3 +371,5 @@ export function unstable_createResource(fetch, maybeHashInput) {
 export function unstable_setGlobalCacheLimit(limit) {
 	lru.setLimit(limit);
 }
+
+//module.exports = { unstable_createResource, unstable_setGlobalCacheLimit };

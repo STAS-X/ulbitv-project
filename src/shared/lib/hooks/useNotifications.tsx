@@ -33,14 +33,15 @@ export const useNotifications = (): NotificationListSchema => {
 	const notificationItems = useMemo<NotificationItemSchema[]>(() => {
 		if (notificationIsLoading) {
 			return Array.from({ length: 3 }, (_, i) => {
-				return { content: <Skeleton key={i} width={'100%'} height={100} border={30} /> };
+				return { content: <Skeleton key={i} width={'100%'} height={100}
+border={30} /> };
 			});
 		}
 
 		if (errorMessage) {
 			return [{ content: <Text size={TextSize.S} theme={TextTheme.ERROR} content={errorMessage} /> }];
 		}
-		setNotifyCount(notifications.length);
+		setNotifyCount(Boolean(errorMessage) ? 0 : notifications.length);
 		return notifications.map(({ title, description, href }) => {
 			return { content: <NotificationListItem title={title} description={description} />, href };
 		});
@@ -68,7 +69,7 @@ export const useNotifications = (): NotificationListSchema => {
 		isLoading: notificationIsLoading,
 		isError: Boolean(errorMessage),
 		hasNewNotes,
-		count: Boolean(errorMessage) ? 0 : notifyCount,
+		count: notifyCount,
 		cancelNotify: cancelAlertNotifications
 	};
 };

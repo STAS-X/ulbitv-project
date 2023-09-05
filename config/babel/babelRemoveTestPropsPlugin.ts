@@ -12,6 +12,7 @@ export default function (): PluginItem {
 						const nodeName = current.node.name;
 						if (forbidden.includes(nodeName)) {
 							current.parentPath.remove();
+
 						}
 					}
 				});

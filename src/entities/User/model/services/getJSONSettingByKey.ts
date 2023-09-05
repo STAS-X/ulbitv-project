@@ -2,7 +2,7 @@ import { JSONSettings } from '@/shared/lib/settings/jsonSettings';
 import { createAppAsyncThunk, getErrorMessage, ThunkError } from '@/shared/types/thunk/thunkAction';
 import { getUserId } from '../selectors/getUser/getUser';
 import { getJSONSettingQuery } from '../../api/userApi';
-import { useSettingsByUser } from '../selectors/getSettings/getJSONSettings';
+import { getSettingsByUser } from '../selectors/getSettings/getJSONSettings';
 
 // First, create the thunk
 export const getJSONSettingByKey = createAppAsyncThunk<Partial<JSONSettings>, keyof JSONSettings>(
@@ -11,7 +11,7 @@ export const getJSONSettingByKey = createAppAsyncThunk<Partial<JSONSettings>, ke
 		const { extra, getState, dispatch, rejectWithValue } = thunkApi;
 
 		const userId = getUserId(getState());
-		const currentSettings = useSettingsByUser();
+		const currentSettings = getSettingsByUser(getState());
 
 		if (!userId) return rejectWithValue('userNotFound');
 

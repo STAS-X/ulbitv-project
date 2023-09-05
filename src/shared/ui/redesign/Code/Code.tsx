@@ -28,7 +28,8 @@ export const Code: FC<CodeProps> = memo((props: CodeProps) => {
 
 	return (
 		<pre className={classNames(classes.code, {}, [className])}>
-			<Icon className={classes.copyBtn} Svg={CopyIcon} onClick={onCodeCopy} clickable />
+			<Icon className={classes.copyBtn} Svg={CopyIcon} onClick={onCodeCopy}
+clickable />
 			<code>{children}</code>
 		</pre>
 	);

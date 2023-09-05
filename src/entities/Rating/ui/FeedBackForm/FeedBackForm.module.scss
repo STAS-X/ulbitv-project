@@ -1,6 +1,13 @@
 .feedbackform {
 	display: flex;
 	flex-direction: column;
+	background: var(--bg-color);
+	border-radius: 16px;
+	padding: 24px;
+	min-width: 350px;
+}
+
+.feedbackformredesign {
 	min-width: 350px;
 }
 

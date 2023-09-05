@@ -60,13 +60,15 @@ const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
 		[dispatch]
 	);
 
-	const onLoginClick = useCallback(async () => {
-		const userData = await dispatch(loginByUsername({ username: login, password }));
-		if (userData.meta.requestStatus === 'fulfilled') {
-			//dispatch(loginActions.setEmpty());
-			console.log(`User '${login}' login`);
-			onSuccess();
-		}
+	const onLoginClick = useCallback(() => {
+		(async () => {
+			const userData = await dispatch(loginByUsername({ username: login, password }));
+			if (userData.meta.requestStatus === 'fulfilled') {
+				//dispatch(loginActions.setEmpty());
+				console.log(`User '${login}' login`);
+				onSuccess();
+			}
+		})();
 	}, [dispatch, onSuccess, login, password]);
 
 	const onEnterDown = useCallback(
@@ -106,7 +108,7 @@ const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
 			<ToggleFeatures
 				feature={'isAppRedesigned'}
 				on={
-					<Card variant={'light'} className={classNames(classes.loginformredesign, {}, [className])}>
+					<Card variant={'light'} paddings={24} className={classNames(classes.loginformredesign, {}, [className])}>
 						<VStack gap={10} max>
 							<TextRedesign title={t('authTitle')} />
 							{error && (
@@ -155,7 +157,8 @@ const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
 							onChange={onChangeUsername}
 							value={login}
 						/>
-						<Input type="text" className={classes.input} onChange={onChangePassword} value={password} />
+						<Input type="text" className={classes.input} onChange={onChangePassword}
+value={password} />
 						<Button
 							theme={ButtonTheme.OUTLINE}
 							className={classes.loginbtn}

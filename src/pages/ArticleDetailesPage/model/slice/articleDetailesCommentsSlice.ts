@@ -3,6 +3,7 @@ import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolki
 import { CommentSchema } from '@/entities/Comment';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { deleteArticleCommentById } from '../services/deleteArticleCommentById/deleteArticleCommentById';
 
 const articleCommentsAdapter = createEntityAdapter<CommentSchema>({
 	// Assume IDs are stored in a field other than `comment.id`
@@ -39,6 +40,14 @@ const articleDetailesCommentsSlice = createSlice({
 		});
 		builder.addCase(fetchCommentsByArticleId.rejected, (state, action) => {
 			state.isLoading = false;
+			state.error = action.payload || action.error?.message || 'Unknown error';
+		});
+		builder.addCase(deleteArticleCommentById.fulfilled, (state, action: PayloadAction<{ commentId: string }>) => {
+			articleCommentsAdapter.removeOne(state, action.payload.commentId);
+			console.log(action.payload, state.ids, 'get comment entities')
+			state.error = undefined;
+		});
+		builder.addCase(deleteArticleCommentById.rejected, (state, action) => {
 			state.error = action.payload || action.error?.message || 'Unknown error';
 		});
 	}

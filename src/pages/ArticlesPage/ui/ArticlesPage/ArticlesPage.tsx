@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, ReactNode } from 'react';
+import { FC, memo, useEffect, ReactNode, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -45,9 +45,12 @@ const ArticlesPage: FC<ArticlesPageProps> = memo((props: ArticlesPageProps) => {
 	//const isFirstVisit = dispatch(getJSONSettingByKey('isFirstVisit')).then((res: any) => console.log(res, 'PROMISE'));
 	//console.log(isFirstVisit, 'get first visit data');
 
-	const removeFirstVisit = async () => {
-		await dispatch(saveJSONSettingsByUser({ isFirstVisit: false }));
-	};
+	const removeFirstVisit = useCallback(() => {
+		(async () => {
+			await dispatch(saveJSONSettingsByUser({ isFirstVisit: false }));
+		})();
+	}, [dispatch]);
+
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	// useEffect(() => {
 	// 	setReloading(false);

@@ -53,7 +53,8 @@ const ThemeSwitcherComponent: FC<ThemeSwitchButtonProps> = memo((props: ThemeSwi
 		/>
 	) : (
 		<Button className={classNames('', {}, [className])} onClick={onToggleTheme} theme={ButtonTheme.OUTLINE}>
-			<Icon Svg={ThemeIcon} className={classes.icon} width={48} height={48} theme={IconTheme.INVERTED} />
+			<Icon Svg={ThemeIcon} className={classes.icon} width={48}
+height={48} theme={IconTheme.INVERTED} />
 		</Button>
 	);
 });

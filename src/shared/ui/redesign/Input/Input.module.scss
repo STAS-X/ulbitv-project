@@ -52,6 +52,11 @@
 .input {
 	padding-left: 8px;
 
+	&::placeholder {
+		opacity: 0.5;
+		color: var(--text-redesigned);
+	}
+
 	&.left {
 		padding-left: 32px;
 		padding-right: 8px;
@@ -78,14 +83,26 @@
 .s {
 	height: 24px;
 	font: var(--font-s-redesigned);
+
+	& input::placeholder {
+		font: var(--font-s-redesigned);
+	}
 }
 
 .m {
 	height: 32px;
 	font: var(--font-m-redesigned);
+
+	& input::placeholder {
+		font: var(--font-m-redesigned);
+	}
 }
 
 .l {
 	height: 40px;
 	font: var(--font-l-redesigned);
+
+	& input::placeholder {
+		font: var(--font-l-redesigned);
+	}
 }

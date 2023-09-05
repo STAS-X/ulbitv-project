@@ -2,6 +2,7 @@
 	"errorApp": "Error has occured: {{message}}",
 	"errorTitle": "Error data",
 	"articleNotFound": "Article '{{articleId}}' not found",
+	"commentNotFound": "Delete comment failed",
 	"profileNotFound": "UserProfile '{{userId}}' not found",
 	"articleIdNotFound": "Param articleId not found",
 	"commentError": "Error occured: {{message}}"

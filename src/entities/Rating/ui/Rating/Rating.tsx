@@ -19,14 +19,14 @@ import { toggleFeatures, ToggleFeatures } from '@/shared/lib/features/ToggleFeat
 
 export interface RatingProps {
 	className?: string;
-	onAccept: (stars: number, feedback: string) => void;
+	onAccept: (stars: number, feedback: string) => Promise<any>;
 	feedBackTitle: string;
 	hasFeedBack: boolean;
 	articleRating?: number;
 	articleFeedBack?: string;
 	error: string;
 	max?: boolean;
-	onCancel: (stars: number) => void;
+	onCancel: (stars: number) => Promise<any>;
 	title: string;
 }
 
@@ -61,23 +61,23 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 	const Drawer = toggleFeatures({ feature: 'isAppRedesigned', on: DrawerRedesign, off: DrawerDeprecated });
 
 	const handleSuccess = useCallback(
-		(feedback: string) => {
+		async (feedback: string) => {
 			onModalHandler();
-			onAccept(rating, feedback);
+			await onAccept(rating, feedback);
 		},
 		[onModalHandler, onAccept, rating]
 	);
 
-	const onCloseModal = useCallback(() => {
+	const onCloseModal = useCallback(async () => {
 		onModalHandler();
-		onCancel(rating);
+		await onCancel(rating);
 	}, [onModalHandler, rating, onCancel]);
 
-	const onSelectStarts = (stars: number) => {
+	const onSelectStarts = async (stars: number) => {
 		setRating(stars);
 		if (stars > 0) {
 			onModalHandler();
-		} else onAccept(0, '');
+		} else await onAccept(0, '');
 	};
 	// const onFeedBack = (feedback: string) => {
 	// 	setFeedBack(feedback);
@@ -88,7 +88,8 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 			<ToggleFeatures
 				feature={'isAppRedesigned'}
 				on={
-					<VStack dataTestId={'Article.Rating.Frame'} align={'center'} gap={8} max>
+					<VStack dataTestId={'Article.Rating.Frame'} align={'center'} gap={8}
+max>
 						<Text title={rating ? t('ratingTitle') : title} />
 						{error && <Text content={t('errorApp', { ns: 'errors', message: error })} variant={'error'} />}
 						<StarRating rating={rating} size={40} onSelect={onSelectStarts} />
@@ -102,7 +103,8 @@ export const Rating: FC<RatingProps> = memo((props: RatingProps) => {
 					</VStack>
 				}
 				off={
-					<VStack dataTestId={'Article.Rating.Frame'} align={'center'} gap={8} max>
+					<VStack dataTestId={'Article.Rating.Frame'} align={'center'} gap={8}
+max>
 						<TextDeprecated title={rating ? t('ratingTitle') : title} />
 						{error && (
 							<TextDeprecated

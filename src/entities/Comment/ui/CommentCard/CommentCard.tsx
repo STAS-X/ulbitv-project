@@ -12,31 +12,45 @@ import { HStack, VStack } from '@/shared/ui/redesign/Stack';
 import { getRouteProfile } from '@/shared/config/routeConfig';
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 import { Card } from '@/shared/ui/redesign/Card/Card';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
+import { Button as ButtonRedesign } from '@/shared/ui/redesign/Button/Button';
 
 export interface CommentCardProps {
 	className?: string;
 	children?: ReactNode;
+	onDelete?: () => void;
 	comment: CommentSchema;
 }
 
 export const CommentCard: FC<CommentCardProps> = memo((props: CommentCardProps) => {
-	const { className, comment } = props;
+	const { className, comment, onDelete } = props;
+
 	return (
 		<ToggleFeatures
 			feature={'isAppRedesigned'}
 			on={
-				<Card
-					dataTestId={'Article.CommentItem'}
-					paddings={16}
-					border={'standart'}
-					max
-				>
-					<AppLinkRedesign className={classes.linkredesign} to={getRouteProfile(`${comment.user.profileId}`)}>
-						<HStack gap={4}>
-							<AvatarRedesign src={comment.user.avatar} size={32} />
-							<TextRedesign className={classes.username} title={comment.user.username} />
-						</HStack>
-					</AppLinkRedesign>
+				<Card className={className} dataTestId={'Article.CommentItem'} paddings={16}
+border={'standart'} max>
+					<HStack justify="between" max>
+						<AppLinkRedesign
+							className={classes.linkredesign}
+							to={getRouteProfile(`${comment.user.profileId}`)}
+						>
+							<HStack gap={4}>
+								<AvatarRedesign src={comment.user.avatar} size={32} />
+								<TextRedesign className={classes.username} title={comment.user.username} />
+							</HStack>
+						</AppLinkRedesign>
+						{onDelete && (
+							<ButtonRedesign
+								className={classes.deletebtn}
+								variant="outline_red"
+								onClick={() => onDelete?.()}
+							>
+								{'X'}
+							</ButtonRedesign>
+						)}
+					</HStack>
 					<TextRedesign dataTestId={'Comment.Content'} content={comment.text} />
 				</Card>
 			}
@@ -47,12 +61,23 @@ export const CommentCard: FC<CommentCardProps> = memo((props: CommentCardProps) 
 					className={classNames(classes.commentcard, {}, [className])}
 					max
 				>
-					<AppLink to={getRouteProfile(`${comment.user.profileId}`)}>
-						<HStack gap={4}>
-							<Avatar src={comment.user.avatar} size={32} />
-							<Text className={classes.username} title={comment.user.username} />
-						</HStack>
-					</AppLink>
+					<HStack justify="between" max>
+						<AppLink to={getRouteProfile(`${comment.user.profileId}`)}>
+							<HStack gap={4}>
+								<Avatar src={comment.user.avatar} size={32} />
+								<Text className={classes.username} title={comment.user.username} />
+							</HStack>
+						</AppLink>
+						{onDelete && (
+							<Button
+								className={classes.deletebtn}
+								theme={ButtonTheme.OUTLINE_RED}
+								onClick={() => onDelete?.()}
+							>
+								{'X'}
+							</Button>
+						)}
+					</HStack>
 					<Text dataTestId={'Comment.Content'} content={comment.text} />
 				</VStack>
 			}

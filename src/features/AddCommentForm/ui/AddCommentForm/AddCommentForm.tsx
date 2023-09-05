@@ -48,7 +48,6 @@ const AddCommentForm: FC<AddCommentFormProps> = (props: AddCommentFormProps) => 
 	);
 
 	const handleSendComment = useCallback(() => {
-		console.log(content, 'get comment data');
 		if (content) {
 			if (onSendComment) onSendComment(content);
 		}

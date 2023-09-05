@@ -19,5 +19,9 @@
 	"adminMenu": "Админка",
 	"ratingTitle": "Спасибо за оценку!",
 	"feedbackSign": "Укажите отзыв",
-	"ratingPlaceholder": "Ваш отзыв:"
+	"ratingPlaceholder": "Ваш отзыв:",
+	"designSwitch": {
+		"old": "Перейти к старому UI",
+		"modern": "Перейти к новому UI"
+	}
 }

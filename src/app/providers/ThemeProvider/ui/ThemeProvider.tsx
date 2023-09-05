@@ -31,6 +31,7 @@ const ThemeProvider: FC<ThemeProviderProps> = (props: ThemeProviderProps) => {
 	useEffect(() => {
 		const loadThemeFromBackend = async () => {
 			await dispatch(getJSONSettingByKey('theme')).then((response) => {
+				console.log(response.payload, 'get theme response');
 				const { theme } = response.payload as Partial<JSONSettings>;
 				//console.log(payload, 'get new theme');
 				if (theme) setTheme(theme);

@@ -7,7 +7,7 @@ import { HStack } from '../../redesign/Stack';
 
 export interface StarRatingProps {
 	className?: string;
-	onSelect?: (rating: number) => void;
+	onSelect?: (rating: number) => Promise<any>;
 	size?: number;
 	count?: number;
 	rating?: number;
@@ -34,19 +34,21 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
 	);
 
 	const handleSetRating = useCallback(
-		(starIndex: number) => {
+		async (starIndex: number) => {
 			if (currentRating !== starIndex) {
-				setTimeout(() => {
-					setCurrentRating(starIndex);
-					setCurrentStar(0);
-					onSelect?.(starIndex);
-				}, 300);
+				await Promise.all([
+					setCurrentRating(starIndex),
+					setCurrentStar(0),
+					onSelect?.(starIndex),
+					new Promise((resolve) => setTimeout(resolve, 300))
+				]);
 			} else {
-				setTimeout(() => {
-					setCurrentRating(0);
-					setCurrentStar(0);
-					onSelect?.(0);
-				}, 300);
+				await Promise.all([
+					setCurrentRating(0),
+					setCurrentStar(0),
+					await onSelect?.(0),
+					new Promise((resolve) => setTimeout(resolve, 300))
+				]);
 			}
 		},
 		[setCurrentRating, currentRating, onSelect]
@@ -81,7 +83,8 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
 							width={size}
 							height={size}
 							onMouseEnter={() => handleInOutHover(index + 1)}
-							onClick={() => handleSetRating(index + 1)}
+							// eslint-disable-next-line @typescript-eslint/no-misused-promises
+							onClick={async () => await handleSetRating(index + 1)}
 						/>
 					);
 				})}

@@ -7,8 +7,8 @@ export interface RatingModalProps {
 	className?: string;
 	isOpen: boolean;
 	title?: string;
-	onSuccess?: (feedback: string) => void;
-	onClose?: () => void;
+	onSuccess?: (feedback: string) => Promise<any>;
+	onClose?: () => Promise<any>;
 }
 
 export const RatingModal: FC<RatingModalProps> = (props: RatingModalProps) => {

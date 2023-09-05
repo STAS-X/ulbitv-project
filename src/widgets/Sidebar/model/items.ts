@@ -10,7 +10,7 @@ import ProfileIconRedesign from '@/shared/assets/icons/profile.svg';
 import ArticleIcon from '@/shared/assets/icons/article-20-20.svg';
 import ArticleIconRedesign from '@/shared/assets/icons/article.svg';
 import React from 'react';
-import { useGetFeatureByKey } from '@/shared/lib/hooks/useFetures';
+import { useGetFeatureByKey } from '@/shared/lib/hooks/useFeatures';
 
 const toggleIcons = (oldIcon: React.FC<React.SVGProps<SVGSVGElement>>, newIcon: React.FC<React.SVGProps<SVGSVGElement>>) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks

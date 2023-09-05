@@ -1,4 +1,4 @@
-import { unstable_createResource } from './react-cache.mjs';
+import { unstable_createResource } from './react-cache';
 
 export const ImageResource = unstable_createResource(
 	(src: string) =>

@@ -1,4 +1,4 @@
-import { FC, memo, useState } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 import { getUserId, useFeaturesByKey } from '@/entities/User';
 import { Button } from '@/shared/ui/redesign/Button/Button';
 import { Button as ButtonDepracated, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
@@ -14,7 +14,7 @@ import { TextSize, TextTheme, Text } from '@/shared/ui/deprecated/Text/Text';
 import { useTranslation } from 'react-i18next';
 
 export const UIDesignSwitcher: FC = memo(() => {
-	const { t } = useTranslation();
+	const { t } = useTranslation('translation');
 
 	const userId = useSelector(getUserId);
 	const isAppRedesigned = useFeaturesByKey('isAppRedesigned');
@@ -26,19 +26,24 @@ export const UIDesignSwitcher: FC = memo(() => {
 
 	const dispatch = useAppDispatch();
 
-	const changeFeatures = async (featureName: keyof FeatureFlags, value: boolean) => {
-		try {
-			if (userId) {
-				setIsLoading(true);
-				const response = await dispatch(
-					updateFeaturesByUserId({ id: userId, features: { [featureName]: value } })
-				).unwrap();
-			}
-		} catch (error) {
-			console.log(error, 'error occured');
-		}
-		setIsLoading(false);
-	};
+	const changeFeatures = useCallback(
+		(featureName: keyof FeatureFlags, value: boolean) => {
+			(async () => {
+				try {
+					if (userId) {
+						setIsLoading(true);
+						const response = await dispatch(
+							updateFeaturesByUserId({ id: userId, features: { [featureName]: value } })
+						).unwrap();
+					}
+				} catch (error) {
+					console.log(error, 'error occured');
+				}
+				setIsLoading(false);
+			})();
+		},
+		[dispatch, userId]
+	);
 	//console.warn(isFirstVisit, settings, 'get isFirstVisit from back server');
 
 	return isLoading ? (
@@ -49,7 +54,11 @@ export const UIDesignSwitcher: FC = memo(() => {
 			on={
 				userId ? (
 					<Button variant={'outline'} onClick={() => changeFeatures('isAppRedesigned', !isAppRedesigned)}>
-						{isAppRedesigned ? <span>Перейти к старому UI</span> : <span>Перейти в новый UI</span>}
+						{isAppRedesigned ? (
+							<span>{t('designSwitch.old')}</span>
+						) : (
+							<span>{t('designSwitch.modern')}</span>
+						)}
 					</Button>
 				) : (
 					<TextRedesign variant={'error'} size={'l'} title={t('authNeed')} />
@@ -61,7 +70,7 @@ export const UIDesignSwitcher: FC = memo(() => {
 						theme={ButtonTheme.OUTLINE}
 						onClick={() => changeFeatures('isAppRedesigned', !isAppRedesigned)}
 					>
-						{isAppRedesigned ? <span>Перейти к старому UI</span> : <span>Перейти в новый UI</span>}
+						{isAppRedesigned ? <span>{t('designSwitch.old')}</span> : <span>{t('designSwitch.modern')}</span>}
 					</ButtonDepracated>
 				) : (
 					<Text theme={TextTheme.ERROR} size={TextSize.L} title={t('authNeed')} />

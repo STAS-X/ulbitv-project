@@ -5,3 +5,26 @@
 .comment {
 	margin-top: 20px;
 }
+
+.commentloading {
+	margin-top: 20px;
+	padding: 16px;
+}
+
+.commentdelete {
+	animation: animation-delete 0.5s normal forwards ease-in-out;
+	animation-iteration-count: 1;
+	transform-origin: left center;
+}
+
+@keyframes animation-delete {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0.2;
+		margin-block: -50px;
+		transform: scale(0.3) translateX(-150%);
+	}
+}

@@ -7,7 +7,7 @@ import { HStack } from '../../redesign/Stack';
 
 export interface StarRatingProps {
 	className?: string;
-	onSelect?: (rating: number) => void;
+	onSelect?: (rating: number) => Promise<any>;
 	size?: number;
 	count?: number;
 	rating?: number;
@@ -43,7 +43,7 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
 
 	const hasRating = useCallback(
 		(starIndex: number) => {
-			console.log(starIndex, 'has rating', starIndex <= currentRating, currentStar, currentRating);
+			//console.log(starIndex, 'has rating', starIndex <= currentRating, currentStar, currentRating);
 			return Boolean(starIndex <= currentRating && currentStar === currentRating);
 		},
 		[currentStar, currentRating]
@@ -51,7 +51,7 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
 
 	const handleInOutHover = useCallback(
 		(starIndex: number) => {
-			console.log('test leave mouse');
+			//console.log('test leave mouse');
 			setCurrentStar(starIndex);
 		},
 		[setCurrentStar]
@@ -59,19 +59,23 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
 
 	const handleSetRating = useCallback(
 		(starIndex: number) => {
-			if (currentRating !== starIndex) {
-				setTimeout(() => {
-					setCurrentRating(starIndex);
-					setCurrentStar(0);
-					onSelect?.(starIndex);
-				}, 300);
-			} else {
-				setTimeout(() => {
-					setCurrentRating(0);
-					setCurrentStar(0);
-					onSelect?.(0);
-				}, 300);
-			}
+			(async () => {
+				if (currentRating !== starIndex) {
+					await Promise.all([
+						setCurrentRating(starIndex),
+						setCurrentStar(0),
+						onSelect?.(starIndex),
+						new Promise((resolve) => setTimeout(resolve, 300))
+					]);
+				} else {
+					await Promise.all([
+						setCurrentRating(0),
+						setCurrentStar(0),
+						await onSelect?.(0),
+						new Promise((resolve) => setTimeout(resolve, 300))
+					]);
+				}
+			})();
 		},
 		[setCurrentRating, currentRating, onSelect]
 	);
@@ -92,7 +96,7 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
 							className={classNames(classes.starIcon, {
 								[classes.isSelected]: isSelected(index + 1),
 								[classes.hasRating]: hasRating(index + 1),
-								[classes.hasAnimation]: hasAnimation(index+1)
+								[classes.hasAnimation]: hasAnimation(index + 1)
 							})}
 							Svg={StarIcon}
 							width={size}

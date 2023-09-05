@@ -134,7 +134,8 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = memo((props: Ed
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<VStack dataTestId={'ProfileCard'} className={classNames('', {}, [className])} gap={10} max>
+			<VStack dataTestId={'ProfileCard'} className={classNames('', {}, [className])} gap={10}
+max>
 				<ToggleFeatures
 					feature={'isAppRedesigned'}
 					off={

@@ -13,17 +13,17 @@
 }
 
 .content {
-	padding: 20px;
-	border-radius: 12px;
-	background: var(--bg-redesigned);
-	font: var(--font-s);
+	padding: -20px;
+
+	// border-radius: 12px;
+	font: var(--font-s-redesigned);
 	transition: var(--animation-delay) ease;
 	transform: scale(0.5);
 	z-index: 1;
 }
 
 .contentold {
-	background: var(--card-bg);
+	font: var(--font-s);
 }
 
 .modal.opened {

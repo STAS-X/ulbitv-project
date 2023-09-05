@@ -54,17 +54,19 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 	}, [dispatch]);
 
 	const onChangeEdit = useCallback(
-		(type?: ProfileEditType) => async () => {
-			if (readonly) {
-				dispatch(editableProfileActions.setProfileReadOnly(!readonly));
-			} else {
-				if (type == ProfileEditType.SAVE) {
-					await updateProfileByForm();
+		(type?: ProfileEditType) => {
+			(async () => {
+				if (readonly) {
+					dispatch(editableProfileActions.setProfileReadOnly(!readonly));
 				} else {
-					dispatch(editableProfileActions.cancelEditProfile());
+					if (type == ProfileEditType.SAVE) {
+						await updateProfileByForm();
+					} else {
+						dispatch(editableProfileActions.cancelEditProfile());
+					}
+					dispatch(editableProfileActions.setProfileReadOnly(!readonly));
 				}
-				dispatch(editableProfileActions.setProfileReadOnly(!readonly));
-			}
+			})();
 		},
 		[dispatch, readonly, updateProfileByForm]
 	);
@@ -88,7 +90,9 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 										dataTestId={'ProfileCard.EditBtn'}
 										className={classes.editbtn}
 										theme={ButtonTheme.OUTLINE}
-										onClick={onChangeEdit(ProfileEditType.EDIT)}
+										onClick={() => {
+											onChangeEdit(ProfileEditType.EDIT);
+										}}
 										disabled={isLoading || Boolean(error)}
 									>
 										{t('edit', { ns: 'profile' })}
@@ -99,7 +103,9 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 											dataTestId={'ProfileCard.SaveBtn'}
 											className={classes.editbtn}
 											theme={ButtonTheme.OUTLINE}
-											onClick={onChangeEdit(ProfileEditType.SAVE)}
+											onClick={() => {
+												onChangeEdit(ProfileEditType.SAVE);
+											}}
 											disabled={
 												!isDirty ||
 												(isDirty && validationError && Object.keys(validationError).length > 0)
@@ -111,7 +117,9 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 											dataTestId={'ProfileCard.CancelBtn'}
 											className={classes.editbtn}
 											theme={ButtonTheme.OUTLINE_RED}
-											onClick={onChangeEdit(ProfileEditType.CANCEL)}
+											onClick={() => {
+												onChangeEdit(ProfileEditType.CANCEL);
+											}}
 										>
 											{t('cancel', { ns: 'profile' })}
 										</Button>
@@ -130,7 +138,9 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 										dataTestId={'ProfileCard.EditBtn'}
 										className={classes.editbtn}
 										variant={'outline'}
-										onClick={onChangeEdit(ProfileEditType.EDIT)}
+										onClick={() => {
+											onChangeEdit(ProfileEditType.EDIT);
+										}}
 										disabled={isLoading || Boolean(error)}
 									>
 										{t('edit', { ns: 'profile' })}
@@ -141,7 +151,9 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 											dataTestId={'ProfileCard.SaveBtn'}
 											className={classNames(classes.editbtn)}
 											variant={'success'}
-											onClick={onChangeEdit(ProfileEditType.SAVE)}
+											onClick={() => {
+												onChangeEdit(ProfileEditType.SAVE);
+											}}
 											disabled={
 												!isDirty ||
 												(isDirty && validationError && Object.keys(validationError).length > 0)
@@ -153,7 +165,9 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = (props) => 
 											dataTestId={'ProfileCard.CancelBtn'}
 											className={classNames(classes.editbtn)}
 											variant={'cancel'}
-											onClick={onChangeEdit(ProfileEditType.CANCEL)}
+											onClick={() => {
+												onChangeEdit(ProfileEditType.CANCEL);
+											}}
 										>
 											{t('cancel', { ns: 'profile' })}
 										</ButtonRedesign>

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { CommentList, CommentSchema } from '@/entities/Comment';
 import { useFetchCommentForArticle } from '../../model/services/fetchCommentForArticle/fetchCommentForArticle';
 import { getArticleComments } from '../../model/slice/articleDetailesCommentsSlice';
-import { getArticleCommentsIsLoading } from '../../model/selectors/getArticleCommentsData';
+import { getArticleCommentsIsLoading, useArticleComments } from '../../model/selectors/getArticleCommentsData';
 import { Text } from '@/shared/ui/deprecated/Text/Text';
 import { Text as TextRedesign } from '@/shared/ui/redesign/Text/Text';
 import { AddCommentForm } from '@/features/AddCommentForm';
@@ -25,7 +25,7 @@ export const ArticleDetailesComments: FC<ArticleDetailesCommentsProps> = (props:
 	const { t } = useTranslation('comments');
 
 	const dispatch = useAppDispatch();
-	const comments = useSelector<StateSchema, CommentSchema[]>(getArticleComments.selectAll);
+	const comments = useArticleComments(); // useSelector<StateSchema, CommentSchema[]>(getArticleComments.selectAll);
 	const isLoading = useSelector(getArticleCommentsIsLoading);
 	const sendCommentForArticle = useFetchCommentForArticle();
 

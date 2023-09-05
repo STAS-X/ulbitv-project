@@ -8,6 +8,7 @@ export const useGetFeatureByKey = (flag: keyof FeatureFlags): boolean => {
 	if (typeof featureFlagValue === 'boolean') return featureFlagValue;
 
 	const featureFlags = localStorage.getItem(FEATURES_LS_KEY) ?? '{}';
+	//console.log(JSON.parse(featureFlags), flag, (JSON.parse(featureFlags) as FeatureFlags)[flag], 'featureflag')
 	if (featureFlags && JSON.parse(featureFlags)) {
 		//console.log(JSON.parse(featureFlags)[flag], 'get flags data');
 		return Boolean(JSON.parse(featureFlags)[flag]);

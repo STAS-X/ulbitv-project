@@ -22,7 +22,7 @@
 }
 
 .arrowicon {
-	transition: all 0.2s;
+	transition: all 0.3s;
 }
 
 .open {
@@ -32,6 +32,7 @@
 .buttonwrapper {
 	display: flex;
 	align-items: center;
+	color: var(--text-redesigned);
 	border: 1px solid var(--hint-redesigned);
 
 	&:not([disabled]):hover {

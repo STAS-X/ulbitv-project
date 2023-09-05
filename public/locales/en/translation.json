@@ -5,7 +5,7 @@
 	"toggle": "Toggle",
 	"profileMenu": "Profile",
 	"settingsMenu": "Settings",
-	"authNeed": "User must auth before using UI feature",	
+	"authNeed": "User must auth before using UI feature",
 	"login": "Login",
 	"logout": "Logout",
 	"authTitle": "Auth form",
@@ -19,5 +19,9 @@
 	"adminMenu": "Admin",
 	"ratingTitle": "Thank you!",
 	"feedbackSign": "FeedBack",
-	"ratingPlaceholder": "FeedBack:"
+	"ratingPlaceholder": "FeedBack:",
+	"designSwitch": {
+		"old": "Change modern UI",
+		"modern": "Change old UI"
+	}
 }

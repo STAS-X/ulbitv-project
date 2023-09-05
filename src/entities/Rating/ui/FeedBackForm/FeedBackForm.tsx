@@ -10,12 +10,13 @@ import { Text } from '@/shared/ui/redesign/Text/Text';
 import classes from './FeedBackForm.module.scss';
 import { HStack } from '@/shared/ui/redesign/Stack';
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
+import { Card } from '../../../../shared/ui/redesign/Card/Card';
 
 export interface FeedBackFormProps {
 	className?: string;
 	title?: string;
-	onSuccess?: (feedback: string) => void;
-	onClose?: () => void;
+	onSuccess?: (feedback: string) => Promise<any>;
+	onClose?: () => Promise<any>;
 }
 
 const FeedBackForm: FC<FeedBackFormProps> = memo((props: FeedBackFormProps) => {
@@ -43,79 +44,84 @@ const FeedBackForm: FC<FeedBackFormProps> = memo((props: FeedBackFormProps) => {
 		setIsEdited(Boolean(feedBack));
 	}, [feedBack]);
 
-	const onFeedBackClose = useCallback(() => onClose?.(), [onClose]);
+	const onFeedBackClose = useCallback(() => {
+		(async () => await onClose?.())();
+	}, [onClose]);
 	const onFeedBackSuccess = useCallback(() => {
-		onSuccess?.(feedBack);
+		(async () => {
+			await onSuccess?.(feedBack);
+		})();
 	}, [onSuccess, feedBack]);
 
 	return (
-		<div data-testid={'Rating.FeedBack.Form'} className={classNames(classes.feedbackform, {}, [className])}>
-			<ToggleFeatures
-				feature={'isAppRedesigned'}
-				on={
-					<>
-						<Text title={title ?? t('feedbackTitle')} />
-						{/*error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />*/}
-						<Input
-							dataTestId={'Rating.FeedBack'}
-							type="text"
-							placeholder={t('feedbackSign')}
-							className={classes.input}
-							onChange={onChangeFeedBack}
-							value={feedBack}
-						/>
-						<HStack className={classes.feedbackbtn} justify={'end'} gap={16} max>
-							<Button
-								dataTestId={'Rating.FeedBack.Cancel'}
-								variant={'outline_red'}
-								onClick={onFeedBackClose}
-							>
-								{t('cancel')}
-							</Button>
-							<Button
-								dataTestId={'Rating.FeedBack.Submit'}
-								variant={'outline'}
-								disabled={!isEdited}
-								onClick={onFeedBackSuccess}
-							>
-								{t('feedbackIn')}
-							</Button>
-						</HStack>
-					</>
-				}
-				off={
-					<>
-						<TextDeprecated title={title ?? t('feedbackTitle')} />
-						{/*error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />*/}
-						<InputDeprecated
-							dataTestId={'Rating.FeedBack'}
-							type="text"
-							placeholder={t('feedbackSign')}
-							className={classes.input}
-							onChange={onChangeFeedBack}
-							value={feedBack}
-						/>
-						<HStack className={classes.feedbackbtn} justify={'end'} gap={16} max>
-							<ButtonDeprecated
-								dataTestId={'Rating.FeedBack.Cancel'}
-								theme={ButtonTheme.OUTLINE_RED}
-								onClick={onFeedBackClose}
-							>
-								{t('cancel')}
-							</ButtonDeprecated>
-							<ButtonDeprecated
-								dataTestId={'Rating.FeedBack.Submit'}
-								theme={ButtonTheme.OUTLINE}
-								disabled={!isEdited}
-								onClick={onFeedBackSuccess}
-							>
-								{t('feedbackIn')}
-							</ButtonDeprecated>
-						</HStack>
-					</>
-				}
-			/>
-		</div>
+		<ToggleFeatures
+			feature={'isAppRedesigned'}
+			on={
+				<Card
+					data-testid={'Rating.FeedBack.Form'}
+					className={classNames(classes.feedbackformredesign, {}, [className])}
+					paddings={24}
+					border={'round'}
+				>
+					<Text title={title ?? t('feedbackTitle')} />
+					{/*error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />*/}
+					<Input
+						dataTestId={'Rating.FeedBack'}
+						type="text"
+						placeholder={t('feedbackSign')}
+						className={classes.input}
+						onChange={onChangeFeedBack}
+						value={feedBack}
+					/>
+					<HStack className={classes.feedbackbtn} justify={'end'} gap={16}
+max>
+						<Button dataTestId={'Rating.FeedBack.Cancel'} variant={'outline_red'} onClick={onFeedBackClose}>
+							{t('cancel')}
+						</Button>
+						<Button
+							dataTestId={'Rating.FeedBack.Submit'}
+							variant={'outline'}
+							disabled={!isEdited}
+							onClick={onFeedBackSuccess}
+						>
+							{t('feedbackIn')}
+						</Button>
+					</HStack>
+				</Card>
+			}
+			off={
+				<div data-testid={'Rating.FeedBack.Form'} className={classNames(classes.feedbackform, {}, [className])}>
+					<TextDeprecated title={title ?? t('feedbackTitle')} />
+					{/*error && <Text content={t('errorApp', { ns: 'errors', message: error })} theme={TextTheme.ERROR} />*/}
+					<InputDeprecated
+						dataTestId={'Rating.FeedBack'}
+						type="text"
+						placeholder={t('feedbackSign')}
+						className={classes.input}
+						onChange={onChangeFeedBack}
+						value={feedBack}
+					/>
+					<HStack className={classes.feedbackbtn} justify={'end'} gap={16}
+max>
+						<ButtonDeprecated
+							dataTestId={'Rating.FeedBack.Cancel'}
+							theme={ButtonTheme.OUTLINE_RED}
+							onClick={onFeedBackClose}
+						>
+							{t('cancel')}
+						</ButtonDeprecated>
+						<ButtonDeprecated
+							dataTestId={'Rating.FeedBack.Submit'}
+							theme={ButtonTheme.OUTLINE}
+							disabled={!isEdited}
+							onClick={onFeedBackSuccess}
+						>
+							{t('feedbackIn')}
+						</ButtonDeprecated>
+					</HStack>
+				</div>
+			}
+		/>
 	);
 });
 

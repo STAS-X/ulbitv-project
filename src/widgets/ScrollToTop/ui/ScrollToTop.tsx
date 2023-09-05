@@ -10,7 +10,8 @@ export interface ScrollToTopProps {
 
 export const ScrollToTop: FC<ScrollToTopProps> = ({ className = '' }) => {
 	return (
-		<VStack className={classNames(classes.scrolltoolbar, {}, [className])} justify={'center'} align={'center'} max>
+		<VStack className={classNames(classes.scrolltoolbar, {}, [className])} justify={'center'} align={'center'}
+max>
 			<ScrollButton />
 		</VStack>
 	);
