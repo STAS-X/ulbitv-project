@@ -100,7 +100,7 @@ const ArticleListItemRedesign: FC<ArticleListItemProps> = memo((props: ArticleLi
 				paddings={16}
 			>
 				<VStack gap={8} className={classes.info}>
-					<Image width={200} height={200} src={article.img}
+					<Image width={200} height={150} src={article.img}
 alt={article.title} className={classes.img} />
 					<Text dataTestId={'Article.Title'} content={article.title} className={classes.title} />
 					<HStack justify={'between'} max>
