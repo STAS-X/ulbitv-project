@@ -86,25 +86,25 @@ export const AddNotificationsButtonComponent: FC<AddNotificationsButtonProps> = 
 		return isMobile ? (
 			<>
 				<div className={classes.trigger}>{triggerButton}</div>
-				isRedesigned ? (
-				<DrawerRedesign onClose={handleClose} isOpen={isOpen}>
-					<NotificationList
-						items={notificationItems}
-						isLoading={notificationIsLoading}
-						onClick={() => setTimeout(() => handleClose(), 100)}
-						size={{ minWidth: '100%', maxHeight: 420 }}
-					/>
-				</DrawerRedesign>
+				{isRedesigned ? (
+					<DrawerRedesign onClose={handleClose} isOpen={popoverIsOpen}>
+						<NotificationList
+							items={notificationItems}
+							isLoading={notificationIsLoading}
+							onClick={() => setTimeout(() => handleClose(), 100)}
+							size={{ minWidth: '100%', maxHeight: 420 }}
+						/>
+					</DrawerRedesign>
 				) : (
-				<Drawer onClose={handleClose} isOpen={isOpen}>
-					<NotificationList
-						items={notificationItems}
-						isLoading={notificationIsLoading}
-						onClick={() => setTimeout(() => handleClose(), 100)}
-						size={{ minWidth: '100%', maxHeight: 420 }}
-					/>
-				</Drawer>
-				)
+					<Drawer onClose={handleClose} isOpen={isOpen}>
+						<NotificationList
+							items={notificationItems}
+							isLoading={notificationIsLoading}
+							onClick={() => setTimeout(() => handleClose(), 100)}
+							size={{ minWidth: '100%', maxHeight: 420 }}
+						/>
+					</Drawer>
+				)}
 			</>
 		) : isRedesigned ? (
 			<PopOverRedesign

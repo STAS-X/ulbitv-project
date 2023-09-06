@@ -28,7 +28,7 @@ const DrawerContent = (props: DrawerProps) => {
 	const contentRef = useRef<HTMLDivElement>(null);
 
 	const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
-	//console.log(isOpen, 'isopen status');
+	// console.log(isOpen, 'isopen status');
 	const { theme } = useTheme();
 
 	const mods: Mods = {

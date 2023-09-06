@@ -21,6 +21,8 @@ interface DrawerProps {
 const DrawerContent = (props: DrawerProps) => {
 	const { Spring, Gesture } = useAnimationLibrarys();
 
+	// console.log(props, 'get animation provider');
+
 	const { className, children, onClose = () => null, maxHeight = '70%', isOpen = false } = props;
 
 	const [deltaY, setDeltaY] = useState(0);
@@ -28,7 +30,7 @@ const DrawerContent = (props: DrawerProps) => {
 	const contentRef = useRef<HTMLDivElement>(null);
 
 	const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
-	//console.log(isOpen, 'isopen status');
+	console.log(isOpen, 'isopen status');
 	const { theme } = useTheme();
 
 	const mods: Mods = {
@@ -143,7 +145,6 @@ const DrawerLazy = (props: DrawerProps) => {
 
 /**
  * Компонент устарел, используем новые компоненты из папки redesigned
- * @depricated
  */
 export const Drawer = memo((props: DrawerProps) => {
 	return (

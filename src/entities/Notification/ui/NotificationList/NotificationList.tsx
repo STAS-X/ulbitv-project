@@ -78,7 +78,7 @@ const NotificationListComponent: FC<NotificationListProps> = memo((props: Notifi
 						}}
 						style={{ ...size }}
 					>
-						{isLoading ? <Skeleton width={'100%'} height={20} /> : notificationWithClass}
+						{isLoading ? <Skeleton width={'100%'} height={80} border={16} /> : notificationWithClass}
 					</li>
 				);
 			})}

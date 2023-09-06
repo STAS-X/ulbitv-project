@@ -18,7 +18,7 @@
 
 .itemredesign {
 	color: var(--text-redesign);
-	background: var(--bg-redesigned);
+	background: var(--light-bg-redesigned);
 }
 
 .selected {
@@ -34,12 +34,12 @@
 
 .selectedredesign {
 	&:hover {
-		background: var(--light-bg-redesigned);
+		background: var(--dark-bg-redesigned);
 		border-color: var(--accent-redesign);
 	}
 
 	&:focus {
-		background: var(--light-bg-redesigned);
+		background: var(--dark-bg-redesigned);
 	}
 }
 
@@ -49,7 +49,7 @@
 }
 
 .activeredesign {
-	background: var(--light-bg-redesigned);
+	background: var(--dark-bg-redesigned);
 	border-radius: 10px;
 }
 

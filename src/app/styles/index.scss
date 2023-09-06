@@ -37,7 +37,10 @@
 	min-height: 100vh;
 	background: var(--bg-color);
 	transition: background-color 0.3s;
+}
 
+.app,
+.app_drawer {
 	*::-webkit-scrollbar-track {
 		background: var(--bg-color); /* цвет дорожки */
 	}
@@ -87,7 +90,10 @@
 	min-width: 100vw;
 	background: var(--bg-redesigned);
 	transition: background-color 0.3s;
+}
 
+.app_redesign,
+.app_drawer_redesign {
 	*::-webkit-scrollbar-track {
 		background: var(--card-redesigned); /* цвет дорожки */
 	}
