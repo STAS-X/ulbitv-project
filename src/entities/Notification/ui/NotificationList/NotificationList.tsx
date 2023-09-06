@@ -5,7 +5,7 @@ import { useNavigate } from '@/shared/lib/hooks/useRouterUtils';
 import { VStack } from '@/shared/ui/redesign/Stack';
 import { Skeleton as SkeletonDepracated } from '@/shared/ui/deprecated/Skeleton/Skeleton';
 import { Skeleton as SkeletonRedesign } from '@/shared/ui/redesign/Skeleton/Skeleton';
-import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
+import { toggleFeatures, ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
 
 interface NotificationListSize {
 	maxWidth?: string | number;
