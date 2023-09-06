@@ -72,7 +72,7 @@ export const ArticleViewSelector: FC<ArticleViewSelectorProps> = (props: Article
 								[classes.selected]: viewItem.view === view
 							})}
 						>
-							<Icon Svg={viewItem.icon} />
+							<Icon Svg={viewItem.icon} width={24} height={24} />
 						</Button>
 					))}
 				</div>

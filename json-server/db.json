@@ -899,7 +899,7 @@
         "theme": "orange_theme"
       },
       "features": {
-        "isAppRedesigned": true,
+        "isAppRedesigned": false,
         "isFeatureRecommendation": true,
         "isFeatureRating": true,
         "isFeatureCounter": true

@@ -1,4 +1,4 @@
-import { FC, memo, ReactNode, useCallback, useRef, ReactElement, isValidElement, cloneElement } from 'react';
+import { FC, memo, ReactNode, useCallback, useRef, ReactElement, isValidElement, cloneElement, useEffect } from 'react';
 import { Popover } from '@headlessui/react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './PopOver.module.scss';
@@ -25,7 +25,9 @@ export interface PopOverProps {
 	className?: string;
 	direction?: DropDownDirectionType;
 	size?: PopOverSize;
+	isOpened?: boolean;
 	isLoading?: boolean;
+	onClose?: () => void;
 	items: PopOverItem[];
 	trigger: ReactNode;
 }
@@ -35,7 +37,7 @@ export interface PopOverProps {
  * @depricated
  */
 export const PopOver: FC<PopOverProps> = memo((props: PopOverProps) => {
-	const { className, items, direction, isLoading = false, size = {}, trigger } = props;
+	const { className, items, direction, isOpened = false, onClose, isLoading = false, size = {}, trigger } = props;
 
 	const navigate = useNavigate();
 	const triggerRef = useRef<HTMLButtonElement>(null);
@@ -48,6 +50,17 @@ export const PopOver: FC<PopOverProps> = memo((props: PopOverProps) => {
 		},
 		[triggerRef, navigate]
 	);
+
+	useEffect(() => {
+		function handleClick(e: Event) {
+			//console.log(isOpen, 'get isopen');
+			if (e.target && (e.target as HTMLElement).className !== classes.panel && isOpened) onClose?.();
+		}
+		document.addEventListener('click', handleClick);
+		return () => document.removeEventListener('click', handleClick);
+		//if (isOpen === false) onClose?.();
+		//console.log(isOpen, 'get isopen');
+	}, [onClose, isOpened]);
 
 	const inlineStyle = directionsToInlineStyle(direction);
 

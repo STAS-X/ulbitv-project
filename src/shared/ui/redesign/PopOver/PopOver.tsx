@@ -61,12 +61,12 @@ export const PopOver: FC<PopOverProps> = memo((props: PopOverProps) => {
 	);
 
 	useEffect(() => {
-		document.addEventListener('click', handleClick);
-		return () => document.removeEventListener('click', handleClick);
 		function handleClick(e: Event) {
 			//console.log(isOpen, 'get isopen');
 			if (e.target && (e.target as HTMLElement).className !== classes.panel && isOpened) onClose?.();
 		}
+		document.addEventListener('click', handleClick);
+		return () => document.removeEventListener('click', handleClick);
 		//if (isOpen === false) onClose?.();
 		//console.log(isOpen, 'get isopen');
 	}, [onClose, isOpened]);

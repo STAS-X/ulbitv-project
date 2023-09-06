@@ -72,7 +72,7 @@ export const AddNotificationsButtonComponent: FC<AddNotificationsButtonProps> = 
 			</>
 		) : (
 			<div onClick={handleClose}>
-				<Icon Svg={NotificationIcon} theme={IconTheme.INVERTED} />
+				<Icon Svg={NotificationIcon} width={20} height={20} theme={IconTheme.INVERTED} />
 				<Text
 					className={classes.notifications}
 					size={TextSize.M}
@@ -120,6 +120,8 @@ export const AddNotificationsButtonComponent: FC<AddNotificationsButtonProps> = 
 			<PopOver
 				className={classNames('', {}, [className])}
 				items={notificationItems}
+				onClose={handleClose}
+				isOpened={popoverIsOpen}
 				size={{ minWidth: notificationIsError && !notificationIsLoading ? 'max-content' : 320, maxHeight: 420 }}
 				isLoading={notificationIsLoading}
 				trigger={triggerButton}
