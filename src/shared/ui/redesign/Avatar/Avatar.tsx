@@ -19,7 +19,7 @@ export interface AvatarProps {
 
 const LazyLoadAvatar: FC<AvatarProps> = (props: AvatarProps) => {
 	const { src = AVATAR_REDESIGN, size = 100, className = '', variant = 'none', border = '50%', alt = '' } = props;
-	//console.log(src, AVATAR_REDESIGN, typeof AVATAR_REDESIGN, 'get avatar src data');
+	// console.log(src, AVATAR_REDESIGN, typeof AVATAR_REDESIGN, 'get avatar src data');
 	const [loaded, setLoaded] = useState<boolean>(false);
 
 	useEffect(() => {

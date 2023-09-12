@@ -15,7 +15,7 @@ export interface AvatarProps {
 
 const LazyLoadAvatar: FC<AvatarProps> = (props: AvatarProps) => {
 	const { src = PLACEHOLDER_AVATAR, size = 100, className = '', border = '50%', alt = '' } = props;
-	console.log(src, PLACEHOLDER_AVATAR, typeof PLACEHOLDER_AVATAR, 'get avatar src data');
+	// console.log(src, PLACEHOLDER_AVATAR, typeof PLACEHOLDER_AVATAR, 'get avatar src data');
 	const [loaded, setLoaded] = useState<boolean>(false);
 
 	useEffect(() => {
