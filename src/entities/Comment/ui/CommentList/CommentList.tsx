@@ -1,4 +1,4 @@
-import { FC, memo, ReactNode, useCallback, useState } from 'react';
+import { FC, memo, ReactNode, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text/Text';
@@ -15,6 +15,7 @@ import { deleteArticleCommentById, getArticleCommentsError } from '@/pages/Artic
 import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { useSelector } from 'react-redux';
 import { getUserId, getUserIsAdmin } from '@/entities/User';
+import { AnimationProvider, useAnimationLibrarys } from '@/shared/lib/components/AnimationProvider';
 
 export interface CommentListProps {
 	className?: string;
@@ -23,11 +24,12 @@ export interface CommentListProps {
 	isLoading?: boolean;
 }
 
-export const CommentList: FC<CommentListProps> = memo((props: CommentListProps) => {
-	const { className, isLoading, comments } = props;
+const CommentListWithAnimaton: FC<CommentListProps> = memo((props: CommentListProps) => {
+	const { className, isLoading, comments = [] } = props;
 	const { t } = useTranslation(['comments', 'error']);
 
-	const [deleteId, setDeleteId] = useState<string>('');
+	const [deletedItems, setDeletedItems] = useState<(string | undefined)[]>([]);
+	const [animatedComments, setAnimatedComments] = useState<CommentSchema[] | []>(comments);
 
 	const dispatch = useAppDispatch();
 
@@ -35,27 +37,126 @@ export const CommentList: FC<CommentListProps> = memo((props: CommentListProps) 
 	const isAdmin = useSelector(getUserIsAdmin);
 	const error = useSelector(getArticleCommentsError);
 
-	const additionDeleteAnimationClass = useCallback(
-		(commentId: string) => {
-			console.log(deleteId, commentId, 'deleted comment');
-			return deleteId === commentId ? classes.commentdelete : '';
+	useEffect(() => {
+		if (
+			comments.filter(
+				(comment) => animatedComments.findIndex((animatedComment) => animatedComment.id === comment.id) < 0
+			).length > 0
+		) {
+			console.log(comments, animatedComments, 'add new comment');
+			setAnimatedComments([
+				...comments.filter(
+					(comment) => animatedComments.findIndex((animatedComment) => animatedComment.id === comment.id) < 0
+				),
+				...animatedComments
+			]);
+		}
+		if (deletedItems.length > 0 && comments.length < animatedComments.length) {
+			//setAnimatedComments(
+			//	[]
+			//animatedComments.filter(
+			//	(animatedComment) => comments.findIndex((comment) => comment.id === animatedComment.id) > -1
+			//)
+			//);
+		}
+		console.info(deletedItems, animatedComments, 'rerender comments');
+	}, [comments, deletedItems, animatedComments]);
+
+	const {
+		Spring: { useTransition, config, animated }
+	} = useAnimationLibrarys();
+
+	const transitions = useTransition(animatedComments, {
+		from: {
+			transform: `translateX(-100%) scale(0.5)`,
+			marginBottom: '-100px',
+			opacity: 0
 		},
-		[deleteId]
-	);
+		enter: (comment: CommentSchema) => {
+			//if (animateComments.findIndex((animatedComment) => animatedComment.id !== comment.id) > -1) return;
+			return [
+				{
+					transform: 'translateX(-50%) scale(0.8)',
+					marginBottom: '-70px',
+					opacity: 0.1
+				},
+				{
+					transform: 'translateX(0%) scale(1)',
+					marginBottom: '0px',
+					opacity: 1
+				}
+			];
+		},
+		leave: (comment: CommentSchema) => {
+			console.log(comment, 'deleting');
+			return [
+				{
+					transform: 'translateX(-50%) scale(0.8)',
+					marginBottom: '-40px',
+					opacity: 0.1
+				},
+				{
+					transform: 'translateX(-100%) scale(0.5)',
+					marginBottom: '-100px',
+					opacity: 0
+				}
+			];
+		},
+
+		onDestroyed: (comment: CommentSchema) => {
+			setDeletedItems((prevDeleted) => prevDeleted?.filter((deleteItemId) => deleteItemId !== comment.id));
+		},
+		unique: true,
+		trail: 50,
+		config: { ...config.wobbly, duration: 250 }
+	});
+
+	// const additionDeleteAnimationClass = useCallback(
+	// 	(commentId: string) => {
+	// 		console.log(deleteId, commentId, 'deleted comment');
+	// 		return deleteId === commentId ? classes.commentdelete : '';
+	// 	},
+	// 	[deleteId]
+	// );
+
+	const animatedCommments = transitions((style, comment: CommentSchema) => {
+		return (
+			<animated.div
+				style={{
+					...style,
+					width: '100%',
+					height: 'fit-content'
+				}}
+				key={comment.id}
+			>
+				<CommentCard
+					className={classNames(classes.comment /**, {}, [additionDeleteAnimationClass(comment.id)]**/)}
+					key={comment.id}
+					comment={comment}
+					onDelete={
+						isAdmin && deletedItems.findIndex((deleteItem) => deleteItem === comment.id) < 0
+							? () => handleDeleteComment(comment.id)
+							: undefined
+					}
+				/>
+			</animated.div>
+		);
+	});
 
 	const handleDeleteComment = useCallback(
 		(commentId: string) => {
 			(async () => {
-				if (!deleteId) {
-					setDeleteId(commentId);
+				if (commentId) {
+					setDeletedItems((prevDeleted) => [...prevDeleted, commentId]);
 					await dispatch(deleteArticleCommentById({ commentId })).then((res) => {
 						console.log(res.payload, 'payload after delete');
-						setDeleteId('');
 					});
+					setAnimatedComments((prevAnimated) => prevAnimated.filter((prev) => prev.id !== commentId)
+					);
 				}
 			})();
 		},
-		[dispatch, deleteId]
+		[dispatch]
 	);
 	// @ts-ignore
 	const Skeleton = toggleFeatures({ feature: 'isAppRedesigned', on: SkeletonRedesign, off: SkeletonDeprecated });
@@ -73,42 +174,28 @@ export const CommentList: FC<CommentListProps> = memo((props: CommentListProps) 
 				comments?.length ? (
 					<>
 						{comments.map((comment, index) => (
-							<VStack gap={10} key={index} className={classes.commentloading}
-max>
+							<VStack gap={10} key={index} className={classes.commentloading} max>
 								<HStack gap={4}>
-									<Skeleton width={32} height={32} border="50%"
-className={classes.avatar} />
-									<Skeleton width={100} height={16} border={16}
-className={classes.username} />
+									<Skeleton width={32} height={32} border="50%" className={classes.avatar} />
+									<Skeleton width={100} height={16} border={16} className={classes.username} />
 								</HStack>
-								<Skeleton width={'100%'} height={50} border={16}
-className={classes.text} />
+								<Skeleton width={'100%'} height={50} border={16} className={classes.text} />
 							</VStack>
 						))}
 					</>
 				) : (
 					<VStack gap={10} className={classes.commentloading} max>
 						<HStack gap={4}>
-							<Skeleton width={32} height={32} border="50%"
-className={classes.avatar} />
-							<Skeleton width={100} height={16} border={16}
-className={classes.username} />
+							<Skeleton width={32} height={32} border="50%" className={classes.avatar} />
+							<Skeleton width={100} height={16} border={16} className={classes.username} />
 						</HStack>
-						<Skeleton width={'100%'} height={50} border={16}
-className={classes.text} />
+						<Skeleton width={'100%'} height={50} border={16} className={classes.text} />
 					</VStack>
 				)
 			) : comments?.length ? (
-				comments.map((comment) => (
-					<CommentCard
-						className={classNames(classes.comment, {}, [additionDeleteAnimationClass(comment.id)])}
-						key={comment.id}
-						comment={comment}
-						onDelete={
-							isAdmin && comment.user.id === userId ? () => handleDeleteComment(comment.id) : undefined
-						}
-					/>
-				))
+				<VStack gap={10} max>
+					{animatedCommments}
+				</VStack>
 			) : (
 				<Text content={t('noComments')} />
 			)}
@@ -122,3 +209,21 @@ className={classes.text} />
 		</VStack>
 	);
 });
+
+const CommentListLazy = (props: CommentListProps) => {
+	const { isLoaded } = useAnimationLibrarys();
+
+	if (!isLoaded) {
+		return null;
+	}
+
+	return <CommentListWithAnimaton {...props} />;
+};
+
+export const CommentList: FC<CommentListProps> = (props: CommentListProps) => {
+	return (
+		<AnimationProvider>
+			<CommentListLazy {...props} />
+		</AnimationProvider>
+	);
+};

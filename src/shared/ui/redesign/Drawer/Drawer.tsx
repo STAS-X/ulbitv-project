@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
-import React, { memo, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, memo, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { Overlay } from '../../redesign/Overlay/Overlay';
 import classes from './Drawer.module.scss';
 import { Portal } from '../../redesign/Portal/Portal';
@@ -144,9 +144,9 @@ const DrawerLazy = (props: DrawerProps) => {
 };
 
 /**
- * Компонент устарел, используем новые компоненты из папки redesigned
+ * Используем новые компоненты из папки redesigned
  */
-export const Drawer = memo((props: DrawerProps) => {
+export const Drawer: FC<DrawerProps> = memo((props: DrawerProps) => {
 	return (
 		<AnimationProvider>
 			<DrawerLazy {...props} />

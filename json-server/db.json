@@ -899,7 +899,7 @@
         "theme": "orange_theme"
       },
       "features": {
-        "isAppRedesigned": false,
+        "isAppRedesigned": true,
         "isFeatureRecommendation": true,
         "isFeatureRating": true,
         "isFeatureCounter": true
@@ -915,13 +915,14 @@
         "user"
       ],
       "jsonSettings": {
-        "theme": "dark_theme",
+        "theme": "orange_theme",
         "isFirstVisit": false
       },
       "features": {
         "isFeatureRecommendation": false,
         "isFeatureRating": false,
-        "isFeatureCounter": false
+        "isFeatureCounter": false,
+        "isAppRedesigned": true
       },
       "avatar": "https://bipbap.ru/wp-content/uploads/2021/07/unikal-nye-kartinki-na-avu-vk-i-odnoklassniki-samye-krasivye-2.jpg"
     },
