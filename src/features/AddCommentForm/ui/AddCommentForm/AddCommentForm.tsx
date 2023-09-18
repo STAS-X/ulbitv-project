@@ -7,10 +7,7 @@ import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button/Button';
 import { Button as ButtonRedesign } from '@/shared/ui/redesign/Button/Button';
 import classes from './AddCommentForm.module.scss';
 import { useSelector } from 'react-redux';
-import {
-	getAddCommentError,
-	getAddCommentIsLoading
-} from '../../model/selectors/addCommentFormData';
+import { getAddCommentError, getAddCommentIsLoading } from '../../model/selectors/addCommentFormData';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text/Text';
 import { Text as TextRedesign } from '@/shared/ui/redesign/Text/Text';
 import { CommentSchema } from '@/entities/Comment';
@@ -63,35 +60,28 @@ const AddCommentForm: FC<AddCommentFormProps> = (props: AddCommentFormProps) => 
 						border={'standart'}
 						max
 					>
-						{error ? (
-							<HStack justify={'between'} max>
-								<TextRedesign
-									variant={'error'}
-									title={t('commentForm')}
-									content={t('commentError', { ns: 'errors', message: error })}
-								/>
-								<ButtonRedesign variant={'outline'} disabled>
-									{t('commentSubmit')}
-								</ButtonRedesign>
-							</HStack>
-						) : (
-							<HStack justify={'between'} max>
-								<InputRedesign
-									dataTestId={'Article.Comment'}
-									className={classes.input}
-									placeholder={t('commentPlaceholder')}
-									value={content || ''}
-									onChange={onCommentFormChange}
-								/>
-								<ButtonRedesign
-									dataTestId={'Article.Comment.Add'}
-									variant={'outline'}
-									onClick={handleSendComment}
-									disabled={!content || content.length === 0 || isLoading}
-								>
-									{t('commentSubmit')}
-								</ButtonRedesign>
-							</HStack>
+						<HStack justify={'between'} max>
+							<InputRedesign
+								dataTestId={'Article.Comment'}
+								className={classes.input}
+								placeholder={t('commentPlaceholder')}
+								value={content || ''}
+								onChange={onCommentFormChange}
+							/>
+							<ButtonRedesign
+								dataTestId={'Article.Comment.Add'}
+								variant={'outline'}
+								onClick={handleSendComment}
+								disabled={!content || content.length === 0 || isLoading}
+							>
+								{t('commentSubmit')}
+							</ButtonRedesign>
+						</HStack>
+						{error && (
+							<TextRedesign
+								variant={'error'}
+								content={t('commentError', { ns: 'errors', message: error })}
+							/>
 						)}
 					</Card>
 				}
@@ -102,35 +92,28 @@ const AddCommentForm: FC<AddCommentFormProps> = (props: AddCommentFormProps) => 
 						className={classNames(classes.addCommentform, {}, [className])}
 						max
 					>
-						{error ? (
-							<HStack justify={'between'} max>
-								<Text
-									theme={TextTheme.ERROR}
-									title={t('commentForm')}
-									content={t('commentError', { ns: 'errors', message: error })}
-								/>
-								<Button theme={ButtonTheme.OUTLINE} disabled>
-									{t('commentSubmit')}
-								</Button>
-							</HStack>
-						) : (
-							<HStack justify={'between'} max>
-								<Input
-									dataTestId={'Article.Comment'}
-									className={classes.input}
-									placeholder={t('commentPlaceholder')}
-									value={content || ''}
-									onChange={onCommentFormChange}
-								/>
-								<Button
-									dataTestId={'Article.Comment.Add'}
-									theme={ButtonTheme.OUTLINE}
-									onClick={handleSendComment}
-									disabled={!content || content.length === 0 || isLoading}
-								>
-									{t('commentSubmit')}
-								</Button>
-							</HStack>
+						<HStack justify={'between'} max>
+							<Input
+								dataTestId={'Article.Comment'}
+								className={classes.input}
+								placeholder={t('commentPlaceholder')}
+								value={content || ''}
+								onChange={onCommentFormChange}
+							/>
+							<Button
+								dataTestId={'Article.Comment.Add'}
+								theme={ButtonTheme.OUTLINE}
+								onClick={handleSendComment}
+								disabled={!content || content.length === 0 || isLoading}
+							>
+								{t('commentSubmit')}
+							</Button>
+						</HStack>
+						{error && (
+							<Text
+								theme={TextTheme.ERROR}
+								content={t('commentError', { ns: 'errors', message: error })}
+							/>
 						)}
 					</VStack>
 				}
