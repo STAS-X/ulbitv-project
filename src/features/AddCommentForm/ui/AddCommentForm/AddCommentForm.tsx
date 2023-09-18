@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Input } from '@/shared/ui/deprecated/Input/Input';
@@ -8,15 +8,13 @@ import { Button as ButtonRedesign } from '@/shared/ui/redesign/Button/Button';
 import classes from './AddCommentForm.module.scss';
 import { useSelector } from 'react-redux';
 import {
-	getAddCommentContent,
 	getAddCommentError,
 	getAddCommentIsLoading
 } from '../../model/selectors/addCommentFormData';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text/Text';
 import { Text as TextRedesign } from '@/shared/ui/redesign/Text/Text';
-import { useAppDispatch } from '@/app/providers/StoreProvider';
 import { CommentSchema } from '@/entities/Comment';
-import { addCommentFormActions, addCommentFormReducer } from '../../model/slices/addCommentFormSlice';
+import { addCommentFormReducer } from '../../model/slices/addCommentFormSlice';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { HStack, VStack } from '@/shared/ui/redesign/Stack';
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures';
@@ -35,23 +33,23 @@ const AddCommentForm: FC<AddCommentFormProps> = (props: AddCommentFormProps) => 
 	const { onSendComment, className } = props;
 	const { t } = useTranslation(['comments', 'errors']);
 
-	const content = useSelector(getAddCommentContent);
+	const [content, setContent] = useState<string>('');
 	const error = useSelector(getAddCommentError);
 	const isLoading = useSelector(getAddCommentIsLoading);
-	const dispatch = useAppDispatch();
 
 	const onCommentFormChange = useCallback(
 		(value: string) => {
-			dispatch(addCommentFormActions.setCommentContent(value));
+			setContent(value);
 		},
-		[dispatch]
+		[setContent]
 	);
 
 	const handleSendComment = useCallback(() => {
 		if (content) {
 			if (onSendComment) onSendComment(content);
+			setContent('');
 		}
-	}, [content, onSendComment]);
+	}, [content, onSendComment, setContent]);
 
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>

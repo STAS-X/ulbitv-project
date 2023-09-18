@@ -41,9 +41,9 @@ const CommentListWithAnimaton: FC<CommentListProps> = memo((props: CommentListPr
 		if (
 			comments.filter(
 				(comment) => animatedComments.findIndex((animatedComment) => animatedComment.id === comment.id) < 0
-			).length > 0
+			).length > 0 &&
+			deletedItems.length === 0
 		) {
-			console.log(comments, animatedComments, 'add new comment');
 			setAnimatedComments([
 				...comments.filter(
 					(comment) => animatedComments.findIndex((animatedComment) => animatedComment.id === comment.id) < 0
@@ -51,15 +51,6 @@ const CommentListWithAnimaton: FC<CommentListProps> = memo((props: CommentListPr
 				...animatedComments
 			]);
 		}
-		if (deletedItems.length > 0 && comments.length < animatedComments.length) {
-			//setAnimatedComments(
-			//	[]
-			//animatedComments.filter(
-			//	(animatedComment) => comments.findIndex((comment) => comment.id === animatedComment.id) > -1
-			//)
-			//);
-		}
-		console.info(deletedItems, animatedComments, 'rerender comments');
 	}, [comments, deletedItems, animatedComments]);
 
 	const {
@@ -104,7 +95,13 @@ const CommentListWithAnimaton: FC<CommentListProps> = memo((props: CommentListPr
 		},
 
 		onDestroyed: (comment: CommentSchema) => {
-			setDeletedItems((prevDeleted) => prevDeleted?.filter((deleteItemId) => deleteItemId !== comment.id));
+			setTimeout(
+				() =>
+					setDeletedItems(
+						(prevDeleted) => prevDeleted?.filter((deleteItemId) => deleteItemId !== comment.id)
+					),
+				500
+			);
 		},
 		unique: true,
 		trail: 50,
@@ -134,7 +131,9 @@ const CommentListWithAnimaton: FC<CommentListProps> = memo((props: CommentListPr
 					key={comment.id}
 					comment={comment}
 					onDelete={
-						isAdmin && deletedItems.findIndex((deleteItem) => deleteItem === comment.id) < 0
+						isAdmin &&
+						comment.user.id === userId &&
+						deletedItems.findIndex((deleteItem) => deleteItem === comment.id) < 0
 							? () => handleDeleteComment(comment.id)
 							: undefined
 					}
@@ -148,11 +147,10 @@ const CommentListWithAnimaton: FC<CommentListProps> = memo((props: CommentListPr
 			(async () => {
 				if (commentId) {
 					setDeletedItems((prevDeleted) => [...prevDeleted, commentId]);
+					setAnimatedComments((prevAnimated) => prevAnimated.filter((prev) => prev.id !== commentId));
 					await dispatch(deleteArticleCommentById({ commentId })).then((res) => {
 						console.log(res.payload, 'payload after delete');
 					});
-					setAnimatedComments((prevAnimated) => prevAnimated.filter((prev) => prev.id !== commentId)
-					);
 				}
 			})();
 		},
