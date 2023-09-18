@@ -38,18 +38,28 @@ const CommentListWithAnimaton: FC<CommentListProps> = memo((props: CommentListPr
 	const error = useSelector(getArticleCommentsError);
 
 	useEffect(() => {
-		if (
-			comments.filter(
-				(comment) => animatedComments.findIndex((animatedComment) => animatedComment.id === comment.id) < 0
-			).length > 0 &&
-			deletedItems.length === 0
-		) {
-			setAnimatedComments([
-				...comments.filter(
+		if (deletedItems.length === 0) {
+			if (
+				comments.length > animatedComments.length &&
+				comments.filter(
 					(comment) => animatedComments.findIndex((animatedComment) => animatedComment.id === comment.id) < 0
-				),
-				...animatedComments
-			]);
+				).length > 0
+			) {
+				setAnimatedComments([
+					...comments.filter(
+						(comment) =>
+							animatedComments.findIndex((animatedComment) => animatedComment.id === comment.id) < 0
+					),
+					...animatedComments
+				]);
+			}
+			if (comments.length < animatedComments.length) {
+				setAnimatedComments([
+					...animatedComments.filter(
+						(animatedComment) => comments.findIndex((comment) => animatedComment.id === comment.id) > -1
+					)
+				]);
+			}
 		}
 	}, [comments, deletedItems, animatedComments]);
 
@@ -95,13 +105,7 @@ const CommentListWithAnimaton: FC<CommentListProps> = memo((props: CommentListPr
 		},
 
 		onDestroyed: (comment: CommentSchema) => {
-			setTimeout(
-				() =>
-					setDeletedItems(
-						(prevDeleted) => prevDeleted?.filter((deleteItemId) => deleteItemId !== comment.id)
-					),
-				500
-			);
+			console.info(`animated comment ${comment.id} DELETED`);
 		},
 		unique: true,
 		trail: 50,
@@ -150,6 +154,10 @@ const CommentListWithAnimaton: FC<CommentListProps> = memo((props: CommentListPr
 					setAnimatedComments((prevAnimated) => prevAnimated.filter((prev) => prev.id !== commentId));
 					await dispatch(deleteArticleCommentById({ commentId })).then((res) => {
 						console.log(res.payload, 'payload after delete');
+						//setAnimatedComments((prevAnimated) => prevAnimated.filter((prev) => prev.id !== commentId));
+						setDeletedItems(
+							(prevDeleted) => prevDeleted?.filter((deleteItemId) => deleteItemId !== commentId)
+						);
 					});
 				}
 			})();
