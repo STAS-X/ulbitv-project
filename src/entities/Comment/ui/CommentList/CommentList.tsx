@@ -53,13 +53,13 @@ const CommentListWithAnimaton: FC<CommentListProps> = memo((props: CommentListPr
 					...animatedComments
 				]);
 			}
-			if (comments.length < animatedComments.length) {
-				setAnimatedComments([
-					...animatedComments.filter(
-						(animatedComment) => comments.findIndex((comment) => animatedComment.id === comment.id) > -1
-					)
-				]);
-			}
+			// if (comments.length < animatedComments.length) {
+			// 	setAnimatedComments([
+			// 		...animatedComments.filter(
+			// 			(animatedComment) => comments.findIndex((comment) => animatedComment.id === comment.id) > -1
+			// 		)
+			// 	]);
+			// }
 		}
 	}, [comments, deletedItems, animatedComments]);
 
@@ -105,7 +105,7 @@ const CommentListWithAnimaton: FC<CommentListProps> = memo((props: CommentListPr
 		},
 
 		onDestroyed: (comment: CommentSchema) => {
-			console.info(`animated comment ${comment.id} DELETED`);
+			console.info(`animated comment ${comment.id} DELETED from dom node`);
 		},
 		unique: true,
 		trail: 50,

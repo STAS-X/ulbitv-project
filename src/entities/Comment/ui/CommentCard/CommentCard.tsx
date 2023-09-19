@@ -29,8 +29,7 @@ export const CommentCard: FC<CommentCardProps> = memo((props: CommentCardProps) 
 		<ToggleFeatures
 			feature={'isAppRedesigned'}
 			on={
-				<Card className={className} dataTestId={'Article.CommentItem'} paddings={16}
-border={'standart'} max>
+				<Card className={className} dataTestId={'Article.CommentItem'} paddings={16} border={'standart'} max>
 					<HStack justify="between" max>
 						<AppLinkRedesign
 							className={classes.linkredesign}
@@ -51,7 +50,11 @@ border={'standart'} max>
 							</ButtonRedesign>
 						)}
 					</HStack>
-					<TextRedesign dataTestId={'Comment.Content'} content={comment.text} />
+					<TextRedesign
+						dataTestId={'Comment.Content'}
+						className={classes.contentredesign}
+						content={comment.text}
+					/>
 				</Card>
 			}
 			off={
